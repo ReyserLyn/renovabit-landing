@@ -1,0 +1,34 @@
+# RenovaBit Landing — Project Rules
+
+## Stack & Tooling
+- Framework: **Astro 7** | UI: **Preact 10** | Styling: **Tailwind CSS v4** (@tailwindcss/vite)
+- Icons: **astro-icon + @iconify-json/hugeicons** (`<Icon name="hugeicons:icon-name" />`)
+- Linting/Formatting: **Biome 2.4** (standalone, root: true) — NO Prettier, NO ESLint
+- Package Manager: **Bun** — NO npm/yarn/pnpm
+- TypeScript: strict mode, `verbatimModuleSyntax: true`, path alias `@/*` → `./src/*`
+
+## Scripts
+- `bun dev` → astro dev :3000 | `bun build` | `bun preview` | `bun check` (astro) | `bun check:biome`
+
+## Commits (Conventional Commits)
+- `<type>(<scope>): <message>` — types: feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert
+- Scopes: ui|seo|content|a11y|perf|deps|ci|repo — max 72 chars, imperative, lowercase, no period
+
+## Conventions
+- **Biome** runs pre-commit (staged files), commitlint checks message, pre-push checks all.
+- **Tailwind v4 only** — NO tailwind.config.js, NO @apply, NO postcss plugin. Use `@import "tailwindcss"`.
+- **compressHTML: true** — traditional whitespace (not JSX mode).
+- **Components**: PascalCase (.astro or .tsx). Directories: kebab-case. Assets: kebab-case.
+- **Form inputs**: label ABOVE, helper text optional, error text BELOW. NO placeholder-as-label.
+- **Layout**: `min-h-[100dvh]` not `h-screen`. Grid over flex percentage-math.
+- **Animations**: only `transform` + `opacity`. Custom cubic-beziers. Honor `prefers-reduced-motion`.
+- **No window scroll listeners** — use IntersectionObserver or `whileInView`.
+
+## Anti-patterns (banned)
+- Inter as default font (prefer Geist, Satoshi, Cabinet Grotesk, or brand font)
+- AI-purple gradients, 3-equal-feature-cards, harsh shadows
+- Em-dashes (`—`) anywhere visible
+- Hand-rolled SVG icons or decorative SVGs
+- Div-based fake screenshots
+- Lucide icons (unless explicitly requested)
+- FontAwesome or Material Icons (use Hugeicons)
