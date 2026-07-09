@@ -3,6 +3,7 @@
 > Landing page standalone para servicio técnico de laptops y PCs en Arequipa.
 > Framework: Astro 7 | UI: Preact | Styling: Tailwind CSS v4 | Icons: Hugeicons via astro-icon
 > Linting/Formatting: Biome 2 (sin Prettier ni ESLint)
+> Deploy: Cloudflare Workers (via @astrojs/cloudflare)
 > Package Manager: Bun 1.3
 
 ---
@@ -18,7 +19,8 @@
 | Linting/Formatting | Biome 2.4 (standalone, `root: true`) |
 | Sitemap | @astrojs/sitemap |
 | Package Manager | Bun |
-| Bundler | Vite 8 (via Astro 7) |
+| Bundler | Vite 8 — Rolldown (via Astro 7) |
+| Deploy | Cloudflare Workers (@astrojs/cloudflare + wrangler) |
 | TypeScript | ^6.0.3 (strict) — `verbatimModuleSyntax: true` |
 
 ### Biome (único formatter/linter)
@@ -33,11 +35,13 @@
 
 ### Scripts
 ```sh
-bun run dev           # astro dev → localhost:3000
-bun run build         # astro build
-bun run preview       # astro preview
+bun run dev           # wrangler types && astro dev → localhost:3000
+bun run build         # wrangler types && astro check && astro build
+bun run preview       # wrangler types && astro preview (workerd runtime)
 bun run check         # astro check (type checking)
 bun run check:biome   # biome check . --write
+bun run cf:types      # wrangler types → worker-configuration.d.ts
+bun run cf:deploy     # astro build && wrangler deploy (a Cloudflare Workers)
 ```
 
 ### Git Hooks (lefthook)
@@ -108,13 +112,16 @@ src/
 ## Decisiones Técnicas Importantes
 
 1. **Biome es el ÚNICO formatter/linter.** No hay Prettier ni ESLint. No agregar.
-2. **`compressHTML: true`** — whitespace handling tradicional (no JSX). Espacios entre inline elements se preservan.
+2. **`compressHTML: "jsx"`** — Astro 7 con Rust compiler: JSX whitespace handling. Usar `{' '}` para preservar espacios entre inline elements.
 3. **Preact** — No necesita `@preact/compat` a menos que se requieran APIs específicas de React.
 4. **Tailwind v4** — Sintaxis nueva. NO usar `tailwind.config.js`, NO usar `@apply` (preferir utilidades directas).
 5. **Hugeicons con astro-icon** — Para tipos: `bun astro sync`. Autocompletado en editor.
 6. **Iconos sociales** — Actualmente en componentes `.astro` separados (`src/components/social-icon/`). Si se necesita interactividad, migrar a Preact.
 7. **Standalone project** — No es monorepo. `biome.json` con `root: true` funciona sin conflictos.
 8. **Zed config** — Biome como formatter para Astro, CSS, JSON, JS, TS, TSX. Tailwind LSP configurado para Astro.
+9. **Cloudflare Workers** — Adapter `@astrojs/cloudflare` v14 con output static (modo por defecto en Astro 7, reemplaza hybrid). `wrangler.jsonc` con `assets.directory` y `nodejs_compat`. `wrangler types` genera `worker-configuration.d.ts`. Dev server usa workerd runtime.
+10. **Despliegue**: `bun run cf:deploy` o manual: `astro build && wrangler deploy`. El adapter genera `_headers` para cache-control en assets hasheados. Para añadir SSR en el futuro (contact form, API), marcar rutas con `export const prerender = false` — Astro 7 static mode lo soporta.
+11. **Astro 7 cambios importantes**: Rust compiler (no más Go), JSX whitespace default, Vite 8 con Rolldown, Sätteri para Markdown, `output: 'hybrid'` eliminado (static lo reemplaza). `compressHTML: true` ya no es compatible — usar `"jsx"`.
 
 ---
 

@@ -4,17 +4,21 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
+		"dev": "wrangler types && astro dev",
+		"build": "wrangler types && astro check && astro build",
 		"check": "astro check",
 		"check:biome": "biome check . --write",
-		"preview": "astro preview"
+		"preview": "wrangler types && astro preview",
+		"cf:types": "wrangler types",
+		"cf:deploy": "astro build && wrangler deploy"
 	},
 	"dependencies": {
+		"@astrojs/cloudflare": "^14.1.2",
 		"@astrojs/preact": "^6.0.1",
 		"preact": "^10.29.7"
 	},
 	"devDependencies": {
+		"wrangler": "^4.110.0",
 		"@astrojs/check": "^0.9.9",
 		"@astrojs/sitemap": "^3.7.3",
 		"@biomejs/biome": "2.4.16",

@@ -1,20 +1,17 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "verbatimModuleSyntax": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  },
-  "include": [
-    ".astro/types.d.ts",
-    "**/*"
-  ],
-  "exclude": [
-    "dist"
-  ]
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"verbatimModuleSyntax": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+	},
+	"include": [
+		".astro/types.d.ts",
+		"**/*",
+		"./worker-configuration.d.ts"
+	],
+	"exclude": ["dist"]
 }

@@ -7,11 +7,16 @@ dist/
 # Astro
 .astro/
 
+# Wrangler
+.wrangler/
+worker-configuration.d.ts
+
 # Environment
 .env
 .env.local
 .env.production
 .env.*.local
+.dev.vars
 
 # OS
 .DS_Store
@@ -20,3 +25,5 @@ Thumbs.db
 # IDE
 .idea/
 .vscode/
+
+.agents

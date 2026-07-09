@@ -1,10 +1,10 @@
 ---
 export interface Props {
-	size?: number
-	title?: string
-	decorative?: boolean
-	class?: string
-	color?: string
+	size?: number;
+	title?: string;
+	decorative?: boolean;
+	class?: string;
+	color?: string;
 }
 
 const {
@@ -13,9 +13,9 @@ const {
 	decorative = true,
 	class: className = "",
 	color = "currentColor",
-} = Astro.props
+} = Astro.props;
 
-const labelled = !decorative && Boolean(title)
+const labelled = !decorative && Boolean(title);
 ---
 
 <svg
