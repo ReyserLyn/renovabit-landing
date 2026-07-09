@@ -7,3 +7,20 @@ export const SITE = {
 	locale: "es_PE",
 	ogImage: "/og-default.png",
 } as const;
+
+export const CONTACT = {
+	whatsappUrl: "https://wa.me/51987471074",
+	phone: "+51 987 471 074",
+	email: "contacto@renovabit.com",
+} as const;
+
+export const SOCIAL = {
+	instagram: "https://instagram.com/renovabit",
+	facebook: "https://facebook.com/renovabit",
+	tiktok: "https://tiktok.com/@renovabit",
+} as const;
+
+export const NAV_ITEMS = [
+	{ href: "/", label: "Inicio" },
+	{ href: "/#servicios", label: "Servicios" },
+] as const;
