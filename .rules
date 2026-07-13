@@ -24,8 +24,12 @@
 - **Animations**: only `transform` + `opacity`. Custom cubic-beziers. Honor `prefers-reduced-motion`.
 - **No window scroll listeners** — use IntersectionObserver or `whileInView`.
 
+## Fonts
+- **Inter** → body text, UI elements, paragraphs, nav
+- **Manrope** → headings, titles, hero display
+- Fonts loaded via Astro Fonts API (`fontProviders.local()`) — self-hosted, preloaded
+
 ## Anti-patterns (banned)
-- Inter as default font (prefer Geist, Satoshi, Cabinet Grotesk, or brand font)
 - AI-purple gradients, 3-equal-feature-cards, harsh shadows
 - Em-dashes (`—`) anywhere visible
 - Hand-rolled SVG icons or decorative SVGs

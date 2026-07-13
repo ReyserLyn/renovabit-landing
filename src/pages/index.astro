@@ -3,8 +3,59 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="RenovaBit — Inicio">
-	<main>
-		<h1>RenovaBit</h1>
-		<p>Servicio técnico de laptops y PCs en Arequipa</p>
+	<!-- Manrope heading — hero -->
+	<main class="grid min-h-dvh place-items-center px-4">
+		<div class="mx-auto max-w-xl text-center">
+			<h1
+				class="font-heading text-5xl font-extrabold leading-tight tracking-tighter text-primary md:text-6xl lg:text-7xl"
+			>
+				RenovaBit
+			</h1>
+
+			<!-- Inter body — tagline -->
+			<p class="mx-auto mt-4 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+				Servicio técnico de laptops y PCs en Arequipa. Reparación, mantenimiento y soporte remoto.
+			</p>
+
+			<!-- Combinaciones Manrope heading + Inter body -->
+			<div class="mt-12 space-y-8">
+				<section class="space-y-2">
+					<h2 class="font-heading text-xl font-semibold md:text-2xl">
+						Tecnología que entiende tu negocio
+					</h2>
+					<p class="text-sm leading-relaxed text-muted-foreground md:text-base">
+						Realizamos mantenimiento, desarrollo web y soluciones tecnológicas para personas y
+						empresas en Arequipa.
+					</p>
+				</section>
+
+				<section class="space-y-2">
+					<h2 class="font-heading text-xl font-semibold md:text-2xl">
+						La tecnología también necesita
+						<br>
+						alguien que la entienda
+					</h2>
+					<p class="text-sm leading-relaxed text-muted-foreground md:text-base">
+						Confía en nosotros para mantener tus equipos funcionando al máximo rendimiento.
+					</p>
+				</section>
+			</div>
+
+			<!-- Demo de pesos Inter cargados -->
+			<div class="mt-12 space-y-1 text-sm text-muted-foreground">
+				<p>Inter Regular · 400 — Cuerpo de texto principal</p>
+				<p class="font-medium">Inter Medium · 500 — Énfasis sutil</p>
+				<p class="font-semibold">Inter Semibold · 600 — Subencabezados</p>
+				<p class="font-bold">Inter Bold · 700 — Énfasis fuerte</p>
+			</div>
+
+			<!-- Demo de pesos Manrope cargados -->
+			<div class="mt-6 space-y-1 text-sm">
+				<p class="font-heading font-medium">Manrope Medium · 500</p>
+				<p class="font-heading font-semibold">Manrope Semibold · 600</p>
+				<p class="font-heading font-bold">Manrope Bold · 700</p>
+				<p class="font-heading font-extrabold">Manrope ExtraBold · 800</p>
+			</div>
+		</div>
 	</main>
 </BaseLayout>
