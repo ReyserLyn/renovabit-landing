@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+import { cn } from "cnfast";
+
+interface Props extends HTMLAttributes<"button"> {
+	class?: string;
+	asChild?: boolean;
+}
+
+const { class: className = "", asChild = false, type = "button", ...rest } = Astro.props as Props;
+---
+
+{asChild ? (
+	<div data-slot="accordion-trigger" data-as-child class={cn("flex w-full", className)}>
+		<slot />
+	</div>
+) : (
+	<div class="flex w-full">
+		<button
+			{...rest}
+			type={type}
+			data-slot="accordion-trigger"
+			class={cn(
+				"group/accordion-trigger focus-visible:ring-ring/50 flex flex-1 items-center justify-between rounded-lg px-4 py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3",
+				className,
+			)}
+		>
+			<slot />
+			<Icon
+							name="hugeicons:arrow-down-01"
+				class="size-4 shrink-0 text-muted-foreground transition-transform group-data-[open=true]/accordion-trigger:rotate-180"
+			/>
+		</button>
+	</div>
+)}

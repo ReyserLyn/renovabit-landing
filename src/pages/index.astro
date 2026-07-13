@@ -1,61 +1,125 @@
 ---
+import { Icon } from "astro-icon/components";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Marquee } from "@/components/ui/marquee";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="RenovaBit — Inicio">
-	<!-- Manrope heading — hero -->
-	<main class="grid min-h-dvh place-items-center px-4">
-		<div class="mx-auto max-w-xl text-center">
+	<main class="mx-auto max-w-3xl space-y-16 px-4 py-16">
+		<section class="space-y-4 text-center">
 			<h1
 				class="font-heading text-5xl font-extrabold leading-tight tracking-tighter text-primary md:text-6xl lg:text-7xl"
 			>
 				RenovaBit
 			</h1>
-
-			<!-- Inter body — tagline -->
-			<p class="mx-auto mt-4 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
-				Servicio técnico de laptops y PCs en Arequipa. Reparación, mantenimiento y soporte remoto.
+			<p class="mx-auto max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+				Servicio tecnico de laptops y PCs en Arequipa. Reparacion, mantenimiento y soporte remoto.
 			</p>
+		</section>
 
-			<!-- Combinaciones Manrope heading + Inter body -->
-			<div class="mt-12 space-y-8">
-				<section class="space-y-2">
-					<h2 class="font-heading text-xl font-semibold md:text-2xl">
-						Tecnología que entiende tu negocio
-					</h2>
-					<p class="text-sm leading-relaxed text-muted-foreground md:text-base">
-						Realizamos mantenimiento, desarrollo web y soluciones tecnológicas para personas y
-						empresas en Arequipa.
-					</p>
-				</section>
-
-				<section class="space-y-2">
-					<h2 class="font-heading text-xl font-semibold md:text-2xl">
-						La tecnología también necesita
-						<br>
-						alguien que la entienda
-					</h2>
-					<p class="text-sm leading-relaxed text-muted-foreground md:text-base">
-						Confía en nosotros para mantener tus equipos funcionando al máximo rendimiento.
-					</p>
-				</section>
+		<Separator />
+		<section class="space-y-4">
+			<h2 class="font-heading text-lg font-semibold">Button</h2>
+			<div class="flex flex-wrap items-center justify-center gap-3">
+				<Button variant="default">Default</Button>
+				<Button variant="secondary">Secondary</Button>
+				<Button variant="outline">Outline</Button>
+				<Button variant="ghost">Ghost</Button>
+				<Button variant="link">Link</Button>
+				<Button variant="whatsapp">WhatsApp</Button>
 			</div>
-
-			<!-- Demo de pesos Inter cargados -->
-			<div class="mt-12 space-y-1 text-sm text-muted-foreground">
-				<p>Inter Regular · 400 — Cuerpo de texto principal</p>
-				<p class="font-medium">Inter Medium · 500 — Énfasis sutil</p>
-				<p class="font-semibold">Inter Semibold · 600 — Subencabezados</p>
-				<p class="font-bold">Inter Bold · 700 — Énfasis fuerte</p>
+			<div class="flex flex-wrap items-center justify-center gap-3">
+				<Button size="sm">Small</Button>
+				<Button size="default">Default</Button>
+				<Button size="lg">Large</Button>
+				<Button size="icon" aria-label="Icono">
+					<Icon name="hugeicons:arrow-right-01" class="size-4" />
+				</Button>
 			</div>
+		</section>
 
-			<!-- Demo de pesos Manrope cargados -->
-			<div class="mt-6 space-y-1 text-sm">
-				<p class="font-heading font-medium">Manrope Medium · 500</p>
-				<p class="font-heading font-semibold">Manrope Semibold · 600</p>
-				<p class="font-heading font-bold">Manrope Bold · 700</p>
-				<p class="font-heading font-extrabold">Manrope ExtraBold · 800</p>
+		<Separator />
+		<section class="space-y-4">
+			<h2 class="font-heading text-lg font-semibold">Badge</h2>
+			<div class="flex flex-wrap items-center justify-center gap-2">
+				<Badge variant="default">Default</Badge>
+				<Badge variant="secondary">Secondary</Badge>
+				<Badge variant="outline">Outline</Badge>
 			</div>
-		</div>
+			<div class="flex flex-wrap items-center justify-center gap-2">
+				<Badge size="sm">Small</Badge>
+				<Badge size="default">Default</Badge>
+				<Badge size="lg">Large</Badge>
+			</div>
+		</section>
+
+		<Separator />
+		<section class="mx-auto max-w-md space-y-4">
+			<h2 class="font-heading text-lg font-semibold text-center">Formulario</h2>
+			<div class="space-y-3">
+				<div class="space-y-1.5">
+					<Label for="preview-name">Nombre</Label>
+					<Input id="preview-name" placeholder="Tu nombre" />
+				</div>
+				<div class="space-y-1.5">
+					<Label for="preview-email">Correo electronico</Label>
+					<Input id="preview-email" type="email" placeholder="correo@ejemplo.com" />
+				</div>
+				<div class="space-y-1.5">
+					<Label for="preview-message">Mensaje</Label>
+					<Textarea id="preview-message" placeholder="Escribe tu mensaje..." />
+				</div>
+				<Button class="w-full">Enviar mensaje</Button>
+			</div>
+		</section>
+
+		<Separator />
+		<section class="mx-auto max-w-lg space-y-4">
+			<h2 class="font-heading text-lg font-semibold text-center">FAQ</h2>
+			<Accordion>
+				<AccordionItem value="1">
+					<AccordionTrigger>Que servicios ofrecen?</AccordionTrigger>
+					<AccordionContent
+						>Reparacion de laptops y PCs, mantenimiento preventivo, soporte remoto y desarrollo web.</AccordionContent
+					>
+				</AccordionItem>
+				<AccordionItem value="2">
+					<AccordionTrigger>Donde estan ubicados?</AccordionTrigger>
+					<AccordionContent
+						>Estamos en Arequipa. Ofrecemos servicio presencial y soporte remoto a toda la ciudad.</AccordionContent
+					>
+				</AccordionItem>
+				<AccordionItem value="3">
+					<AccordionTrigger>Cuanto tiempo toma una reparacion?</AccordionTrigger>
+					<AccordionContent
+						>Depende del tipo de servicio. Las reparaciones simples pueden tomar de 1 a 3 dias.</AccordionContent
+					>
+				</AccordionItem>
+			</Accordion>
+		</section>
+
+		<Separator />
+		<section class="space-y-4">
+			<h2 class="font-heading text-lg font-semibold text-center">Confian en nosotros</h2>
+			<Marquee variant="solid" class="py-4">
+				<span class="mx-8 text-lg font-semibold text-muted-foreground">Empresa A</span>
+				<span class="mx-8 text-lg font-semibold text-muted-foreground">Empresa B</span>
+				<span class="mx-8 text-lg font-semibold text-muted-foreground">Empresa C</span>
+				<span class="mx-8 text-lg font-semibold text-muted-foreground">Empresa D</span>
+				<span class="mx-8 text-lg font-semibold text-muted-foreground">Empresa E</span>
+			</Marquee>
+		</section>
 	</main>
 </BaseLayout>

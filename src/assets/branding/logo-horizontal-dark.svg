@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="logo-horizontal-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 249.19">
+<svg id="logo-horizontal-dark"
+  role="img"
+  aria-label="RenovaBit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 249.19">
   <defs>
     <style>
       .cls-1 {

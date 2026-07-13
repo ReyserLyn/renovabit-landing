@@ -8,11 +8,11 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
-			"!**/.astro/**",
-			"!**/.turbo/**",
-			"!**/dist/**",
-			"!**/node_modules/**",
-			"!**/.*/**",
+			"!**/.astro",
+			"!**/.turbo",
+			"!**/dist",
+			"!**/node_modules",
+			"!**/.*",
 			"!**/.wrangler",
 			"!**/worker-configuration.d.ts"
 		]
@@ -33,7 +33,6 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": false,
 			"complexity": {
 				"noAdjacentSpacesInRegex": "error",
 				"noExtraBooleanCast": "error",

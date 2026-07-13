@@ -1,0 +1,16 @@
+---
+import { cn } from "cnfast";
+
+interface Props {
+	class?: string;
+	orientation?: "horizontal" | "vertical";
+}
+
+const { class: className = "", orientation = "horizontal", ...props } = Astro.props;
+---
+
+{orientation === "vertical" ? (
+	<div aria-hidden="true" class={cn("h-full w-px shrink-0 bg-border", className)} {...props} />
+) : (
+	<hr class={cn("h-px w-full shrink-0 border-none bg-border", className)} {...props} />
+)}
