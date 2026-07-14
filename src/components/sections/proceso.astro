@@ -1,0 +1,143 @@
+---
+import { Icon } from "astro-icon/components";
+import aboutImg1 from "@/assets/images/about/conocenos-1.webp";
+import aboutImg2 from "@/assets/images/about/conocenos-2.avif";
+import testimonialImg from "@/assets/images/testimonials/testimonial.avif";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+
+const rows = [
+	{
+		image: aboutImg2,
+		imageAlt: "Técnico revisando una laptop",
+		title: "Cada equipo recibe el tiempo y la atención que merece.",
+		description:
+			"No creemos en los mantenimientos hechos con prisa. Cada equipo pasa por un proceso de revisión, limpieza y diagnóstico para asegurar que el problema quede realmente resuelto y no vuelva a aparecer pocos días después.",
+		imageLeft: true,
+	},
+	{
+		image: testimonialImg,
+		imageAlt: "Documentación del proceso de reparación",
+		title: "Todo queda documentado.",
+		description:
+			"Durante el servicio registramos el proceso mediante fotografías e informes cuando son necesarios. Así sabes exactamente qué se hizo, qué se encontró y cuál fue el resultado.",
+		imageLeft: false,
+	},
+	{
+		image: aboutImg1,
+		imageAlt: "Servicio a domicilio",
+		title: "Nos adaptamos a tu tiempo.",
+		description:
+			"Puedes traer tu equipo al taller, solicitar recojo y entrega o coordinar un servicio a domicilio según el tipo de trabajo. Nuestro objetivo es que resolver un problema tecnológico no signifique perder todo tu día.",
+		imageLeft: true,
+	},
+	{
+		image: aboutImg2,
+		imageAlt: "Atención a empresas y personas",
+		title: "Trabajamos con personas y empresas.",
+		description:
+			"Desde el mantenimiento de un equipo personal hasta la atención de múltiples estaciones de trabajo. Emitimos boleta o factura y, cuando el servicio lo requiere, entregamos documentación técnica para empresas.",
+		imageLeft: false,
+	},
+	{
+		image: testimonialImg,
+		imageAlt: "Aprendizaje y mejora continua",
+		title: "La tecnología cambia constantemente. Nosotros también.",
+		description:
+			"Aprendemos de forma continua para aplicar herramientas, procesos y soluciones actuales. Creemos que un buen servicio técnico no consiste únicamente en reparar un equipo, sino en entender el problema y resolverlo correctamente.",
+		imageLeft: true,
+	},
+];
+---
+
+<section class="py-20 md:py-28">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- Título + subtítulo -->
+		<div class="mx-auto max-w-2xl text-center">
+			<h2
+				class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+			>
+				La diferencia está en cómo hacemos el trabajo.
+			</h2>
+			<p class="mt-4 text-base text-muted-foreground sm:text-lg">
+				Un proceso claro, documentado y pensado para darte tranquilidad.
+			</p>
+		</div>
+
+		<!-- Filas alternadas -->
+		<div class="mt-16 flex flex-col gap-16 md:gap-8">
+			{rows.map((row) => (
+					<div
+						class="grid items-center gap-6 md:grid-cols-12 md:gap-10 animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
+					>
+						{
+							row.imageLeft ? (
+								<>
+									<div class="md:col-span-5 w-3/4 mx-auto md:w-full">
+										<img
+											src={row.image.src}
+											alt={row.imageAlt}
+											width={row.image.width}
+											height={row.image.height}
+											loading="lazy"
+											decoding="async"
+											class="aspect-4/3 w-full rounded-2xl object-cover"
+										/>
+									</div>
+									<div class="md:col-span-7">
+										<h3
+											class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+										>
+											{row.title}
+										</h3>
+										<p class="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+											{row.description}
+										</p>
+									</div>
+								</>
+							) : (
+								<>
+									<div class="md:col-span-5 md:order-2 w-3/4 mx-auto md:w-full">
+										<img
+											src={row.image.src}
+											alt={row.imageAlt}
+											width={row.image.width}
+											height={row.image.height}
+											loading="lazy"
+											decoding="async"
+											class="aspect-4/3 w-full rounded-2xl object-cover"
+										/>
+									</div>
+									<div class="md:col-span-7 md:order-1">
+										<h3
+											class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+										>
+											{row.title}
+										</h3>
+										<p class="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+											{row.description}
+										</p>
+									</div>
+								</>
+							)
+						}
+					</div>
+				))}
+		</div>
+
+		<!-- CTA -->
+		<div
+			class="mt-20 flex flex-col items-center gap-5 text-center animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
+		>
+			<Separator class="mx-auto max-w-xs" />
+			<p class="mt-10 max-w-lg text-base text-muted-foreground sm:text-lg">
+				La confianza no se promete. Se demuestra en cada diagnóstico, cada reparación y cada
+				proyecto que entregamos.
+			</p>
+			<Button as="a" href="/#contacto" variant="default" size="lg" class="gap-2">
+				<Icon name="hugeicons:arrow-right-01" class="size-5" />
+				Contáctanos
+			</Button>
+		</div>
+	</div>
+</section>
