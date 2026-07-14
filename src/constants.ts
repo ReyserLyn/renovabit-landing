@@ -26,3 +26,24 @@ export const NAV_ITEMS = [
 	{ href: "#resenas", label: "Reseñas" },
 	{ href: "#faq", label: "FAQ" },
 ] as const;
+
+export const FOOTER = {
+	emails: {
+		info: "info@renovabit.com",
+		contacto: CONTACT.email,
+		soporte: "soporte@renovabit.com",
+	},
+	address: {
+		line1: "Av. Goyeneche 1602",
+		city: "Miraflores",
+		district: "Arequipa",
+		postalCode: "04004",
+	},
+	phone: CONTACT.phone,
+	hours: "Lunes a Viernes, 8:00 AM - 8:00 PM",
+} as const;
+
+export const LOCATION = {
+	lat: -16.3921345,
+	lng: -71.5174131,
+} as const;

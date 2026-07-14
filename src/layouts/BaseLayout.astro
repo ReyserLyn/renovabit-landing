@@ -1,5 +1,6 @@
 ---
 import { Font } from "astro:assets";
+import Footer from "@/components/layout/footer.astro";
 import Navbar from "@/components/layout/navbar.astro";
 import "@/styles/landing.css";
 
@@ -37,5 +38,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 		<main id="contenido-principal">
 			<slot />
 		</main>
+		<Footer />
 	</body>
 </html>
