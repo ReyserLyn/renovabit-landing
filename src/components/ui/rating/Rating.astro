@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+	stars?: number;
+	maxStars?: number;
+	size?: number;
+}
+
+const { stars = 5, maxStars = 5, size = 20 } = Astro.props as Props;
+
+const fullStars = Math.floor(stars);
+const hasHalf = stars % 1 >= 0.5;
+const emptyStars = maxStars - fullStars - (hasHalf ? 1 : 0);
+---
+
+<div class="flex items-center gap-1" role="img" aria-label={`${stars} de ${maxStars} estrellas`}>
+	{Array.from({ length: fullStars }).map(() => (
+			<Icon
+				name="hugeicons:star"
+				class="text-primary [&_path]:fill-current [&_path]:stroke-transparent"
+				style={{ width: `${size}px`, height: `${size}px` }}
+				aria-hidden="true"
+			/>
+		))}
+
+	{hasHalf && (
+			<Icon
+				name="hugeicons:star-half"
+				class="text-primary [&_path]:fill-current [&_path]:stroke-transparent"
+				style={{ width: `${size}px`, height: `${size}px` }}
+				aria-hidden="true"
+			/>
+		)}
+
+	{Array.from({ length: emptyStars }).map(() => (
+			<Icon
+				name="hugeicons:star"
+				class="text-muted-foreground/30 [&_path]:fill-current [&_path]:stroke-transparent"
+				style={{ width: `${size}px`, height: `${size}px` }}
+				aria-hidden="true"
+			/>
+		))}
+</div>

@@ -1,0 +1,117 @@
+---
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { CONTACT } from "@/constants";
+
+const faqItems = [
+	{
+		value: "faq-1",
+		question: "¿Qué tipo de servicios ofrece RenovaBit?",
+		answer:
+			"Desarrollamos páginas web, landing pages, sitios corporativos y catálogos digitales. Además, realizamos mantenimiento preventivo y correctivo de laptops y PCs, reparaciones especializadas, microelectrónica, reemplazo de componentes, soporte técnico y soluciones para personas y empresas.",
+	},
+	{
+		value: "faq-2",
+		question: "¿Atienden personas y empresas?",
+		answer:
+			"Sí. Trabajamos tanto con clientes particulares como con empresas. Podemos atender equipos individuales o múltiples estaciones de trabajo, emitiendo la documentación necesaria para cada servicio.",
+	},
+	{
+		value: "faq-3",
+		question: "¿Emiten boleta y factura electrónica?",
+		answer:
+			"Sí. Emitimos boleta de venta y factura electrónica. Cuando el servicio lo requiere, también entregamos informes técnicos, evidencias fotográficas y documentación del trabajo realizado.",
+	},
+	{
+		value: "faq-4",
+		question: "¿Ofrecen servicio de recojo y entrega?",
+		answer:
+			"Sí. Puedes llevar tu equipo a nuestro taller o solicitar el servicio de recojo y entrega en Arequipa. También realizamos atención a domicilio y visitas programadas para empresas, según el tipo de servicio.",
+	},
+	{
+		value: "faq-5",
+		question: "¿Cómo sé que mi equipo estará en buenas manos?",
+		answer:
+			"Cada intervención se realiza con un proceso documentado y transparente. Explicamos el diagnóstico, mostramos evidencias cuando corresponde y recomendamos únicamente las soluciones que realmente aportan valor a tu equipo.",
+	},
+	{
+		value: "faq-6",
+		question: "¿Trabajan con todas las marcas?",
+		answer:
+			"Sí. Atendemos laptops, computadoras de escritorio y componentes de marcas como Lenovo, HP, Dell, Asus, Acer, MSI, Apple y muchas más, utilizando procedimientos adecuados para cada equipo.",
+	},
+	{
+		value: "faq-7",
+		question: "¿Realizan diagnóstico antes de reparar?",
+		answer:
+			"Sí. Primero evaluamos el equipo para identificar el origen del problema y te explicamos las alternativas disponibles antes de realizar cualquier reparación. Si decides continuar con la reparación, el diagnóstico no tiene costo.",
+	},
+	{
+		value: "faq-8",
+		question: "¿También desarrollan proyectos de software?",
+		answer:
+			"Sí. El desarrollo de software es una de nuestras principales líneas de trabajo. Creamos landing pages, sitios corporativos, catálogos digitales y soluciones web modernas enfocadas en rendimiento, diseño y facilidad de administración.",
+	},
+];
+---
+
+<section id="faq" class="py-20 md:py-28 scroll-mt-24">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<h2
+			class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl text-center"
+		>
+			Respondemos las dudas más comunes.
+		</h2>
+		<p class="mt-4 text-base text-muted-foreground sm:text-lg text-center max-w-2xl mx-auto">
+			Si aún tienes alguna consulta, estaremos encantados de ayudarte por WhatsApp.
+		</p>
+
+		<div class="mt-12 mx-auto max-w-2xl">
+			<Accordion defaultValue="faq-1">
+				{faqItems.map((item) => (
+						<AccordionItem
+							value={item.value}
+							class="rounded-lg shadow-xs transition-all duration-200 hover:bg-accent/20 data-open:bg-accent/20 not-last:border-b not-last:border-border not-last:rounded-none"
+						>
+							<AccordionTrigger
+								class="font-heading text-base font-semibold sm:text-lg"
+							>
+								{item.question}
+							</AccordionTrigger>
+							<AccordionContent
+								class="text-base leading-relaxed text-muted-foreground"
+							>
+								{item.answer}
+							</AccordionContent>
+						</AccordionItem>
+					))}
+			</Accordion>
+		</div>
+
+		<div class="mt-14 flex flex-col items-center gap-5 pt-14 text-center">
+			<Separator class="mx-auto max-w-xs" />
+			<h3 class="mt-10 font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				¿Tienes otra pregunta?
+			</h3>
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="whatsapp"
+				size="lg"
+				class="gap-2"
+			>
+				<WhatsappIcon size={18} />
+				Escríbenos por WhatsApp
+			</Button>
+		</div>
+	</div>
+</section>
