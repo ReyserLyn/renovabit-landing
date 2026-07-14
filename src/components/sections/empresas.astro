@@ -1,0 +1,120 @@
+---
+import { Icon } from "astro-icon/components";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
+import { Separator } from "@/components/ui/separator";
+import { CONTACT } from "@/constants";
+---
+
+<section id="empresas" class="py-20 md:py-28 scroll-mt-24">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- Título + subtítulo -->
+		<div class="mx-auto max-w-2xl text-center">
+			<h2
+				class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+			>
+				Servicios tecnológicos para empresas.
+			</h2>
+			<p class="mt-4 text-base text-muted-foreground sm:text-lg">
+				Ofrecemos un servicio especializado y dirigido a empresas pequeñas, medianas y grandes
+			</p>
+			<p class="mt-6 text-base text-muted-foreground sm:text-lg">Nuestro compromiso empresarial:</p>
+		</div>
+
+		<!-- Features: triángulo invertido (2 arriba, 1 abajo centrado) -->
+		<div
+			class="mt-12 mx-auto grid max-w-lg grid-cols-2 gap-x-8 gap-y-10 lg:max-w-3xl lg:grid-cols-3"
+		>
+			<div
+				class="flex flex-col items-center gap-3 text-center animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
+			>
+				<Icon name="hugeicons:invoice-03" class="size-8 text-primary" />
+				<h3 class="font-heading text-xl font-bold text-foreground">Factura</h3>
+				<p class="max-w-52 text-sm leading-relaxed text-muted-foreground">
+					Emitimos factura electrónica para que puedas deducir gastos y mantener el control
+					tributario de todos tus servicios técnicos.
+				</p>
+			</div>
+
+			<div
+				class="flex flex-col items-center gap-3 text-center animate-fade-in-up view-animate-[--entrance] animate-duration-slower animate-delay-200"
+			>
+				<Icon name="hugeicons:analytics-02" class="size-8 text-primary" />
+				<h3 class="font-heading text-xl font-bold text-foreground">Informes técnicos</h3>
+				<p class="max-w-52 text-sm leading-relaxed text-muted-foreground">
+					Documentamos cada intervención con diagnóstico detallado, procedimiento aplicado y
+					resultados. Trazabilidad total para tu empresa.
+				</p>
+			</div>
+
+			<div
+				class="col-span-2 mx-auto flex max-w-56 flex-col items-center gap-3 text-center lg:col-span-1 lg:max-w-none animate-fade-in-up view-animate-[--entrance] animate-duration-slower animate-delay-400"
+			>
+				<Icon name="hugeicons:license-draft" class="size-8 text-primary" />
+				<h3 class="font-heading text-xl font-bold text-foreground">Documentación</h3>
+				<p class="text-sm leading-relaxed text-muted-foreground">
+					Entregamos un informe por equipo con historial de fallas, repuestos utilizados y
+					recomendaciones. Ideal para auditorías y control de activos.
+				</p>
+			</div>
+		</div>
+
+		<!-- Hemos trabajado con: Marquee -->
+		<div class="mt-20 animate-fade-in-up view-animate-[--entrance] animate-duration-slower">
+			<Separator class="mx-auto max-w-xs" />
+			<p
+				class="mt-10 text-center text-sm font-medium tracking-wider text-muted-foreground uppercase"
+			>
+				Hemos trabajado con:
+			</p>
+			<div class="mt-8">
+				<Marquee direction="left" variant="gradient">
+					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
+						Empresa 1
+					</span>
+					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
+						Empresa 2
+					</span>
+					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
+						Empresa 3
+					</span>
+					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
+						Empresa 4
+					</span>
+				</Marquee>
+			</div>
+		</div>
+
+		<!-- CTA -->
+		<div
+			class="mt-14 flex flex-col items-center gap-5 text-center animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
+		>
+			<Separator class="mx-auto max-w-xs" />
+			<p
+				class="mt-10 max-w-xl font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+			>
+				¿Eres una empresa buscando el mejor servicio técnico tecnológico de Arequipa?
+			</p>
+			<p class="text-base text-muted-foreground">Cotización inmediata, sin compromiso</p>
+			<div class="flex flex-wrap justify-center gap-3">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+				>
+					<WhatsappIcon size={18} />
+					WhatsApp
+				</Button>
+				<Button as="a" href={`mailto:${CONTACT.email}`} variant="secondary" size="lg" class="gap-2">
+					<Icon name="hugeicons:mail-01" class="size-5" />
+					Correo
+				</Button>
+			</div>
+		</div>
+	</div>
+</section>
