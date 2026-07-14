@@ -1,0 +1,113 @@
+---
+import CountUp from "@astroanimate/core/CountUp";
+import { Icon } from "astro-icon/components";
+import aboutImg1 from "@/assets/images/about/conocenos-1.webp";
+import aboutImg2 from "@/assets/images/about/conocenos-2.avif";
+import { Button } from "@/components/ui/button";
+---
+
+<section class="py-20 md:py-28">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- Row 1: 50/50 -->
+		<div class="grid gap-12 lg:grid-cols-2 lg:gap-20">
+			<!-- Left: Imágenes -->
+			<div class="relative animate-fade-in-right view-animate-[--entrance] animate-duration-slower">
+				<img
+					src={aboutImg1.src}
+					alt="Equipo de RenovaBit trabajando"
+					width={aboutImg1.width}
+					height={aboutImg1.height}
+					loading="lazy"
+					decoding="async"
+					class="aspect-4/3 w-full rounded-2xl object-cover"
+				>
+				<img
+					src={aboutImg2.src}
+					alt="Servicio técnico RenovaBit"
+					width={aboutImg2.width}
+					height={aboutImg2.height}
+					loading="lazy"
+					decoding="async"
+					class="absolute -bottom-6 -left-6 hidden w-40 rounded-xl object-cover shadow-md sm:block sm:w-48 lg:w-56 aspect-square"
+				>
+			</div>
+
+			<!-- Right: Texto + Stats -->
+			<div
+				class="flex flex-col justify-center animate-fade-in-left view-animate-[--entrance] animate-duration-slower"
+			>
+				<h2
+					class="font-heading text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl"
+				>
+					Nos encargamos de tus problemas tecnológicos
+				</h2>
+				<p class="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+					Servicio técnico en Arequipa: reparación, mantenimiento y soporte documentado.
+					Transparencia y calidad para personas y empresas.
+				</p>
+
+				<!-- Stats -->
+				<div class="mt-8 grid grid-cols-3 gap-6 sm:gap-10">
+					<div class="flex flex-col">
+						<span
+							class="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+						>
+							<CountUp
+								value={5}
+								suffix="+"
+								duration={2000}
+								enhance={true}
+								threshold={0.2}
+								textColor="oklch(0.57 0.2248 281.4451)"
+							/>
+						</span>
+						<span class="mt-1 text-sm text-muted-foreground sm:text-base">Empresas</span>
+					</div>
+					<div class="flex flex-col">
+						<span
+							class="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+						>
+							<CountUp
+								value={50}
+								suffix="+"
+								duration={2000}
+								enhance={true}
+								threshold={0.2}
+								textColor="oklch(0.57 0.2248 281.4451)"
+							/>
+						</span>
+						<span class="mt-1 text-sm text-muted-foreground sm:text-base">Equipos Atendidos</span>
+					</div>
+					<div class="flex flex-col">
+						<span
+							class="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+						>
+							<CountUp
+								value={100}
+								suffix="%"
+								duration={2000}
+								enhance={true}
+								threshold={0.2}
+								textColor="oklch(0.57 0.2248 281.4451)"
+							/>
+						</span>
+						<span class="mt-1 text-sm text-muted-foreground sm:text-base">Documentado</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Row 2: CTA -->
+		<div
+			class="mt-14 flex flex-col items-center gap-5 pt-14 text-center animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
+		>
+			<p class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				Respuesta Inmediata
+			</p>
+			<Button as="a" href="/#contacto" variant="default" size="lg" class="gap-2">
+				<Icon name="hugeicons:arrow-right-01" class="size-5" />
+				Contáctanos
+			</Button>
+		</div>
+	</div>
+</section>
