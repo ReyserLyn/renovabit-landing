@@ -1,0 +1,20 @@
+---
+import logoSvg from "@/assets/branding/logo-horizontal-light.svg";
+import { SITE } from "@/constants";
+---
+
+<section class="border-y bg-background py-8">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="flex justify-center">
+			<img
+				src={logoSvg.src}
+				alt={SITE.name}
+				width={logoSvg.width}
+				height={logoSvg.height}
+				class="h-auto w-full max-w-100 sm:max-w-2xl md:max-w-4xl lg:max-w-5xl animate-fade-in-up animate-duration-slower"
+				loading="lazy"
+				decoding="async"
+			>
+		</div>
+	</div>
+</section>
