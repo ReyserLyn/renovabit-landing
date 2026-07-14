@@ -15,73 +15,49 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.local(),
-			name: "Inter",
-			cssVariable: "--font-inter",
+			name: "Satoshi",
+			cssVariable: "--font-satoshi",
 			options: {
 				variants: [
 					{
-						src: ["./src/assets/fonts/inter/inter-v20-latin-regular.woff2"],
+						src: ["./src/assets/fonts/satoshi/Satoshi-Regular.woff2"],
 						weight: "400",
 						style: "normal",
 					},
 					{
-						src: ["./src/assets/fonts/inter/inter-v20-latin-italic.woff2"],
+						src: ["./src/assets/fonts/satoshi/Satoshi-Italic.woff2"],
 						weight: "400",
 						style: "italic",
 					},
 					{
-						src: ["./src/assets/fonts/inter/inter-v20-latin-500.woff2"],
+						src: ["./src/assets/fonts/satoshi/Satoshi-Medium.woff2"],
 						weight: "500",
 						style: "normal",
 					},
 					{
-						src: ["./src/assets/fonts/inter/inter-v20-latin-600.woff2"],
-						weight: "600",
-						style: "normal",
-					},
-					{
-						src: ["./src/assets/fonts/inter/inter-v20-latin-600italic.woff2"],
-						weight: "600",
-						style: "italic",
-					},
-					{
-						src: ["./src/assets/fonts/inter/inter-v20-latin-700.woff2"],
-						weight: "700",
-						style: "normal",
-					},
-					{
-						src: ["./src/assets/fonts/inter/inter-v20-latin-700italic.woff2"],
-						weight: "700",
-						style: "italic",
-					},
-				],
-			},
-		},
-		{
-			provider: fontProviders.local(),
-			name: "Manrope",
-			cssVariable: "--font-manrope",
-			options: {
-				variants: [
-					{
-						src: ["./src/assets/fonts/manrope/manrope-v20-latin-500.woff2"],
+						src: ["./src/assets/fonts/satoshi/Satoshi-MediumItalic.woff2"],
 						weight: "500",
-						style: "normal",
+						style: "italic",
 					},
 					{
-						src: ["./src/assets/fonts/manrope/manrope-v20-latin-600.woff2"],
-						weight: "600",
-						style: "normal",
-					},
-					{
-						src: ["./src/assets/fonts/manrope/manrope-v20-latin-700.woff2"],
+						src: ["./src/assets/fonts/satoshi/Satoshi-Bold.woff2"],
 						weight: "700",
 						style: "normal",
 					},
 					{
-						src: ["./src/assets/fonts/manrope/manrope-v20-latin-800.woff2"],
-						weight: "800",
+						src: ["./src/assets/fonts/satoshi/Satoshi-BoldItalic.woff2"],
+						weight: "700",
+						style: "italic",
+					},
+					{
+						src: ["./src/assets/fonts/satoshi/Satoshi-Black.woff2"],
+						weight: "900",
 						style: "normal",
+					},
+					{
+						src: ["./src/assets/fonts/satoshi/Satoshi-BlackItalic.woff2"],
+						weight: "900",
+						style: "italic",
 					},
 				],
 			},

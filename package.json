@@ -21,6 +21,7 @@
 		"class-variance-authority": "^0.7.1",
 		"cnfast": "^0.0.8",
 		"preact": "^10.29.7",
+		"tailwind-animations": "^1.0.1",
 		"tailwind-merge": "^3.6.0"
 	},
 	"devDependencies": {
