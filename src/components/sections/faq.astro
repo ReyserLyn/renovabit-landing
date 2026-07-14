@@ -1,14 +1,10 @@
 ---
-import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { CONTACT } from "@/constants";
 
 const faqItems = [
 	{
@@ -93,25 +89,6 @@ const faqItems = [
 						</AccordionItem>
 					))}
 			</Accordion>
-		</div>
-
-		<div class="flex flex-col items-center gap-5 pt-14 text-center">
-			<Separator class="mx-auto max-w-xs" />
-			<h3 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-				¿Tienes otra pregunta?
-			</h3>
-			<Button
-				as="a"
-				href={CONTACT.whatsappUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				variant="whatsapp"
-				size="lg"
-				class="gap-2"
-			>
-				<WhatsappIcon size={18} />
-				Escríbenos por WhatsApp
-			</Button>
 		</div>
 	</div>
 </section>

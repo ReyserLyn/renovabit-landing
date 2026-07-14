@@ -1,0 +1,38 @@
+---
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+---
+
+<section id="contacto" class="py-20 md:py-12 scroll-mt-10">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div
+			class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16 animate-fade-in-up animate-duration-slower"
+		>
+			<div class="max-w-xl">
+				<h2
+					class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
+				>
+					Hablemos sobre tu proyecto o tu equipo.
+				</h2>
+				<p class="mt-4 text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
+					Ya sea una página web, una reparación especializada o el mantenimiento de tus equipos,
+					estaremos encantados de ayudarte.
+				</p>
+			</div>
+
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="default"
+				size="lg"
+				class="shrink-0 gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+			>
+				<WhatsappIcon size={18} />
+				Escribir por WhatsApp
+			</Button>
+		</div>
+	</div>
+</section>
