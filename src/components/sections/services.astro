@@ -14,6 +14,8 @@ const servicios = [
 		items: ["Mantenimiento", "Limpieza", "Diagnóstico", "PC y Laptop"],
 		col: "1",
 		row: "1",
+		colClass: "sm:col-start-1",
+		rowClass: "sm:row-start-1",
 	},
 	{
 		num: "02",
@@ -22,6 +24,8 @@ const servicios = [
 		items: ["Landing Pages", "Web Corporativas", "Catálogos", "Automatizaciones"],
 		col: "2",
 		row: "2",
+		colClass: "sm:col-start-2",
+		rowClass: "sm:row-start-2",
 	},
 	{
 		num: "03",
@@ -30,6 +34,8 @@ const servicios = [
 		items: ["Equipos", "Componentes CPU", "Periféricos"],
 		col: "2",
 		row: "6",
+		colClass: "sm:col-start-2",
+		rowClass: "sm:row-start-6",
 	},
 	{
 		num: "04",
@@ -38,11 +44,13 @@ const servicios = [
 		items: ["Bios", "Microeletrónica", "Pantallas", "Teclados"],
 		col: "1",
 		row: "8",
+		colClass: "sm:col-start-1",
+		rowClass: "sm:row-start-8",
 	},
 ];
 ---
 
-<section class="py-16 md:py-24">
+<section id="servicios" class="py-16 md:py-24 scroll-mt-24">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<!-- Título + subtítulo -->
 		<div class="mx-auto max-w-2xl text-center">
@@ -60,10 +68,11 @@ const servicios = [
 			class="mt-12 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-0 lg:mx-auto lg:max-w-3xl"
 		>
 			{servicios.map((s) => (
-				<div
+				<article
 					class:list={[
 						"group flex flex-col animate-fade-in-up animate-duration-slower sm:row-span-3",
-						`sm:col-start-${s.col} sm:row-start-${s.row}`,
+						s.colClass,
+						s.rowClass,
 					]}
 				>
 						{/* Imagen */}
@@ -98,13 +107,13 @@ const servicios = [
 							{
 								s.items.map((item) => (
 									<li class="flex items-center gap-3 text-lg text-muted-foreground">
-										<span class="block h-px w-5 shrink-0 bg-primary/50" />
+										<span class="block h-px w-5 shrink-0 bg-primary/50" aria-hidden="true" />
 										{item}
 									</li>
 								))
 							}
 						</ul>
-					</div>
+					</article>
 			))}
 			<div class="hidden sm:block sm:col-span-2 sm:row-start-5 sm:h-8" aria-hidden="true" />
 		</div>

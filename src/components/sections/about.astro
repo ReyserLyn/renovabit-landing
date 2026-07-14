@@ -29,6 +29,7 @@ import { Button } from "@/components/ui/button";
 					loading="lazy"
 					decoding="async"
 					class="absolute -bottom-6 -left-6 hidden w-40 rounded-xl object-cover shadow-md sm:block sm:w-48 lg:w-56 aspect-square"
+					aria-hidden="true"
 				>
 			</div>
 
@@ -105,9 +106,9 @@ import { Button } from "@/components/ui/button";
 		<div
 			class="mt-14 flex flex-col items-center gap-5 pt-14 text-center animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
 		>
-			<p class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			<h3 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
 				Respuesta Inmediata
-			</p>
+			</h3>
 			<Button as="a" href="/#contacto" variant="default" size="lg" class="gap-2">
 				<Icon name="hugeicons:arrow-right-01" class="size-5" />
 				Contáctanos

@@ -17,4 +17,4 @@ pre-push:
     check:
       run: npx biome check .
     check-types:
-      run: bun run check-types
+      run: bun run check

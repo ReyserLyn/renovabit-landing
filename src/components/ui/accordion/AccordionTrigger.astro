@@ -22,14 +22,20 @@ const { class: className = "", asChild = false, type = "button", ...rest } = Ast
 			type={type}
 			data-slot="accordion-trigger"
 			class={cn(
-				"group/accordion-trigger focus-visible:ring-ring/50 flex flex-1 items-center justify-between rounded-lg px-4 py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3",
+				"group focus-visible:ring-ring/50 flex flex-1 cursor-pointer items-center justify-between rounded-lg px-4 py-4 text-left text-base font-medium transition-all outline-none hover:bg-accent/20 focus-visible:ring-3",
 				className,
 			)}
 		>
-			<slot />
+			<span class="group-data-[state=open]:text-primary">
+				<slot />
+			</span>
 			<Icon
-							name="hugeicons:arrow-down-01"
-				class="size-4 shrink-0 text-muted-foreground transition-transform group-data-[open=true]/accordion-trigger:rotate-180"
+				name="hugeicons:arrow-down-01"
+				class="size-4 shrink-0 text-muted-foreground group-data-[state=open]:hidden"
+			/>
+			<Icon
+				name="hugeicons:arrow-up-01"
+				class="size-4 shrink-0 text-primary hidden group-data-[state=open]:block"
 			/>
 		</button>
 	</div>

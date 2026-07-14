@@ -44,7 +44,7 @@ import { CONTACT } from "@/constants";
 						</HighlightText>
 					</h1>
 					<p
-						class="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg animate-fade-in-up animate-delay-200 animate-duration-slow"
+						class="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg animate-fade-in-up animate-delay-200 	animate-duration-slower"
 					>
 						Desarrollo web, soporte informático, reparación especializada y venta de tecnología con
 						un servicio transparente y profesional
@@ -79,10 +79,10 @@ import { CONTACT } from "@/constants";
 					<div class="col-span-2 overflow-hidden rounded-2xl border border-border/50 aspect-7/2">
 						<img
 							src={heroImg1.src}
-							alt="Taller de reparación"
+							alt="Taller de RenovaBit con equipos en reparación"
 							width={heroImg1.width}
 							height={heroImg1.height}
-							loading="eager"
+							loading="lazy"
 							decoding="async"
 							class="size-full object-cover"
 						>
@@ -91,7 +91,7 @@ import { CONTACT } from "@/constants";
 					<div class="overflow-hidden rounded-2xl border border-border/50 aspect-7/4">
 						<img
 							src={heroImg2.src}
-							alt="Mantenimiento de laptop"
+							alt="Proceso de mantenimiento preventivo de laptop"
 							width={heroImg2.width}
 							height={heroImg2.height}
 							loading="eager"
@@ -103,7 +103,7 @@ import { CONTACT } from "@/constants";
 					<div class="overflow-hidden rounded-2xl border border-border/50 aspect-7/4">
 						<img
 							src={heroImg3.src}
-							alt="Soporte remoto"
+							alt="Sesión de soporte técnico remoto en Arequipa"
 							width={heroImg3.width}
 							height={heroImg3.height}
 							loading="eager"
@@ -115,10 +115,10 @@ import { CONTACT } from "@/constants";
 					<div class="col-span-2 overflow-hidden rounded-2xl border border-border/50 aspect-7/2">
 						<img
 							src={heroImg4.src}
-							alt="Conócenos"
+							alt="Espacio de trabajo del equipo RenovaBit"
 							width={heroImg4.width}
 							height={heroImg4.height}
-							loading="eager"
+							loading="lazy"
 							decoding="async"
 							class="size-full object-cover"
 						>
@@ -127,34 +127,36 @@ import { CONTACT } from "@/constants";
 			</div>
 
 			<!-- Row 2: Checks zigzag -->
-			<div
-				class="mt-10 grid grid-cols-2 justify-items-center gap-x-6 gap-y-3 text-base text-muted-foreground sm:grid-cols-4 sm:gap-x-4 sm:gap-y-3 md:mt-28"
-			>
-				<span
-					class="col-start-1 row-start-1 sm:col-start-1 sm:row-start-1 inline-flex items-center gap-2 animate-fade-in-up animate-delay-500 animate-duration-slow"
+			<ul class="contents">
+				<div
+					class="mt-10 grid grid-cols-2 justify-items-center gap-x-6 gap-y-3 text-base text-muted-foreground sm:grid-cols-4 sm:gap-x-4 sm:gap-y-3 md:mt-28"
 				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Boleta y Factura
-				</span>
-				<span
-					class="col-start-2 row-start-2 sm:col-start-2 sm:row-start-2 inline-flex items-center gap-2 animate-fade-in-up animate-delay-600 animate-duration-slow"
-				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Atención en Arequipa
-				</span>
-				<span
-					class="col-start-1 row-start-3 sm:col-start-3 sm:row-start-1 inline-flex items-center gap-2 animate-fade-in-up animate-delay-700 animate-duration-slow"
-				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Servicio a Domicilio
-				</span>
-				<span
-					class="col-start-2 row-start-4 sm:col-start-4 sm:row-start-2 inline-flex items-center gap-2 animate-fade-in-up animate-delay-800 animate-duration-slow"
-				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Personas y Empresas
-				</span>
-			</div>
+					<li
+						class="col-start-1 row-start-1 sm:col-start-1 sm:row-start-1 inline-flex items-center gap-2 animate-fade-in-up animate-delay-500 animate-duration-slow"
+					>
+						<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
+						Boleta y Factura
+					</li>
+					<li
+						class="col-start-2 row-start-2 sm:col-start-2 sm:row-start-2 inline-flex items-center gap-2 animate-fade-in-up animate-delay-600 animate-duration-slow"
+					>
+						<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
+						Atención en Arequipa
+					</li>
+					<li
+						class="col-start-1 row-start-3 sm:col-start-3 sm:row-start-1 inline-flex items-center gap-2 animate-fade-in-up animate-delay-700 animate-duration-slow"
+					>
+						<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
+						Servicio a Domicilio
+					</li>
+					<li
+						class="col-start-2 row-start-4 sm:col-start-4 sm:row-start-2 inline-flex items-center gap-2 animate-fade-in-up animate-delay-800 animate-duration-slow"
+					>
+						<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
+						Personas y Empresas
+					</li>
+				</div>
+			</ul>
 		</div>
 	</section>
 </GridDotsBackground>

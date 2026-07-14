@@ -8,8 +8,13 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = "RenovaBit — Servicio técnico de laptops y PCs en Arequipa" } =
-	Astro.props;
+const {
+	title,
+	description = "Servicio técnico de laptops y PCs en Arequipa. Reparación, mantenimiento y soporte remoto.",
+} = Astro.props;
+
+const fullTitle = title.includes("RenovaBit") ? title : `${title} | RenovaBit`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -17,8 +22,13 @@ const { title, description = "RenovaBit — Servicio técnico de laptops y PCs e
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{title}</title>
+		<title>{fullTitle}</title>
 		<meta name="description" content={description}>
+		<meta
+			name="robots"
+			content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+		>
+		<link rel="canonical" href={canonicalUrl}>
 		<Font cssVariable="--font-satoshi" preload />
 	</head>
 

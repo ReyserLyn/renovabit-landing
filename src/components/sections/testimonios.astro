@@ -3,6 +3,7 @@ import aboutImg1 from "@/assets/images/about/conocenos-1.webp";
 import servicioImg3 from "@/assets/images/services/soporte-remoto.avif";
 import testimonialImg from "@/assets/images/testimonials/testimonial.avif";
 import { Badge } from "@/components/ui/badge";
+import { Rating } from "@/components/ui/rating";
 ---
 
 <section id="resenas" class="py-20 md:py-28 scroll-mt-24">
@@ -39,7 +40,7 @@ import { Badge } from "@/components/ui/badge";
 					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
 						<img
 							src={aboutImg1.src}
-							alt="Estado inicial del equipo"
+							alt="Estado inicial del equipo antes del servicio técnico"
 							width={aboutImg1.width}
 							height={aboutImg1.height}
 							loading="lazy"
@@ -57,7 +58,7 @@ import { Badge } from "@/components/ui/badge";
 					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
 						<img
 							src={testimonialImg.src}
-							alt="Estado final del equipo"
+							alt="Resultado final del equipo tras la reparación"
 							width={testimonialImg.width}
 							height={testimonialImg.height}
 							loading="lazy"
@@ -77,11 +78,7 @@ import { Badge } from "@/components/ui/badge";
 				</div>
 
 				<div class="mt-5 flex items-center gap-2.5">
-					{Array.from({ length: 5 }).map(() => (
-					<svg viewBox="0 0 24 24" fill="#f59e0b" class="w-5 h-5" aria-hidden="true">
-						<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-					</svg>
-				))}
+					<Rating stars={5} />
 				</div>
 
 				<p class="mt-4 font-heading text-base font-bold text-foreground">Sr. Manuel</p>
@@ -103,7 +100,7 @@ import { Badge } from "@/components/ui/badge";
 				<div class="overflow-hidden rounded-2xl max-w-sm mx-auto md:max-w-none">
 					<img
 						src={servicioImg3.src}
-						alt="Servicio realizado"
+						alt="Laptop reparada y funcionando tras el servicio técnico"
 						width={servicioImg3.width}
 						height={servicioImg3.height}
 						loading="lazy"
@@ -120,18 +117,15 @@ import { Badge } from "@/components/ui/badge";
 			<!-- Review -->
 			<div class="text-center md:text-left">
 				<div class="flex items-center justify-center gap-2.5 md:justify-start">
-					{Array.from({ length: 5 }).map(() => (
-						<svg viewBox="0 0 24 24" fill="#f59e0b" class="w-5 h-5" aria-hidden="true">
-							<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-						</svg>
-					))}
+					<Rating stars={5} />
 				</div>
 
-				<p class="mt-4 font-heading text-base font-bold text-foreground">Sr. Manuel</p>
+				<p class="mt-4 font-heading text-base font-bold text-foreground">Sra. Carmen</p>
 
 				<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. El servicio superó mis
-					expectativas en cada etapa del proceso. Atención personalizada y resultados impecables."
+					"Llevé mi laptop porque no encendía y tenía la pantalla dañada. Me explicaron todo el
+					proceso con paciencia, el diagnóstico fue gratuito y en dos días ya tenía mi equipo como
+					nuevo. El seguimiento posterior fue impecable. Los recomiendo totalmente."
 				</blockquote>
 			</div>
 		</div>
