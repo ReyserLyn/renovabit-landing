@@ -25,9 +25,7 @@ const labelled = !decorative && Boolean(title);
 	height={size}
 	fill={color}
 	class={`shrink-0 ${className}`}
-	aria-hidden={decorative ? "true" : undefined}
 	role="img"
-	aria-hidden={decorative ? "true" : undefined}
 	aria-label={labelled ? title : undefined}
 >
 	{labelled && <title>{title}</title>}

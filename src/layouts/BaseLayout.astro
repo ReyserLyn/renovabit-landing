@@ -1,5 +1,6 @@
 ---
 import { Font } from "astro:assets";
+import Navbar from "@/components/layout/navbar.astro";
 import "@/styles/landing.css";
 
 interface Props {
@@ -23,6 +24,9 @@ const { title, description = "RenovaBit — Servicio técnico de laptops y PCs e
 	</head>
 
 	<body>
-		<slot />
+		<Navbar />
+		<main id="contenido-principal">
+			<slot />
+		</main>
 	</body>
 </html>

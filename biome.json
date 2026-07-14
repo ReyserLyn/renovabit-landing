@@ -178,7 +178,8 @@
 					},
 					"correctness": {
 						"noUnusedVariables": "off",
-						"noUnusedImports": "off"
+						"noUnusedImports": "off",
+						"useJsxKeyInIterable": "off"
 					}
 				}
 			},

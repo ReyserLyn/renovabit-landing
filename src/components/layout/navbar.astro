@@ -1,0 +1,69 @@
+---
+import logoSvg from "@/assets/branding/logo-horizontal-light.svg";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT, NAV_ITEMS, SITE } from "@/constants";
+---
+
+<!-- Skip link -->
+<a
+	href="#contenido-principal"
+	class="sr-only focus:not-sr-only focus:fixed focus:inset-x-4 focus:top-4 focus:z-60 focus:mx-auto focus:w-fit focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+>
+	Saltar al contenido
+</a>
+
+<header
+	class="fixed top-0 left-1/2 z-50 mt-4 flex w-[calc(100%-2rem)] max-w-7xl -translate-x-1/2 items-center justify-between rounded-full border bg-background/80 px-6 py-2 backdrop-blur-xl md:px-8"
+>
+	<!-- Logo -->
+	<a href="/" class="flex shrink-0 items-center">
+		<img
+			src={logoSvg.src}
+			alt={SITE.name}
+			width={logoSvg.width}
+			height={logoSvg.height}
+			class="h-9 w-auto md:h-10"
+		>
+	</a>
+
+	<!-- Desktop nav -->
+	<nav class="hidden items-center gap-10 md:flex" aria-label="Principal">
+		{NAV_ITEMS.map((item) => (
+			<a
+				href={item.href}
+				class="text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-primary"
+			>
+				{item.label}
+			</a>
+		))}
+		<Button
+			as="a"
+			href={CONTACT.whatsappUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			variant="whatsapp"
+			size="sm"
+			class="flex items-center gap-1"
+		>
+			<WhatsappIcon size={16} class="text-white" />
+			Solicitar cotización
+		</Button>
+	</nav>
+
+	<!-- Mobile: solo icono + texto corto -->
+	<div class="md:hidden">
+		<Button
+			as="a"
+			href={CONTACT.whatsappUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			variant="whatsapp"
+			size="sm"
+			class="flex items-center gap-1"
+		>
+			<WhatsappIcon size={16} class="text-white" />
+			WhatsApp
+		</Button>
+	</div>
+</header>
