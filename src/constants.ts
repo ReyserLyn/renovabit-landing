@@ -33,10 +33,16 @@ export const SITE = {
 		"landing page arequipa",
 		"página web para negocio arequipa",
 		"desarrollador web arequipa",
-		"tienda online arequipa",
 		"web corporativa arequipa",
 		"catálogo digital arequipa",
-		// Tienda
+		"diseño web arequipa",
+		"página web para pymes arequipa",
+		// Empresas / B2B
+		"soporte técnico empresas arequipa",
+		"mantenimiento computadoras empresas arequipa",
+		"soporte técnico con factura arequipa",
+		"servicio técnico pymes arequipa",
+		// Tienda / Componentes / Upgrade
 		"venta componentes pc arequipa",
 		"computadoras arequipa",
 		"laptops arequipa",
@@ -45,13 +51,18 @@ export const SITE = {
 		"ensamblado pc arequipa",
 		"venta de laptops arequipa",
 		"componentes gamer arequipa",
+		"tarjetas gráficas arequipa",
+		"memoria ram laptop arequipa",
 		// Reparaciones Especializadas
 		"reparación motherboard arequipa",
 		"reparación microelectrónica arequipa",
 		"cambio pantalla laptop arequipa",
+		"cambio teclado laptop arequipa",
 		"reparación teclado laptop arequipa",
 		"servicio técnico especializado arequipa",
 		"reparación bios arequipa",
+		"virus computadora arequipa",
+		"recuperación archivos arequipa",
 	].join(", "),
 	themeColor: "#654fcc",
 } as const;
