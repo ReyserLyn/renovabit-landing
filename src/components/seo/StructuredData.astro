@@ -15,6 +15,18 @@ const jsonLd = {
 				"@type": "Person",
 				name: "Reyser Zapata",
 			},
+			knowsAbout: [
+				"Reparación de laptops",
+				"Mantenimiento de computadoras",
+				"Desarrollo web",
+				"Landing pages",
+				"Microelectrónica",
+				"Soporte técnico",
+				"Armado de PCs",
+				"Venta de componentes",
+				"Diagnóstico de hardware",
+				"Instalación de sistemas operativos",
+			],
 			contactPoint: {
 				"@type": "ContactPoint",
 				telephone: CONTACT.phone,
@@ -55,8 +67,13 @@ const jsonLd = {
 			priceRange: "Desde S/ 75",
 			currenciesAccepted: "PEN",
 			areaServed: {
-				"@type": "City",
-				name: "Arequipa",
+				"@type": "GeoCircle",
+				geoMidpoint: {
+					"@type": "GeoCoordinates",
+					latitude: LOCATION.lat,
+					longitude: LOCATION.lng,
+				},
+				geoRadius: "50000",
 			},
 			aggregateRating: {
 				"@type": "AggregateRating",
@@ -64,6 +81,48 @@ const jsonLd = {
 				reviewCount: "4",
 				bestRating: "5",
 				worstRating: "1",
+			},
+			hasOfferCatalog: {
+				"@type": "OfferCatalog",
+				name: "Servicios de RenovaBit",
+				itemListElement: [
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Service",
+							name: "Servicio Técnico de Laptops y PCs",
+							description:
+								"Mantenimiento preventivo y correctivo, limpieza, diagnóstico y reparación de laptops y computadoras de escritorio en Arequipa.",
+						},
+					},
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Service",
+							name: "Desarrollo Web",
+							description:
+								"Landing pages, sitios web corporativos, catálogos digitales y automatizaciones para negocios en Arequipa.",
+						},
+					},
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Service",
+							name: "Venta de Componentes y Equipos",
+							description:
+								"Venta de laptops, PCs, componentes, periféricos y accesorios. Equipos nuevos y upgrades en Arequipa.",
+						},
+					},
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Service",
+							name: "Reparaciones Especializadas",
+							description:
+								"Reparación de motherboard, microelectrónica, BIOS, cambio de pantallas y teclados de laptop en Arequipa.",
+						},
+					},
+				],
 			},
 		},
 		{
