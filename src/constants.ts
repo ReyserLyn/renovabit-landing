@@ -69,8 +69,9 @@ export const SITE = {
 } as const;
 
 export const CONTACT = {
-	whatsappUrl: "https://wa.me/51987471074",
-	phone: "+51 987 471 074",
+	whatsappUrl:
+		"https://wa.me/51955315646?text=%C2%A1Hola!%20Estoy%20interesado%20en%20uno%20de%20sus%20servicios%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n.",
+	phone: "+51 955 315 646",
 	email: "contacto@renovabit.com",
 } as const;
 
