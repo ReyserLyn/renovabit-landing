@@ -10,12 +10,12 @@
 	},
 	"routes": [
 		{
-			"pattern": "dev.renovabit.com",
+			"pattern": "renovabit.com",
 			"custom_domain": true
 		}
 	],
 	"vars": {
-		"PUBLIC_INDEXABLE": "false"
+		"PUBLIC_INDEXABLE": "true"
 	},
 	"observability": {
 		"enabled": true
