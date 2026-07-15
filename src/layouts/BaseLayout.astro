@@ -14,8 +14,13 @@ const {
 	description = "Servicio técnico de laptops y PCs en Arequipa. Reparación, mantenimiento y soporte remoto.",
 } = Astro.props;
 
+const isIndexable = import.meta.env.PUBLIC_INDEXABLE !== "false";
+
 const fullTitle = title.includes("RenovaBit") ? title : `${title} | RenovaBit`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const robotsContent = isIndexable
+	? "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+	: "noindex, nofollow";
 ---
 
 <!doctype html>
@@ -25,10 +30,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{fullTitle}</title>
 		<meta name="description" content={description}>
-		<meta
-			name="robots"
-			content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-		>
+		<meta name="robots" content={robotsContent}>
 		<link rel="canonical" href={canonicalUrl}>
 		<Font cssVariable="--font-satoshi" preload />
 	</head>

@@ -8,6 +8,15 @@
 	"assets": {
 		"directory": "./dist"
 	},
+	"routes": [
+		{
+			"pattern": "dev.renovabit.com",
+			"custom_domain": true
+		}
+	],
+	"vars": {
+		"PUBLIC_INDEXABLE": "false"
+	},
 	"observability": {
 		"enabled": true
 	}
