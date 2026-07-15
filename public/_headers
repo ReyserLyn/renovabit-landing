@@ -6,9 +6,9 @@
 	Permissions-Policy: geolocation=(), microphone=(), camera=()
 
 /
-	Link: </sitemap-index.xml>; rel="sitemap"
-	Link: </llms.txt>; rel="llms-txt"
-	Link: </llms-full.txt>; rel="llms-full-txt"
+	Link: </llms.txt>; rel="service-doc"
+	Link: </sitemap-index.xml>; rel="describedby"
+	Link: </llms-full.txt>; rel="alternate"; type="text/markdown"
 
 /*.txt
 	Content-Type: text/plain; charset=utf-8

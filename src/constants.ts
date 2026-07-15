@@ -78,6 +78,7 @@ export const SOCIAL = {
 	facebook: "https://facebook.com/renovabit",
 	tiktok: "https://tiktok.com/@renovabit",
 	x: "https://x.com/RenovaBit",
+	github: "https://github.com/ReyserLyn/renovabit-landing",
 } as const;
 
 export const NAV_ITEMS = [

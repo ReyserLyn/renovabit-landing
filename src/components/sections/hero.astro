@@ -7,9 +7,12 @@ import heroImg1 from "@/assets/images/hero/hero-1.avif";
 import heroImg2 from "@/assets/images/hero/hero-2.avif";
 import heroImg3 from "@/assets/images/hero/hero-3.avif";
 import heroImg4 from "@/assets/images/hero/hero-4.avif";
+import FacebookIcon from "@/components/social-icon/FacebookIcon.astro";
+import GitHubIcon from "@/components/social-icon/GitHubIcon.astro";
+import TikTokIcon from "@/components/social-icon/TikTokIcon.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { CONTACT, SOCIAL } from "@/constants";
 ---
 
 <GridDotsBackground
@@ -61,12 +64,46 @@ import { CONTACT } from "@/constants";
 							href={CONTACT.whatsappUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							variant="secondary"
+							variant="whatsapp"
 							size="lg"
 							class="gap-2"
 						>
 							<WhatsappIcon size={18} />Escríbenos por WhatsApp
 						</Button>
+					</div>
+
+					<!-- Social media links -->
+					<div
+						class="mt-4 flex items-center gap-2 animate-fade-in-up animate-delay-500 animate-duration-normal"
+					>
+						<span class="text-xs text-muted-foreground mr-0.5">Síguenos</span>
+						<a
+							href={SOCIAL.facebook}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Facebook"
+							class="rounded-lg p-1.5 text-muted-foreground transition-colors hover:text-primary hover:bg-muted"
+						>
+							<FacebookIcon size={18} />
+						</a>
+						<a
+							href={SOCIAL.tiktok}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="TikTok"
+							class="rounded-lg p-1.5 text-muted-foreground transition-colors hover:text-primary hover:bg-muted"
+						>
+							<TikTokIcon size={18} />
+						</a>
+						<a
+							href={SOCIAL.github}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="GitHub"
+							class="rounded-lg p-1.5 text-muted-foreground transition-colors hover:text-primary hover:bg-muted"
+						>
+							<GitHubIcon size={18} />
+						</a>
 					</div>
 				</div>
 

@@ -1,6 +1,7 @@
 ---
 import { MapRenovaBit } from "@/components/footer/MapRenovaBit";
 import FacebookIcon from "@/components/social-icon/FacebookIcon.astro";
+import GitHubIcon from "@/components/social-icon/GitHubIcon.astro";
 import InstagramIcon from "@/components/social-icon/InstagramIcon.astro";
 import TikTokIcon from "@/components/social-icon/TikTokIcon.astro";
 import XIcon from "@/components/social-icon/XIcon.astro";
@@ -64,6 +65,15 @@ const currentYear = new Date().getFullYear();
 							class="flex items-center justify-center rounded-lg p-2 text-muted-foreground transition-colors hover:text-primary"
 						>
 							<XIcon size={20} decorative />
+						</a>
+						<a
+							href={SOCIAL.github}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="GitHub"
+							class="flex items-center justify-center rounded-lg p-2 text-muted-foreground transition-colors hover:text-primary"
+						>
+							<GitHubIcon size={20} decorative />
 						</a>
 					</div>
 				</div>
