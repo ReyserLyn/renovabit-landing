@@ -1,0 +1,19 @@
+---
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { CONTACT } from "@/constants";
+---
+
+<a
+	href={CONTACT.whatsappUrl}
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label="Escríbenos por WhatsApp"
+	title="Escríbenos por WhatsApp"
+	class="group fixed right-4 bottom-4 z-50 flex size-14 items-center justify-center rounded-full border border-[#0d6b2d]/30 bg-[#0f7a35] text-white shadow-lg shadow-[#0f7a35]/20 transition-all duration-300 hover:scale-110 hover:border-[#0d6b2d]/50 hover:bg-[#0d6b2d] hover:shadow-xl hover:shadow-[#0f7a35]/30 md:right-6 md:bottom-6 md:size-16 animate-fade-in-up animate-delay-1000 animate-duration-normal"
+>
+	<WhatsappIcon
+		size={26}
+		class="size-6 transition-transform duration-300 group-hover:scale-110 md:size-7"
+	/>
+	<span class="sr-only">Escríbenos por WhatsApp</span>
+</a>

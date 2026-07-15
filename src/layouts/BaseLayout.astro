@@ -3,6 +3,7 @@ import { Font } from "astro:assets";
 import heroLcpImg from "@/assets/images/hero/hero-1.avif";
 import Footer from "@/components/layout/footer.astro";
 import Navbar from "@/components/layout/navbar.astro";
+import WhatsAppFloating from "@/components/layout/WhatsAppFloating.astro";
 import StructuredData from "@/components/seo/StructuredData.astro";
 import { GEO, SITE } from "@/constants";
 import "@/styles/landing.css";
@@ -76,5 +77,6 @@ const robotsContent = isIndexable
 			<slot />
 		</main>
 		<Footer />
+		<WhatsAppFloating />
 	</body>
 </html>
