@@ -26,19 +26,9 @@ export default defineConfig({
 						style: "normal",
 					},
 					{
-						src: ["./src/assets/fonts/satoshi/Satoshi-Italic.woff2"],
-						weight: "400",
-						style: "italic",
-					},
-					{
 						src: ["./src/assets/fonts/satoshi/Satoshi-Medium.woff2"],
 						weight: "500",
 						style: "normal",
-					},
-					{
-						src: ["./src/assets/fonts/satoshi/Satoshi-MediumItalic.woff2"],
-						weight: "500",
-						style: "italic",
 					},
 					{
 						src: ["./src/assets/fonts/satoshi/Satoshi-Bold.woff2"],
@@ -46,19 +36,9 @@ export default defineConfig({
 						style: "normal",
 					},
 					{
-						src: ["./src/assets/fonts/satoshi/Satoshi-BoldItalic.woff2"],
-						weight: "700",
-						style: "italic",
-					},
-					{
 						src: ["./src/assets/fonts/satoshi/Satoshi-Black.woff2"],
 						weight: "900",
 						style: "normal",
-					},
-					{
-						src: ["./src/assets/fonts/satoshi/Satoshi-BlackItalic.woff2"],
-						weight: "900",
-						style: "italic",
 					},
 				],
 			},
