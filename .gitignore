@@ -26,4 +26,6 @@ Thumbs.db
 .idea/
 .vscode/
 
+# Raw images (source files for optimization)
+src/assets/images/raw/
 .agents

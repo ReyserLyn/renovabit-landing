@@ -31,8 +31,9 @@ function renderPin(isDark: boolean): string {
 }
 
 let optionsSet = false;
+let observer: IntersectionObserver | null = null;
 
-async function initMap(el: HTMLDivElement, apiKey: string): Promise<void> {
+function initMap(el: HTMLDivElement, apiKey: string): void {
 	const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 	if (!optionsSet) {
@@ -40,26 +41,28 @@ async function initMap(el: HTMLDivElement, apiKey: string): Promise<void> {
 		optionsSet = true;
 	}
 
-	await importLibrary("maps");
-	await importLibrary("marker");
+	importLibrary("maps")
+		.then(() => importLibrary("marker"))
+		.then(() => {
+			const map = new google.maps.Map(el, {
+				center: { lat: LOCATION.lat, lng: LOCATION.lng },
+				zoom: 16,
+				mapId: MAP_ID,
+				gestureHandling: "cooperative",
+				disableDefaultUI: true,
+				colorScheme: isDark ? "DARK" : "LIGHT",
+			});
 
-	const map = new google.maps.Map(el, {
-		center: { lat: LOCATION.lat, lng: LOCATION.lng },
-		zoom: 16,
-		mapId: MAP_ID,
-		gestureHandling: "cooperative",
-		disableDefaultUI: true,
-		colorScheme: isDark ? "DARK" : "LIGHT",
-	});
+			const pinEl = document.createElement("div");
+			pinEl.innerHTML = renderPin(isDark);
 
-	const pinEl = document.createElement("div");
-	pinEl.innerHTML = renderPin(isDark);
-
-	new google.maps.marker.AdvancedMarkerElement({
-		map,
-		position: { lat: LOCATION.lat, lng: LOCATION.lng },
-		content: pinEl,
-	});
+			new google.maps.marker.AdvancedMarkerElement({
+				map,
+				position: { lat: LOCATION.lat, lng: LOCATION.lng },
+				content: pinEl,
+			});
+		})
+		.catch(console.error);
 }
 
 export function MapRenovaBit() {
@@ -76,7 +79,20 @@ export function MapRenovaBit() {
 	return (
 		<div
 			ref={(el) => {
-				if (el) initMap(el, apiKey).catch(console.error);
+				if (!el) return;
+				observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								initMap(el, apiKey);
+								observer?.disconnect();
+								observer = null;
+							}
+						}
+					},
+					{ rootMargin: "400px" },
+				);
+				observer.observe(el);
 			}}
 			role="img"
 			aria-label="Ubicación de RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa"

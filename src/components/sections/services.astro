@@ -1,9 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
-import aboutImg from "@/assets/images/about/conocenos-1.webp";
-import servicioImg2 from "@/assets/images/services/mantenimiento.avif";
-import servicioImg3 from "@/assets/images/services/soporte-remoto.avif";
-import servicioImg1 from "@/assets/images/services/taller.avif";
+import servicioImg1 from "@/assets/images/services/service-1.avif";
+import servicioImg2 from "@/assets/images/services/service-2.avif";
+import servicioImg3 from "@/assets/images/services/service-3.avif";
+import servicioImg4 from "@/assets/images/services/service-4.avif";
 import { Button } from "@/components/ui/button";
 
 const servicios = [
@@ -11,6 +11,7 @@ const servicios = [
 		num: "01",
 		nombre: "Servicio Técnico",
 		img: servicioImg1,
+		alt: "Taller completo de RenovaBit con herramientas y equipos de reparación profesional en Arequipa",
 		items: ["Mantenimiento", "Limpieza", "Diagnóstico", "PC y Laptop"],
 		col: "1",
 		row: "1",
@@ -20,7 +21,8 @@ const servicios = [
 	{
 		num: "02",
 		nombre: "Desarrollo Web",
-		img: servicioImg3,
+		img: servicioImg2,
+		alt: "Desarrollo web corporativo: sitio de Bodega Manchego, proyecto reciente de RenovaBit",
 		items: ["Landing Pages", "Web Corporativas", "Catálogos", "Automatizaciones"],
 		col: "2",
 		row: "2",
@@ -30,7 +32,8 @@ const servicios = [
 	{
 		num: "03",
 		nombre: "Tienda",
-		img: servicioImg2,
+		img: servicioImg3,
+		alt: "Tienda online de RenovaBit: venta de equipos, componentes y periféricos",
 		items: ["Equipos", "Componentes CPU", "Periféricos"],
 		col: "2",
 		row: "6",
@@ -40,7 +43,8 @@ const servicios = [
 	{
 		num: "04",
 		nombre: "Reparaciones Especializadas",
-		img: aboutImg,
+		img: servicioImg4,
+		alt: "Placa de laptop Lenovo ThinkPad tras mantenimiento profesional RenovaBit",
 		items: ["Bios", "Microeletrónica", "Pantallas", "Teclados"],
 		col: "1",
 		row: "8",
@@ -79,7 +83,7 @@ const servicios = [
 						<div class="overflow-hidden rounded-2xl w-3/4 mx-auto sm:w-full">
 							<img
 								src={s.img.src}
-								alt={s.nombre}
+								alt={s.alt}
 								width={s.img.width}
 								height={s.img.height}
 								loading="lazy"
@@ -91,7 +95,8 @@ const servicios = [
 						{/* Número + Nombre */}
 						<div class="relative mt-10 mx-auto w-full max-w-72 sm:mt-6">
 							<span
-								class="absolute -top-7 left-0 font-heading text-8xl font-black leading-none tracking-tighter text-primary/10 select-none sm:-top-6"
+								class="absolute -top-7 left-0 font-heading text-8xl font-black leading-none tracking-tighter text-primary/15 select-none sm:-top-6"
+								aria-hidden="true"
 							>
 								{s.num}
 							</span>

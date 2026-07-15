@@ -1,5 +1,6 @@
 ---
 import { Font } from "astro:assets";
+import heroLcpImg from "@/assets/images/hero/hero-1.avif";
 import Footer from "@/components/layout/footer.astro";
 import Navbar from "@/components/layout/navbar.astro";
 import "@/styles/landing.css";
@@ -32,6 +33,14 @@ const robotsContent = isIndexable
 		<meta name="description" content={description}>
 		<meta name="robots" content={robotsContent}>
 		<link rel="canonical" href={canonicalUrl}>
+		<link rel="preconnect" href="https://maps.googleapis.com">
+		<link
+			rel="preload"
+			as="image"
+			href={heroLcpImg.src}
+			imagesrcset={heroLcpImg.src}
+			fetchpriority="high"
+		>
 		<Font cssVariable="--font-satoshi" preload />
 	</head>
 

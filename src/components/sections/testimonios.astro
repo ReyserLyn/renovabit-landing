@@ -1,7 +1,7 @@
 ---
-import aboutImg1 from "@/assets/images/about/conocenos-1.webp";
-import servicioImg3 from "@/assets/images/services/soporte-remoto.avif";
-import testimonialImg from "@/assets/images/testimonials/testimonial.avif";
+import testimonialAntes from "@/assets/images/testimonials/testimonial-1-1.avif";
+import testimonialDespues from "@/assets/images/testimonials/testimonial-1-2.avif";
+import testimonialSecundario from "@/assets/images/testimonials/testimonial-2.avif";
 import { Badge } from "@/components/ui/badge";
 import { Rating } from "@/components/ui/rating";
 ---
@@ -39,10 +39,10 @@ import { Rating } from "@/components/ui/rating";
 					</span>
 					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
 						<img
-							src={aboutImg1.src}
-							alt="Estado inicial del equipo antes del servicio técnico"
-							width={aboutImg1.width}
-							height={aboutImg1.height}
+							src={testimonialAntes.src}
+							alt="PC de escritorio de empresa cliente antes del mantenimiento: cables desorganizados y acumulación de polvo"
+							width={testimonialAntes.width}
+							height={testimonialAntes.height}
 							loading="lazy"
 							decoding="async"
 							class="aspect-4/3 w-full object-cover"
@@ -57,10 +57,10 @@ import { Rating } from "@/components/ui/rating";
 					</span>
 					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
 						<img
-							src={testimonialImg.src}
-							alt="Resultado final del equipo tras la reparación"
-							width={testimonialImg.width}
-							height={testimonialImg.height}
+							src={testimonialDespues.src}
+							alt="PC empresarial tras mantenimiento RenovaBit: gestión de cables profesional, limpieza y lubricación"
+							width={testimonialDespues.width}
+							height={testimonialDespues.height}
 							loading="lazy"
 							decoding="async"
 							class="aspect-4/3 w-full object-cover"
@@ -72,21 +72,24 @@ import { Rating } from "@/components/ui/rating";
 			<!-- Info del testimonio -->
 			<div class="mt-8 flex flex-col items-center text-center">
 				<div class="flex w-full justify-around gap-2">
-					<Badge variant="secondary">Limpieza</Badge>
+					<Badge variant="secondary">Gestión de cables</Badge>
+					<Badge variant="secondary">Limpieza profunda</Badge>
 					<Badge variant="secondary">Mantenimiento</Badge>
-					<Badge variant="secondary">Instalación</Badge>
 				</div>
 
 				<div class="mt-5 flex items-center gap-2.5">
 					<Rating stars={5} />
 				</div>
 
-				<p class="mt-4 font-heading text-base font-bold text-foreground">Sr. Manuel</p>
+				<p class="mt-4 font-heading text-base font-bold text-foreground">
+					Carlos M. — Encargado de seguridad, empresa de distribución en Arequipa
+				</p>
 
 				<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
-					"Solicité el servicio a domicilio y quedé sorprendido con la puntualidad y
-					profesionalismo. Me hicieron mantenimiento, revisión de la tarjeta gráfica e instalación
-					de programas. Tener todo resuelto en mi hogar fue una gran ayuda."
+					"Confiamos en RenovaBit para el mantenimiento de nuestras estaciones de trabajo. El cambio
+					fue radical: pasamos de tener equipos con polvo acumulado y cables desordenados a PCs
+					impecables, bien ventiladas y con todo en su lugar. El informe detallado que entregaron
+					nos sirvió para la auditoría interna. Sin duda los volveremos a llamar."
 				</blockquote>
 			</div>
 		</div>
@@ -99,18 +102,18 @@ import { Rating } from "@/components/ui/rating";
 			<div>
 				<div class="overflow-hidden rounded-2xl max-w-sm mx-auto md:max-w-none">
 					<img
-						src={servicioImg3.src}
-						alt="Laptop reparada y funcionando tras el servicio técnico"
-						width={servicioImg3.width}
-						height={servicioImg3.height}
+						src={testimonialSecundario.src}
+						alt="Equipo de oficina ensamblado a medida por RenovaBit: componentes, armado y pruebas de funcionamiento"
+						width={testimonialSecundario.width}
+						height={testimonialSecundario.height}
 						loading="lazy"
 						decoding="async"
 						class="aspect-4/3 w-full object-cover"
 					>
 				</div>
 				<div class="mt-3 flex justify-around gap-2">
-					<Badge variant="secondary">Reparación</Badge>
-					<Badge variant="secondary">A domicilio</Badge>
+					<Badge variant="secondary">Ensamblaje a medida</Badge>
+					<Badge variant="secondary">Componentes nuevos</Badge>
 				</div>
 			</div>
 
@@ -120,12 +123,13 @@ import { Rating } from "@/components/ui/rating";
 					<Rating stars={5} />
 				</div>
 
-				<p class="mt-4 font-heading text-base font-bold text-foreground">Sra. Carmen</p>
+				<p class="mt-4 font-heading text-base font-bold text-foreground">Sr. Antonio</p>
 
 				<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
-					"Llevé mi laptop porque no encendía y tenía la pantalla dañada. Me explicaron todo el
-					proceso con paciencia, el diagnóstico fue gratuito y en dos días ya tenía mi equipo como
-					nuevo. El seguimiento posterior fue impecable. Los recomiendo totalmente."
+					"Necesitaba una PC para trabajo de oficina y AutoCAD, pero no sabía por dónde empezar.
+					RenovaBit me asesoró en la selección de componentes, armó todo, hizo las pruebas y me
+					entregó el equipo listo para usar. El presupuesto fue claro desde el inicio y el resultado
+					superó lo que esperaba. Ahora trabajo sin problemas."
 				</blockquote>
 			</div>
 		</div>

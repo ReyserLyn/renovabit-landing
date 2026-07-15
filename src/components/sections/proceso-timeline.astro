@@ -1,60 +1,47 @@
 ---
 import { Icon } from "astro-icon/components";
-import aboutImg1 from "@/assets/images/about/conocenos-1.webp";
-import aboutImg2 from "@/assets/images/about/conocenos-2.avif";
-import servicioImg2 from "@/assets/images/services/mantenimiento.avif";
-import servicioImg3 from "@/assets/images/services/soporte-remoto.avif";
-import servicioImg1 from "@/assets/images/services/taller.avif";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 
 const steps = [
 	{
-		num: 1,
+		num: "01",
+		icon: "hugeicons:message-01",
 		title: "Elige la modalidad que mejor se adapte a ti.",
 		description:
 			"Escríbenos por WhatsApp y cuéntanos qué necesitas. Analizaremos tu caso, resolveremos tus dudas y te propondremos la solución más adecuada para tu proyecto o equipo desde el primer contacto.",
-		image: servicioImg3,
-		alt: "Contacto inicial por WhatsApp",
 	},
 	{
-		num: 2,
+		num: "02",
+		icon: "hugeicons:search-01",
 		title: "Evaluamos la mejor solución.",
 		description:
 			"Analizamos tu caso y te explicamos las opciones disponibles antes de realizar cualquier trabajo. Si se trata de una reparación, el diagnóstico no tiene costo cuando decides realizar el servicio con nosotros.",
-		image: aboutImg1,
-		alt: "Evaluación y diagnóstico",
 	},
 	{
-		num: 3,
+		num: "03",
+		icon: "hugeicons:wrench-01",
 		title: "Realizamos el trabajo.",
 		description:
 			"Utilizamos materiales de calidad, buenas prácticas y mantenemos una comunicación constante durante todo el proceso para que sepas cómo avanza tu servicio.",
-		image: servicioImg1,
-		alt: "Servicio técnico en proceso",
 	},
 	{
-		num: 4,
+		num: "04",
+		icon: "hugeicons:task-01",
 		title: "Documentamos cada etapa.",
 		description:
 			"Cuando el servicio lo requiere, registramos el proceso mediante fotografías e informes técnicos para que tengas total claridad sobre el trabajo realizado.",
-		image: aboutImg2,
-		alt: "Documentación del servicio",
 	},
 	{
-		num: 5,
+		num: "05",
+		icon: "hugeicons:checkmark-badge-01",
 		title: "Entregamos y damos seguimiento.",
 		description:
 			"Una vez finalizado el servicio verificamos que todo funcione correctamente y resolvemos cualquier duda para que puedas aprovechar al máximo tu equipo o proyecto.",
-		image: servicioImg2,
-		alt: "Entrega y seguimiento",
 	},
 ];
 ---
 
 <section class="py-20 md:py-28">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<!-- Título + subtítulo -->
 		<div class="mx-auto max-w-2xl text-center">
 			<h2
 				class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
@@ -67,64 +54,47 @@ const steps = [
 			</p>
 		</div>
 
-		<!-- Timeline -->
-		<div class="relative mt-20 md:mt-24">
-			<!-- Línea vertical central -->
+		<div class="relative mx-auto mt-20 max-w-lg md:mt-24">
+			<!-- Línea vertical -->
 			<div
-				class="absolute left-4 top-0 bottom-0 w-px bg-primary/15 md:left-1/2 md:-translate-x-1/2"
+				class="absolute left-6 top-0 bottom-0 w-px bg-primary/15 md:left-1/2 md:-translate-x-1/2"
 				aria-hidden="true"
 			></div>
 
-			<div class="flex flex-col gap-14 md:gap-16">
+			<div class="flex flex-col gap-12">
 				{steps.map((step, i) => {
 					const isLeft = i % 2 === 0;
 
 					return (
-						<div
-							class="relative md:grid md:grid-cols-2 md:items-center md:gap-10 lg:gap-16 animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
-						>
-							{/* Punto en la línea central */}
+						<div class="relative md:grid md:grid-cols-2 md:items-start md:gap-8 animate-fade-in-up view-animate-[--entrance] animate-duration-slower">
+							{/* Ícono */}
 							<div
-								class="absolute left-4 top-2 z-10 size-3 -translate-x-1/2 rounded-full border-2 border-primary/30 bg-background md:left-1/2 md:top-1/2 md:-translate-y-1/2"
+								class:list={[
+									"relative z-10 flex size-12 shrink-0 items-center justify-center rounded-xl border-2 bg-background md:absolute md:left-1/2 md:-translate-x-1/2",
+									isLeft ? "border-primary/20" : "border-primary/30",
+								]}
 								aria-hidden="true"
 							>
-							</div>
-
-							{/* Imagen */}
-							<div
-								class:list={["relative ml-10 md:ml-0 md:max-w-sm lg:max-w-md", isLeft ? "md:justify-self-end" : "md:order-2"]}
-							>
-								<img
-									src={step.image.src}
-									alt={step.alt}
-									width={step.image.width}
-									height={step.image.height}
-									loading="lazy"
-									decoding="async"
-									class="aspect-4/3 w-full rounded-2xl object-cover"
+								<Icon
+									name={step.icon}
+									class:list={["size-5", isLeft ? "text-primary/60" : "text-primary"]}
 								/>
-								<span
-									class:list={[
-										"absolute -top-5 font-heading text-7xl font-black leading-none text-primary/25 select-none sm:text-8xl md:-top-6",
-										isLeft ? "-right-5 md:-right-6" : "-left-5 md:-left-6",
-									]}
-								>
-									{step.num}
-								</span>
 							</div>
 
-							{/* Texto */}
+							{/* Contenido */}
 							<div
-								class:list={["ml-10 mt-4 md:ml-0 md:mt-0", isLeft ? "md:pl-6" : "md:order-1 md:text-right md:pr-6"]}
+								class:list={[
+									"ml-16 md:ml-0",
+									isLeft ? "md:pr-10 md:text-right" : "md:col-start-2 md:pl-10",
+								]}
 							>
-								<h3
-									class="font-heading text-lg font-bold tracking-tight text-foreground sm:text-xl"
-								>
+								<span class="font-heading text-xs font-bold tracking-widest text-primary/50 uppercase">
+									Paso {step.num}
+								</span>
+								<h3 class="mt-2 font-heading text-lg font-bold tracking-tight text-foreground sm:text-xl">
 									{step.title}
 								</h3>
-								<p
-									class:list={["mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base", isLeft ? "" : "md:ml-auto"]}
-								>
+								<p class="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
 									{step.description}
 								</p>
 							</div>
@@ -134,19 +104,11 @@ const steps = [
 			</div>
 		</div>
 
-		<!-- CTA -->
-		<div
-			class="mt-20 flex flex-col items-center gap-5 text-center animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
-		>
-			<Separator class="mx-auto max-w-xs" />
-			<p class="mt-10 max-w-lg text-base text-muted-foreground sm:text-lg">
+		<div class="mt-20 flex flex-col items-center gap-5 text-center">
+			<p class="max-w-lg text-base text-muted-foreground sm:text-lg">
 				Un buen servicio no solo se mide por el resultado, sino también por la experiencia durante
 				todo el proceso.
 			</p>
-			<Button as="a" href="/#contacto" variant="default" size="lg" class="gap-2">
-				<Icon name="hugeicons:arrow-right-01" class="size-5" />
-				Contáctanos
-			</Button>
 		</div>
 	</div>
 </section>

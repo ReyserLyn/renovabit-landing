@@ -3,6 +3,7 @@
 import cloudflare from "@astrojs/cloudflare";
 import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
+import seoGraph from "@jdevalk/astro-seo-graph/integration";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import icon from "astro-icon";
@@ -71,6 +72,12 @@ export default defineConfig({
 			},
 		}),
 		sitemap({}),
+		seoGraph({
+			validateH1: true,
+			validateImageAlt: true,
+			validateMetadataLength: true,
+			validateInternalLinks: true,
+		}),
 		preact(),
 	],
 

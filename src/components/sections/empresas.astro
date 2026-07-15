@@ -1,5 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
+import companyImg1 from "@/assets/images/companys/company-1.avif";
+import companyImg2 from "@/assets/images/companys/company-2.avif";
+import companyImg3 from "@/assets/images/companys/company-3.avif";
+import companyImg4 from "@/assets/images/companys/company-4.svg";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
@@ -72,18 +76,42 @@ import { CONTACT } from "@/constants";
 			</p>
 			<div class="mt-8">
 				<Marquee direction="left" variant="gradient">
-					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
-						Empresa 1
-					</span>
-					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
-						Empresa 2
-					</span>
-					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
-						Empresa 3
-					</span>
-					<span class="select-none px-6 font-heading text-xl font-bold text-muted-foreground/30">
-						Empresa 4
-					</span>
+					<img
+						src={companyImg1.src}
+						alt="Logo de Flanders"
+						width={companyImg1.width}
+						height={companyImg1.height}
+						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+						loading="lazy"
+						decoding="async"
+					>
+					<img
+						src={companyImg2.src}
+						alt="Logo de Roma Distribuciones y Servicios"
+						width={companyImg2.width}
+						height={companyImg2.height}
+						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+						loading="lazy"
+						decoding="async"
+					>
+					<img
+						src={companyImg3.src}
+						alt="Logo de SEKUR"
+						width={companyImg3.width}
+						height={companyImg3.height}
+						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+						loading="lazy"
+						decoding="async"
+					>
+					<img
+						src={companyImg4.src}
+						alt="Logo de Bodega Manchego"
+						width={companyImg4.width}
+						height={companyImg4.height}
+						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+						loading="lazy"
+						decoding="async"
+					>
 				</Marquee>
 			</div>
 		</div>
