@@ -4,3 +4,6 @@
 	Referrer-Policy: strict-origin-when-cross-origin
 	Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 	Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/*.txt
+	Content-Type: text/plain; charset=utf-8
