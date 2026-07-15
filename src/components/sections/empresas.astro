@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import companyImg1 from "@/assets/images/companys/company-1.avif";
 import companyImg2 from "@/assets/images/companys/company-2.avif";
@@ -76,42 +77,34 @@ import { CONTACT } from "@/constants";
 			</p>
 			<div class="mt-8">
 				<Marquee direction="left" variant="gradient">
-					<img
-						src={companyImg1.src}
+					<Image
+						src={companyImg1}
 						alt="Logo de Flanders"
-						width={companyImg1.width}
-						height={companyImg1.height}
 						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
 						loading="lazy"
 						decoding="async"
-					>
-					<img
-						src={companyImg2.src}
+					/>
+					<Image
+						src={companyImg2}
 						alt="Logo de Roma Distribuciones y Servicios"
-						width={companyImg2.width}
-						height={companyImg2.height}
 						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
 						loading="lazy"
 						decoding="async"
-					>
-					<img
-						src={companyImg3.src}
+					/>
+					<Image
+						src={companyImg3}
 						alt="Logo de SEKUR"
-						width={companyImg3.width}
-						height={companyImg3.height}
 						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
 						loading="lazy"
 						decoding="async"
-					>
-					<img
-						src={companyImg4.src}
+					/>
+					<Image
+						src={companyImg4}
 						alt="Logo de Bodega Manchego"
-						width={companyImg4.width}
-						height={companyImg4.height}
 						class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
 						loading="lazy"
 						decoding="async"
-					>
+					/>
 				</Marquee>
 			</div>
 		</div>

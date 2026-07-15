@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import GridDotsBackground from "@astroanimate/core/GridDotsBackground";
 import HighlightText from "@astroanimate/core/HighlightText";
 import { Icon } from "astro-icon/components";
@@ -44,7 +45,7 @@ import { CONTACT } from "@/constants";
 						</HighlightText>
 					</h1>
 					<p
-						class="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg animate-fade-in-up animate-delay-200 	animate-duration-slower"
+						class="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg animate-fade-in-up animate-delay-200 animate-duration-slower"
 					>
 						Desarrollo web, soporte informático, reparación especializada y venta de tecnología con
 						un servicio transparente y profesional
@@ -53,8 +54,7 @@ import { CONTACT } from "@/constants";
 						class="mt-7 flex flex-wrap gap-3 sm:gap-4 animate-fade-in-up animate-delay-400 animate-duration-normal"
 					>
 						<Button as="a" href="/#servicios" variant="default" size="lg" class="gap-2">
-							<Icon name="hugeicons:arrow-right-01" class="size-5" />
-							Ver servicios
+							<Icon name="hugeicons:arrow-right-01" class="size-5" />Ver servicios
 						</Button>
 						<Button
 							as="a"
@@ -65,8 +65,7 @@ import { CONTACT } from "@/constants";
 							size="lg"
 							class="gap-2"
 						>
-							<WhatsappIcon size={18} />
-							Contáctame
+							<WhatsappIcon size={18} />Contáctame
 						</Button>
 					</div>
 				</div>
@@ -77,52 +76,52 @@ import { CONTACT } from "@/constants";
 				>
 					<!-- wide top -->
 					<div class="col-span-2 overflow-hidden rounded-2xl border border-border/50 aspect-7/2">
-						<img
-							src={heroImg1.src}
+						<Image
+							src={heroImg1}
 							alt="Herramientas del taller de RenovaBit: fuente de poder, microscopio y equipo de reparación profesional en Arequipa"
-							width={heroImg1.width}
-							height={heroImg1.height}
+							widths={[400, 800]}
+							sizes="(max-width: 768px) 100vw, 50vw"
 							fetchpriority="high"
 							loading="eager"
 							decoding="sync"
 							class="size-full object-cover"
-						>
+						/>
 					</div>
 					<!-- square left -->
 					<div class="overflow-hidden rounded-2xl border border-border/50 aspect-7/4">
-						<img
-							src={heroImg2.src}
+						<Image
+							src={heroImg2}
 							alt="Placa de laptop con acumulación de polvo antes del mantenimiento RenovaBit"
-							width={heroImg2.width}
-							height={heroImg2.height}
+							widths={[200, 400]}
+							sizes="(max-width: 768px) 100vw, 25vw"
 							loading="lazy"
 							decoding="async"
 							class="size-full object-cover"
-						>
+						/>
 					</div>
 					<!-- square right -->
 					<div class="overflow-hidden rounded-2xl border border-border/50 aspect-7/4">
-						<img
-							src={heroImg3.src}
+						<Image
+							src={heroImg3}
 							alt="Placa de laptop limpia tras mantenimiento profesional RenovaBit"
-							width={heroImg3.width}
-							height={heroImg3.height}
+							widths={[200, 400]}
+							sizes="(max-width: 768px) 100vw, 25vw"
 							loading="lazy"
 							decoding="async"
 							class="size-full object-cover"
-						>
+						/>
 					</div>
 					<!-- wide bottom -->
 					<div class="col-span-2 overflow-hidden rounded-2xl border border-border/50 aspect-7/2">
-						<img
-							src={heroImg4.src}
+						<Image
+							src={heroImg4}
 							alt="Soporte técnico remoto RenovaBit: instalación de programas, formateo y sistema operativo"
-							width={heroImg4.width}
-							height={heroImg4.height}
+							widths={[400, 800]}
+							sizes="(max-width: 768px) 100vw, 50vw"
 							loading="lazy"
 							decoding="async"
 							class="size-full object-cover"
-						>
+						/>
 					</div>
 				</div>
 			</div>
@@ -134,26 +133,34 @@ import { CONTACT } from "@/constants";
 				<li
 					class="col-start-1 row-start-1 sm:col-start-1 sm:row-start-1 inline-flex items-center gap-2 animate-fade-in-up animate-delay-500 animate-duration-slow"
 				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Boleta y Factura
+					<Icon
+						name="hugeicons:checkmark-circle-03"
+						class="size-4 shrink-0 text-primary/80"
+					/>Boleta y Factura
 				</li>
 				<li
 					class="col-start-2 row-start-2 sm:col-start-2 sm:row-start-2 inline-flex items-center gap-2 animate-fade-in-up animate-delay-600 animate-duration-slow"
 				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Atención en Arequipa
+					<Icon
+						name="hugeicons:checkmark-circle-03"
+						class="size-4 shrink-0 text-primary/80"
+					/>Atención en Arequipa
 				</li>
 				<li
 					class="col-start-1 row-start-3 sm:col-start-3 sm:row-start-1 inline-flex items-center gap-2 animate-fade-in-up animate-delay-700 animate-duration-slow"
 				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Servicio a Domicilio
+					<Icon
+						name="hugeicons:checkmark-circle-03"
+						class="size-4 shrink-0 text-primary/80"
+					/>Servicio a Domicilio
 				</li>
 				<li
 					class="col-start-2 row-start-4 sm:col-start-4 sm:row-start-2 inline-flex items-center gap-2 animate-fade-in-up animate-delay-800 animate-duration-slow"
 				>
-					<Icon name="hugeicons:checkmark-circle-03" class="size-4 shrink-0 text-primary/80" />
-					Personas y Empresas
+					<Icon
+						name="hugeicons:checkmark-circle-03"
+						class="size-4 shrink-0 text-primary/80"
+					/>Personas y Empresas
 				</li>
 			</ul>
 		</div>

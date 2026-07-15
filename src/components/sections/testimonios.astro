@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import testimonialAntes from "@/assets/images/testimonials/testimonial-1-1.avif";
 import testimonialDespues from "@/assets/images/testimonials/testimonial-1-2.avif";
 import testimonialSecundario from "@/assets/images/testimonials/testimonial-2.avif";
@@ -38,15 +39,15 @@ import { Rating } from "@/components/ui/rating";
 						Antes
 					</span>
 					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
-						<img
-							src={testimonialAntes.src}
+						<Image
+							src={testimonialAntes}
 							alt="PC de escritorio de empresa cliente antes del mantenimiento: cables desorganizados y acumulación de polvo"
-							width={testimonialAntes.width}
-							height={testimonialAntes.height}
+							widths={[400, 800]}
+							sizes="(max-width: 640px) 100vw, 50vw"
 							loading="lazy"
 							decoding="async"
 							class="aspect-4/3 w-full object-cover"
-						>
+						/>
 					</div>
 				</div>
 
@@ -56,15 +57,15 @@ import { Rating } from "@/components/ui/rating";
 						Después
 					</span>
 					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
-						<img
-							src={testimonialDespues.src}
+						<Image
+							src={testimonialDespues}
 							alt="PC empresarial tras mantenimiento RenovaBit: gestión de cables profesional, limpieza y lubricación"
-							width={testimonialDespues.width}
-							height={testimonialDespues.height}
+							widths={[400, 800]}
+							sizes="(max-width: 640px) 100vw, 50vw"
 							loading="lazy"
 							decoding="async"
 							class="aspect-4/3 w-full object-cover"
-						>
+						/>
 					</div>
 				</div>
 			</div>
@@ -101,15 +102,15 @@ import { Rating } from "@/components/ui/rating";
 			<!-- Imagen + badges -->
 			<div>
 				<div class="overflow-hidden rounded-2xl max-w-sm mx-auto md:max-w-none">
-					<img
-						src={testimonialSecundario.src}
+					<Image
+						src={testimonialSecundario}
 						alt="Equipo de oficina ensamblado a medida por RenovaBit: componentes, armado y pruebas de funcionamiento"
-						width={testimonialSecundario.width}
-						height={testimonialSecundario.height}
+						widths={[400, 800]}
+						sizes="(max-width: 640px) 100vw, 50vw"
 						loading="lazy"
 						decoding="async"
 						class="aspect-4/3 w-full object-cover"
-					>
+					/>
 				</div>
 				<div class="mt-3 flex justify-around gap-2">
 					<Badge variant="secondary">Ensamblaje a medida</Badge>

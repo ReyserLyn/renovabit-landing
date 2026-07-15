@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import servicioImg1 from "@/assets/images/services/service-1.avif";
 import servicioImg2 from "@/assets/images/services/service-2.avif";
@@ -81,11 +82,11 @@ const servicios = [
 				>
 						{/* Imagen */}
 						<div class="overflow-hidden rounded-2xl w-3/4 mx-auto sm:w-full">
-							<img
-								src={s.img.src}
+							<Image
+								src={s.img}
 								alt={s.alt}
-								width={s.img.width}
-								height={s.img.height}
+								widths={[400, 800]}
+								sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 33vw"
 								loading="lazy"
 								decoding="async"
 								class="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-105"

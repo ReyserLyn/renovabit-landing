@@ -1,0 +1,70 @@
+---
+import { CONTACT, FAQ_ITEMS, FOOTER, LOCATION, SITE, SOCIAL } from "@/constants";
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "LocalBusiness",
+			"@id": `${SITE.url}/#business`,
+			name: SITE.name,
+			description: SITE.description,
+			url: SITE.url,
+			telephone: CONTACT.phone,
+			email: CONTACT.email,
+			image: `${SITE.url}${SITE.ogImage}`,
+			address: {
+				"@type": "PostalAddress",
+				streetAddress: FOOTER.address.line1,
+				addressLocality: FOOTER.address.city,
+				addressRegion: FOOTER.address.district,
+				postalCode: FOOTER.address.postalCode,
+				addressCountry: "PE",
+			},
+			geo: {
+				"@type": "GeoCoordinates",
+				latitude: LOCATION.lat,
+				longitude: LOCATION.lng,
+			},
+			openingHoursSpecification: {
+				"@type": "OpeningHoursSpecification",
+				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+				opens: "08:00",
+				closes: "20:00",
+			},
+			sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.tiktok],
+			priceRange: "$$",
+			areaServed: {
+				"@type": "City",
+				name: "Arequipa",
+			},
+		},
+		{
+			"@type": "FAQPage",
+			"@id": `${SITE.url}/#faq`,
+			mainEntity: FAQ_ITEMS.map((item) => ({
+				"@type": "Question",
+				name: item.question,
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: item.answer,
+				},
+			})),
+		},
+		{
+			"@type": "BreadcrumbList",
+			"@id": `${SITE.url}/#breadcrumb`,
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "Inicio",
+					item: SITE.url,
+				},
+			],
+		},
+	],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
