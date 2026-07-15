@@ -74,9 +74,9 @@ export const CONTACT = {
 } as const;
 
 export const SOCIAL = {
-	instagram: "https://instagram.com/renovabit",
-	facebook: "https://facebook.com/renovabit",
-	tiktok: "https://tiktok.com/@renovabit",
+	instagram: "https://www.instagram.com/RenovaBit",
+	facebook: "https://www.facebook.com/RenovaBitOficial",
+	tiktok: "https://www.tiktok.com/@RenovaBit",
 	x: "https://x.com/RenovaBit",
 	github: "https://github.com/ReyserLyn/renovabit-landing",
 } as const;
