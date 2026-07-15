@@ -7,6 +7,7 @@ import seoGraph from "@jdevalk/astro-seo-graph/integration";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import icon from "astro-icon";
+import llms from "astro-llms-md";
 
 export default defineConfig({
 	site: "https://renovabit.com",
@@ -59,6 +60,13 @@ export default defineConfig({
 			validateInternalLinks: true,
 		}),
 		preact(),
+		llms({
+			name: "RenovaBit",
+			description:
+				"Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web, venta de componentes y reparaciones especializadas.",
+			generateLlmsFullTxt: true,
+			excludeSelectors: ["nav", "aside", "footer", "form", ".sr-only", "[aria-hidden='true']"],
+		}),
 	],
 
 	vite: {

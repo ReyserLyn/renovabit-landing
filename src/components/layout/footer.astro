@@ -3,6 +3,7 @@ import { MapRenovaBit } from "@/components/footer/MapRenovaBit";
 import FacebookIcon from "@/components/social-icon/FacebookIcon.astro";
 import InstagramIcon from "@/components/social-icon/InstagramIcon.astro";
 import TikTokIcon from "@/components/social-icon/TikTokIcon.astro";
+import XIcon from "@/components/social-icon/XIcon.astro";
 import { FOOTER, SITE, SOCIAL } from "@/constants";
 
 const currentYear = new Date().getFullYear();
@@ -54,6 +55,15 @@ const currentYear = new Date().getFullYear();
 							class="flex items-center justify-center rounded-lg p-2 text-muted-foreground transition-colors hover:text-primary"
 						>
 							<TikTokIcon size={20} decorative />
+						</a>
+						<a
+							href={SOCIAL.x}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="X (Twitter)"
+							class="flex items-center justify-center rounded-lg p-2 text-muted-foreground transition-colors hover:text-primary"
+						>
+							<XIcon size={20} decorative />
 						</a>
 					</div>
 				</div>

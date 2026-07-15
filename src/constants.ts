@@ -2,10 +2,58 @@ export const SITE = {
 	name: "RenovaBit",
 	url: "https://renovabit.com",
 	description:
-		"Servicio técnico de laptops y PCs en Arequipa. Reparación, mantenimiento y soporte remoto.",
+		"Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web y venta de componentes. Diagnóstico gratuito.",
 	author: "RenovaBit",
 	locale: "es_PE",
 	ogImage: "/og-default.jpg",
+	googleVerification: "7Q5lqvjWHcpuMW3CdX9IfWbcj3bmTNC0GGb3-hdfbCE",
+	keywords: [
+		// Servicio Técnico
+		"servicio técnico arequipa",
+		"reparación laptops arequipa",
+		"técnico computadoras arequipa",
+		"mantenimiento pc arequipa",
+		"reparación laptops a domicilio arequipa",
+		"servicio técnico laptops miraflores arequipa",
+		"mantenimiento computadoras domicilio arequipa",
+		"laptop no enciende arequipa",
+		"pantalla laptop rota arequipa",
+		"laptop lenta arequipa",
+		"recuperar datos arequipa",
+		"limpieza laptop arequipa",
+		"diagnóstico gratuito arequipa",
+		"servicio técnico a domicilio arequipa",
+		"reparación pc gamer arequipa",
+		"cambio pasta térmica arequipa",
+		"instalación windows arequipa",
+		"formateo computadora arequipa",
+		// Desarrollo Web
+		"desarrollo web arequipa",
+		"diseño páginas web arequipa",
+		"landing page arequipa",
+		"página web para negocio arequipa",
+		"desarrollador web arequipa",
+		"tienda online arequipa",
+		"web corporativa arequipa",
+		"catálogo digital arequipa",
+		// Tienda
+		"venta componentes pc arequipa",
+		"computadoras arequipa",
+		"laptops arequipa",
+		"upgrade laptop arequipa",
+		"cambio disco duro ssd arequipa",
+		"ensamblado pc arequipa",
+		"venta de laptops arequipa",
+		"componentes gamer arequipa",
+		// Reparaciones Especializadas
+		"reparación motherboard arequipa",
+		"reparación microelectrónica arequipa",
+		"cambio pantalla laptop arequipa",
+		"reparación teclado laptop arequipa",
+		"servicio técnico especializado arequipa",
+		"reparación bios arequipa",
+	].join(", "),
+	themeColor: "#654fcc",
 } as const;
 
 export const CONTACT = {
@@ -18,6 +66,7 @@ export const SOCIAL = {
 	instagram: "https://instagram.com/renovabit",
 	facebook: "https://facebook.com/renovabit",
 	tiktok: "https://tiktok.com/@renovabit",
+	x: "https://x.com/RenovaBit",
 } as const;
 
 export const NAV_ITEMS = [
@@ -43,6 +92,13 @@ export const FOOTER = {
 	hours: "Lunes a Viernes, 8:00 AM - 8:00 PM",
 } as const;
 
+export const GEO = {
+	region: "PE-ARE",
+	placename: "Arequipa",
+	position: "-16.409047;-71.537451",
+	icbm: "-16.409047, -71.537451",
+} as const;
+
 export const LOCATION = {
 	lat: -16.3921345,
 	lng: -71.5174131,
@@ -52,7 +108,7 @@ export const FAQ_ITEMS = [
 	{
 		question: "¿Qué tipo de servicios ofrece RenovaBit?",
 		answer:
-			"Desarrollamos páginas web, landing pages, sitios corporativos y catálogos digitales. Además, realizamos mantenimiento preventivo y correctivo de laptops y PCs, reparaciones especializadas, microelectrónica, reemplazo de componentes, soporte técnico y soluciones para personas y empresas.",
+			"Ofrecemos cuatro líneas de servicio: servicio técnico de laptops y PCs (reparación, mantenimiento, diagnóstico), desarrollo web (landing pages, webs corporativas, catálogos digitales), venta de componentes y equipos, y reparaciones especializadas (microelectrónica, bios, pantallas). Atendemos en Arequipa con opción a domicilio.",
 	},
 	{
 		question: "¿Atienden personas y empresas?",

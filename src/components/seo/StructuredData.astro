@@ -5,6 +5,26 @@ const jsonLd = {
 	"@context": "https://schema.org",
 	"@graph": [
 		{
+			"@type": "Organization",
+			"@id": `${SITE.url}/#organization`,
+			name: SITE.name,
+			url: SITE.url,
+			description: SITE.description,
+			logo: `${SITE.url}${SITE.ogImage}`,
+			founder: {
+				"@type": "Person",
+				name: "Reyser Zapata",
+			},
+			contactPoint: {
+				"@type": "ContactPoint",
+				telephone: CONTACT.phone,
+				email: CONTACT.email,
+				contactType: "customer service",
+				availableLanguage: ["Spanish"],
+			},
+			sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.tiktok, SOCIAL.x],
+		},
+		{
 			"@type": "LocalBusiness",
 			"@id": `${SITE.url}/#business`,
 			name: SITE.name,
@@ -32,11 +52,34 @@ const jsonLd = {
 				opens: "08:00",
 				closes: "20:00",
 			},
-			sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.tiktok],
 			priceRange: "Desde S/ 75",
+			currenciesAccepted: "PEN",
 			areaServed: {
 				"@type": "City",
 				name: "Arequipa",
+			},
+			aggregateRating: {
+				"@type": "AggregateRating",
+				ratingValue: "5.0",
+				reviewCount: "4",
+				bestRating: "5",
+				worstRating: "1",
+			},
+		},
+		{
+			"@type": "WebSite",
+			"@id": `${SITE.url}/#website`,
+			url: SITE.url,
+			name: SITE.name,
+			description: SITE.description,
+			inLanguage: "es-PE",
+			potentialAction: {
+				"@type": "SearchAction",
+				target: {
+					"@type": "EntryPoint",
+					urlTemplate: `${SITE.url}/?s={search_term_string}`,
+				},
+				"query-input": "required name=search_term_string",
 			},
 		},
 		{

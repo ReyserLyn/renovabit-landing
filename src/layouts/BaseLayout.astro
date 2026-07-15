@@ -4,7 +4,7 @@ import heroLcpImg from "@/assets/images/hero/hero-1.avif";
 import Footer from "@/components/layout/footer.astro";
 import Navbar from "@/components/layout/navbar.astro";
 import StructuredData from "@/components/seo/StructuredData.astro";
-import { SITE } from "@/constants";
+import { GEO, SITE } from "@/constants";
 import "@/styles/landing.css";
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
 
 const {
 	title,
-	description = "Servicio técnico de laptops y PCs en Arequipa. Reparación, mantenimiento y soporte remoto.",
+	description = "Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web y venta de componentes. Diagnóstico gratuito.",
 } = Astro.props;
 
 const isIndexable = import.meta.env.PUBLIC_INDEXABLE !== "false";
@@ -33,9 +33,18 @@ const robotsContent = isIndexable
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{fullTitle}</title>
 		<meta name="description" content={description}>
+		<meta name="keywords" content={SITE.keywords}>
 		<meta name="robots" content={robotsContent}>
+		<meta name="google-site-verification" content={SITE.googleVerification}>
+		<meta name="theme-color" content={SITE.themeColor}>
+		<meta name="geo.region" content={GEO.region}>
+		<meta name="geo.placename" content={GEO.placename}>
+		<meta name="geo.position" content={GEO.position}>
+		<meta name="ICBM" content={GEO.icbm}>
+		<meta name="format-detection" content="telephone=no">
 		<link rel="canonical" href={canonicalUrl}>
 		<link rel="sitemap" href="/sitemap-index.xml">
+		<meta property="og:locale" content={SITE.locale}>
 		<meta property="og:title" content={fullTitle}>
 		<meta property="og:description" content={description}>
 		<meta property="og:image" content={new URL(SITE.ogImage, Astro.site).href}>
@@ -45,6 +54,7 @@ const robotsContent = isIndexable
 		<meta property="og:type" content="website">
 		<meta property="og:site_name" content={SITE.name}>
 		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:creator" content="@RenovaBit">
 		<meta name="twitter:image" content={new URL(SITE.ogImage, Astro.site).href}>
 		<link rel="preconnect" href="https://maps.googleapis.com">
 		<link
