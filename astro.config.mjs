@@ -64,7 +64,9 @@ export default defineConfig({
 			name: "RenovaBit",
 			description:
 				"Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web, venta de componentes y reparaciones especializadas.",
+			generateLlmsTxt: false,
 			generateLlmsFullTxt: true,
+			generateIndividualMd: true,
 			excludeSelectors: ["nav", "aside", "footer", "form", ".sr-only", "[aria-hidden='true']"],
 		}),
 	],

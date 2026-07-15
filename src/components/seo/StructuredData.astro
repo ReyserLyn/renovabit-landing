@@ -78,10 +78,52 @@ const jsonLd = {
 			aggregateRating: {
 				"@type": "AggregateRating",
 				ratingValue: "5.0",
-				reviewCount: "4",
+				reviewCount: "2",
 				bestRating: "5",
 				worstRating: "1",
 			},
+			review: [
+				{
+					"@type": "Review",
+					"@id": `${SITE.url}/#review-1`,
+					author: {
+						"@type": "Person",
+						name: "Carlos M.",
+					},
+					datePublished: "2025-11-15",
+					reviewBody:
+						"RenovaBit realizó el mantenimiento de nuestras estaciones de trabajo. Quedó todo documentado, con fotos del antes y después, y la empresa no detuvo su operación. Excelente servicio empresarial.",
+					reviewRating: {
+						"@type": "Rating",
+						ratingValue: "5",
+						bestRating: "5",
+						worstRating: "1",
+					},
+					itemReviewed: {
+						"@id": `${SITE.url}/#business`,
+					},
+				},
+				{
+					"@type": "Review",
+					"@id": `${SITE.url}/#review-2`,
+					author: {
+						"@type": "Person",
+						name: "Antonio V.",
+					},
+					datePublished: "2026-02-20",
+					reviewBody:
+						"Necesitaba una PC potente para AutoCAD y diseño. Me armaron el equipo a medida, me explicaron cada componente y el rendimiento es exactamente lo que esperaba. Muy recomendado.",
+					reviewRating: {
+						"@type": "Rating",
+						ratingValue: "5",
+						bestRating: "5",
+						worstRating: "1",
+					},
+					itemReviewed: {
+						"@id": `${SITE.url}/#business`,
+					},
+				},
+			],
 			hasOfferCatalog: {
 				"@type": "OfferCatalog",
 				name: "Servicios de RenovaBit",

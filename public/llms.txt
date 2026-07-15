@@ -1,0 +1,24 @@
+# RenovaBit
+
+> Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web, venta de componentes y reparaciones especializadas.
+
+RenovaBit atiende a personas y empresas en Arequipa con diagnóstico gratuito, informes técnicos documentados y factura electrónica. Todos los servicios incluyen cotización previa y seguimiento del trabajo realizado.
+
+## Páginas principales
+
+- [Inicio](https://renovabit.com/.md): Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web y venta de componentes.
+- [Servicios](https://renovabit.com/.md#servicios): Servicio técnico, desarrollo web, venta de componentes y reparaciones especializadas.
+- [Empresas](https://renovabit.com/.md#empresas): Soporte técnico empresarial con factura, informes técnicos y documentación por equipo.
+- [Reseñas](https://renovabit.com/.md#resenas): Trabajos realizados para clientes particulares y empresas de Arequipa.
+- [Preguntas frecuentes](https://renovabit.com/.md#faq): Respuestas sobre diagnóstico, garantía, facturación, recojo y desarrollo web.
+
+## Contacto
+
+- WhatsApp: +51 987 471 074
+- Correo: contacto@renovabit.com
+- Dirección: Av. Goyeneche 1602, Miraflores, Arequipa
+- Horario: Lunes a Viernes, 8:00 AM - 8:00 PM
+
+## Optional
+
+- [Contenido completo del sitio](https://renovabit.com/llms-full.txt): Versión extendida con todo el texto de la página de inicio.

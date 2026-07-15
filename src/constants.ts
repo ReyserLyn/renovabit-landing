@@ -2,7 +2,7 @@ export const SITE = {
 	name: "RenovaBit",
 	url: "https://renovabit.com",
 	description:
-		"Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web y venta de componentes. Diagnóstico gratuito.",
+		"Reparación de laptops y PCs en Arequipa a domicilio. Mantenimiento, desarrollo web y venta de componentes. Diagnóstico sin costo.",
 	author: "RenovaBit",
 	locale: "es_PE",
 	ogImage: "/og-default.jpg",
@@ -144,5 +144,25 @@ export const FAQ_ITEMS = [
 		question: "¿También desarrollan proyectos de software?",
 		answer:
 			"Sí. El desarrollo de software es una de nuestras principales líneas de trabajo. Creamos landing pages, sitios corporativos, catálogos digitales y soluciones web modernas enfocadas en rendimiento, diseño y facilidad de administración.",
+	},
+	{
+		question: "¿Cuánto cuesta reparar una laptop en Arequipa?",
+		answer:
+			"El costo depende del tipo de falla y los repuestos necesarios. El diagnóstico es gratuito y te entregamos una cotización clara antes de iniciar cualquier reparación. Cambios de pantalla, teclados, mantenimiento y reparación de placa tienen precios distintos.",
+	},
+	{
+		question: "¿Qué hacer si mi laptop no enciende?",
+		answer:
+			"No fuerces el encendido repetidamente. El problema puede ser la batería, el cargador, la BIOS o la placa madre. Escríbenos por WhatsApp para una evaluación inicial. En muchos casos el diagnóstico nos permite saber si la reparación es viable antes de que traigas el equipo.",
+	},
+	{
+		question: "¿Cuánto cuesta formatear o instalar Windows en Arequipa?",
+		answer:
+			"El precio depende de si necesitas respaldo de información, instalación de programas específicos y configuración adicional. Te damos un precio fijo antes de empezar, sin cargos ocultos.",
+	},
+	{
+		question: "¿Hacen mantenimiento de computadoras para empresas?",
+		answer:
+			"Sí. Atendemos flotas de equipos en empresas de Arequipa. Realizamos mantenimiento preventivo y correctivo, entregamos informes técnicos, evidencias fotográficas y factura electrónica para tu contabilidad.",
 	},
 ] as const;
