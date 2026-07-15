@@ -7,6 +7,7 @@ export const SITE = {
 	locale: "es_PE",
 	ogImage: "/og-default.jpg",
 	googleVerification: "7Q5lqvjWHcpuMW3CdX9IfWbcj3bmTNC0GGb3-hdfbCE",
+	facebookVerification: "0l2k7sxfxqdnc1uzbmts6uxnmi5zn1",
 	keywords: [
 		// Servicio Técnico
 		"servicio técnico arequipa",
