@@ -8,6 +8,7 @@ import processImg4 from "@/assets/images/process/process-4.avif";
 import processImg5 from "@/assets/images/process/process-5.avif";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { CONTACT } from "@/constants";
 
 const rows = [
 	{
@@ -111,7 +112,15 @@ const rows = [
 				La confianza no se promete. Se demuestra en cada diagnóstico, cada reparación y cada
 				proyecto que entregamos.
 			</p>
-			<Button as="a" href="/#contacto" variant="default" size="lg" class="gap-2">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="default"
+				size="lg"
+				class="gap-2"
+			>
 				<Icon name="hugeicons:arrow-right-01" class="size-5" />
 				Contáctanos
 			</Button>

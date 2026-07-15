@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import aboutImg1 from "@/assets/images/about/about-1.avif";
 import aboutImg2 from "@/assets/images/about/about-2.avif";
 import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
 ---
 
 <section class="py-20 md:py-28">
@@ -104,7 +105,15 @@ import { Button } from "@/components/ui/button";
 			<h3 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
 				¿Necesitas ayuda ahora?
 			</h3>
-			<Button as="a" href="/#contacto" variant="default" size="lg" class="gap-2">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="default"
+				size="lg"
+				class="gap-2"
+			>
 				<Icon name="hugeicons:arrow-right-01" class="size-5" />Hablar con un técnico
 			</Button>
 		</div>
