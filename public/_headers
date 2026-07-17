@@ -9,6 +9,10 @@
 	Link: </llms.txt>; rel="service-doc"
 	Link: </sitemap-index.xml>; rel="describedby"
 	Link: </llms-full.txt>; rel="alternate"; type="text/markdown"
+	Cache-Control: public, max-age=86400
+
+/servicios/
+	Cache-Control: public, max-age=86400
 
 /*.txt
 	Content-Type: text/plain; charset=utf-8

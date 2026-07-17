@@ -101,9 +101,18 @@ const reparaciones = [
 ---
 
 <BaseLayout
-	title="Servicios"
+	title="Servicio Técnico y Desarrollo Web en Arequipa"
 	description="Servicio técnico de laptops y PCs, desarrollo web, tienda de componentes y reparaciones especializadas en Arequipa. Diagnóstico gratuito."
+	ogImage="/og-servicios.jpg"
 >
+	<link
+		slot="head"
+		rel="preload"
+		as="image"
+		href={servicioImg1.src}
+		imagesrcset={servicioImg1.src}
+		fetchpriority="high"
+	>
 	<!-- Page hero -->
 	<section class="pt-32 pb-12 md:pt-40 md:pb-16">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

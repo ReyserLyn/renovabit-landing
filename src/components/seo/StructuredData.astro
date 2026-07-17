@@ -1,189 +1,19 @@
 ---
 import { CONTACT, FAQ_ITEMS, FOOTER, LOCATION, SITE, SOCIAL } from "@/constants";
 
-const jsonLd = {
-	"@context": "https://schema.org",
-	"@graph": [
-		{
-			"@type": "Organization",
-			"@id": `${SITE.url}/#organization`,
-			name: SITE.name,
-			url: SITE.url,
-			description: SITE.description,
-			logo: `${SITE.url}${SITE.ogImage}`,
-			founder: {
-				"@type": "Person",
-				name: "Reyser Zapata",
-			},
-			knowsAbout: [
-				"Reparación de laptops",
-				"Mantenimiento de computadoras",
-				"Desarrollo web",
-				"Landing pages",
-				"Microelectrónica",
-				"Soporte técnico",
-				"Armado de PCs",
-				"Venta de componentes",
-				"Diagnóstico de hardware",
-				"Instalación de sistemas operativos",
-			],
-			contactPoint: {
-				"@type": "ContactPoint",
-				telephone: CONTACT.phone,
-				email: CONTACT.email,
-				contactType: "customer service",
-				availableLanguage: ["Spanish"],
-			},
-			sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.tiktok, SOCIAL.x, SOCIAL.github],
-		},
-		{
-			"@type": "LocalBusiness",
-			"@id": `${SITE.url}/#business`,
-			name: SITE.name,
-			description: SITE.description,
-			url: SITE.url,
-			telephone: CONTACT.phone,
-			email: CONTACT.email,
-			image: `${SITE.url}${SITE.ogImage}`,
-			address: {
-				"@type": "PostalAddress",
-				streetAddress: FOOTER.address.line1,
-				addressLocality: FOOTER.address.city,
-				addressRegion: FOOTER.address.district,
-				postalCode: FOOTER.address.postalCode,
-				addressCountry: "PE",
-			},
-			geo: {
-				"@type": "GeoCoordinates",
-				latitude: LOCATION.lat,
-				longitude: LOCATION.lng,
-			},
-			openingHoursSpecification: {
-				"@type": "OpeningHoursSpecification",
-				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-				opens: "08:00",
-				closes: "20:00",
-			},
-			priceRange: "Desde S/ 75",
-			currenciesAccepted: "PEN",
-			areaServed: {
-				"@type": "GeoCircle",
-				geoMidpoint: {
-					"@type": "GeoCoordinates",
-					latitude: LOCATION.lat,
-					longitude: LOCATION.lng,
-				},
-				geoRadius: "50000",
-			},
-			aggregateRating: {
-				"@type": "AggregateRating",
-				ratingValue: "5.0",
-				reviewCount: "2",
-				bestRating: "5",
-				worstRating: "1",
-			},
-			review: [
-				{
-					"@type": "Review",
-					"@id": `${SITE.url}/#review-1`,
-					author: {
-						"@type": "Person",
-						name: "Carlos M.",
-					},
-					datePublished: "2025-11-15",
-					reviewBody:
-						"RenovaBit realizó el mantenimiento de nuestras estaciones de trabajo. Quedó todo documentado, con fotos del antes y después, y la empresa no detuvo su operación. Excelente servicio empresarial.",
-					reviewRating: {
-						"@type": "Rating",
-						ratingValue: "5",
-						bestRating: "5",
-						worstRating: "1",
-					},
-					itemReviewed: {
-						"@id": `${SITE.url}/#business`,
-					},
-				},
-				{
-					"@type": "Review",
-					"@id": `${SITE.url}/#review-2`,
-					author: {
-						"@type": "Person",
-						name: "Antonio V.",
-					},
-					datePublished: "2026-02-20",
-					reviewBody:
-						"Necesitaba una PC potente para AutoCAD y diseño. Me armaron el equipo a medida, me explicaron cada componente y el rendimiento es exactamente lo que esperaba. Muy recomendado.",
-					reviewRating: {
-						"@type": "Rating",
-						ratingValue: "5",
-						bestRating: "5",
-						worstRating: "1",
-					},
-					itemReviewed: {
-						"@id": `${SITE.url}/#business`,
-					},
-				},
-			],
-			hasOfferCatalog: {
-				"@type": "OfferCatalog",
-				name: "Servicios de RenovaBit",
-				itemListElement: [
-					{
-						"@type": "Offer",
-						itemOffered: {
-							"@type": "Service",
-							name: "Servicio Técnico de Laptops y PCs",
-							description:
-								"Mantenimiento preventivo y correctivo, limpieza, diagnóstico y reparación de laptops y computadoras de escritorio en Arequipa.",
-						},
-					},
-					{
-						"@type": "Offer",
-						itemOffered: {
-							"@type": "Service",
-							name: "Desarrollo Web",
-							description:
-								"Landing pages, sitios web corporativos, catálogos digitales y automatizaciones para negocios en Arequipa.",
-						},
-					},
-					{
-						"@type": "Offer",
-						itemOffered: {
-							"@type": "Service",
-							name: "Venta de Componentes y Equipos",
-							description:
-								"Venta de laptops, PCs, componentes, periféricos y accesorios. Equipos nuevos y upgrades en Arequipa.",
-						},
-					},
-					{
-						"@type": "Offer",
-						itemOffered: {
-							"@type": "Service",
-							name: "Reparaciones Especializadas",
-							description:
-								"Reparación de motherboard, microelectrónica, BIOS, cambio de pantallas y teclados de laptop en Arequipa.",
-						},
-					},
-				],
-			},
-		},
-		{
-			"@type": "WebSite",
-			"@id": `${SITE.url}/#website`,
-			url: SITE.url,
-			name: SITE.name,
-			description: SITE.description,
-			inLanguage: "es-PE",
-			potentialAction: {
-				"@type": "SearchAction",
-				target: {
-					"@type": "EntryPoint",
-					urlTemplate: `${SITE.url}/?s={search_term_string}`,
-				},
-				"query-input": "required name=search_term_string",
-			},
-		},
-		{
+const pathname = Astro.url.pathname;
+const isHome = pathname === "/";
+
+// Breadcrumb dinámico según la página
+const breadcrumbItems: { name: string; item: string }[] = [{ name: "Inicio", item: SITE.url }];
+
+if (pathname === "/servicios/") {
+	breadcrumbItems.push({ name: "Servicios", item: `${SITE.url}/servicios/` });
+}
+
+// Solo homepage incluye FAQ
+const faqEntity = isHome
+	? {
 			"@type": "FAQPage",
 			"@id": `${SITE.url}/#faq`,
 			mainEntity: FAQ_ITEMS.map((item) => ({
@@ -194,20 +24,209 @@ const jsonLd = {
 					text: item.answer,
 				},
 			})),
+		}
+	: null;
+
+// Graph: entidades comunes + condicionales
+const graphEntities: Record<string, unknown>[] = [
+	{
+		"@type": "Organization",
+		"@id": `${SITE.url}/#organization`,
+		name: SITE.name,
+		url: SITE.url,
+		description: SITE.description,
+		logo: `${SITE.url}${SITE.ogImage}`,
+		founder: {
+			"@type": "Person",
+			name: "Reyser Zapata",
 		},
-		{
-			"@type": "BreadcrumbList",
-			"@id": `${SITE.url}/#breadcrumb`,
+		knowsAbout: [
+			"Reparación de laptops",
+			"Mantenimiento de computadoras",
+			"Desarrollo web",
+			"Landing pages",
+			"Microelectrónica",
+			"Soporte técnico",
+			"Armado de PCs",
+			"Venta de componentes",
+			"Diagnóstico de hardware",
+			"Instalación de sistemas operativos",
+		],
+		contactPoint: {
+			"@type": "ContactPoint",
+			telephone: CONTACT.phone,
+			email: CONTACT.email,
+			contactType: "customer service",
+			availableLanguage: ["Spanish"],
+		},
+		sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.tiktok, SOCIAL.x, SOCIAL.github],
+	},
+	{
+		"@type": "LocalBusiness",
+		"@id": `${SITE.url}/#business`,
+		name: SITE.name,
+		description: SITE.description,
+		url: SITE.url,
+		telephone: CONTACT.phone,
+		email: CONTACT.email,
+		image: `${SITE.url}${SITE.ogImage}`,
+		address: {
+			"@type": "PostalAddress",
+			streetAddress: FOOTER.address.line1,
+			addressLocality: FOOTER.address.city,
+			addressRegion: FOOTER.address.district,
+			postalCode: FOOTER.address.postalCode,
+			addressCountry: "PE",
+		},
+		geo: {
+			"@type": "GeoCoordinates",
+			latitude: LOCATION.lat,
+			longitude: LOCATION.lng,
+		},
+		openingHoursSpecification: {
+			"@type": "OpeningHoursSpecification",
+			dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+			opens: "08:00",
+			closes: "20:00",
+		},
+		priceRange: "Desde S/ 75",
+		currenciesAccepted: "PEN",
+		areaServed: {
+			"@type": "GeoCircle",
+			geoMidpoint: {
+				"@type": "GeoCoordinates",
+				latitude: LOCATION.lat,
+				longitude: LOCATION.lng,
+			},
+			geoRadius: "50000",
+		},
+		aggregateRating: {
+			"@type": "AggregateRating",
+			ratingValue: "5.0",
+			reviewCount: "2",
+			bestRating: "5",
+			worstRating: "1",
+		},
+		review: [
+			{
+				"@type": "Review",
+				"@id": `${SITE.url}/#review-1`,
+				author: {
+					"@type": "Person",
+					name: "Carlos M.",
+				},
+				datePublished: "2025-11-15",
+				reviewBody:
+					"RenovaBit realizó el mantenimiento de nuestras estaciones de trabajo. Quedó todo documentado, con fotos del antes y después, y la empresa no detuvo su operación. Excelente servicio empresarial.",
+				reviewRating: {
+					"@type": "Rating",
+					ratingValue: "5",
+					bestRating: "5",
+					worstRating: "1",
+				},
+				itemReviewed: {
+					"@id": `${SITE.url}/#business`,
+				},
+			},
+			{
+				"@type": "Review",
+				"@id": `${SITE.url}/#review-2`,
+				author: {
+					"@type": "Person",
+					name: "Antonio V.",
+				},
+				datePublished: "2026-02-20",
+				reviewBody:
+					"Necesitaba una PC potente para AutoCAD y diseño. Me armaron el equipo a medida, me explicaron cada componente y el rendimiento es exactamente lo que esperaba. Muy recomendado.",
+				reviewRating: {
+					"@type": "Rating",
+					ratingValue: "5",
+					bestRating: "5",
+					worstRating: "1",
+				},
+				itemReviewed: {
+					"@id": `${SITE.url}/#business`,
+				},
+			},
+		],
+		hasOfferCatalog: {
+			"@type": "OfferCatalog",
+			name: "Servicios de RenovaBit",
 			itemListElement: [
 				{
-					"@type": "ListItem",
-					position: 1,
-					name: "Inicio",
-					item: SITE.url,
+					"@type": "Offer",
+					itemOffered: {
+						"@type": "Service",
+						name: "Servicio Técnico de Laptops y PCs",
+						description:
+							"Mantenimiento preventivo y correctivo, limpieza, diagnóstico y reparación de laptops y computadoras de escritorio en Arequipa.",
+					},
+				},
+				{
+					"@type": "Offer",
+					itemOffered: {
+						"@type": "Service",
+						name: "Desarrollo Web",
+						description:
+							"Landing pages, sitios web corporativos, catálogos digitales y automatizaciones para negocios en Arequipa.",
+					},
+				},
+				{
+					"@type": "Offer",
+					itemOffered: {
+						"@type": "Service",
+						name: "Venta de Componentes y Equipos",
+						description:
+							"Venta de laptops, PCs, componentes, periféricos y accesorios. Equipos nuevos y upgrades en Arequipa.",
+					},
+				},
+				{
+					"@type": "Offer",
+					itemOffered: {
+						"@type": "Service",
+						name: "Reparaciones Especializadas",
+						description:
+							"Reparación de motherboard, microelectrónica, BIOS, cambio de pantallas y teclados de laptop en Arequipa.",
+					},
 				},
 			],
 		},
-	],
+	},
+	{
+		"@type": "WebSite",
+		"@id": `${SITE.url}/#website`,
+		url: SITE.url,
+		name: SITE.name,
+		description: SITE.description,
+		inLanguage: "es-PE",
+		potentialAction: {
+			"@type": "SearchAction",
+			target: {
+				"@type": "EntryPoint",
+				urlTemplate: `${SITE.url}/?s={search_term_string}`,
+			},
+			"query-input": "required name=search_term_string",
+		},
+	},
+	{
+		"@type": "BreadcrumbList",
+		"@id": `${SITE.url}/#breadcrumb`,
+		itemListElement: breadcrumbItems.map((item, i) => ({
+			"@type": "ListItem",
+			position: i + 1,
+			name: item.name,
+			item: item.item,
+		})),
+	},
+];
+
+if (faqEntity) {
+	graphEntities.push(faqEntity);
+}
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": graphEntities,
 };
 ---
 

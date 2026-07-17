@@ -1,4 +1,5 @@
 ---
+import heroLcpImg from "@/assets/images/hero/hero-1.avif";
 import About from "@/components/sections/about.astro";
 import Cta from "@/components/sections/cta.astro";
 import Empresas from "@/components/sections/empresas.astro";
@@ -12,6 +13,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Servicio Técnico de Laptops y PCs en Arequipa | RenovaBit">
+	<link
+		slot="head"
+		rel="preload"
+		as="image"
+		href={heroLcpImg.src}
+		imagesrcset={heroLcpImg.src}
+		fetchpriority="high"
+	>
 	<Hero />
 	<About />
 	<Services />

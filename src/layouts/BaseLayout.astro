@@ -1,6 +1,5 @@
 ---
 import { Font } from "astro:assets";
-import heroLcpImg from "@/assets/images/hero/hero-1.avif";
 import Footer from "@/components/layout/footer.astro";
 import Navbar from "@/components/layout/navbar.astro";
 import WhatsAppFloating from "@/components/layout/WhatsAppFloating.astro";
@@ -11,11 +10,13 @@ import "@/styles/landing.css";
 interface Props {
 	title: string;
 	description?: string;
+	ogImage?: string;
 }
 
 const {
 	title,
 	description = "Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento preventivo, desarrollo web y venta de componentes. Diagnóstico gratuito.",
+	ogImage,
 } = Astro.props;
 
 const isIndexable = import.meta.env.PUBLIC_INDEXABLE !== "false";
@@ -25,6 +26,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const robotsContent = isIndexable
 	? "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
 	: "noindex, nofollow";
+const ogImageUrl = new URL(ogImage ?? SITE.ogImage, Astro.site).href;
 ---
 
 <!doctype html>
@@ -53,7 +55,7 @@ const robotsContent = isIndexable
 		<meta property="og:locale" content={SITE.locale}>
 		<meta property="og:title" content={fullTitle}>
 		<meta property="og:description" content={description}>
-		<meta property="og:image" content={new URL(SITE.ogImage, Astro.site).href}>
+		<meta property="og:image" content={ogImageUrl}>
 		<meta property="og:image:width" content="1200">
 		<meta property="og:image:height" content="630">
 		<meta property="og:url" content={canonicalUrl}>
@@ -61,14 +63,8 @@ const robotsContent = isIndexable
 		<meta property="og:site_name" content={SITE.name}>
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:creator" content="@RenovaBit">
-		<meta name="twitter:image" content={new URL(SITE.ogImage, Astro.site).href}>
-		<link
-			rel="preload"
-			as="image"
-			href={heroLcpImg.src}
-			imagesrcset={heroLcpImg.src}
-			fetchpriority="high"
-		>
+		<meta name="twitter:image" content={ogImageUrl}>
+		<slot name="head" />
 		<Font cssVariable="--font-satoshi" preload />
 		<StructuredData />
 	</head>
