@@ -6,9 +6,18 @@ interface Props {
 	title: string;
 	description: string;
 	descriptionWidth?: "md" | "lg";
+	class?: string;
 }
 
-const { number, price, subtitle, title, description, descriptionWidth = "md" } = Astro.props;
+const {
+	number,
+	price,
+	subtitle,
+	title,
+	description,
+	descriptionWidth = "md",
+	class: className,
+} = Astro.props;
 
 const maxWidthClass = descriptionWidth === "lg" ? "max-w-lg" : "max-w-md";
 ---
@@ -19,7 +28,7 @@ const maxWidthClass = descriptionWidth === "lg" ? "max-w-lg" : "max-w-md";
 	>
 		{number}
 	</span>
-	<div class="relative">
+	<div class={`relative${className ? ` ${className}` : ""}`}>
 		<p class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground">
 			{price}
 		</p>

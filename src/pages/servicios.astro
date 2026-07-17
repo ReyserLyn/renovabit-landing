@@ -146,7 +146,9 @@ const reparaciones = [
 			<div class="grid gap-10 items-center lg:grid-cols-12 lg:gap-16">
 				<!-- Imagen — 7 cols -->
 				<div class="lg:col-span-7">
-					<div class="relative overflow-hidden rounded-2xl border border-border/20">
+					<div
+						class="relative overflow-hidden rounded-2xl border border-border/20 lg:animate-blurred-fade-in lg:animate-delay-300 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-blurred-fade-in max-lg:animate-range-[entry_3%_contain_10%]"
+					>
 						<Image
 							src={servicioImg1}
 							alt="Taller completo de RenovaBit con herramientas y equipos de reparación profesional en Arequipa"
@@ -154,30 +156,44 @@ const reparaciones = [
 							sizes="(max-width: 768px) 100vw, 58vw"
 							fetchpriority="high"
 							loading="eager"
-							class="w-full object-cover aspect-4/3"
+							class="w-full object-cover aspect-4/3 animate-blurred-fade-in animate-delay-300 animate-duration-normal"
 						/>
 					</div>
-					<ServiceInfoCard
-						tiempo="1 a 3 días"
-						ideal="Personas y empresas"
-						entrega="Informe + fotografías"
-					/>
+					<div class="animate-blurred-fade-in animate-delay-350 animate-duration-normal">
+						<ServiceInfoCard
+							tiempo="1 a 3 días"
+							ideal="Personas y empresas"
+							entrega="Informe + fotografías"
+						/>
+					</div>
 				</div>
 
 				<!-- Contenido — 5 cols -->
 				<div class="lg:col-span-5">
-					<ServicePriceBlock
-						number="01"
-						price="S/ 75"
-						subtitle="Desde · Diagnóstico sin costo"
-						title="Servicio Técnico"
-						description="Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación del proceso y atención personalizada."
-					/>
-					<ServiceBulletList items={servicioTecnico.items} />
-					<ServiceCTA
-						label="Cotizar servicio"
-						footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
-					/>
+					<div
+						class="lg:animate-fade-in-up lg:animate-delay-300 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-fade-in-up max-lg:animate-range-[entry_2%_contain_8%]"
+					>
+						<ServicePriceBlock
+							number="01"
+							price="S/ 75"
+							subtitle="Desde · Diagnóstico sin costo"
+							title="Servicio Técnico"
+							description="Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación del proceso y atención personalizada."
+						/>
+					</div>
+					<div
+						class="lg:animate-fade-in-up lg:animate-delay-400 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-fade-in-up max-lg:animate-range-[entry_3%_contain_10%]"
+					>
+						<ServiceBulletList items={servicioTecnico.items} />
+					</div>
+					<div
+						class="lg:animate-fade-in-up lg:animate-delay-500 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-fade-in-up max-lg:animate-range-[entry_4%_contain_10%]"
+					>
+						<ServiceCTA
+							label="Cotizar servicio"
+							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -187,7 +203,9 @@ const reparaciones = [
 	<!-- Servicio 2: Desarrollo Web -->
 	<section id="desarrollo-web" class="border-t py-16 bg-muted/15">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20">
+			<div
+				class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20 timeline-view animate-blurred-fade-in animate-range-[entry_3%_contain_10%]"
+			>
 				<Image
 					src={servicioImg2}
 					alt="Desarrollo web corporativo: sitio de Bodega Manchego, proyecto reciente de RenovaBit"
@@ -200,24 +218,28 @@ const reparaciones = [
 
 			<div class="mx-auto mt-10 max-w-3xl">
 				<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-					<ServiceInfoCard
-						variant="vertical"
-						tiempo="2 a 15 días"
-						ideal="Negocios, emprendedores, PYMEs"
-						entrega="Sitio publicado + CMS"
-						entregaLabel="Qué entregamos"
-					/>
+					<div class="timeline-view animate-fade-in-up animate-range-[entry_2%_contain_8%]">
+						<ServiceInfoCard
+							variant="vertical"
+							tiempo="2 a 15 días"
+							ideal="Negocios, emprendedores, PYMEs"
+							entrega="Sitio publicado + CMS"
+							entregaLabel="Qué entregamos"
+						/>
+					</div>
 
 					<div class="order-last lg:order-first">
-						<ServicePriceBlock
-							number="02"
-							price="S/ 500"
-							subtitle="Proyectos desde"
-							title="Desarrollo Web"
-							description="Sitios web rápidos, profesionales y preparados para convertir visitantes en clientes."
-							descriptionWidth="lg"
-						/>
-						<div class="mt-6">
+						<div class="timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%]">
+							<ServicePriceBlock
+								number="02"
+								price="S/ 500"
+								subtitle="Proyectos desde"
+								title="Desarrollo Web"
+								description="Sitios web rápidos, profesionales y preparados para convertir visitantes en clientes."
+								descriptionWidth="lg"
+							/>
+						</div>
+						<div class="mt-6 timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]">
 							<Button
 								as="a"
 								href={CONTACT.whatsappUrl}
@@ -233,7 +255,9 @@ const reparaciones = [
 					</div>
 				</div>
 
-				<ServiceFeatureGrid features={desarrolloWeb} />
+				<div class="timeline-view animate-fade-in-up animate-range-[entry_4%_contain_10%]">
+					<ServiceFeatureGrid features={desarrolloWeb} />
+				</div>
 
 				<p class="mt-8 text-[11px] text-muted-foreground/70">
 					Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Soporte
@@ -256,7 +280,9 @@ const reparaciones = [
 			<div class="grid gap-10 items-center lg:grid-cols-12 lg:gap-16">
 				<!-- Imagen — 7 cols -->
 				<div class="lg:col-span-7 lg:order-2">
-					<div class="relative overflow-hidden rounded-2xl">
+					<div
+						class="relative overflow-hidden rounded-2xl timeline-view animate-blurred-fade-in animate-range-[entry_3%_contain_10%]"
+					>
 						<Image
 							src={servicioImg3}
 							alt="Tienda online de RenovaBit: venta de equipos, componentes y periféricos"
@@ -275,18 +301,24 @@ const reparaciones = [
 
 				<!-- Contenido — 5 cols -->
 				<div class="lg:col-span-5 lg:order-1">
-					<ServicePriceBlock
-						number="03"
-						price="S/ 50"
-						subtitle="Desde · Precio de distribuidor"
-						title="Tienda de Componentes y Equipos"
-						description="Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas."
-					/>
-					<ServiceBulletList items={tienda.items} />
-					<ServiceCTA
-						label="Consultar disponibilidad"
-						footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
-					/>
+					<div class="timeline-view animate-fade-in-up animate-range-[entry_2%_contain_8%]">
+						<ServicePriceBlock
+							number="03"
+							price="S/ 50"
+							subtitle="Desde · Precio de distribuidor"
+							title="Tienda de Componentes y Equipos"
+							description="Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas."
+						/>
+					</div>
+					<div class="timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%]">
+						<ServiceBulletList items={tienda.items} />
+					</div>
+					<div class="timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]">
+						<ServiceCTA
+							label="Consultar disponibilidad"
+							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -295,7 +327,9 @@ const reparaciones = [
 	<!-- ===== VARIANTE B (repeat): Reparaciones Especializadas ===== -->
 	<section id="reparaciones-especializadas" class="border-t py-16 bg-muted/15">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20">
+			<div
+				class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20 timeline-view animate-blurred-fade-in animate-range-[entry_3%_contain_10%]"
+			>
 				<Image
 					src={servicioImg4}
 					alt="Placa de laptop Lenovo ThinkPad tras mantenimiento profesional RenovaBit"
@@ -308,24 +342,28 @@ const reparaciones = [
 
 			<div class="mx-auto mt-10 max-w-3xl">
 				<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-					<ServiceInfoCard
-						variant="vertical"
-						tiempo="3 a 10 días"
-						ideal="Equipos con fallas complejas"
-						entrega="Diagnóstico documentado + garantía"
-						entregaLabel="Qué entregamos"
-					/>
+					<div class="timeline-view animate-fade-in-up animate-range-[entry_2%_contain_8%]">
+						<ServiceInfoCard
+							variant="vertical"
+							tiempo="3 a 10 días"
+							ideal="Equipos con fallas complejas"
+							entrega="Diagnóstico documentado + garantía"
+							entregaLabel="Qué entregamos"
+						/>
+					</div>
 
 					<div class="order-last lg:order-first">
-						<ServicePriceBlock
-							number="04"
-							price="S/ 150"
-							subtitle="Desde"
-							title="Reparaciones Especializadas"
-							description="Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel electrónico."
-							descriptionWidth="lg"
-						/>
-						<div class="mt-6">
+						<div class="timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%]">
+							<ServicePriceBlock
+								number="04"
+								price="S/ 150"
+								subtitle="Desde"
+								title="Reparaciones Especializadas"
+								description="Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel electrónico."
+								descriptionWidth="lg"
+							/>
+						</div>
+						<div class="mt-6 timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]">
 							<Button
 								as="a"
 								href={CONTACT.whatsappUrl}
@@ -341,7 +379,9 @@ const reparaciones = [
 					</div>
 				</div>
 
-				<ServiceFeatureGrid features={reparaciones} />
+				<div class="timeline-view animate-fade-in-up animate-range-[entry_4%_contain_10%]">
+					<ServiceFeatureGrid features={reparaciones} />
+				</div>
 
 				<p class="mt-8 text-[11px] text-muted-foreground/70">
 					Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Equipo
@@ -355,7 +395,7 @@ const reparaciones = [
 	<section class="py-20 md:py-28">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<div
-				class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16 animate-fade-in-up animate-duration-slower"
+				class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16 timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%] animate-duration-slower"
 			>
 				<div class="max-w-xl">
 					<h2
