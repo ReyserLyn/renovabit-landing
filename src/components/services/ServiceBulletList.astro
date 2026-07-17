@@ -1,0 +1,21 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	items: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="mt-6 space-y-2.5">
+	{items.map((item) => (
+			<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+				<Icon
+					name="hugeicons:checkmark-circle-03"
+					class="mt-0.5 size-4 shrink-0 text-primary/60"
+				/>
+				{item}
+			</li>
+		))}
+</ul>

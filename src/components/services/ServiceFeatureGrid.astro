@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Feature {
+	icon: string;
+	title: string;
+	desc: string;
+}
+
+interface Props {
+	features: Feature[];
+}
+
+const { features } = Astro.props;
+
+const rows = [
+	[features[0], features[1]],
+	[features[2], features[3]],
+	[features[4], features[5]],
+];
+---
+
+<div class="mt-10 divide-y divide-border/20">
+	{rows.map((row) => (
+			<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
+				{row.map((f) => (
+					<div class="flex items-start gap-3">
+						<Icon name={f.icon} class="mt-0.5 size-5 shrink-0 text-primary/50" />
+						<div>
+							<p class="text-sm font-medium text-foreground">{f.title}</p>
+							<p class="text-xs text-muted-foreground">{f.desc}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		))}
+</div>

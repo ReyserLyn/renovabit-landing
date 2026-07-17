@@ -1,16 +1,103 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
 import servicioImg1 from "@/assets/images/services/service-1.avif";
 import servicioImg2 from "@/assets/images/services/service-2.avif";
 import servicioImg3 from "@/assets/images/services/service-3.avif";
 import servicioImg4 from "@/assets/images/services/service-4.avif";
 import TrustMarquee from "@/components/sections/trust-marquee.astro";
+import ServiceBulletList from "@/components/services/ServiceBulletList.astro";
+import ServiceCTA from "@/components/services/ServiceCTA.astro";
+import ServiceFeatureGrid from "@/components/services/ServiceFeatureGrid.astro";
 import ServiceInfoCard from "@/components/services/ServiceInfoCard.astro";
+import ServicePriceBlock from "@/components/services/ServicePriceBlock.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/constants";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// --- Datos por servicio ---
+
+const servicioTecnico = {
+	items: [
+		"Mantenimiento preventivo y correctivo documentado",
+		"Limpieza interna profunda y optimización térmica",
+		"Diagnóstico sin costo al aceptar la cotización",
+		"Instalación y configuración completa del sistema operativo",
+		"Modalidades a domicilio, recojo y entrega o atención en taller",
+	],
+};
+
+const tienda = {
+	items: [
+		"Laptops y PCs para estudio, trabajo o alto rendimiento",
+		"Tarjetas gráficas, memorias RAM y discos SSD/NVMe",
+		"Monitores, periféricos y accesorios originales",
+		"Ensamblado de PC a medida según tu presupuesto y necesidades",
+		"Asesoría para elegir los componentes correctos",
+	],
+};
+
+const desarrolloWeb = [
+	{ icon: "hugeicons:web-design-01", title: "Landing Pages", desc: "Optimizadas para convertir" },
+	{
+		icon: "hugeicons:api",
+		title: "Automatizaciones",
+		desc: "Formularios, WhatsApp e integraciones",
+	},
+	{
+		icon: "hugeicons:computer-programming-01",
+		title: "Web Corporativa",
+		desc: "Presencia profesional para tu empresa",
+	},
+	{
+		icon: "hugeicons:search-01",
+		title: "SEO Técnico",
+		desc: "Optimización para Google desde el inicio",
+	},
+	{
+		icon: "hugeicons:shopping-cart-01",
+		title: "Catálogo Digital",
+		desc: "Muestra tus productos sin vender online",
+	},
+	{
+		icon: "hugeicons:rocket-01",
+		title: "Dominio + Hosting + SSL",
+		desc: "Todo listo para publicar",
+	},
+];
+
+const reparaciones = [
+	{
+		icon: "hugeicons:cpu-settings",
+		title: "Reparación de motherboard",
+		desc: "A nivel de componente, sin reemplazo innecesario",
+	},
+	{
+		icon: "hugeicons:laptop",
+		title: "Pantallas y teclados",
+		desc: "Cambio de componentes internos de laptop",
+	},
+	{
+		icon: "hugeicons:microscope",
+		title: "Microelectrónica",
+		desc: "Soldadura de precisión con equipo profesional",
+	},
+	{
+		icon: "hugeicons:usb-connected-01",
+		title: "Conectores y puertos",
+		desc: "Reparación de carga, USB, HDMI dañados",
+	},
+	{
+		icon: "hugeicons:chip",
+		title: "Reprogramación y recuperación de BIOS",
+		desc: "BIOS corrupta o bloqueada",
+	},
+	{
+		icon: "hugeicons:flash",
+		title: "Diagnóstico de equipos sin encendido",
+		desc: "Detección de fallas eléctricas sin cambiar piezas",
+	},
+];
 ---
 
 <BaseLayout
@@ -61,7 +148,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 							class="w-full object-cover aspect-4/3"
 						/>
 					</div>
-					<!-- Info card horizontal -->
 					<ServiceInfoCard
 						tiempo="1 a 3 días"
 						ideal="Personas y empresas"
@@ -70,87 +156,19 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 				</div>
 
 				<!-- Contenido — 5 cols -->
-				<div class="lg:col-span-5 relative">
-					<span
-						class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
-					>
-						01
-					</span>
-					<div class="relative">
-						<p
-							class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
-						>
-							S/ 75
-						</p>
-						<p
-							class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
-						>
-							Desde · Diagnóstico sin costo
-						</p>
-						<div class="mt-5 h-0.5 w-10 bg-primary/60" />
-						<h2
-							class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-						>
-							Servicio Técnico
-						</h2>
-						<p class="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
-							Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación
-							del proceso y atención personalizada.
-						</p>
-						<ul class="mt-6 space-y-2.5">
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Mantenimiento preventivo y correctivo documentado
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Limpieza interna profunda y optimización térmica
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Diagnóstico sin costo al aceptar la cotización
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Instalación y configuración completa del sistema operativo
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Modalidades a domicilio, recojo y entrega o atención en taller
-							</li>
-						</ul>
-						<div class="mt-7">
-							<Button
-								as="a"
-								href={CONTACT.whatsappUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								variant="whatsapp"
-								size="lg"
-								class="gap-2"
-							>
-								<WhatsappIcon size={18} />Cotizar servicio
-							</Button>
-						</div>
-						<p class="mt-4 text-[11px] text-muted-foreground/70">
-							Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional
-						</p>
-					</div>
+				<div class="lg:col-span-5">
+					<ServicePriceBlock
+						number="01"
+						price="S/ 75"
+						subtitle="Desde · Diagnóstico sin costo"
+						title="Servicio Técnico"
+						description="Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación del proceso y atención personalizada."
+					/>
+					<ServiceBulletList items={servicioTecnico.items} />
+					<ServiceCTA
+						label="Cotizar servicio"
+						footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+					/>
 				</div>
 			</div>
 		</div>
@@ -160,7 +178,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 	<!-- Servicio 2: Desarrollo Web -->
 	<section id="desarrollo-web" class="border-t py-16 bg-muted/15">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<!-- Imagen compacta -->
 			<div class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20">
 				<Image
 					src={servicioImg2}
@@ -172,133 +189,47 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 				/>
 			</div>
 
-			<!-- Contenido debajo -->
 			<div class="mx-auto mt-10 max-w-3xl">
-				<div class="relative">
-					<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-						<ServiceInfoCard
-							variant="vertical"
-							tiempo="2 a 15 días"
-							ideal="Negocios, emprendedores, PYMEs"
-							entrega="Sitio publicado + CMS"
-							entregaLabel="Qué entregamos"
+				<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+					<ServiceInfoCard
+						variant="vertical"
+						tiempo="2 a 15 días"
+						ideal="Negocios, emprendedores, PYMEs"
+						entrega="Sitio publicado + CMS"
+						entregaLabel="Qué entregamos"
+					/>
+
+					<div class="order-last lg:order-first">
+						<ServicePriceBlock
+							number="02"
+							price="S/ 500"
+							subtitle="Proyectos desde"
+							title="Desarrollo Web"
+							description="Sitios web rápidos, profesionales y preparados para convertir visitantes en clientes."
+							descriptionWidth="lg"
 						/>
-
-						<!-- Texto + CTA -->
-						<div class="order-last lg:order-first relative">
-							<span
-								class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
+						<div class="mt-6">
+							<Button
+								as="a"
+								href={CONTACT.whatsappUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								variant="whatsapp"
+								size="lg"
+								class="gap-2"
 							>
-								02
-							</span>
-							<div class="relative">
-								<p
-									class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
-								>
-									S/ 500
-								</p>
-								<p
-									class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
-								>
-									Proyectos desde
-								</p>
-								<div class="mt-5 h-0.5 w-10 bg-primary/60" />
-								<h2
-									class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-								>
-									Desarrollo Web
-								</h2>
-								<p class="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
-									Sitios web rápidos, profesionales y preparados para convertir visitantes en
-									clientes.
-								</p>
-							</div>
-							<div class="mt-6">
-								<Button
-									as="a"
-									href={CONTACT.whatsappUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									variant="whatsapp"
-									size="lg"
-									class="gap-2"
-								>
-									<WhatsappIcon size={18} />Cuéntanos tu proyecto
-								</Button>
-							</div>
+								<WhatsappIcon size={18} />Cuéntanos tu proyecto
+							</Button>
 						</div>
 					</div>
-
-					<!-- Features -->
-					<div class="mt-10 divide-y divide-border/20">
-						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
-							<div class="flex items-start gap-3">
-								<Icon
-									name="hugeicons:web-design-01"
-									class="mt-0.5 size-5 shrink-0 text-primary/50"
-								/>
-								<div>
-									<p class="text-sm font-medium text-foreground">Landing Pages</p>
-									<p class="text-xs text-muted-foreground">Optimizadas para convertir</p>
-								</div>
-							</div>
-							<div class="flex items-start gap-3">
-								<Icon name="hugeicons:api" class="mt-0.5 size-5 shrink-0 text-primary/50" />
-								<div>
-									<p class="text-sm font-medium text-foreground">Automatizaciones</p>
-									<p class="text-xs text-muted-foreground">Formularios, WhatsApp e integraciones</p>
-								</div>
-							</div>
-						</div>
-						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
-							<div class="flex items-start gap-3">
-								<Icon
-									name="hugeicons:computer-programming-01"
-									class="mt-0.5 size-5 shrink-0 text-primary/50"
-								/>
-								<div>
-									<p class="text-sm font-medium text-foreground">Web Corporativa</p>
-									<p class="text-xs text-muted-foreground">Presencia profesional para tu empresa</p>
-								</div>
-							</div>
-							<div class="flex items-start gap-3">
-								<Icon name="hugeicons:search-01" class="mt-0.5 size-5 shrink-0 text-primary/50" />
-								<div>
-									<p class="text-sm font-medium text-foreground">SEO Técnico</p>
-									<p class="text-xs text-muted-foreground">
-										Optimización para Google desde el inicio
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
-							<div class="flex items-start gap-3">
-								<Icon
-									name="hugeicons:shopping-cart-01"
-									class="mt-0.5 size-5 shrink-0 text-primary/50"
-								/>
-								<div>
-									<p class="text-sm font-medium text-foreground">Catálogo Digital</p>
-									<p class="text-xs text-muted-foreground">
-										Muestra tus productos sin vender online
-									</p>
-								</div>
-							</div>
-							<div class="flex items-start gap-3">
-								<Icon name="hugeicons:rocket-01" class="mt-0.5 size-5 shrink-0 text-primary/50" />
-								<div>
-									<p class="text-sm font-medium text-foreground">Dominio + Hosting + SSL</p>
-									<p class="text-xs text-muted-foreground">Todo listo para publicar</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<p class="mt-8 text-[11px] text-muted-foreground/70">
-						Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Soporte
-						post-entrega
-					</p>
 				</div>
+
+				<ServiceFeatureGrid features={desarrolloWeb} />
+
+				<p class="mt-8 text-[11px] text-muted-foreground/70">
+					Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Soporte
+					post-entrega
+				</p>
 			</div>
 		</div>
 	</section>
@@ -334,87 +265,19 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 				</div>
 
 				<!-- Contenido — 5 cols -->
-				<div class="lg:col-span-5 lg:order-1 relative">
-					<span
-						class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
-					>
-						03
-					</span>
-					<div class="relative">
-						<p
-							class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
-						>
-							S/ 50
-						</p>
-						<p
-							class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
-						>
-							Desde · Precio de distribuidor
-						</p>
-						<div class="mt-5 h-0.5 w-10 bg-primary/60" />
-						<h2
-							class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-						>
-							Tienda de Componentes y Equipos
-						</h2>
-						<p class="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
-							Equipos y componentes seleccionados según tus necesidades, sin venderte productos que
-							no necesitas.
-						</p>
-						<ul class="mt-6 space-y-2.5">
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Laptops y PCs para estudio, trabajo o alto rendimiento
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Tarjetas gráficas, memorias RAM y discos SSD/NVMe
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Monitores, periféricos y accesorios originales
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Ensamblado de PC a medida según tu presupuesto y necesidades
-							</li>
-							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
-								<Icon
-									name="hugeicons:checkmark-circle-03"
-									class="mt-0.5 size-4 shrink-0 text-primary/60"
-								/>
-								Asesoría para elegir los componentes correctos
-							</li>
-						</ul>
-						<div class="mt-7">
-							<Button
-								as="a"
-								href={CONTACT.whatsappUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								variant="whatsapp"
-								size="lg"
-								class="gap-2"
-							>
-								<WhatsappIcon size={18} />Consultar disponibilidad
-							</Button>
-						</div>
-						<p class="mt-4 text-[11px] text-muted-foreground/70">
-							Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional
-						</p>
-					</div>
+				<div class="lg:col-span-5 lg:order-1">
+					<ServicePriceBlock
+						number="03"
+						price="S/ 50"
+						subtitle="Desde · Precio de distribuidor"
+						title="Tienda de Componentes y Equipos"
+						description="Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas."
+					/>
+					<ServiceBulletList items={tienda.items} />
+					<ServiceCTA
+						label="Consultar disponibilidad"
+						footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+					/>
 				</div>
 			</div>
 		</div>
@@ -423,7 +286,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 	<!-- ===== VARIANTE B (repeat): Reparaciones Especializadas ===== -->
 	<section id="reparaciones-especializadas" class="border-t py-16 bg-muted/15">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<!-- Imagen compacta -->
 			<div class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20">
 				<Image
 					src={servicioImg4}
@@ -435,145 +297,52 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 				/>
 			</div>
 
-			<!-- Contenido debajo -->
 			<div class="mx-auto mt-10 max-w-3xl">
-				<div class="relative">
-					<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-						<ServiceInfoCard
-							variant="vertical"
-							tiempo="3 a 10 días"
-							ideal="Equipos con fallas complejas"
-							entrega="Diagnóstico documentado + garantía"
-							entregaLabel="Qué entregamos"
+				<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+					<ServiceInfoCard
+						variant="vertical"
+						tiempo="3 a 10 días"
+						ideal="Equipos con fallas complejas"
+						entrega="Diagnóstico documentado + garantía"
+						entregaLabel="Qué entregamos"
+					/>
+
+					<div class="order-last lg:order-first">
+						<ServicePriceBlock
+							number="04"
+							price="S/ 150"
+							subtitle="Desde"
+							title="Reparaciones Especializadas"
+							description="Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel electrónico."
+							descriptionWidth="lg"
 						/>
-
-						<!-- Texto + CTA -->
-						<div class="order-last lg:order-first relative">
-							<span
-								class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
+						<div class="mt-6">
+							<Button
+								as="a"
+								href={CONTACT.whatsappUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								variant="whatsapp"
+								size="lg"
+								class="gap-2"
 							>
-								04
-							</span>
-							<div class="relative">
-								<p
-									class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
-								>
-									S/ 150
-								</p>
-								<p
-									class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
-								>
-									Desde
-								</p>
-								<div class="mt-5 h-0.5 w-10 bg-primary/60" />
-								<h2
-									class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-								>
-									Reparaciones Especializadas
-								</h2>
-								<p class="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
-									Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel
-									electrónico.
-								</p>
-							</div>
-							<div class="mt-6">
-								<Button
-									as="a"
-									href={CONTACT.whatsappUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									variant="whatsapp"
-									size="lg"
-									class="gap-2"
-								>
-									<WhatsappIcon size={18} />Solicitar diagnóstico
-								</Button>
-							</div>
+								<WhatsappIcon size={18} />Solicitar diagnóstico
+							</Button>
 						</div>
 					</div>
-
-					<!-- Features -->
-					<div class="mt-10 divide-y divide-border/20">
-						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
-							<div class="flex items-start gap-3">
-								<Icon
-									name="hugeicons:cpu-settings"
-									class="mt-0.5 size-5 shrink-0 text-primary/50"
-								/>
-								<div>
-									<p class="text-sm font-medium text-foreground">Reparación de motherboard</p>
-									<p class="text-xs text-muted-foreground">
-										A nivel de componente, sin reemplazo innecesario
-									</p>
-								</div>
-							</div>
-							<div class="flex items-start gap-3">
-								<Icon name="hugeicons:laptop" class="mt-0.5 size-5 shrink-0 text-primary/50" />
-								<div>
-									<p class="text-sm font-medium text-foreground">Pantallas y teclados</p>
-									<p class="text-xs text-muted-foreground">
-										Cambio de componentes internos de laptop
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
-							<div class="flex items-start gap-3">
-								<Icon name="hugeicons:microscope" class="mt-0.5 size-5 shrink-0 text-primary/50" />
-								<div>
-									<p class="text-sm font-medium text-foreground">Microelectrónica</p>
-									<p class="text-xs text-muted-foreground">
-										Soldadura de precisión con equipo profesional
-									</p>
-								</div>
-							</div>
-							<div class="flex items-start gap-3">
-								<Icon
-									name="hugeicons:usb-connected-01"
-									class="mt-0.5 size-5 shrink-0 text-primary/50"
-								/>
-								<div>
-									<p class="text-sm font-medium text-foreground">Conectores y puertos</p>
-									<p class="text-xs text-muted-foreground">
-										Reparación de carga, USB, HDMI dañados
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
-							<div class="flex items-start gap-3">
-								<Icon name="hugeicons:chip" class="mt-0.5 size-5 shrink-0 text-primary/50" />
-								<div>
-									<p class="text-sm font-medium text-foreground">
-										Reprogramación y recuperación de BIOS
-									</p>
-									<p class="text-xs text-muted-foreground">BIOS corrupta o bloqueada</p>
-								</div>
-							</div>
-							<div class="flex items-start gap-3">
-								<Icon name="hugeicons:flash" class="mt-0.5 size-5 shrink-0 text-primary/50" />
-								<div>
-									<p class="text-sm font-medium text-foreground">
-										Diagnóstico de equipos sin encendido
-									</p>
-									<p class="text-xs text-muted-foreground">
-										Detección de fallas eléctricas sin cambiar piezas
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<p class="mt-8 text-[11px] text-muted-foreground/70">
-						Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Equipo
-						profesional
-					</p>
 				</div>
+
+				<ServiceFeatureGrid features={reparaciones} />
+
+				<p class="mt-8 text-[11px] text-muted-foreground/70">
+					Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Equipo
+					profesional
+				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- ===== CTA Final (mismo estilo que la landing) ===== -->
+	<!-- ===== CTA Final ===== -->
 	<section class="py-20 md:py-28">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<div
@@ -583,11 +352,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 					<h2
 						class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
 					>
-						¿Listo para empezar?
+						¿Qué servicio necesitas?
 					</h2>
 					<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
-						Cada equipo y cada proyecto es distinto. Cuéntanos qué necesitas y te damos una
-						cotización sin compromiso.
+						Contanos cuál te interesa y te preparamos una cotización clara, sin compromiso y
+						adaptada a tu caso.
 					</p>
 				</div>
 

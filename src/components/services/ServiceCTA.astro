@@ -1,0 +1,29 @@
+---
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+
+interface Props {
+	label: string;
+	footerText: string;
+}
+
+const { label, footerText } = Astro.props;
+---
+
+<div class="mt-7">
+	<Button
+		as="a"
+		href={CONTACT.whatsappUrl}
+		target="_blank"
+		rel="noopener noreferrer"
+		variant="whatsapp"
+		size="lg"
+		class="gap-2"
+	>
+		<WhatsappIcon size={18} />{label}
+	</Button>
+</div>
+<p class="mt-4 text-[11px] text-muted-foreground/70">
+	{footerText}
+</p>
