@@ -1,0 +1,609 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import servicioImg1 from "@/assets/images/services/service-1.avif";
+import servicioImg2 from "@/assets/images/services/service-2.avif";
+import servicioImg3 from "@/assets/images/services/service-3.avif";
+import servicioImg4 from "@/assets/images/services/service-4.avif";
+import TrustMarquee from "@/components/sections/trust-marquee.astro";
+import ServiceInfoCard from "@/components/services/ServiceInfoCard.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Servicios"
+	description="Servicio técnico de laptops y PCs, desarrollo web, tienda de componentes y reparaciones especializadas en Arequipa. Diagnóstico gratuito."
+>
+	<!-- Page hero -->
+	<section class="pt-32 pb-12 md:pt-40 md:pb-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="mx-auto max-w-3xl text-center">
+				<p
+					class="font-mono text-xs font-medium tracking-widest text-primary uppercase animate-fade-in-up animate-duration-normal"
+				>
+					Nuestros servicios
+				</p>
+				<h1
+					class="mt-3 font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl animate-fade-in-up animate-delay-100 animate-duration-normal"
+				>
+					Cuatro soluciones tecnológicas.
+					<br>
+					<span class="text-muted-foreground">Una misma forma de trabajar.</span>
+				</h1>
+				<p
+					class="mt-4 text-lg leading-relaxed text-muted-foreground animate-fade-in-up animate-delay-200 animate-duration-normal"
+				>
+					Diagnóstico claro, comunicación transparente y trabajos documentados para personas,
+					empresas y emprendimientos en Arequipa.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== VARIANTE A: Split 60/40 ===== -->
+	<!-- Servicio 1: Servicio Técnico -->
+	<section id="servicio-tecnico" class="py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid gap-10 items-center lg:grid-cols-12 lg:gap-16">
+				<!-- Imagen — 7 cols -->
+				<div class="lg:col-span-7">
+					<div class="relative overflow-hidden rounded-2xl border border-border/20">
+						<Image
+							src={servicioImg1}
+							alt="Taller completo de RenovaBit con herramientas y equipos de reparación profesional en Arequipa"
+							widths={[600, 900]}
+							sizes="(max-width: 768px) 100vw, 58vw"
+							fetchpriority="high"
+							loading="eager"
+							class="w-full object-cover aspect-4/3"
+						/>
+					</div>
+					<!-- Info card horizontal -->
+					<ServiceInfoCard
+						tiempo="1 a 3 días"
+						ideal="Personas y empresas"
+						entrega="Informe + fotografías"
+					/>
+				</div>
+
+				<!-- Contenido — 5 cols -->
+				<div class="lg:col-span-5 relative">
+					<span
+						class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
+					>
+						01
+					</span>
+					<div class="relative">
+						<p
+							class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
+						>
+							S/ 75
+						</p>
+						<p
+							class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
+						>
+							Desde · Diagnóstico sin costo
+						</p>
+						<div class="mt-5 h-0.5 w-10 bg-primary/60" />
+						<h2
+							class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+						>
+							Servicio Técnico
+						</h2>
+						<p class="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
+							Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación
+							del proceso y atención personalizada.
+						</p>
+						<ul class="mt-6 space-y-2.5">
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Mantenimiento preventivo y correctivo documentado
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Limpieza interna profunda y optimización térmica
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Diagnóstico sin costo al aceptar la cotización
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Instalación y configuración completa del sistema operativo
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Modalidades a domicilio, recojo y entrega o atención en taller
+							</li>
+						</ul>
+						<div class="mt-7">
+							<Button
+								as="a"
+								href={CONTACT.whatsappUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								variant="whatsapp"
+								size="lg"
+								class="gap-2"
+							>
+								<WhatsappIcon size={18} />Cotizar servicio
+							</Button>
+						</div>
+						<p class="mt-4 text-[11px] text-muted-foreground/70">
+							Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== VARIANTE B: Image Hero (imagen compacta arriba, contenido abajo) ===== -->
+	<!-- Servicio 2: Desarrollo Web -->
+	<section id="desarrollo-web" class="border-t py-16 bg-muted/15">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<!-- Imagen compacta -->
+			<div class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20">
+				<Image
+					src={servicioImg2}
+					alt="Desarrollo web corporativo: sitio de Bodega Manchego, proyecto reciente de RenovaBit"
+					widths={[600, 1000]}
+					sizes="(max-width: 768px) 100vw, 80vw"
+					loading="lazy"
+					class="w-full object-cover aspect-video"
+				/>
+			</div>
+
+			<!-- Contenido debajo -->
+			<div class="mx-auto mt-10 max-w-3xl">
+				<div class="relative">
+					<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+						<ServiceInfoCard
+							variant="vertical"
+							tiempo="2 a 15 días"
+							ideal="Negocios, emprendedores, PYMEs"
+							entrega="Sitio publicado + CMS"
+							entregaLabel="Qué entregamos"
+						/>
+
+						<!-- Texto + CTA -->
+						<div class="order-last lg:order-first relative">
+							<span
+								class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
+							>
+								02
+							</span>
+							<div class="relative">
+								<p
+									class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
+								>
+									S/ 500
+								</p>
+								<p
+									class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
+								>
+									Proyectos desde
+								</p>
+								<div class="mt-5 h-0.5 w-10 bg-primary/60" />
+								<h2
+									class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+								>
+									Desarrollo Web
+								</h2>
+								<p class="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
+									Sitios web rápidos, profesionales y preparados para convertir visitantes en
+									clientes.
+								</p>
+							</div>
+							<div class="mt-6">
+								<Button
+									as="a"
+									href={CONTACT.whatsappUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									variant="whatsapp"
+									size="lg"
+									class="gap-2"
+								>
+									<WhatsappIcon size={18} />Cuéntanos tu proyecto
+								</Button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Features -->
+					<div class="mt-10 divide-y divide-border/20">
+						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
+							<div class="flex items-start gap-3">
+								<Icon
+									name="hugeicons:web-design-01"
+									class="mt-0.5 size-5 shrink-0 text-primary/50"
+								/>
+								<div>
+									<p class="text-sm font-medium text-foreground">Landing Pages</p>
+									<p class="text-xs text-muted-foreground">Optimizadas para convertir</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-3">
+								<Icon name="hugeicons:api" class="mt-0.5 size-5 shrink-0 text-primary/50" />
+								<div>
+									<p class="text-sm font-medium text-foreground">Automatizaciones</p>
+									<p class="text-xs text-muted-foreground">Formularios, WhatsApp e integraciones</p>
+								</div>
+							</div>
+						</div>
+						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
+							<div class="flex items-start gap-3">
+								<Icon
+									name="hugeicons:computer-programming-01"
+									class="mt-0.5 size-5 shrink-0 text-primary/50"
+								/>
+								<div>
+									<p class="text-sm font-medium text-foreground">Web Corporativa</p>
+									<p class="text-xs text-muted-foreground">Presencia profesional para tu empresa</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-3">
+								<Icon name="hugeicons:search-01" class="mt-0.5 size-5 shrink-0 text-primary/50" />
+								<div>
+									<p class="text-sm font-medium text-foreground">SEO Técnico</p>
+									<p class="text-xs text-muted-foreground">
+										Optimización para Google desde el inicio
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
+							<div class="flex items-start gap-3">
+								<Icon
+									name="hugeicons:shopping-cart-01"
+									class="mt-0.5 size-5 shrink-0 text-primary/50"
+								/>
+								<div>
+									<p class="text-sm font-medium text-foreground">Catálogo Digital</p>
+									<p class="text-xs text-muted-foreground">
+										Muestra tus productos sin vender online
+									</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-3">
+								<Icon name="hugeicons:rocket-01" class="mt-0.5 size-5 shrink-0 text-primary/50" />
+								<div>
+									<p class="text-sm font-medium text-foreground">Dominio + Hosting + SSL</p>
+									<p class="text-xs text-muted-foreground">Todo listo para publicar</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<p class="mt-8 text-[11px] text-muted-foreground/70">
+						Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Soporte
+						post-entrega
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Trust Marquee -->
+	<div class="border-y py-12">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<TrustMarquee separator={false} />
+		</div>
+	</div>
+
+	<!-- ===== VARIANTE A (repeat): Tienda ===== -->
+	<section id="tienda" class="py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid gap-10 items-center lg:grid-cols-12 lg:gap-16">
+				<!-- Imagen — 7 cols -->
+				<div class="lg:col-span-7 lg:order-2">
+					<div class="relative overflow-hidden rounded-2xl">
+						<Image
+							src={servicioImg3}
+							alt="Tienda online de RenovaBit: venta de equipos, componentes y periféricos"
+							widths={[600, 900]}
+							sizes="(max-width: 768px) 100vw, 58vw"
+							loading="lazy"
+							class="w-full object-cover aspect-4/3"
+						/>
+					</div>
+					<ServiceInfoCard
+						tiempo="1 a 7 días"
+						ideal="Gamers y oficina"
+						entrega="Producto probado + garantía"
+					/>
+				</div>
+
+				<!-- Contenido — 5 cols -->
+				<div class="lg:col-span-5 lg:order-1 relative">
+					<span
+						class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
+					>
+						03
+					</span>
+					<div class="relative">
+						<p
+							class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
+						>
+							S/ 50
+						</p>
+						<p
+							class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
+						>
+							Desde · Precio de distribuidor
+						</p>
+						<div class="mt-5 h-0.5 w-10 bg-primary/60" />
+						<h2
+							class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+						>
+							Tienda de Componentes y Equipos
+						</h2>
+						<p class="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
+							Equipos y componentes seleccionados según tus necesidades, sin venderte productos que
+							no necesitas.
+						</p>
+						<ul class="mt-6 space-y-2.5">
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Laptops y PCs para estudio, trabajo o alto rendimiento
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Tarjetas gráficas, memorias RAM y discos SSD/NVMe
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Monitores, periféricos y accesorios originales
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Ensamblado de PC a medida según tu presupuesto y necesidades
+							</li>
+							<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+								<Icon
+									name="hugeicons:checkmark-circle-03"
+									class="mt-0.5 size-4 shrink-0 text-primary/60"
+								/>
+								Asesoría para elegir los componentes correctos
+							</li>
+						</ul>
+						<div class="mt-7">
+							<Button
+								as="a"
+								href={CONTACT.whatsappUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								variant="whatsapp"
+								size="lg"
+								class="gap-2"
+							>
+								<WhatsappIcon size={18} />Consultar disponibilidad
+							</Button>
+						</div>
+						<p class="mt-4 text-[11px] text-muted-foreground/70">
+							Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== VARIANTE B (repeat): Reparaciones Especializadas ===== -->
+	<section id="reparaciones-especializadas" class="border-t py-16 bg-muted/15">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<!-- Imagen compacta -->
+			<div class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20">
+				<Image
+					src={servicioImg4}
+					alt="Placa de laptop Lenovo ThinkPad tras mantenimiento profesional RenovaBit"
+					widths={[600, 1000]}
+					sizes="(max-width: 768px) 100vw, 80vw"
+					loading="lazy"
+					class="w-full object-cover aspect-video"
+				/>
+			</div>
+
+			<!-- Contenido debajo -->
+			<div class="mx-auto mt-10 max-w-3xl">
+				<div class="relative">
+					<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+						<ServiceInfoCard
+							variant="vertical"
+							tiempo="3 a 10 días"
+							ideal="Equipos con fallas complejas"
+							entrega="Diagnóstico documentado + garantía"
+							entregaLabel="Qué entregamos"
+						/>
+
+						<!-- Texto + CTA -->
+						<div class="order-last lg:order-first relative">
+							<span
+								class="absolute -top-14 -left-4 font-heading text-[11rem] font-black leading-none tracking-tighter text-primary/3 select-none pointer-events-none"
+							>
+								04
+							</span>
+							<div class="relative">
+								<p
+									class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground"
+								>
+									S/ 150
+								</p>
+								<p
+									class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
+								>
+									Desde
+								</p>
+								<div class="mt-5 h-0.5 w-10 bg-primary/60" />
+								<h2
+									class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+								>
+									Reparaciones Especializadas
+								</h2>
+								<p class="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
+									Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel
+									electrónico.
+								</p>
+							</div>
+							<div class="mt-6">
+								<Button
+									as="a"
+									href={CONTACT.whatsappUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									variant="whatsapp"
+									size="lg"
+									class="gap-2"
+								>
+									<WhatsappIcon size={18} />Solicitar diagnóstico
+								</Button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Features -->
+					<div class="mt-10 divide-y divide-border/20">
+						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
+							<div class="flex items-start gap-3">
+								<Icon
+									name="hugeicons:cpu-settings"
+									class="mt-0.5 size-5 shrink-0 text-primary/50"
+								/>
+								<div>
+									<p class="text-sm font-medium text-foreground">Reparación de motherboard</p>
+									<p class="text-xs text-muted-foreground">
+										A nivel de componente, sin reemplazo innecesario
+									</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-3">
+								<Icon name="hugeicons:laptop" class="mt-0.5 size-5 shrink-0 text-primary/50" />
+								<div>
+									<p class="text-sm font-medium text-foreground">Pantallas y teclados</p>
+									<p class="text-xs text-muted-foreground">
+										Cambio de componentes internos de laptop
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
+							<div class="flex items-start gap-3">
+								<Icon name="hugeicons:microscope" class="mt-0.5 size-5 shrink-0 text-primary/50" />
+								<div>
+									<p class="text-sm font-medium text-foreground">Microelectrónica</p>
+									<p class="text-xs text-muted-foreground">
+										Soldadura de precisión con equipo profesional
+									</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-3">
+								<Icon
+									name="hugeicons:usb-connected-01"
+									class="mt-0.5 size-5 shrink-0 text-primary/50"
+								/>
+								<div>
+									<p class="text-sm font-medium text-foreground">Conectores y puertos</p>
+									<p class="text-xs text-muted-foreground">
+										Reparación de carga, USB, HDMI dañados
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="grid grid-cols-1 gap-3 py-3 sm:grid-cols-2 sm:gap-8">
+							<div class="flex items-start gap-3">
+								<Icon name="hugeicons:chip" class="mt-0.5 size-5 shrink-0 text-primary/50" />
+								<div>
+									<p class="text-sm font-medium text-foreground">
+										Reprogramación y recuperación de BIOS
+									</p>
+									<p class="text-xs text-muted-foreground">BIOS corrupta o bloqueada</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-3">
+								<Icon name="hugeicons:flash" class="mt-0.5 size-5 shrink-0 text-primary/50" />
+								<div>
+									<p class="text-sm font-medium text-foreground">
+										Diagnóstico de equipos sin encendido
+									</p>
+									<p class="text-xs text-muted-foreground">
+										Detección de fallas eléctricas sin cambiar piezas
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<p class="mt-8 text-[11px] text-muted-foreground/70">
+						Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Equipo
+						profesional
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== CTA Final (mismo estilo que la landing) ===== -->
+	<section class="py-20 md:py-28">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div
+				class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16 animate-fade-in-up animate-duration-slower"
+			>
+				<div class="max-w-xl">
+					<h2
+						class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
+					>
+						¿Listo para empezar?
+					</h2>
+					<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
+						Cada equipo y cada proyecto es distinto. Cuéntanos qué necesitas y te damos una
+						cotización sin compromiso.
+					</p>
+				</div>
+
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="default"
+					size="lg"
+					class="shrink-0 gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+				>
+					<WhatsappIcon size={18} />
+					Escríbenos por WhatsApp
+				</Button>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

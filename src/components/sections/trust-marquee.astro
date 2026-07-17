@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import companyImg1 from "@/assets/images/companys/company-1.avif";
+import companyImg2 from "@/assets/images/companys/company-2.avif";
+import companyImg3 from "@/assets/images/companys/company-3.avif";
+import companyImg4 from "@/assets/images/companys/company-4.svg";
+import { Marquee } from "@/components/ui/marquee";
+import { Separator } from "@/components/ui/separator";
+
+interface Props {
+	separator?: boolean;
+}
+
+const { separator = true } = Astro.props;
+---
+
+<div class="animate-fade-in-up animate-duration-slower">
+	{separator && <Separator class="mx-auto max-w-xs" />}
+	<p
+		class={`text-center text-sm font-medium tracking-wider text-muted-foreground uppercase ${separator ? "mt-10" : "mt-0"}`}
+	>
+		Hemos trabajado con:
+	</p>
+	<div class="mt-8">
+		<Marquee direction="left" variant="gradient">
+			<Image
+				src={companyImg1}
+				alt="Logo de Flanders"
+				class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+				loading="lazy"
+				decoding="async"
+			/>
+			<Image
+				src={companyImg2}
+				alt="Logo de Roma Distribuciones y Servicios"
+				class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+				loading="lazy"
+				decoding="async"
+			/>
+			<Image
+				src={companyImg3}
+				alt="Logo de SEKUR"
+				class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+				loading="lazy"
+				decoding="async"
+			/>
+			<Image
+				src={companyImg4}
+				alt="Logo de Bodega Manchego"
+				class="h-10 w-auto px-8 opacity-50 grayscale transition-opacity hover:opacity-80"
+				loading="lazy"
+				decoding="async"
+			/>
+		</Marquee>
+	</div>
+</div>

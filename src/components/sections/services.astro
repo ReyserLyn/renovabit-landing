@@ -132,18 +132,24 @@ const servicios = [
 			<p class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
 				¿Cuál servicio necesitas?
 			</p>
-			<Button
-				as="a"
-				href={CONTACT.whatsappUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				variant="default"
-				size="lg"
-				class="gap-2"
-			>
-				<Icon name="hugeicons:arrow-right-01" class="size-5" />
-				Cotizar servicio
-			</Button>
+			<div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="default"
+					size="lg"
+					class="gap-2"
+				>
+					<Icon name="hugeicons:arrow-right-01" class="size-5" />
+					Cotizar servicio
+				</Button>
+				<Button as="a" href="/servicios" variant="outline" size="lg" class="gap-2">
+					<Icon name="hugeicons:arrow-right-01" class="size-5" />
+					Ver todos los servicios
+				</Button>
+			</div>
 		</div>
 	</div>
 </section>
