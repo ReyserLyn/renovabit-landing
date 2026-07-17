@@ -29,3 +29,5 @@ Thumbs.db
 # Raw images (source files for optimization)
 src/assets/images/raw/
 .agents
+
+.atl
