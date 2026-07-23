@@ -10,6 +10,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 	title="Página no encontrada"
 	description="La página que buscas no existe o fue movida. Vuelve al inicio o escríbenos por WhatsApp para ayudarte."
 >
+	<slot name="head">
+		<meta name="robots" content="noindex, nofollow">
+	</slot>
 	<GridDotsBackground
 		variant="dots"
 		height="100%"

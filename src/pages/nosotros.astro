@@ -22,11 +22,10 @@ const aboutJsonLd = {
 ---
 
 <BaseLayout
-	title="Nosotros — Tecnología para personas y negocios"
+	title="Nosotros | Tecnología para personas y negocios"
 	description="RenovaBit es una empresa tecnológica en Arequipa que resuelve problemas de laptops, PCs y desarrollo web con transparencia, documentación y profesionalismo. Conoce nuestra misión y valores."
 >
 	<slot name="head">
-		<link rel="preload" as="image" href={logoStacked.src} fetchpriority="high">
 		<script type="application/ld+json" is:inline set:html={JSON.stringify(aboutJsonLd)}></script>
 	</slot>
 
