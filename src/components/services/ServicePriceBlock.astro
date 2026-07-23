@@ -1,22 +1,20 @@
 ---
+import type { ServiceData } from "@/data/servicios";
+
 interface Props {
+	service: Pick<ServiceData, "price" | "subtitle" | "title" | "description">;
 	number: string;
-	price: string;
-	subtitle: string;
-	title: string;
-	description: string;
 	descriptionWidth?: "md" | "lg";
 	class?: string;
+	headingLevel?: "h1" | "h2";
 }
 
 const {
+	service,
 	number,
-	price,
-	subtitle,
-	title,
-	description,
 	descriptionWidth = "md",
 	class: className,
+	headingLevel: HeadingTag = "h2",
 } = Astro.props;
 
 const maxWidthClass = descriptionWidth === "lg" ? "max-w-lg" : "max-w-md";
@@ -30,19 +28,21 @@ const maxWidthClass = descriptionWidth === "lg" ? "max-w-lg" : "max-w-md";
 	</span>
 	<div class={`relative${className ? ` ${className}` : ""}`}>
 		<p class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground">
-			{price}
+			{service.price}
 		</p>
 		<p
 			class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
 		>
-			{subtitle}
+			{service.subtitle}
 		</p>
 		<div class="mt-5 h-0.5 w-10 bg-primary/60" />
-		<h2 class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-			{title}
-		</h2>
+		<HeadingTag
+			class="mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+		>
+			{service.title}
+		</HeadingTag>
 		<p class={`mt-3 text-base leading-relaxed text-muted-foreground ${maxWidthClass}`}>
-			{description}
+			{service.description}
 		</p>
 	</div>
 </div>

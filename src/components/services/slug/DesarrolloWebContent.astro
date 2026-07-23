@@ -1,0 +1,376 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+import renovabitScreenshot from "@/assets/images/portfolio/renovabit-landing.jpg";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+
+interface Props {
+	heroImg: ImageMetadata;
+	includes: string[];
+	ctaLabel: string;
+}
+
+const { heroImg, includes, ctaLabel } = Astro.props;
+
+interface ProjectType {
+	title: string;
+	description: string;
+	time: string;
+	ideal: string;
+	items: string[];
+}
+
+const projectTypes: ProjectType[] = [
+	{
+		title: "Landing Page",
+		description:
+			"Una sola página optimizada para convertir visitantes en clientes. Ideal para lanzar un servicio, producto o campaña.",
+		time: "2 a 5 días",
+		ideal: "Emprendedores y campañas",
+		items: [
+			"Diseño responsive mobile-first con enfoque en conversión",
+			"SEO técnico completo desde el día uno",
+			"Formulario de contacto con integración WhatsApp",
+			"Dominio, hosting rápido y certificado SSL",
+		],
+	},
+	{
+		title: "Sitio Corporativo",
+		description:
+			"Múltiples páginas con la identidad de tu empresa. Quiénes somos, servicios, blog, contacto. Todo lo que un negocio serio necesita.",
+		time: "7 a 15 días",
+		ideal: "PYMEs y negocios establecidos",
+		items: [
+			"Múltiples secciones estructuradas y navegables",
+			"Panel de administración para modificar contenido",
+			"Correos profesionales con tu dominio (te ayudamos con Zoho Mail gratis)",
+			"Optimización SEO, velocidad y diseño profesional",
+		],
+	},
+	{
+		title: "Catálogo Digital",
+		description:
+			"Muestra tus productos con fotos, descripciones y categorías. Sin pasarela de pago, solo muestras lo que haces o vendes sin fricción.",
+		time: "5 a 10 días",
+		ideal: "Negocios con inventario y productos",
+		items: [
+			"Catálogo navegable con categorías y búsqueda",
+			"Ficha de producto con imágenes y descripciones",
+			"Panel para agregar, editar o quitar productos uno mismo",
+			"Formulario de consulta para cada producto",
+		],
+	},
+];
+
+interface Step {
+	title: string;
+	description: string;
+}
+
+const processSteps: Step[] = [
+	{
+		title: "Definimos el alcance juntos",
+		description:
+			"Conversamos sobre lo que necesitas. ¿Landing, corporativo, catálogo? Definimos el alcance exacto del proyecto para que no haya sorpresas después. Sin letra chica, sin cosas que se agregan por el camino.",
+	},
+	{
+		title: "Briefing y requerimientos",
+		description:
+			"Conocemos tu marca, tu audiencia, lo que quieres transmitir. Definimos colores, secciones, funcionalidades. Todo por escrito para que estemos alineados desde el inicio.",
+	},
+	{
+		title: "Diseño preview — tú decides",
+		description:
+			"Te mostramos un diseño provisional del sitio. Puedes pedir cambios, ajustes, lo que necesites. No avanzamos hasta que estés conforme con cómo se ve.",
+	},
+	{
+		title: "Desarrollo y pruebas",
+		description:
+			"Construimos el sitio con Astro, Tailwind y las mejores prácticas de rendimiento. Probamos en todos los dispositivos, revisamos velocidad, SEO, formularios. Todo funciona antes de publicar.",
+	},
+	{
+		title: "Entrega total. Es tuyo.",
+		description:
+			"Te entregamos el código, el dominio, el hosting, el panel de administración y te capacitamos para que puedas modificar lo que quieras. El sitio es 100% tuyo, no dependes de nosotros para nada.",
+	},
+];
+
+const checkIcon = "hugeicons:checkmark-circle-03";
+const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
+---
+
+<!-- ¿Qué tipo de sitio necesitas? -->
+<section class="border-t py-16 md:py-20">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+			<div
+				class="-mx-4 overflow-hidden sm:mx-0 sm:rounded-2xl sm:border sm:border-border/20 lg:sticky lg:top-24"
+			>
+				<Image
+					src={heroImg}
+					alt="Desarrollo web profesional en RenovaBit"
+					widths={[600, 800]}
+					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+					loading="lazy"
+					class="w-full object-cover aspect-4/3"
+				/>
+			</div>
+
+			<div>
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+					¿Qué tipo de sitio necesitas?
+				</h2>
+				<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+					No es lo mismo una landing de una sola página que un sitio corporativo con 10 secciones o
+					un catálogo con 50 productos. Elige lo que se ajusta a tu negocio. Después conversamos el
+					alcance exacto y el presupuesto.
+				</p>
+
+				<div class="mt-8 space-y-6">
+					{projectTypes.map((type) => (
+						<div class="border-t border-border/20 pt-4">
+							<div class="flex items-baseline justify-between gap-4">
+								<h3 class="font-heading text-base font-bold text-foreground">{type.title}</h3>
+								<span class="shrink-0 font-mono text-sm text-muted-foreground">
+									{type.time} · {type.ideal}
+								</span>
+							</div>
+							<p class="mt-1 text-sm text-muted-foreground">{type.description}</p>
+							<ul class="mt-3 space-y-1.5">
+								{type.items.map((item) => (
+									<li class="inline-flex items-start gap-2 text-sm text-muted-foreground">
+										<Icon name={checkIcon} class={checkIconClass} />{item}
+									</li>
+								))}
+							</ul>
+						</div>
+					))}
+				</div>
+
+				<div class="mt-6">
+					<Button
+						as="a"
+						href={CONTACT.whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="whatsapp"
+						size="lg"
+						class="gap-2"
+					>
+						<WhatsappIcon size={18} />{ctaLabel}
+					</Button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Cómo trabajamos -->
+<section class="py-16 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			Del papel a producción en 5 pasos
+		</h2>
+		<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+			Nuestro proceso es transparente y colaborativo. En cada paso sabes exactamente qué está
+			pasando y puedes opinar.
+		</p>
+
+		<ol class="mt-10 space-y-8">
+			{processSteps.map((step, i) => (
+				<li class="flex gap-4">
+					<span class="flex size-7 shrink-0 items-center justify-center rounded-full border border-border/30 font-mono text-xs font-medium text-muted-foreground">
+						{i + 1}
+					</span>
+					<div>
+						<h3 class="font-heading text-base font-bold text-foreground">{step.title}</h3>
+						<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+					</div>
+				</li>
+			))}
+		</ol>
+
+		<div class="mt-10">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="whatsapp"
+				size="lg"
+				class="gap-2"
+			>
+				<WhatsappIcon size={18} />{ctaLabel}
+			</Button>
+		</div>
+	</div>
+</section>
+
+<!-- Proyectos recientes -->
+<section class="py-16 bg-muted/15 md:py-20">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			Proyectos que ya están en producción
+		</h2>
+		<p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+			No mostramos mockups ni conceptos, mostramos sitios que están funcionando ahora mismo.
+		</p>
+
+		<div class="mt-10 grid gap-8 lg:grid-cols-2">
+			<div class="group overflow-hidden rounded-2xl border border-border/20 bg-card">
+				<div class="overflow-hidden border-b border-border/20">
+					<Image
+						src={heroImg}
+						alt="Sitio web de Bodega Manchego desarrollado por RenovaBit"
+						widths={[600, 800]}
+						sizes="(max-width: 768px) 100vw, 50vw"
+						loading="lazy"
+						class="w-full object-cover aspect-video transition-transform duration-500 group-hover:scale-105"
+					/>
+				</div>
+				<div class="p-6">
+					<div class="flex items-center gap-2">
+						<span
+							class="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary uppercase tracking-wider"
+							>Corporativo + catálogo</span
+						>
+					</div>
+					<h3 class="mt-3 font-heading text-lg font-bold text-foreground">Bodega Manchego</h3>
+					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+						Sitio corporativo con catálogo de productos, diseño profesional y panel de
+						administración. El cliente gestiona su inventario sin depender de nosotros.
+					</p>
+				</div>
+			</div>
+
+			<div class="group overflow-hidden rounded-2xl border border-border/20 bg-card">
+				<div class="overflow-hidden border-b border-border/20">
+					<Image
+						src={renovabitScreenshot}
+						alt="Landing page de RenovaBit, el sitio que estás viendo"
+						widths={[600, 800]}
+						sizes="(max-width: 768px) 100vw, 50vw"
+						loading="lazy"
+						class="w-full object-cover aspect-video transition-transform duration-500 group-hover:scale-105"
+					/>
+				</div>
+				<div class="p-6">
+					<div class="flex items-center gap-2">
+						<span
+							class="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary uppercase tracking-wider"
+							>Landing page</span
+						>
+					</div>
+					<h3 class="mt-3 font-heading text-lg font-bold text-foreground">RenovaBit</h3>
+					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+						La landing que estás viendo. Diseño moderno, optimizada para velocidad, SEO y
+						conversión. Construida con Astro y Tailwind CSS.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="mt-10 text-center">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="outline"
+				size="lg"
+				class="gap-2"
+			>
+				<Icon name="hugeicons:computer-programming-01" class="size-4" />¿Tienes un proyecto en
+				mente?
+			</Button>
+		</div>
+	</div>
+</section>
+
+<!-- Qué incluye -->
+<section class="border-t py-16 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			Qué incluye cada proyecto
+		</h2>
+		<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+			Cosas que vienen con tu sitio sin costo adicional. Porque un buen sitio no es solo diseño.
+		</p>
+
+		<div class="mt-8 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+			{includes.map((item) => (
+				<p class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+					<Icon name={checkIcon} class={checkIconClass} />{item}
+				</p>
+			))}
+		</div>
+
+		<div class="mt-8">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="whatsapp"
+				size="lg"
+				class="gap-2"
+			>
+				<WhatsappIcon size={18} />{ctaLabel}
+			</Button>
+		</div>
+	</div>
+</section>
+
+<!-- El sitio es tuyo -->
+<section class="py-16 bg-muted/15 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<div class="overflow-hidden rounded-2xl border border-border/20 bg-card p-8 sm:p-10">
+			<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				Es tu sitio. Siempre fue tu sitio.
+			</h2>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+				Cuando terminamos un proyecto, te entregamos absolutamente todo. El código, los accesos al
+				hosting, el dominio a tu nombre, el panel de administración. No dependes de nosotros para
+				hacer cambios. Si mañana quieres que otro desarrollador lo modifique, puede hacerlo sin
+				pedirnos permiso.
+			</p>
+			<ul class="mt-6 space-y-3">
+				<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+					<Icon name="hugeicons:source-code" class="mt-0.5 size-4 shrink-0 text-primary/60" />
+					Código completo, accede, modifica, comparte. Nada de propietario, nada oculto.
+				</li>
+				<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+					<Icon name="hugeicons:mail-01" class="mt-0.5 size-4 shrink-0 text-primary/60" />
+					Correo profesional con tu dominio. Te ayudamos a configurarlo con Zoho Mail gratis (o la
+					plataforma que prefieras).
+				</li>
+				<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+					<Icon name="hugeicons:presentation-01" class="mt-0.5 size-4 shrink-0 text-primary/60" />
+					Capacitación incluida. Te enseñamos a usar el panel para que puedas modificar textos,
+					imágenes y productos sin saber programar.
+				</li>
+				<li class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+					<Icon name="hugeicons:certificate-01" class="mt-0.5 size-4 shrink-0 text-primary/60" />
+					Dominio a tu nombre, hosting a tu nombre, SSL activo. Todo configurado y funcionando.
+				</li>
+			</ul>
+
+			<div class="mt-8">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+				>
+					<WhatsappIcon size={18} />{ctaLabel}
+				</Button>
+			</div>
+		</div>
+	</div>
+</section>

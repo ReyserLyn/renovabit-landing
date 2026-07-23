@@ -3,12 +3,13 @@ import heroLcpImg from "@/assets/images/hero/hero-1.avif";
 import About from "@/components/sections/about.astro";
 import Cta from "@/components/sections/cta.astro";
 import Empresas from "@/components/sections/empresas.astro";
-import Faq from "@/components/sections/faq.astro";
+import FaqSection from "@/components/sections/FaqSection.astro";
 import Hero from "@/components/sections/hero.astro";
 import Proceso from "@/components/sections/proceso.astro";
 import ProcesoTimeline from "@/components/sections/proceso-timeline.astro";
 import Services from "@/components/sections/services.astro";
 import Testimonios from "@/components/sections/testimonios.astro";
+import { getFeaturedFaqs } from "@/data/faq";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
@@ -28,6 +29,10 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 	<Proceso />
 	<ProcesoTimeline />
 	<Testimonios />
-	<Faq />
+	<FaqSection
+		items={getFeaturedFaqs()}
+		heading="Respondemos las dudas más comunes."
+		subtitle="Si aún tienes alguna consulta, estaremos encantados de ayudarte por WhatsApp."
+	/>
 	<Cta />
 </BaseLayout>

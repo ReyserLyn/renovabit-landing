@@ -1,28 +1,28 @@
 ---
+import type { ServiceData } from "@/data/servicios";
+
 interface Props {
-	tiempo: string;
-	ideal: string;
-	entrega: string;
-	entregaLabel?: string;
+	service: Pick<ServiceData, "tiempo" | "ideal" | "entrega" | "entregaLabel">;
 	variant?: "horizontal" | "vertical";
 }
 
-const { tiempo, ideal, entrega, entregaLabel = "Entrega", variant = "horizontal" } = Astro.props;
+const { service, variant = "horizontal" } = Astro.props;
+const entregaLabel = service.entregaLabel ?? "Entrega";
 ---
 
 {variant === "horizontal" ? (
 		<div class="mt-5 grid grid-cols-3 divide-x divide-border/30 rounded-xl border border-border/20 bg-card/50 px-1">
 			<div class="px-4 py-3 text-center">
 				<p class="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">Tiempo</p>
-				<p class="mt-0.5 text-sm font-semibold text-foreground">{tiempo}</p>
+				<p class="mt-0.5 text-sm font-semibold text-foreground">{service.tiempo}</p>
 			</div>
 			<div class="px-4 py-3 text-center">
 				<p class="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">Ideal para</p>
-				<p class="mt-0.5 text-sm font-semibold text-foreground">{ideal}</p>
+				<p class="mt-0.5 text-sm font-semibold text-foreground">{service.ideal}</p>
 			</div>
 			<div class="px-4 py-3 text-center">
 				<p class="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">{entregaLabel}</p>
-				<p class="mt-0.5 text-sm font-semibold text-foreground">{entrega}</p>
+				<p class="mt-0.5 text-sm font-semibold text-foreground">{service.entrega}</p>
 			</div>
 		</div>
 	) : (
@@ -30,15 +30,15 @@ const { tiempo, ideal, entrega, entregaLabel = "Entrega", variant = "horizontal"
 			<div class="grid grid-cols-3 gap-3 lg:grid-cols-1 lg:gap-0 lg:divide-y lg:divide-border/20">
 				<div class="py-2.5 text-center lg:text-left">
 					<p class="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">Tiempo</p>
-					<p class="mt-0.5 text-sm font-semibold text-foreground">{tiempo}</p>
+					<p class="mt-0.5 text-sm font-semibold text-foreground">{service.tiempo}</p>
 				</div>
 				<div class="py-2.5 text-center lg:text-left">
 					<p class="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">Ideal para</p>
-					<p class="mt-0.5 text-sm font-semibold text-foreground">{ideal}</p>
+					<p class="mt-0.5 text-sm font-semibold text-foreground">{service.ideal}</p>
 				</div>
 				<div class="py-2.5 text-center lg:text-left">
 					<p class="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">{entregaLabel}</p>
-					<p class="mt-0.5 text-sm font-semibold text-foreground">{entrega}</p>
+					<p class="mt-0.5 text-sm font-semibold text-foreground">{service.entrega}</p>
 				</div>
 			</div>
 		</div>

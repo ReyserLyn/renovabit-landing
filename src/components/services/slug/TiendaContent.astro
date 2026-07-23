@@ -1,0 +1,223 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+
+interface Props {
+	heroImg: ImageMetadata;
+	includes: string[];
+	ctaLabel: string;
+}
+
+const { heroImg, includes, ctaLabel } = Astro.props;
+
+interface CategoryItem {
+	title: string;
+	items: string[];
+}
+
+const categories: CategoryItem[] = [
+	{
+		title: "Equipos nuevos",
+		items: [
+			"Laptops para oficina, universidad y gaming",
+			"PCs de escritorio armadas a medida",
+			"Todo equipo sale probado y configurado antes de entregar",
+		],
+	},
+	{
+		title: "Componentes",
+		items: [
+			"Procesadores, tarjetas gráficas, RAM, discos SSD y NVMe",
+			"Monitores, periféricos y accesorios",
+			"Trabajamos bajo pedido: eliges, cotizamos, compramos",
+		],
+	},
+	{
+		title: "Repotenciación",
+		items: [
+			"Mejora de RAM, almacenamiento o tarjeta gráfica",
+			"Evaluamos compatibilidad antes de recomendar",
+			"Instalación, pruebas y configuración incluidas",
+		],
+	},
+	{
+		title: "Ensamblaje",
+		items: [
+			"Armado completo de PC según tu presupuesto y uso",
+			"Instalación de sistema operativo y programas esenciales",
+			"Cable management, pruebas de estabilidad y entrega lista para usar",
+		],
+	},
+];
+
+interface Step {
+	title: string;
+	description: string;
+}
+
+const flowSteps: Step[] = [
+	{
+		title: "Cuéntanos qué necesitas",
+		description:
+			"Nos dices qué equipo, componente o mejora buscas. Si no estás seguro, te asesoramos según tu presupuesto y el uso que le vas a dar.",
+	},
+	{
+		title: "Te preparamos una proforma",
+		description:
+			"Cotizamos con precio de distribuidor. Sin compromiso. Te explicamos qué incluye, tiempos de entrega y garantía del fabricante.",
+	},
+	{
+		title: "Confirmas con el 50%",
+		description:
+			"Para iniciar el pedido solicitamos el 50% del total. Con eso compramos el producto a nuestro proveedor y lo preparamos.",
+	},
+	{
+		title: "Entrega y pago final",
+		description:
+			"Cuando el equipo está listo, coordinamos la entrega. Pagas el 50% restante al recibir. Delivery gratis en Arequipa.",
+	},
+];
+
+const checkIcon = "hugeicons:checkmark-circle-03";
+const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
+---
+
+<!-- Cómo funciona -->
+<section class="border-t py-16 md:py-20">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+			<div
+				class="-mx-4 overflow-hidden sm:mx-0 sm:rounded-2xl sm:border sm:border-border/20 lg:sticky lg:top-24"
+			>
+				<Image
+					src={heroImg}
+					alt="Venta de componentes y equipos en RenovaBit Arequipa"
+					widths={[600, 800]}
+					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+					loading="lazy"
+					class="w-full object-cover aspect-4/3"
+				/>
+			</div>
+
+			<div>
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+					Cómo funciona
+				</h2>
+				<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+					No tenemos tienda física con vitrina. Trabajamos bajo pedido: tú nos dices qué necesitas,
+					nosotros cotizamos, compramos y te entregamos. Esto nos permite darte mejor precio y
+					evitar que pagues por inventario que no necesitas.
+				</p>
+
+				<ol class="mt-8 space-y-6">
+					{flowSteps.map((step, i) => (
+						<li class="flex gap-4">
+							<span class="flex size-7 shrink-0 items-center justify-center rounded-full border border-border/30 font-mono text-xs font-medium text-muted-foreground">
+								{i + 1}
+							</span>
+							<div>
+								<h3 class="font-heading text-base font-bold text-foreground">{step.title}</h3>
+								<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+							</div>
+						</li>
+					))}
+				</ol>
+
+				<div class="mt-6">
+					<Button
+						as="a"
+						href={CONTACT.whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="whatsapp"
+						size="lg"
+						class="gap-2"
+					>
+						<WhatsappIcon size={18} />{ctaLabel}
+					</Button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Qué ofrecemos -->
+<section class="py-16 bg-muted/15 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			Qué puedes conseguir
+		</h2>
+		<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+			Desde una laptop para la universidad hasta una PC gamer armada pieza por pieza. Todo nuevo,
+			con garantía del fabricante y probado antes de entregar.
+		</p>
+
+		<div class="mt-8 space-y-6">
+			{categories.map((cat) => (
+				<div class="border-t border-border/20 pt-4">
+					<h3 class="font-heading text-base font-bold text-foreground">{cat.title}</h3>
+					<ul class="mt-2.5 space-y-1.5 space-x-2">
+						{cat.items.map((item) => (
+							<li class="inline-flex items-start gap-2 text-sm text-muted-foreground">
+								<Icon name={checkIcon} class={checkIconClass} />{item}
+							</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+
+		<div class="mt-8">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="whatsapp"
+				size="lg"
+				class="gap-2"
+			>
+				<WhatsappIcon size={18} />{ctaLabel}
+			</Button>
+		</div>
+	</div>
+</section>
+
+<!-- Qué incluye -->
+<section class="border-t py-16 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			Qué incluye cada pedido
+		</h2>
+		<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+			Cosas que vienen con tu compra sin costo adicional. Porque comprar tecnología no debería ser
+			complicado.
+		</p>
+
+		<div class="mt-8 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+			{includes.map((item) => (
+				<p class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+					<Icon name={checkIcon} class={checkIconClass} />{item}
+				</p>
+			))}
+		</div>
+
+		<div class="mt-8">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="whatsapp"
+				size="lg"
+				class="gap-2"
+			>
+				<WhatsappIcon size={18} />{ctaLabel}
+			</Button>
+		</div>
+	</div>
+</section>

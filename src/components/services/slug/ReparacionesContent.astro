@@ -1,0 +1,263 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+
+interface Props {
+	heroImg: ImageMetadata;
+	includes: string[];
+	ctaLabel: string;
+}
+
+const { heroImg, includes, ctaLabel } = Astro.props;
+
+interface RepairCategory {
+	title: string;
+	icon: string;
+	items: string[];
+}
+
+const repairCategories: RepairCategory[] = [
+	{
+		title: "Microelectrónica y placa madre",
+		icon: "hugeicons:cpu-settings",
+		items: [
+			"Reparación a nivel de componente SMD: capacitores, MOSFETs, resistencias",
+			"Detección de cortos por derrame de líquidos o sobrecargas",
+			"Reemplazo de conectores de carga, USB, HDMI y jack de audio dañados",
+		],
+	},
+	{
+		title: "Reprogramación y recuperación de BIOS",
+		icon: "hugeicons:chip",
+		items: [
+			"Grabación de BIOS, EEPROM, KBC, ITE, ENE y memorias eMMC",
+			"Recuperación de equipos con BIOS corrupta o bloqueada por contraseña",
+			"Actualización y corrección de firmware",
+		],
+	},
+	{
+		title: "Pantallas, teclados y bisagras",
+		icon: "hugeicons:laptop",
+		items: [
+			"Cambio de pantallas LED, IPS y paneles táctiles en laptops",
+			"Reemplazo de teclados con soldadura o flex, según el modelo",
+			"Reparación de bisagras rotas sin dañar la carcasa",
+		],
+	},
+	{
+		title: "Recuperación de datos",
+		icon: "hugeicons:hard-drive",
+		items: [
+			"Diagnóstico de discos duros y SSD con fallas lógicas o físicas leves",
+			"Clonado de disco dañado a medio sano para rescatar la información",
+			"Siempre te informamos antes de intervenir: sabes qué esperar",
+		],
+	},
+];
+
+interface Step {
+	title: string;
+	description: string;
+}
+
+const diagnosticSteps: Step[] = [
+	{
+		title: "Diagnóstico desde cero, sin asumir nada",
+		description:
+			"No importa lo que te hayan dicho antes. Volvemos a medir voltajes, probar componentes y revisar señales con equipo de diagnóstico. Un diagnóstico previo equivocado es más común de lo que parece.",
+	},
+	{
+		title: "Esquemáticos y documentación técnica",
+		description:
+			"Trabajamos con esquemáticos de fábrica y boardviews para localizar fallas con precisión. No es prueba y error. Cada medición está respaldada por la documentación del modelo.",
+	},
+	{
+		title: "Reparación con equipo profesional",
+		description:
+			"Estación de soldadura con aire caliente, microscopio para componentes SMD, programador de BIOS y memorias. Herramientas que permiten trabajar a nivel de microelectrónica sin improvisar.",
+	},
+	{
+		title: "Pruebas post-reparación documentadas",
+		description:
+			"Cada reparación pasa por pruebas de funcionamiento: encendido, carga, puertos, teclado, pantalla, estrés térmico. Te entregamos evidencia de que todo funciona antes de devolver el equipo.",
+	},
+];
+
+const checkIcon = "hugeicons:checkmark-circle-03";
+const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
+---
+
+<!-- Qué reparamos -->
+<section class="border-t py-16 md:py-20">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+			<div
+				class="-mx-4 overflow-hidden sm:mx-0 sm:rounded-2xl sm:border sm:border-border/20 lg:sticky lg:top-24"
+			>
+				<Image
+					src={heroImg}
+					alt="Reparación a nivel de microelectrónica en RenovaBit Arequipa"
+					widths={[600, 800]}
+					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+					loading="lazy"
+					class="w-full object-cover aspect-4/3"
+				/>
+			</div>
+
+			<div>
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+					Qué reparamos
+				</h2>
+				<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+					Reparaciones que requieren ir más allá del cambio de piezas. Diagnóstico a nivel
+					electrónico, soldadura de precisión y herramientas que no se encuentran en cualquier
+					taller.
+				</p>
+
+				<div class="mt-8 space-y-6">
+					{repairCategories.map((cat) => (
+						<div class="border-t border-border/20 pt-4">
+							<h3 class="inline-flex items-center gap-2 font-heading text-base font-bold text-foreground">
+								<Icon name={cat.icon} class="size-4 text-primary/70" />{cat.title}
+							</h3>
+							<ul class="mt-2.5 space-y-1.5">
+								{cat.items.map((item) => (
+									<li class="inline-flex items-start gap-2 text-sm text-muted-foreground">
+										<Icon name={checkIcon} class={checkIconClass} />{item}
+									</li>
+								))}
+							</ul>
+						</div>
+					))}
+				</div>
+
+				<div class="mt-6">
+					<Button
+						as="a"
+						href={CONTACT.whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="whatsapp"
+						size="lg"
+						class="gap-2"
+					>
+						<WhatsappIcon size={18} />{ctaLabel}
+					</Button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Cómo diagnosticamos -->
+<section class="py-16 bg-muted/15 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			Diagnosticamos de nuevo. Siempre.
+		</h2>
+		<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+			Si otro técnico ya revisó el equipo, no importa. Empezamos de cero con nuestro propio
+			procedimiento. Un diagnóstico previo equivocado es más común de lo que imaginas.
+		</p>
+
+		<ol class="mt-10 space-y-8">
+			{diagnosticSteps.map((step, i) => (
+				<li class="flex gap-4">
+					<span class="flex size-7 shrink-0 items-center justify-center rounded-full border border-border/30 font-mono text-xs font-medium text-muted-foreground">
+						{i + 1}
+					</span>
+					<div>
+						<h3 class="font-heading text-base font-bold text-foreground">{step.title}</h3>
+						<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+					</div>
+				</li>
+			))}
+		</ol>
+
+		<div class="mt-10">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="whatsapp"
+				size="lg"
+				class="gap-2"
+			>
+				<WhatsappIcon size={18} />{ctaLabel}
+			</Button>
+		</div>
+	</div>
+</section>
+
+<!-- Honestidad -->
+<section class="py-16 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<div class="overflow-hidden rounded-2xl border border-border/20 bg-card p-8 sm:p-10">
+			<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				No todo tiene arreglo. Y está bien.
+			</h2>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+				A veces la reparación no es viable. El daño es demasiado extenso, el repuesto no existe, o
+				el costo supera el valor del equipo. Cuando eso pasa, te lo decimos sin rodeos. No cobramos
+				por decirte la verdad.
+			</p>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+				Si decidimos que vale la pena intentarlo, cada reparación tiene hasta 90 días de garantía
+				por escrito. Porque si confiamos en nuestro trabajo, lo respaldamos.
+			</p>
+
+			<div class="mt-8">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+				>
+					<WhatsappIcon size={18} />{ctaLabel}
+				</Button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Qué incluye -->
+<section class="border-t py-16 md:py-20">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+		<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+			Qué incluye cada reparación
+		</h2>
+		<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+			Cosas que son estándar sin importar el tipo de reparación.
+		</p>
+
+		<div class="mt-8 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+			{includes.map((item) => (
+				<p class="inline-flex items-start gap-2.5 text-sm text-muted-foreground">
+					<Icon name={checkIcon} class={checkIconClass} />{item}
+				</p>
+			))}
+		</div>
+
+		<div class="mt-8">
+			<Button
+				as="a"
+				href={CONTACT.whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="whatsapp"
+				size="lg"
+				class="gap-2"
+			>
+				<WhatsappIcon size={18} />{ctaLabel}
+			</Button>
+		</div>
+	</div>
+</section>

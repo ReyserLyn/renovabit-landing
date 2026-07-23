@@ -1,17 +1,26 @@
 ---
+import { Icon } from "astro-icon/components";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/constants";
+import type { ServiceData } from "@/data/servicios";
 
 interface Props {
-	label: string;
+	service: Pick<ServiceData, "ctaLabel">;
 	footerText: string;
+	secondaryHref?: string;
+	secondaryLabel?: string;
 }
 
-const { label, footerText } = Astro.props;
+const {
+	service,
+	footerText,
+	secondaryHref,
+	secondaryLabel = "Ver servicio completo",
+} = Astro.props;
 ---
 
-<div class="mt-7">
+<div class="mt-7 flex flex-wrap items-center gap-3">
 	<Button
 		as="a"
 		href={CONTACT.whatsappUrl}
@@ -21,8 +30,13 @@ const { label, footerText } = Astro.props;
 		size="lg"
 		class="gap-2"
 	>
-		<WhatsappIcon size={18} />{label}
+		<WhatsappIcon size={18} />{service.ctaLabel}
 	</Button>
+	{secondaryHref && (
+		<Button as="a" href={secondaryHref} variant="outline" size="lg" class="gap-2">
+			<Icon name="hugeicons:arrow-right-01" class="size-4" />{secondaryLabel}
+		</Button>
+	)}
 </div>
 <p class="mt-4 text-[11px] text-muted-foreground/70">
 	{footerText}

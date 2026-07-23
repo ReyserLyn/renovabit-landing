@@ -1,0 +1,68 @@
+---
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
+import type { FaqItem } from "@/data/faq";
+
+interface Props {
+	items: FaqItem[];
+	heading?: string;
+	subtitle?: string;
+	variant?: "default" | "compact";
+}
+
+const { items, heading = "Preguntas frecuentes", subtitle, variant = "default" } = Astro.props;
+const isCompact = variant === "compact";
+---
+
+<section
+	id="faq"
+	class:list={[
+		"scroll-mt-24",
+		isCompact ? "border-t py-16 md:py-20" : "py-20 md:py-28",
+	]}
+>
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<h2
+			class:list={[
+				"font-heading font-bold tracking-tight text-foreground",
+				isCompact
+					? "text-2xl sm:text-3xl"
+					: "text-3xl sm:text-4xl lg:text-5xl text-center",
+			]}
+		>
+			{heading}
+		</h2>
+		{subtitle && (
+			<p
+				class:list={[
+					"mt-4 text-base text-muted-foreground sm:text-lg",
+					!isCompact && "text-center max-w-2xl mx-auto",
+				]}
+			>
+				{subtitle}
+			</p>
+		)}
+
+		<div class:list={["mt-12 mx-auto", isCompact ? "max-w-3xl" : "max-w-2xl"]}>
+			<Accordion defaultValue="faq-1">
+				{items.map((item, i) => (
+					<AccordionItem
+						value={`faq-${i + 1}`}
+						class="rounded-lg transition-all duration-200 hover:bg-accent/20 data-open:bg-accent/20 not-last:border-b not-last:border-border not-last:rounded-none"
+					>
+						<AccordionTrigger class="font-heading text-base font-semibold sm:text-lg">
+							{item.question}
+						</AccordionTrigger>
+						<AccordionContent class="text-base leading-relaxed text-muted-foreground">
+							{item.answer}
+						</AccordionContent>
+					</AccordionItem>
+				))}
+			</Accordion>
+		</div>
+	</div>
+</section>

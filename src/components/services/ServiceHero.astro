@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import ServiceBulletList from "@/components/services/ServiceBulletList.astro";
+import ServiceCTA from "@/components/services/ServiceCTA.astro";
+import ServiceInfoCard from "@/components/services/ServiceInfoCard.astro";
+import ServicePriceBlock from "@/components/services/ServicePriceBlock.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+import type { ServiceData } from "@/data/servicios";
+
+interface Props {
+	service: ServiceData;
+	variant: "A" | "B";
+	headingLevel?: "h1" | "h2";
+	number: string;
+}
+
+const { service, variant, headingLevel = "h1", number } = Astro.props;
+---
+
+{variant === "A" ? (
+		<section class="pt-28 pb-12 md:pb-16">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div class="grid gap-10 items-center lg:grid-cols-12 lg:gap-16">
+					<div class="lg:col-span-7">
+						<div class="overflow-hidden rounded-2xl border border-border/20">
+							<Image
+							src={service.heroImg}
+							alt={service.title}
+							widths={[600, 900]}
+							sizes="(max-width: 768px) 100vw, 58vw"
+							fetchpriority="high"
+							loading="eager"
+							class="w-full object-cover aspect-4/3"
+						/>
+						</div>
+						<ServiceInfoCard service={service} />
+					</div>
+
+					<div class="lg:col-span-5">
+						<ServicePriceBlock service={service} number={number} headingLevel={headingLevel} />
+						{service.includes.length > 0 && (
+							<ServiceBulletList items={service.includes.slice(0, 5)} />
+						)}
+						<ServiceCTA
+							service={service}
+							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+	) : (
+		<section class="border-t pt-28 pb-16 md:pb-20">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20">
+					<Image
+						src={service.heroImg}
+						alt={service.title}
+						widths={[600, 1000]}
+						sizes="(max-width: 768px) 100vw, 80vw"
+						loading="eager"
+						fetchpriority="high"
+						class="w-full object-cover aspect-video"
+					/>
+				</div>
+
+				<div class="mx-auto mt-10 max-w-3xl">
+					<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+						<ServiceInfoCard service={service} variant="vertical" />
+
+						<div class="order-last lg:order-first">
+							<ServicePriceBlock service={service} number={number} headingLevel={headingLevel} descriptionWidth="lg" />
+							<div class="mt-6">
+								<Button
+									as="a"
+									href={CONTACT.whatsappUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									variant="whatsapp"
+									size="lg"
+									class="gap-2"
+								>
+									<WhatsappIcon size={18} />{service.ctaLabel}
+								</Button>
+							</div>
+						</div>
+					</div>
+
+					<p class="mt-8 text-[11px] text-muted-foreground/70">
+						Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Soporte
+						post-entrega
+					</p>
+				</div>
+			</div>
+		</section>
+	)}

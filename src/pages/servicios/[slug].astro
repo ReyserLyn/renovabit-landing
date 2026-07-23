@@ -1,0 +1,178 @@
+---
+import FaqSection from "@/components/sections/FaqSection.astro";
+import ServiceHero from "@/components/services/ServiceHero.astro";
+import DesarrolloWebContent from "@/components/services/slug/DesarrolloWebContent.astro";
+import ReparacionesContent from "@/components/services/slug/ReparacionesContent.astro";
+import ServicioTecnicoContent from "@/components/services/slug/ServicioTecnicoContent.astro";
+import TiendaContent from "@/components/services/slug/TiendaContent.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+import { getFaqsForService } from "@/data/faq";
+import { getServiceBySlug, servicios } from "@/data/servicios";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const { slug } = Astro.params;
+
+export function getStaticPaths() {
+	return servicios.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const service = getServiceBySlug(slug);
+if (!service) {
+	return Astro.redirect("/404");
+}
+
+const serviceIndex = servicios.findIndex((s) => s.slug === slug);
+const isVariantA = serviceIndex % 2 === 0;
+
+const faqs = getFaqsForService(slug);
+
+const fullTitle = `${service.title} en Arequipa | RenovaBit`;
+const rawDesc = `${service.description} Desde ${service.price}. ${service.tiempo}. Atención en Arequipa con boleta y factura.`;
+const metaDescription =
+	rawDesc.length > 160 ? rawDesc.slice(0, 157).replace(/\s\S*$/, "") + "…" : rawDesc;
+
+const ogImageMap: Record<string, string> = {
+	"servicio-tecnico": "/og-servicio-tecnico.jpeg",
+	"desarrollo-web": "/og-desarrollo-web.jpeg",
+	tienda: "/og-tienda.jpeg",
+	"reparaciones-especializadas": "/og-reparaciones-especializadas.jpeg",
+};
+const ogImage = ogImageMap[slug];
+---
+
+<BaseLayout title={fullTitle} description={metaDescription} ogImage={ogImage}>
+	<ServiceHero
+		service={service}
+		variant={isVariantA ? "A" : "B"}
+		headingLevel="h1"
+		number={`0${serviceIndex + 1}`}
+	/>
+
+	<!-- ===== Síntomas ===== -->
+	{slug !== "servicio-tecnico" && slug !== "desarrollo-web" && slug !== "tienda" && slug !== "reparaciones-especializadas" && (
+		<section class="border-t py-16 bg-muted/15">
+			<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+					¿Tu equipo tiene estos síntomas?
+				</h2>
+				<div class="mt-8 divide-y divide-border/20">
+					{service.symptoms?.map((s) => (
+						<p class="py-3 text-base text-muted-foreground">{s}</p>
+					))}
+				</div>
+				<div class="mt-8">
+					<Button
+						as="a"
+						href={CONTACT.whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="outline"
+						size="lg"
+						class="gap-2"
+					>
+						Sí, eso me pasa <WhatsappIcon size={16} />
+					</Button>
+				</div>
+			</div>
+		</section>
+	)}
+
+	<!-- TODO: Restaurar galería de proceso cuando haya imágenes -->
+
+	<!-- ===== Qué incluye ===== -->
+	{slug !== "servicio-tecnico" && slug !== "desarrollo-web" && slug !== "tienda" && slug !== "reparaciones-especializadas" && (
+		<section class="border-t py-16 bg-muted/15">
+			<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+					Qué incluye
+				</h2>
+				<div class="mt-8 divide-y divide-border/20">
+					{(() => {
+						const rows: string[][] = [];
+						for (let i = 0; i < service.includes.length; i += 2) {
+							rows.push([service.includes[i], service.includes[i + 1] ?? ""]);
+						}
+						return rows.map((row) => (
+							<div class="grid grid-cols-1 gap-2 py-3 sm:grid-cols-2 sm:gap-8">
+								<p class="text-base text-foreground">{row[0]}</p>
+								{row[1] && <p class="text-base text-foreground">{row[1]}</p>}
+							</div>
+						));
+					})()}
+				</div>
+			</div>
+		</section>
+	)}
+
+	<!-- ===== Contenido enriquecido por servicio ===== -->
+	{slug === "servicio-tecnico" && (
+		<ServicioTecnicoContent
+			heroImg={service.heroImg}
+			includes={service.includes}
+			symptoms={service.symptoms ?? []}
+			ctaLabel={service.ctaLabel}
+		/>
+	)}
+	{slug === "desarrollo-web" && (
+		<DesarrolloWebContent
+			heroImg={service.heroImg}
+			includes={service.includes}
+			ctaLabel={service.ctaLabel}
+		/>
+	)}
+	{slug === "tienda" && (
+		<TiendaContent
+			heroImg={service.heroImg}
+			includes={service.includes}
+			ctaLabel={service.ctaLabel}
+		/>
+	)}
+	{slug === "reparaciones-especializadas" && (
+		<ReparacionesContent
+			heroImg={service.heroImg}
+			includes={service.includes}
+			ctaLabel={service.ctaLabel}
+		/>
+	)}
+	{service.bodyHtml && <div set:html={service.bodyHtml} />}
+
+	<!-- ===== FAQ ===== -->
+	{faqs.length > 0 && <FaqSection items={faqs} variant="compact" />}
+
+	<!-- ===== CTA Final ===== -->
+	<section class="py-20 md:py-28">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div
+				class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16"
+			>
+				<div class="max-w-xl">
+					<h2
+						class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
+					>
+						{service.ctaHeading}
+					</h2>
+					<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
+						{service.ctaDescription}
+					</p>
+				</div>
+
+				<div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+					<Button
+						as="a"
+						href={CONTACT.whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="default"
+						size="lg"
+						class="gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+					>
+						<WhatsappIcon size={18} />
+						{service.ctaLabel}
+					</Button>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

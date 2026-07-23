@@ -1,9 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import servicioImg1 from "@/assets/images/services/service-1.avif";
-import servicioImg2 from "@/assets/images/services/service-2.avif";
-import servicioImg3 from "@/assets/images/services/service-3.avif";
-import servicioImg4 from "@/assets/images/services/service-4.avif";
+import { Icon } from "astro-icon/components";
 import TrustMarquee from "@/components/sections/trust-marquee.astro";
 import ServiceBulletList from "@/components/services/ServiceBulletList.astro";
 import ServiceCTA from "@/components/services/ServiceCTA.astro";
@@ -13,91 +10,10 @@ import ServicePriceBlock from "@/components/services/ServicePriceBlock.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/constants";
+import { servicios } from "@/data/servicios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-// --- Datos por servicio ---
-
-const servicioTecnico = {
-	items: [
-		"Mantenimiento preventivo y correctivo documentado",
-		"Limpieza interna profunda y optimización térmica",
-		"Diagnóstico sin costo al aceptar la cotización",
-		"Instalación y configuración completa del sistema operativo",
-		"Modalidades a domicilio, recojo y entrega o atención en taller",
-	],
-};
-
-const tienda = {
-	items: [
-		"Laptops y PCs para estudio, trabajo o alto rendimiento",
-		"Tarjetas gráficas, memorias RAM y discos SSD/NVMe",
-		"Monitores, periféricos y accesorios originales",
-		"Ensamblado de PC a medida según tu presupuesto y necesidades",
-		"Asesoría para elegir los componentes correctos",
-	],
-};
-
-const desarrolloWeb = [
-	{ icon: "hugeicons:web-design-01", title: "Landing Pages", desc: "Optimizadas para convertir" },
-	{
-		icon: "hugeicons:api",
-		title: "Automatizaciones",
-		desc: "Formularios, WhatsApp e integraciones",
-	},
-	{
-		icon: "hugeicons:computer-programming-01",
-		title: "Web Corporativa",
-		desc: "Presencia profesional para tu empresa",
-	},
-	{
-		icon: "hugeicons:search-01",
-		title: "SEO Técnico",
-		desc: "Optimización para Google desde el inicio",
-	},
-	{
-		icon: "hugeicons:shopping-cart-01",
-		title: "Catálogo Digital",
-		desc: "Muestra tus productos sin vender online",
-	},
-	{
-		icon: "hugeicons:rocket-01",
-		title: "Dominio + Hosting + SSL",
-		desc: "Todo listo para publicar",
-	},
-];
-
-const reparaciones = [
-	{
-		icon: "hugeicons:cpu-settings",
-		title: "Reparación de motherboard",
-		desc: "A nivel de componente, sin reemplazo innecesario",
-	},
-	{
-		icon: "hugeicons:laptop",
-		title: "Pantallas y teclados",
-		desc: "Cambio de componentes internos de laptop",
-	},
-	{
-		icon: "hugeicons:microscope",
-		title: "Microelectrónica",
-		desc: "Soldadura de precisión con equipo profesional",
-	},
-	{
-		icon: "hugeicons:usb-connected-01",
-		title: "Conectores y puertos",
-		desc: "Reparación de carga, USB, HDMI dañados",
-	},
-	{
-		icon: "hugeicons:chip",
-		title: "Reprogramación y recuperación de BIOS",
-		desc: "BIOS corrupta o bloqueada",
-	},
-	{
-		icon: "hugeicons:flash",
-		title: "Diagnóstico de equipos sin encendido",
-		desc: "Detección de fallas eléctricas sin cambiar piezas",
-	},
-];
+const [srv1, srv2, srv3, srv4] = servicios;
 ---
 
 <BaseLayout
@@ -109,8 +25,8 @@ const reparaciones = [
 		slot="head"
 		rel="preload"
 		as="image"
-		href={servicioImg1.src}
-		imagesrcset={servicioImg1.src}
+		href={srv1.heroImg.src}
+		imagesrcset={srv1.heroImg.src}
 		fetchpriority="high"
 	>
 	<!-- Page hero -->
@@ -150,7 +66,7 @@ const reparaciones = [
 						class="relative overflow-hidden rounded-2xl border border-border/20 lg:animate-blurred-fade-in lg:animate-delay-300 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-blurred-fade-in max-lg:animate-range-[entry_3%_contain_10%]"
 					>
 						<Image
-							src={servicioImg1}
+							src={srv1.heroImg}
 							alt="Taller completo de RenovaBit con herramientas y equipos de reparación profesional en Arequipa"
 							widths={[600, 900]}
 							sizes="(max-width: 768px) 100vw, 58vw"
@@ -160,11 +76,7 @@ const reparaciones = [
 						/>
 					</div>
 					<div class="animate-blurred-fade-in animate-delay-350 animate-duration-normal">
-						<ServiceInfoCard
-							tiempo="1 a 3 días"
-							ideal="Personas y empresas"
-							entrega="Informe + fotografías"
-						/>
+						<ServiceInfoCard service={srv1} />
 					</div>
 				</div>
 
@@ -173,25 +85,20 @@ const reparaciones = [
 					<div
 						class="lg:animate-fade-in-up lg:animate-delay-300 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-fade-in-up max-lg:animate-range-[entry_2%_contain_8%]"
 					>
-						<ServicePriceBlock
-							number="01"
-							price="S/ 75"
-							subtitle="Desde · Diagnóstico sin costo"
-							title="Servicio Técnico"
-							description="Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación del proceso y atención personalizada."
-						/>
+						<ServicePriceBlock service={srv1} number="01" />
 					</div>
 					<div
 						class="lg:animate-fade-in-up lg:animate-delay-400 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-fade-in-up max-lg:animate-range-[entry_3%_contain_10%]"
 					>
-						<ServiceBulletList items={servicioTecnico.items} />
+						<ServiceBulletList items={srv1.includes.slice(0, 5)} />
 					</div>
 					<div
 						class="lg:animate-fade-in-up lg:animate-delay-500 lg:animate-duration-normal max-lg:timeline-view max-lg:animate-fade-in-up max-lg:animate-range-[entry_4%_contain_10%]"
 					>
 						<ServiceCTA
-							label="Cotizar servicio"
+							service={srv1}
 							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+							secondaryHref="/servicios/servicio-tecnico/"
 						/>
 					</div>
 				</div>
@@ -207,7 +114,7 @@ const reparaciones = [
 				class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20 timeline-view animate-blurred-fade-in animate-range-[entry_3%_contain_10%]"
 			>
 				<Image
-					src={servicioImg2}
+					src={srv2.heroImg}
 					alt="Desarrollo web corporativo: sitio de Bodega Manchego, proyecto reciente de RenovaBit"
 					widths={[600, 1000]}
 					sizes="(max-width: 768px) 100vw, 80vw"
@@ -219,27 +126,16 @@ const reparaciones = [
 			<div class="mx-auto mt-10 max-w-3xl">
 				<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
 					<div class="timeline-view animate-fade-in-up animate-range-[entry_2%_contain_8%]">
-						<ServiceInfoCard
-							variant="vertical"
-							tiempo="2 a 15 días"
-							ideal="Negocios, emprendedores, PYMEs"
-							entrega="Sitio publicado + CMS"
-							entregaLabel="Qué entregamos"
-						/>
+						<ServiceInfoCard service={srv2} variant="vertical" />
 					</div>
 
 					<div class="order-last lg:order-first">
 						<div class="timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%]">
-							<ServicePriceBlock
-								number="02"
-								price="S/ 500"
-								subtitle="Proyectos desde"
-								title="Desarrollo Web"
-								description="Sitios web rápidos, profesionales y preparados para convertir visitantes en clientes."
-								descriptionWidth="lg"
-							/>
+							<ServicePriceBlock service={srv2} number="02" descriptionWidth="lg" />
 						</div>
-						<div class="mt-6 timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]">
+						<div
+							class="mt-6 flex flex-wrap items-center gap-3 timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]"
+						>
 							<Button
 								as="a"
 								href={CONTACT.whatsappUrl}
@@ -249,15 +145,26 @@ const reparaciones = [
 								size="lg"
 								class="gap-2"
 							>
-								<WhatsappIcon size={18} />Cuéntanos tu proyecto
+								<WhatsappIcon size={18} />{srv2.ctaLabel}
+							</Button>
+							<Button
+								as="a"
+								href="/servicios/desarrollo-web/"
+								variant="outline"
+								size="lg"
+								class="gap-2"
+							>
+								<Icon name="hugeicons:arrow-right-01" class="size-4" />Ver servicio completo
 							</Button>
 						</div>
 					</div>
 				</div>
 
+				{srv2.features && (
 				<div class="timeline-view animate-fade-in-up animate-range-[entry_4%_contain_10%]">
-					<ServiceFeatureGrid features={desarrolloWeb} />
+					<ServiceFeatureGrid features={srv2.features} />
 				</div>
+			)}
 
 				<p class="mt-8 text-[11px] text-muted-foreground/70">
 					Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Soporte
@@ -284,7 +191,7 @@ const reparaciones = [
 						class="relative overflow-hidden rounded-2xl timeline-view animate-blurred-fade-in animate-range-[entry_3%_contain_10%]"
 					>
 						<Image
-							src={servicioImg3}
+							src={srv3.heroImg}
 							alt="Tienda online de RenovaBit: venta de equipos, componentes y periféricos"
 							widths={[600, 900]}
 							sizes="(max-width: 768px) 100vw, 58vw"
@@ -292,31 +199,22 @@ const reparaciones = [
 							class="w-full object-cover aspect-4/3"
 						/>
 					</div>
-					<ServiceInfoCard
-						tiempo="1 a 7 días"
-						ideal="Gamers y oficina"
-						entrega="Producto probado + garantía"
-					/>
+					<ServiceInfoCard service={srv3} />
 				</div>
 
 				<!-- Contenido — 5 cols -->
 				<div class="lg:col-span-5 lg:order-1">
 					<div class="timeline-view animate-fade-in-up animate-range-[entry_2%_contain_8%]">
-						<ServicePriceBlock
-							number="03"
-							price="S/ 50"
-							subtitle="Desde · Precio de distribuidor"
-							title="Tienda de Componentes y Equipos"
-							description="Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas."
-						/>
+						<ServicePriceBlock service={srv3} number="03" />
 					</div>
 					<div class="timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%]">
-						<ServiceBulletList items={tienda.items} />
+						<ServiceBulletList items={srv3.includes.slice(0, 5)} />
 					</div>
 					<div class="timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]">
 						<ServiceCTA
-							label="Consultar disponibilidad"
+							service={srv3}
 							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+							secondaryHref="/servicios/tienda/"
 						/>
 					</div>
 				</div>
@@ -331,7 +229,7 @@ const reparaciones = [
 				class="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border/20 timeline-view animate-blurred-fade-in animate-range-[entry_3%_contain_10%]"
 			>
 				<Image
-					src={servicioImg4}
+					src={srv4.heroImg}
 					alt="Placa de laptop Lenovo ThinkPad tras mantenimiento profesional RenovaBit"
 					widths={[600, 1000]}
 					sizes="(max-width: 768px) 100vw, 80vw"
@@ -343,27 +241,16 @@ const reparaciones = [
 			<div class="mx-auto mt-10 max-w-3xl">
 				<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
 					<div class="timeline-view animate-fade-in-up animate-range-[entry_2%_contain_8%]">
-						<ServiceInfoCard
-							variant="vertical"
-							tiempo="3 a 10 días"
-							ideal="Equipos con fallas complejas"
-							entrega="Diagnóstico documentado + garantía"
-							entregaLabel="Qué entregamos"
-						/>
+						<ServiceInfoCard service={srv4} variant="vertical" />
 					</div>
 
 					<div class="order-last lg:order-first">
 						<div class="timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%]">
-							<ServicePriceBlock
-								number="04"
-								price="S/ 150"
-								subtitle="Desde"
-								title="Reparaciones Especializadas"
-								description="Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel electrónico."
-								descriptionWidth="lg"
-							/>
+							<ServicePriceBlock service={srv4} number="04" descriptionWidth="lg" />
 						</div>
-						<div class="mt-6 timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]">
+						<div
+							class="mt-6 flex flex-wrap items-center gap-3 timeline-view animate-fade-in-up animate-range-[entry_5%_contain_12%]"
+						>
 							<Button
 								as="a"
 								href={CONTACT.whatsappUrl}
@@ -373,15 +260,26 @@ const reparaciones = [
 								size="lg"
 								class="gap-2"
 							>
-								<WhatsappIcon size={18} />Solicitar diagnóstico
+								<WhatsappIcon size={18} />{srv4.ctaLabel}
+							</Button>
+							<Button
+								as="a"
+								href="/servicios/reparaciones-especializadas/"
+								variant="outline"
+								size="lg"
+								class="gap-2"
+							>
+								<Icon name="hugeicons:arrow-right-01" class="size-4" />Ver servicio completo
 							</Button>
 						</div>
 					</div>
 				</div>
 
+				{srv4.features && (
 				<div class="timeline-view animate-fade-in-up animate-range-[entry_4%_contain_10%]">
-					<ServiceFeatureGrid features={reparaciones} />
+					<ServiceFeatureGrid features={srv4.features} />
 				</div>
+			)}
 
 				<p class="mt-8 text-[11px] text-muted-foreground/70">
 					Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional · Equipo

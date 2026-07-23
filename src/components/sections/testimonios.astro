@@ -1,10 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import testimonialAntes from "@/assets/images/testimonials/testimonial-1-1.avif";
-import testimonialDespues from "@/assets/images/testimonials/testimonial-1-2.avif";
-import testimonialSecundario from "@/assets/images/testimonials/testimonial-2.avif";
 import { Badge } from "@/components/ui/badge";
 import { Rating } from "@/components/ui/rating";
+import { testimonios } from "@/data/testimonios";
+
+const destacado = testimonios.find((t) => t.visual?.destacado);
+const secundarios = testimonios.filter((t) => !t.visual?.destacado);
 ---
 
 <section id="resenas" class="py-20 md:py-28 scroll-mt-24">
@@ -22,117 +23,117 @@ import { Rating } from "@/components/ui/rating";
 			</p>
 		</div>
 
-		<!-- Testimonio destacado -->
-		<div class="mt-20 mx-auto max-w-4xl">
-			<h3
-				class="text-center font-heading text-xl font-bold tracking-tight text-foreground sm:text-2xl"
-			>
-				Testimonio destacado
-			</h3>
+		{destacado && (
+				<div class="mt-20 mx-auto max-w-4xl">
+					<h3
+						class="text-center font-heading text-xl font-bold tracking-tight text-foreground sm:text-2xl"
+					>
+						Testimonio destacado
+					</h3>
 
-			<div
-				class="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-6 animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
-			>
-				<!-- Antes -->
-				<div class="flex flex-col items-center">
-					<span class="text-xs font-bold tracking-wider text-muted-foreground uppercase">
-						Antes
-					</span>
-					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
-						<Image
-							src={testimonialAntes}
-							alt="PC de escritorio de empresa cliente antes del mantenimiento: cables desorganizados y acumulación de polvo"
-							widths={[400, 800]}
-							sizes="(max-width: 640px) 100vw, 50vw"
-							loading="lazy"
-							decoding="async"
-							class="aspect-4/3 w-full object-cover"
-						/>
+					{destacado.visual?.imagenes?.antes && destacado.visual?.imagenes?.despues && (
+						<div
+							class="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-6 animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
+						>
+							<div class="flex flex-col items-center">
+								<span class="text-xs font-bold tracking-wider text-muted-foreground uppercase">
+									Antes
+								</span>
+								<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
+									<Image
+										src={destacado.visual.imagenes.antes}
+										alt={`Antes del servicio: ${destacado.visual.badges.join(", ")}`}
+										widths={[400, 800]}
+										sizes="(max-width: 640px) 100vw, 50vw"
+										loading="lazy"
+										decoding="async"
+										class="aspect-4/3 w-full object-cover"
+									/>
+								</div>
+							</div>
+
+							<div class="flex flex-col items-center">
+								<span class="text-xs font-bold tracking-wider text-muted-foreground uppercase">
+									Después
+								</span>
+								<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
+									<Image
+										src={destacado.visual.imagenes.despues}
+										alt={`Después del servicio: ${destacado.visual.badges.join(", ")}`}
+										widths={[400, 800]}
+										sizes="(max-width: 640px) 100vw, 50vw"
+										loading="lazy"
+										decoding="async"
+										class="aspect-4/3 w-full object-cover"
+									/>
+								</div>
+							</div>
+						</div>
+					)}
+
+					<div class="mt-8 flex flex-col items-center text-center">
+						<div class="flex w-full justify-around gap-2">
+							{destacado.visual?.badges.map((badge) => (
+								<Badge variant="secondary">{badge}</Badge>
+							))}
+						</div>
+
+						<div class="mt-5 flex items-center gap-2.5">
+							<Rating stars={destacado.rating} />
+						</div>
+
+						<p class="mt-4 font-heading text-base font-bold text-foreground">
+							{destacado.rol ? `${destacado.autor} — ${destacado.rol}` : destacado.autor}
+						</p>
+
+						<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
+							"{destacado.texto}"
+						</blockquote>
 					</div>
 				</div>
+			)}
 
-				<!-- Después -->
-				<div class="flex flex-col items-center">
-					<span class="text-xs font-bold tracking-wider text-muted-foreground uppercase">
-						Después
-					</span>
-					<div class="mt-3 max-w-sm overflow-hidden rounded-2xl sm:max-w-none">
-						<Image
-							src={testimonialDespues}
-							alt="PC empresarial tras mantenimiento RenovaBit: gestión de cables profesional, limpieza y lubricación"
-							widths={[400, 800]}
-							sizes="(max-width: 640px) 100vw, 50vw"
-							loading="lazy"
-							decoding="async"
-							class="aspect-4/3 w-full object-cover"
-						/>
+		{secundarios.map((t) => (
+				<div
+					class="mt-20 mx-auto max-w-4xl grid grid-cols-1 gap-8 md:grid-cols-[5fr_7fr] md:items-center md:gap-8 animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
+				>
+					<div>
+						{t.visual?.imagenes?.principal && (
+							<>
+								<div class="overflow-hidden rounded-2xl max-w-sm mx-auto md:max-w-none">
+									<Image
+											src={t.visual.imagenes.principal}
+										alt={`${t.autor}: ${t.visual.badges.join(", ")}`}
+										widths={[400, 800]}
+										sizes="(max-width: 640px) 100vw, 50vw"
+										loading="lazy"
+										decoding="async"
+										class="aspect-4/3 w-full object-cover"
+									/>
+								</div>
+								<div class="mt-3 flex justify-around gap-2">
+									{t.visual.badges.map((badge) => (
+										<Badge variant="secondary">{badge}</Badge>
+									))}
+								</div>
+							</>
+						)}
+					</div>
+
+					<div class="text-center md:text-left">
+						<div class="flex items-center justify-center gap-2.5 md:justify-start">
+							<Rating stars={t.rating} />
+						</div>
+
+						<p class="mt-4 font-heading text-base font-bold text-foreground">
+							{t.rol ? `${t.autor} — ${t.rol}` : t.autor}
+						</p>
+
+						<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
+							"{t.texto}"
+						</blockquote>
 					</div>
 				</div>
-			</div>
-
-			<!-- Info del testimonio -->
-			<div class="mt-8 flex flex-col items-center text-center">
-				<div class="flex w-full justify-around gap-2">
-					<Badge variant="secondary">Gestión de cables</Badge>
-					<Badge variant="secondary">Limpieza profunda</Badge>
-					<Badge variant="secondary">Mantenimiento</Badge>
-				</div>
-
-				<div class="mt-5 flex items-center gap-2.5">
-					<Rating stars={5} />
-				</div>
-
-				<p class="mt-4 font-heading text-base font-bold text-foreground">
-					Carlos M. — Encargado de seguridad, empresa de distribución en Arequipa
-				</p>
-
-				<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
-					"Confiamos en RenovaBit para el mantenimiento de nuestras estaciones de trabajo. El cambio
-					fue radical: pasamos de tener equipos con polvo acumulado y cables desordenados a PCs
-					impecables, bien ventiladas y con todo en su lugar. El informe detallado que entregaron
-					nos sirvió para la auditoría interna. Sin duda los volveremos a llamar."
-				</blockquote>
-			</div>
-		</div>
-
-		<!-- Segunda reseña: imagen + texto -->
-		<div
-			class="mt-20 mx-auto max-w-4xl grid grid-cols-1 gap-8 md:grid-cols-[5fr_7fr] md:items-center md:gap-8 animate-fade-in-up view-animate-[--entrance] animate-duration-slower"
-		>
-			<!-- Imagen + badges -->
-			<div>
-				<div class="overflow-hidden rounded-2xl max-w-sm mx-auto md:max-w-none">
-					<Image
-						src={testimonialSecundario}
-						alt="Equipo de oficina ensamblado a medida por RenovaBit: componentes, armado y pruebas de funcionamiento"
-						widths={[400, 800]}
-						sizes="(max-width: 640px) 100vw, 50vw"
-						loading="lazy"
-						decoding="async"
-						class="aspect-4/3 w-full object-cover"
-					/>
-				</div>
-				<div class="mt-3 flex justify-around gap-2">
-					<Badge variant="secondary">Ensamblaje a medida</Badge>
-					<Badge variant="secondary">Componentes nuevos</Badge>
-				</div>
-			</div>
-
-			<!-- Review -->
-			<div class="text-center md:text-left">
-				<div class="flex items-center justify-center gap-2.5 md:justify-start">
-					<Rating stars={5} />
-				</div>
-
-				<p class="mt-4 font-heading text-base font-bold text-foreground">Sr. Antonio</p>
-
-				<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
-					"Necesitaba una PC para trabajo de oficina y AutoCAD, pero no sabía por dónde empezar.
-					RenovaBit me asesoró en la selección de componentes, armó todo, hizo las pruebas y me
-					entregó el equipo listo para usar. El presupuesto fue claro desde el inicio y el resultado
-					superó lo que esperaba. Ahora trabajo sin problemas."
-				</blockquote>
-			</div>
-		</div>
+			))}
 	</div>
 </section>
