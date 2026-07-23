@@ -14,6 +14,7 @@ import servicioImg4 from "@/assets/images/services/service-4.avif";
 export interface ServiceData {
 	slug: string;
 	title: string;
+	seoTitle: string;
 	description: string;
 	price: string;
 	subtitle: string;
@@ -44,6 +45,7 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "servicio-tecnico",
 		title: "Servicio Técnico",
+		seoTitle: "Mantenimiento y Reparación de Laptops",
 		description:
 			"Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación del proceso y atención personalizada en Arequipa.",
 		price: "S/ 90",
@@ -88,6 +90,7 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "desarrollo-web",
 		title: "Desarrollo Web",
+		seoTitle: "Desarrollo de Sitios Web y Landing Pages",
 		description:
 			"Sitios web rápidos, profesionales y preparados para convertir visitantes en clientes. Desde landing pages hasta webs corporativas.",
 		price: "S/ 500",
@@ -156,6 +159,7 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "tienda",
 		title: "Tienda de Componentes y Equipos",
+		seoTitle: "Tienda de Componentes, PCs y Laptops",
 		description:
 			"Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas. Precio de distribuidor.",
 		price: "S/ 50",
@@ -192,6 +196,7 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "reparaciones-especializadas",
 		title: "Reparaciones Especializadas",
+		seoTitle: "Reparaciones Especializadas de Laptops",
 		description:
 			"Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel electrónico. Microelectrónica, BIOS, motherboard.",
 		price: "S/ 150",

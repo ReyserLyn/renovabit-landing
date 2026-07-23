@@ -85,6 +85,7 @@ export const SOCIAL = {
 
 export const NAV_ITEMS = [
 	{ href: "/servicios/", label: "Servicios" },
+	{ href: "/nosotros/", label: "Nosotros" },
 	{ href: "/#empresas", label: "Empresas" },
 	{ href: "/#resenas", label: "Reseñas" },
 	{ href: "/#faq", label: "FAQ" },

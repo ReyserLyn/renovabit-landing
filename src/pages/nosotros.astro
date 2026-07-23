@@ -1,0 +1,244 @@
+---
+import { Icon } from "astro-icon/components";
+import logoStacked from "@/assets/branding/logo-monogram-light.svg";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT, SITE } from "@/constants";
+import { servicios } from "@/data/servicios";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const aboutJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "AboutPage",
+	"@id": `${SITE.url}/nosotros/#page`,
+	name: `Acerca de ${SITE.name}`,
+	description:
+		"RenovaBit es una empresa tecnológica en Arequipa que resuelve problemas de laptops, PCs y desarrollo web con transparencia, documentación y profesionalismo.",
+	url: `${SITE.url}/nosotros/`,
+	about: {
+		"@id": `${SITE.url}/#organization`,
+	},
+};
+---
+
+<BaseLayout
+	title="Nosotros — Tecnología para personas y negocios"
+	description="RenovaBit es una empresa tecnológica en Arequipa que resuelve problemas de laptops, PCs y desarrollo web con transparencia, documentación y profesionalismo. Conoce nuestra misión y valores."
+>
+	<slot name="head">
+		<link rel="preload" as="image" href={logoStacked.src} fetchpriority="high">
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(aboutJsonLd)}></script>
+	</slot>
+
+	<!-- Hero -->
+	<section class="pt-32 pb-12 md:pt-40 md:pb-16">
+		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+			<div class="mx-auto mb-8 w-28 sm:w-32">
+				<img
+					src={logoStacked.src}
+					alt="Logo de RenovaBit"
+					class="mx-auto w-28 sm:w-32"
+					fetchpriority="high"
+					loading="eager"
+				>
+			</div>
+			<h1
+				class="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+			>
+				{SITE.name}
+			</h1>
+			<p class="mt-4 font-mono text-xs font-medium tracking-widest text-primary uppercase">
+				Tecnología para personas y negocios
+			</p>
+			<p class="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
+				Somos una empresa que resuelve problemas tecnológicos con transparencia, documentación y
+				calidad. Desde una laptop que no enciende hasta un sitio web desde cero. Si tiene
+				tecnología, podemos ayudarte.
+			</p>
+		</div>
+	</section>
+
+	<!-- Misión y Visión -->
+	<section class="border-t py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<div class="space-y-12">
+				<div>
+					<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+						Misión
+					</h2>
+					<p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+						Ayudar a personas y empresas a resolver sus necesidades tecnológicas mediante soluciones
+						modernas, transparentes y profesionales, ofreciendo un servicio documentado y de alta
+						calidad.
+					</p>
+				</div>
+				<div class="border-t border-border/20 pt-12">
+					<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+						Visión
+					</h2>
+					<p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+						Convertir a RenovaBit en una empresa tecnológica reconocida en el Perú por su
+						profesionalismo, innovación y confianza, integrando desarrollo de software,
+						infraestructura tecnológica y soporte especializado.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Valores -->
+	<section class="py-16 bg-muted/15 md:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				En lo que creemos
+			</h2>
+			<p class="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+				Cinco valores que guían cada decisión, sin importar si es un mantenimiento de S/90 o un
+				proyecto de varios miles de soles.
+			</p>
+			<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<div>
+					<Icon name="hugeicons:view" class="size-5 text-primary/70" />
+					<h3 class="mt-3 font-heading text-base font-bold text-foreground">Transparencia</h3>
+					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+						Cada trabajo se documenta, cada decisión se explica. Sin letra chica ni costos ocultos.
+					</p>
+				</div>
+				<div>
+					<Icon name="hugeicons:certificate-01" class="size-5 text-primary/70" />
+					<h3 class="mt-3 font-heading text-base font-bold text-foreground">Profesionalismo</h3>
+					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+						Procesos definidos, herramientas adecuadas y resultados que hablan por sí solos.
+					</p>
+				</div>
+				<div>
+					<Icon name="hugeicons:book-01" class="size-5 text-primary/70" />
+					<h3 class="mt-3 font-heading text-base font-bold text-foreground">Aprendizaje</h3>
+					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+						La tecnología avanza y nosotros con ella. Cada reparación y cada proyecto nos enseña
+						algo nuevo.
+					</p>
+				</div>
+				<div>
+					<Icon name="hugeicons:star" class="size-5 text-primary/70" />
+					<h3 class="mt-3 font-heading text-base font-bold text-foreground">Calidad</h3>
+					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+						No entregamos algo que no haríamos para nosotros. Todo equipo sale probado y verificado.
+					</p>
+				</div>
+				<div>
+					<Icon name="hugeicons:bubble-chat" class="size-5 text-primary/70" />
+					<h3 class="mt-3 font-heading text-base font-bold text-foreground">Cercanía</h3>
+					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+						Atención personalizada, sin bots ni formularios anónimos. Hablas con quien hace el
+						trabajo.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Qué hacemos -->
+	<section class="py-16 md:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				Qué hacemos
+			</h2>
+			<p class="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+				Cuatro líneas de negocio con un solo estándar de calidad.
+			</p>
+
+			<div class="mt-10 space-y-6">
+				<div class="border-t border-border/20 pt-6">
+					<div class="flex items-start gap-4">
+						<Icon
+							name="hugeicons:computer-settings"
+							class="mt-0.5 size-5 shrink-0 text-primary/70"
+						/>
+						<div>
+							<h3 class="font-heading text-base font-bold text-foreground">{servicios[0].title}</h3>
+							<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+								{servicios[0].description}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="border-t border-border/20 pt-6">
+					<div class="flex items-start gap-4">
+						<Icon name="hugeicons:web-design-01" class="mt-0.5 size-5 shrink-0 text-primary/70" />
+						<div>
+							<h3 class="font-heading text-base font-bold text-foreground">{servicios[1].title}</h3>
+							<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+								{servicios[1].description}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="border-t border-border/20 pt-6">
+					<div class="flex items-start gap-4">
+						<Icon
+							name="hugeicons:shopping-cart-01"
+							class="mt-0.5 size-5 shrink-0 text-primary/70"
+						/>
+						<div>
+							<h3 class="font-heading text-base font-bold text-foreground">{servicios[2].title}</h3>
+							<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+								{servicios[2].description}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="border-t border-border/20 pt-6">
+					<div class="flex items-start gap-4">
+						<Icon name="hugeicons:cpu-settings" class="mt-0.5 size-5 shrink-0 text-primary/70" />
+						<div>
+							<h3 class="font-heading text-base font-bold text-foreground">{servicios[3].title}</h3>
+							<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+								{servicios[3].description}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-8">
+				<Button as="a" href="/servicios/" variant="outline" size="lg" class="gap-2">
+					<Icon name="hugeicons:arrow-right-01" class="size-4" />Ver todos los servicios
+				</Button>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="py-20 md:py-28">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div
+				class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16"
+			>
+				<div class="max-w-xl">
+					<h2
+						class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
+					>
+						¿Hablamos de tu proyecto?
+					</h2>
+					<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
+						Escríbenos por WhatsApp. Te respondemos nosotros, sin bots ni formularios.
+					</p>
+				</div>
+
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="default"
+					size="lg"
+					class="shrink-0 gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+				>
+					<WhatsappIcon size={18} />
+					Escríbenos
+				</Button>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

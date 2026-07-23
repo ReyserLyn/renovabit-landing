@@ -28,11 +28,10 @@ const isVariantA = serviceIndex % 2 === 0;
 
 const faqs = getFaqsForService(slug);
 
-const fullTitle = `${service.title} en Arequipa | RenovaBit`;
-const rawDesc = `${service.description} Desde ${service.price}. ${service.tiempo}. Atención en Arequipa con boleta y factura.`;
+const fullTitle = `${service.seoTitle} en Arequipa | RenovaBit`;
+const rawDesc = `${service.description} ${service.subtitle} ${service.price}. ${service.tiempo}. ${service.ideal}. Atención profesional en Arequipa con boleta y factura.`;
 const metaDescription =
-	rawDesc.length > 160 ? rawDesc.slice(0, 157).replace(/\s\S*$/, "") + "…" : rawDesc;
-
+	rawDesc.length > 160 ? `${rawDesc.slice(0, 157).replace(/\s\S*$/, "")}…` : rawDesc;
 const ogImageMap: Record<string, string> = {
 	"servicio-tecnico": "/og-servicio-tecnico.jpeg",
 	"desarrollo-web": "/og-desarrollo-web.jpeg",
