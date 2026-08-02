@@ -1,0 +1,275 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import servicioImg1 from "@/assets/images/services/service-1.avif";
+import FaqSection from "@/components/sections/FaqSection.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const { prices, faqs } = servicioTecnicoCommercial;
+const standardIncludes = [
+	"Limpieza interna y externa del equipo",
+	"Cambio de pasta térmica",
+	"Pruebas básicas de funcionamiento y temperatura",
+	"Backup básico cuando el volumen y estado del equipo lo permiten",
+];
+const complexIncludes = [
+	...standardIncludes.slice(0, 3),
+	"Pads térmicos estándar incluidos",
+	"Backup básico cuando el volumen y estado del equipo lo permiten",
+];
+---
+
+<BaseLayout
+	title="Mantenimiento de PC a Domicilio en Arequipa"
+	description="Mantenimiento de PC y laptop a domicilio en Arequipa desde S/120. Tarifa fija, coordinación previa y precios claros según la complejidad del equipo."
+	ogImage="/og-servicio-tecnico.jpeg"
+>
+	<section class="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+		<div
+			class="mx-auto grid max-w-7xl items-end gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-8"
+		>
+			<div class="max-w-2xl">
+				<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+					Mantenimiento a domicilio · Arequipa
+				</p>
+				<h1
+					class="mt-4 max-w-xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl"
+				>
+					Mantenimiento de PC a domicilio en Arequipa
+				</h1>
+				<p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+					Limpieza, pasta térmica y pruebas básicas para que tu laptop o PC vuelva a trabajar en
+					mejores condiciones. Coordinamos la visita y confirmamos la tarifa antes de ir.
+				</p>
+				<div class="mt-8 flex flex-wrap items-center gap-3">
+					<Button
+						as="a"
+						href={CONTACT.whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="whatsapp"
+						size="lg"
+						class="gap-2"
+						data-umami-event="whatsapp_click"
+						data-umami-event-position="maintenance-home-hero"
+					>
+						<WhatsappIcon size={18} />Coordinar por WhatsApp
+					</Button>
+					<a
+						href="#precios"
+						class="inline-flex h-12 items-center px-4 text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground"
+					>
+						Ver tarifas
+					</a>
+				</div>
+				<p class="mt-5 max-w-md text-xs leading-relaxed text-muted-foreground">
+					Domicilio suma S/30 a la tarifa de taller y requiere coordinación previa.
+				</p>
+			</div>
+
+			<div class="relative lg:pb-6">
+				<div
+					class="absolute -top-7 right-4 hidden rounded-full border border-primary/20 bg-primary px-5 py-3 font-mono text-xs font-medium text-primary-foreground shadow-sm sm:block"
+				>
+					Desde S/120 a domicilio
+				</div>
+				<div class="overflow-hidden rounded-4xl border border-border/20 bg-muted/20">
+					<Image
+						src={servicioImg1}
+						alt="Mantenimiento de laptop y PC realizado por RenovaBit en Arequipa"
+						widths={[600, 900]}
+						sizes="(max-width: 1024px) 100vw, 45vw"
+						fetchpriority="high"
+						loading="eager"
+						class="aspect-5/4 w-full object-cover"
+					/>
+				</div>
+				<div
+					class="relative -mt-10 ml-6 max-w-xs rounded-2xl border border-border/20 bg-background p-5 shadow-[0_16px_40px_-24px_hsl(var(--foreground)/0.35)] sm:ml-10"
+				>
+					<p class="font-mono text-[10px] font-medium tracking-widest text-primary uppercase">
+						La visita
+					</p>
+					<p class="mt-2 font-heading text-lg font-bold text-foreground">
+						Tarifa fija según tu equipo
+					</p>
+					<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+						Sin sumar un cargo distinto por la visita.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="precios" class="scroll-mt-24 border-y bg-muted/15 py-16 md:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+				<div class="max-w-2xl">
+					<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+						Precios claros
+					</p>
+					<h2
+						class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+					>
+						Elige la modalidad que necesitas
+					</h2>
+				</div>
+				<p class="max-w-sm text-sm leading-relaxed text-muted-foreground">
+					El domicilio suma S/30 a cualquiera de las tarifas de taller.
+				</p>
+			</div>
+
+			<div class="mt-10 overflow-hidden rounded-2xl border border-border/30 bg-background">
+				<div
+					class="grid grid-cols-[1.35fr_0.7fr_0.7fr] bg-foreground px-4 py-4 text-[11px] font-semibold tracking-wider text-background uppercase sm:px-6"
+				>
+					<span>Tipo de equipo</span><span>Taller</span><span>Domicilio</span>
+				</div>
+				{prices.map((row) => (
+					<div class="grid grid-cols-[1.35fr_0.7fr_0.7fr] gap-3 border-t border-border/20 px-4 py-5 sm:px-6">
+						<div>
+							<p class="font-heading text-sm font-bold text-foreground sm:text-base">{row.device}</p>
+							<p class="mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">{row.description}</p>
+						</div>
+						<p class="font-mono text-sm font-bold text-foreground sm:text-base">{row.workshop}</p>
+						<p class="font-mono text-sm font-bold text-primary sm:text-base">{row.home}</p>
+					</div>
+				))}
+			</div>
+			<p class="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
+				<Icon
+					name="hugeicons:information-circle"
+					class="mt-0.5 size-4 shrink-0 text-primary/70"
+				/>La atención a domicilio se agenda previamente. Reparaciones, repuestos y licencias no
+				están incluidos.
+			</p>
+		</div>
+	</section>
+
+	<section class="border-b py-16 md:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="max-w-2xl">
+				<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+					Qué incluye
+				</p>
+				<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+					El alcance depende de la complejidad
+				</h2>
+				<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+					La diferencia está en el tipo de equipo y el trabajo térmico que requiere. No agregamos
+					reparaciones al mantenimiento.
+				</p>
+			</div>
+			<div class="mt-10 grid gap-5 md:grid-cols-2">
+				{[
+					{ label: "Mantenimiento estándar", note: "Laptop o PC simple", items: standardIncludes },
+					{ label: "Mantenimiento complejo", note: "Laptop gamer o PC compleja", items: complexIncludes },
+				].map((tier, index) => (
+					<article class:list={["rounded-2xl border p-6 sm:p-8", index === 1 ? "border-primary/30 bg-primary/4" : "border-border/30 bg-muted/15"]}>
+						<div class="flex items-start justify-between gap-4">
+							<div><h3 class="font-heading text-xl font-bold text-foreground">{tier.label}</h3><p class="mt-1 text-sm text-muted-foreground">{tier.note}</p></div>
+							<span class="rounded-full bg-background px-3 py-1 font-mono text-xs font-medium text-primary">{index === 0 ? prices[0].workshop : prices[1].workshop}</span>
+						</div>
+						<ul class="mt-7 space-y-3">
+							{tier.items.map((item) => <li class="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"><Icon name="hugeicons:checkmark-circle-03" class="mt-0.5 size-4 shrink-0 text-primary/70" />{item}</li>)}
+						</ul>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-muted/15 py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+				Cómo funciona
+			</p>
+			<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				La visita se coordina antes de salir
+			</h2>
+			<ol class="mt-10 space-y-7">
+				{[
+					["Nos cuentas qué equipo tienes", "Indícanos si es laptop o PC, si es un equipo simple o gamer, y qué necesitas revisar."],
+					["Confirmamos modalidad y tarifa", "Te orientamos sobre taller o domicilio. La visita a domicilio suma S/30 y se agenda previamente."],
+					["Realizamos el mantenimiento", "Limpiamos, cambiamos la pasta térmica cuando corresponde y hacemos pruebas básicas."],
+					["Te explicamos cualquier hallazgo", "Si encontramos una reparación, la derivamos a taller y la cotizamos después de evaluar el equipo."],
+				].map(([title, description], index) => (
+					<li class="flex gap-4"><span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary font-mono text-xs font-bold text-primary-foreground">{index + 1}</span><div><h3 class="font-heading font-bold text-foreground">{title}</h3><p class="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p></div></li>
+				))}
+			</ol>
+		</div>
+	</section>
+
+	<section class="border-t py-16 md:py-20">
+		<div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+			<div>
+				<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+					Importante
+				</p>
+				<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+					Si aparece una reparación
+				</h2>
+			</div>
+			<div class="max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground">
+				<p>
+					El mantenimiento no incluye reparaciones. Si durante la revisión encontramos una falla, no
+					la intervenimos como parte de la visita.
+				</p>
+				<p>
+					La reparación se deriva a taller y se cotiza después de evaluar el equipo. Repuestos y
+					licencias se cotizan aparte. El diagnóstico avanzado cuesta S/60 y se acredita si aceptas
+					la reparación.
+				</p>
+				<a
+					href="/reparacion-laptops-arequipa/"
+					class="inline-flex items-center gap-1 font-medium text-primary hover:underline"
+					>Ver reparación de laptops en Arequipa
+					<Icon name="hugeicons:arrow-up-right-01" class="size-4" /></a
+				>
+			</div>
+		</div>
+	</section>
+
+	<FaqSection
+		items={faqs}
+		heading="Preguntas sobre mantenimiento a domicilio"
+		subtitle="Respuestas directas sobre tarifas, alcance y coordinación previa."
+		variant="compact"
+	/>
+
+	<section class="border-t py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+			<h2 class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				Coordina el mantenimiento de tu equipo
+			</h2>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+				Escríbenos por WhatsApp con el tipo de equipo y si prefieres taller o domicilio. Confirmamos
+				la tarifa antes de coordinar.
+			</p>
+			<div class="mt-8">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="maintenance-home-final"
+					><WhatsappIcon size={18} />Coordinar por WhatsApp</Button
+				>
+			</div>
+			<p class="mt-6 text-sm text-muted-foreground">
+				También puedes conocer el
+				<a href="/servicios/servicio-tecnico/" class="font-medium text-primary hover:underline"
+					>servicio técnico general</a
+				>.
+			</p>
+		</div>
+	</section>
+</BaseLayout>
