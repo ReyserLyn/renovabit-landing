@@ -9,6 +9,7 @@ import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/constants";
 import { getFaqsForService } from "@/data/faq";
+import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
 import { getServiceBySlug, servicios } from "@/data/servicios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
@@ -26,10 +27,17 @@ if (!service) {
 const serviceIndex = servicios.findIndex((s) => s.slug === slug);
 const isVariantA = serviceIndex % 2 === 0;
 
-const faqs = getFaqsForService(slug);
+const faqs = slug === "servicio-tecnico" ? servicioTecnicoCommercial.faqs : getFaqsForService(slug);
+const ctaDescription =
+	slug === "servicio-tecnico"
+		? "Cuéntanos qué equipo tienes y si prefieres taller o domicilio. Confirmamos la tarifa y las condiciones antes de coordinar."
+		: service.ctaDescription;
 
 const fullTitle = `${service.seoTitle} en Arequipa | RenovaBit`;
-const rawDesc = `${service.description} ${service.subtitle} ${service.price}. ${service.tiempo}. ${service.ideal}. Atención profesional en Arequipa con boleta y factura.`;
+const rawDesc =
+	slug === "servicio-tecnico"
+		? "Mantenimiento de laptops y PCs en Arequipa desde S/90 en taller. Atención a domicilio, tarifas claras según la complejidad y diagnóstico avanzado por S/60 acreditable si aceptas la reparación."
+		: `${service.description} ${service.subtitle} ${service.price}. ${service.tiempo}. ${service.ideal}. Atención profesional en Arequipa con boleta y factura.`;
 const metaDescription =
 	rawDesc.length > 160 ? `${rawDesc.slice(0, 157).replace(/\s\S*$/, "")}…` : rawDesc;
 const ogImageMap: Record<string, string> = {
@@ -47,6 +55,9 @@ const ogImage = ogImageMap[slug];
 		variant={isVariantA ? "A" : "B"}
 		headingLevel="h1"
 		number={`0${serviceIndex + 1}`}
+		priceOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.price : undefined}
+		subtitleOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.subtitle : undefined}
+		descriptionOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.description : undefined}
 	/>
 
 	<!-- ===== Síntomas ===== -->
@@ -111,9 +122,8 @@ const ogImage = ogImageMap[slug];
 	{slug === "servicio-tecnico" && (
 		<ServicioTecnicoContent
 			heroImg={service.heroImg}
-			includes={service.includes}
 			symptoms={service.symptoms ?? []}
-			ctaLabel={service.ctaLabel}
+				ctaLabel={service.ctaLabel}
 		/>
 	)}
 	{slug === "desarrollo-web" && (
@@ -155,7 +165,7 @@ const ogImage = ogImageMap[slug];
 						{service.ctaHeading}
 					</h2>
 					<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
-						{service.ctaDescription}
+						{ctaDescription}
 					</p>
 				</div>
 

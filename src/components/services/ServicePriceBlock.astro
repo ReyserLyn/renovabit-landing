@@ -7,6 +7,9 @@ interface Props {
 	descriptionWidth?: "md" | "lg";
 	class?: string;
 	headingLevel?: "h1" | "h2";
+	priceOverride?: string;
+	subtitleOverride?: string;
+	descriptionOverride?: string;
 }
 
 const {
@@ -15,6 +18,9 @@ const {
 	descriptionWidth = "md",
 	class: className,
 	headingLevel: HeadingTag = "h2",
+	priceOverride,
+	subtitleOverride,
+	descriptionOverride,
 } = Astro.props;
 
 const maxWidthClass = descriptionWidth === "lg" ? "max-w-lg" : "max-w-md";
@@ -28,12 +34,12 @@ const maxWidthClass = descriptionWidth === "lg" ? "max-w-lg" : "max-w-md";
 	</span>
 	<div class={`relative${className ? ` ${className}` : ""}`}>
 		<p class="font-heading text-6xl font-black leading-none tracking-tighter text-foreground">
-			{service.price}
+			{priceOverride ?? service.price}
 		</p>
 		<p
 			class="mt-1 font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase"
 		>
-			{service.subtitle}
+			{subtitleOverride ?? service.subtitle}
 		</p>
 		<div class="mt-5 h-0.5 w-10 bg-primary/60" />
 		<HeadingTag
@@ -42,7 +48,7 @@ const maxWidthClass = descriptionWidth === "lg" ? "max-w-lg" : "max-w-md";
 			{service.title}
 		</HeadingTag>
 		<p class={`mt-3 text-base leading-relaxed text-muted-foreground ${maxWidthClass}`}>
-			{service.description}
+			{descriptionOverride ?? service.description}
 		</p>
 	</div>
 </div>

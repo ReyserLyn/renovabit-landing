@@ -14,9 +14,20 @@ interface Props {
 	variant: "A" | "B";
 	headingLevel?: "h1" | "h2";
 	number: string;
+	priceOverride?: string;
+	subtitleOverride?: string;
+	descriptionOverride?: string;
 }
 
-const { service, variant, headingLevel = "h1", number } = Astro.props;
+const {
+	service,
+	variant,
+	headingLevel = "h1",
+	number,
+	priceOverride,
+	subtitleOverride,
+	descriptionOverride,
+} = Astro.props;
 ---
 
 {variant === "A" ? (
@@ -39,7 +50,14 @@ const { service, variant, headingLevel = "h1", number } = Astro.props;
 					</div>
 
 					<div class="lg:col-span-5">
-						<ServicePriceBlock service={service} number={number} headingLevel={headingLevel} />
+						<ServicePriceBlock
+							service={service}
+							number={number}
+							headingLevel={headingLevel}
+							priceOverride={priceOverride}
+							subtitleOverride={subtitleOverride}
+							descriptionOverride={descriptionOverride}
+						/>
 						{service.includes.length > 0 && (
 							<ServiceBulletList items={service.includes.slice(0, 5)} />
 						)}
@@ -71,7 +89,15 @@ const { service, variant, headingLevel = "h1", number } = Astro.props;
 						<ServiceInfoCard service={service} variant="vertical" />
 
 						<div class="order-last lg:order-first">
-							<ServicePriceBlock service={service} number={number} headingLevel={headingLevel} descriptionWidth="lg" />
+							<ServicePriceBlock
+								service={service}
+								number={number}
+								headingLevel={headingLevel}
+								descriptionWidth="lg"
+								priceOverride={priceOverride}
+								subtitleOverride={subtitleOverride}
+								descriptionOverride={descriptionOverride}
+							/>
 							<div class="mt-6">
 								<Button
 									as="a"

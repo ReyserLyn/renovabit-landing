@@ -2,12 +2,17 @@
 import logoSchema from "@/assets/branding/logo-monogram-light.svg";
 import { CONTACT, FOOTER, LOCATION, SITE, SOCIAL } from "@/constants";
 import { getFaqsForService, getFeaturedFaqs } from "@/data/faq";
+import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
 import { getServiceBySlug } from "@/data/servicios";
 import { testimonios } from "@/data/testimonios";
 
 const pathname = Astro.url.pathname;
 const isHome = pathname === "/";
 const isLaptopRepairLanding = pathname === "/reparacion-laptops-arequipa/";
+const isServicioTecnico = pathname === "/servicios/servicio-tecnico/";
+const schemaSiteDescription = isServicioTecnico
+	? servicioTecnicoCommercial.header.description
+	: SITE.description;
 
 // Breadcrumb dinámico según la página
 const breadcrumbItems: { name: string; item: string }[] = [{ name: "Inicio", item: SITE.url }];
@@ -42,7 +47,9 @@ const faqItems = isHome
 	? getFeaturedFaqs()
 	: isLaptopRepairLanding
 		? getFaqsForService("reparacion-laptops-arequipa")
-		: [];
+		: isServicioTecnico
+			? servicioTecnicoCommercial.faqs
+			: [];
 const faqEntity =
 	faqItems.length > 0
 		? {
@@ -66,7 +73,7 @@ const graphEntities: Record<string, unknown>[] = [
 		"@id": `${SITE.url}/#organization`,
 		name: SITE.name,
 		url: SITE.url,
-		description: SITE.description,
+		description: schemaSiteDescription,
 		logo: `${SITE.url}${logoSchema.src}`,
 		founder: {
 			"@type": "Person",
@@ -97,7 +104,7 @@ const graphEntities: Record<string, unknown>[] = [
 		"@type": "LocalBusiness",
 		"@id": `${SITE.url}/#business`,
 		name: SITE.name,
-		description: SITE.description,
+		description: schemaSiteDescription,
 		url: SITE.url,
 		telephone: CONTACT.phone,
 		email: CONTACT.email,
@@ -208,7 +215,7 @@ const graphEntities: Record<string, unknown>[] = [
 		"@id": `${SITE.url}/#website`,
 		url: SITE.url,
 		name: SITE.name,
-		description: SITE.description,
+		description: schemaSiteDescription,
 		inLanguage: "es-PE",
 		potentialAction: {
 			"@type": "SearchAction",

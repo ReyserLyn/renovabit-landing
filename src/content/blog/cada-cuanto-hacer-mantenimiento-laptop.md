@@ -66,13 +66,14 @@ En RenovaBit, cada mantenimiento sigue un proceso documentado. No es solo "abrir
 
 ## ¿Cuánto cuesta?
 
-| Nivel | Precio | Ideal para |
-|---|---|---|
-| Básico | S/ 90 | Uso diario, oficina, universidad |
-| Gaming | Desde S/ 120 | Equipos de alto rendimiento, gaming, diseño |
-| Empresarial | Presupuesto | Flotas de equipos, múltiples laptops |
+| Equipo | En taller | A domicilio |
+|---|---:|---:|
+| Laptop o PC simple | S/ 90 | S/ 120 |
+| Laptop gamer o PC compleja | S/ 120 | S/ 150 |
 
-Todos los niveles incluyen diagnóstico sin costo. Si tu equipo necesita algo adicional — un ventilador que ya no gira bien, batería hinchada, un componente dañado — te avisamos con evidencia antes de hacer nada. Sin sorpresas en la factura.
+La atención a domicilio suma S/ 30 y requiere coordinación previa. Los pads térmicos estándar están incluidos en el mantenimiento complejo; repuestos y licencias se cotizan por separado. El backup básico se realiza cuando el volumen y el estado del equipo lo permiten.
+
+Si tu equipo necesita una reparación, la derivamos a taller y te entregamos una cotización después de evaluarlo. El diagnóstico avanzado cuesta S/ 60 y se acredita si aceptas la reparación.
 
 ---
 
