@@ -25,7 +25,7 @@ No todos los equipos necesitan mantenimiento con la misma frecuencia. Depende de
 
 ## Señales de que ya necesita mantenimiento
 
-No hace falta esperar a que se cumpla el plazo. Si tu laptop muestra alguno de estos síntomas, necesita mantenimiento cuanto antes:
+No hace falta esperar a que se cumpla el plazo. Si tu laptop muestra alguno de estos síntomas, conviene revisarla. Puedes ampliar la lista en nuestro artículo sobre [señales de que una PC necesita mantenimiento](/blog/senales-pc-necesita-mantenimiento/):
 
 - Los ventiladores hacen más ruido de lo normal
 - Se calienta incluso con tareas simples
