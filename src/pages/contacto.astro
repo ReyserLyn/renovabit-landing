@@ -6,6 +6,16 @@ import { Button } from "@/components/ui/button";
 import { CONTACT, FOOTER, LOCATION, SITE } from "@/constants";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
+const contactJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "ContactPage",
+	"@id": `${SITE.url}/contacto/#page`,
+	name: "Contacto y Ubicación de RenovaBit en Arequipa",
+	description:
+		"Encuentra RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa. Teléfono, WhatsApp, horarios de atención.",
+	url: `${SITE.url}/contacto/`,
+};
+
 const details = [
 	{
 		icon: "hugeicons:maps",
@@ -38,8 +48,11 @@ const details = [
 
 <BaseLayout
 	title="Contacto y Ubicación en Arequipa"
-	description="Encuentra a RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa. Teléfono, WhatsApp, horarios y ubicación. Atención de lunes a viernes de 8:00 AM a 8:00 PM."
+	description="Encuentra RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa. Teléfono, WhatsApp, horarios. Atención de lunes a viernes, 8 AM a 8 PM."
 >
+	<slot name="head">
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(contactJsonLd)}></script>
+	</slot>
 	<!-- Hero -->
 	<section class="pt-32 pb-12 md:pt-40 md:pb-16">
 		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">

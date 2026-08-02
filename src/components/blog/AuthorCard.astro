@@ -1,0 +1,40 @@
+---
+import { Icon } from "astro-icon/components";
+import { SOCIAL } from "@/constants";
+
+const socialLinks = [
+	{ href: SOCIAL.instagram, icon: "hugeicons:instagram", label: "Instagram" },
+	{ href: SOCIAL.facebook, icon: "hugeicons:facebook-01", label: "Facebook" },
+	{ href: SOCIAL.github, icon: "hugeicons:github", label: "GitHub" },
+];
+---
+
+<div class="mt-12 border-t border-border/20 pt-8">
+	<div class="flex items-start gap-4">
+		<div
+			class="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-lg font-bold text-primary"
+		>
+			RZ
+		</div>
+		<div>
+			<h3 class="font-heading text-base font-bold text-foreground">Reyser Zapata</h3>
+			<p class="mt-1 text-sm text-muted-foreground">
+				Fundador de RenovaBit. Técnico especializado en reparación de laptops, desarrollo web y
+				microelectrónica. Escribo sobre tecnología sin vueltas ni tecnicismos innecesarios.
+			</p>
+			<div class="mt-3 flex items-center gap-3">
+				{socialLinks.map((link) => (
+					<a
+						href={link.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={link.label}
+						class="text-muted-foreground transition-colors hover:text-primary"
+					>
+						<Icon name={link.icon} class="size-4" />
+					</a>
+				))}
+			</div>
+		</div>
+	</div>
+</div>

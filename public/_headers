@@ -14,5 +14,23 @@
 /servicios/
 	Cache-Control: public, max-age=86400
 
+/servicios/*
+	Cache-Control: public, max-age=86400
+
+/nosotros/
+	Cache-Control: public, max-age=86400
+
+/contacto/
+	Cache-Control: public, max-age=86400
+
+/blog/
+	Cache-Control: public, max-age=86400
+
+/blog/*
+	Cache-Control: public, max-age=86400
+
+/rss.xml
+	Cache-Control: public, max-age=3600
+
 /*.txt
 	Content-Type: text/plain; charset=utf-8

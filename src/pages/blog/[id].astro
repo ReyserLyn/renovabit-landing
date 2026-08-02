@@ -1,0 +1,258 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import { Icon } from "astro-icon/components";
+import AuthorCard from "@/components/blog/AuthorCard.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT, SITE } from "@/constants";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog", ({ data }) => !data.draft);
+	return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+const tocHeadings = headings.filter((h) => h.depth === 2);
+
+function readingTime(body: string): string {
+	const words = body.trim().split(/\s+/).length;
+	return `${Math.max(1, Math.ceil(words / 200))} min`;
+}
+
+function formatDate(d: Date): string {
+	return d.toLocaleDateString("es-PE", { year: "numeric", month: "long", day: "numeric" });
+}
+
+// Prev / Next
+const allPosts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+const currentIndex = allPosts.findIndex((p) => p.id === post.id);
+const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+
+// Related posts — share at least one tag
+const relatedPosts = allPosts
+	.filter((p) => p.id !== post.id && p.data.tags.some((t) => post.data.tags.includes(t)))
+	.slice(0, 3);
+
+const articleJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"@id": `${SITE.url}/blog/${post.id}/#article`,
+	headline: post.data.title,
+	description: post.data.description,
+	image: `${SITE.url}${post.data.heroImage.src}`,
+	datePublished: post.data.publishDate.toISOString(),
+	dateModified: (post.data.updatedDate ?? post.data.publishDate).toISOString(),
+	author: { "@type": "Person", name: "Reyser Zapata" },
+	publisher: { "@id": `${SITE.url}/#organization` },
+	mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.url}/blog/${post.id}/` },
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+	<slot name="head">
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(articleJsonLd)}></script>
+	</slot>
+
+	<!-- Progress bar -->
+	<div
+		id="progress-bar"
+		class="fixed top-0 left-0 z-50 h-0.5 w-0 bg-primary transition-[width] duration-100"
+	></div>
+
+	<!-- Hero -->
+	<section class="pt-32 pb-10 md:pt-40 md:pb-12">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<a
+				href="/blog/"
+				class="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+			>
+				<Icon name="hugeicons:arrow-left-01" class="size-3.5" />Blog
+			</a>
+
+			{post.data.tags.length > 0 && (
+				<div class="mt-6 flex flex-wrap gap-2">
+					{post.data.tags.map((tag) => (
+						<span class="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary uppercase tracking-wider">{tag}</span>
+					))}
+				</div>
+			)}
+
+			<h1
+				class="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+			>
+				{post.data.title}
+			</h1>
+			<p class="mt-4 text-lg leading-relaxed text-muted-foreground">{post.data.description}</p>
+			<div class="mt-5 flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
+				<time datetime={post.data.publishDate.toISOString()}
+					>{formatDate(post.data.publishDate)}</time
+				>
+				<span aria-hidden="true">·</span>
+				<span>{readingTime(post.body ?? "")} de lectura</span>
+				<span aria-hidden="true">·</span>
+				<span>Por Reyser Zapata</span>
+			</div>
+		</div>
+	</section>
+
+	<!-- Featured image -->
+	<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+		<div class="overflow-hidden rounded-2xl border border-border/20">
+			<Image
+				src={post.data.heroImage}
+				alt={post.data.title}
+				widths={[800, 1200]}
+				sizes="(max-width: 1024px) 100vw, 1024px"
+				fetchpriority="high"
+				loading="eager"
+				class="w-full object-cover aspect-video"
+			/>
+		</div>
+	</div>
+
+	<!-- Content with TOC sidebar -->
+	<article class="pt-16 pb-12 md:pb-16">
+		<div
+			class="mx-auto grid max-w-[calc(48rem+220px+3rem)] gap-12 px-4 sm:px-6 lg:grid-cols-[220px_1fr]"
+		>
+			<!-- TOC sidebar — sticky en columna izquierda -->
+			{tocHeadings.length > 0 && (
+				<aside class="hidden lg:block">
+					<div class="sticky top-28">
+						<p class="font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase">En este artículo</p>
+						<nav class="mt-3 space-y-2 border-l-2 border-border/20 pl-4">
+							{tocHeadings.map((h) => (
+								<a href={`#${h.slug}`} class="block text-sm text-muted-foreground transition-colors hover:text-primary">{h.text}</a>
+							))}
+						</nav>
+					</div>
+				</aside>
+			)}
+
+			<div>
+				<!-- Post content -->
+				<div
+					class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:tracking-tight prose-headings:scroll-mt-28 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-2xl prose-img:border prose-img:border-border/20 prose-blockquote:border-primary/30 prose-blockquote:text-muted-foreground prose-strong:text-foreground"
+				>
+					<Content />
+				</div>
+
+				<div class="mt-16">
+					<AuthorCard />
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<!-- Prev / Next -->
+	{(prevPost || nextPost) && (
+		<nav class="border-t py-12" aria-label="Navegación entre artículos">
+			<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+				<div class="grid gap-8 sm:grid-cols-2">
+					{prevPost ? (
+						<a href={`/blog/${prevPost.id}/`} class="group text-left">
+							<p class="font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase">Anterior</p>
+							<h3 class="mt-2 font-heading text-lg font-bold text-foreground transition-colors group-hover:text-primary">{prevPost.data.title}</h3>
+							<p class="mt-1 text-sm text-muted-foreground">{formatDate(prevPost.data.publishDate)}</p>
+						</a>
+					) : (
+						<div />
+					)}
+					{nextPost ? (
+						<a href={`/blog/${nextPost.id}/`} class="group text-right">
+							<p class="font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase">Siguiente</p>
+							<h3 class="mt-2 font-heading text-lg font-bold text-foreground transition-colors group-hover:text-primary">{nextPost.data.title}</h3>
+							<p class="mt-1 text-sm text-muted-foreground">{formatDate(nextPost.data.publishDate)}</p>
+						</a>
+					) : (
+						<div />
+					)}
+				</div>
+			</div>
+		</nav>
+	)}
+
+	<!-- Related posts -->
+	{relatedPosts.length > 0 && (
+		<section class="border-t py-16 md:py-20">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Artículos relacionados</h2>
+				<div class="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+					{relatedPosts.map((rp) => (
+						<a href={`/blog/${rp.id}/`} class="group block">
+							<div class="overflow-hidden rounded-2xl border border-border/20">
+								<Image
+									src={rp.data.heroImage}
+									alt={rp.data.title}
+									widths={[400, 600]}
+									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+									loading="lazy"
+									class="w-full object-cover aspect-video transition-transform duration-500 group-hover:scale-105"
+								/>
+							</div>
+							<div class="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
+								<time datetime={rp.data.publishDate.toISOString()}>{formatDate(rp.data.publishDate)}</time>
+								<span aria-hidden="true">·</span>
+								<span>{readingTime(rp.body ?? "")} de lectura</span>
+							</div>
+							<h3 class="mt-2 font-heading text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-primary">{rp.data.title}</h3>
+							<p class="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-2">{rp.data.description}</p>
+						</a>
+					))}
+				</div>
+			</div>
+		</section>
+	)}
+
+	<!-- CTA -->
+	<section class="border-t py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+			<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				¿Necesitas ayuda con tu equipo?
+			</h2>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+				Escríbenos por WhatsApp y cuéntanos qué te pasa. Te respondemos con un diagnóstico claro y
+				sin compromiso.
+			</p>
+			<div class="mt-8">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+				>
+					<WhatsappIcon size={18} />Escríbenos por WhatsApp
+				</Button>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<script>
+const bar = document.getElementById("progress-bar");
+const article = document.querySelector("article");
+if (bar && article) {
+	const articleTop = article.offsetTop;
+	const articleHeight = article.offsetHeight;
+
+	window.addEventListener(
+		"scroll",
+		() => {
+			const scrollPos = window.scrollY - articleTop;
+			const progress = articleHeight > 0 ? (scrollPos / articleHeight) * 100 : 0;
+			bar.style.width = `${Math.max(0, Math.min(progress, 100))}%`;
+		},
+		{ passive: true },
+	);
+}
+</script>

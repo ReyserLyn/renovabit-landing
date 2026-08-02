@@ -85,11 +85,9 @@ export const SOCIAL = {
 
 export const NAV_ITEMS = [
 	{ href: "/servicios/", label: "Servicios" },
+	{ href: "/blog/", label: "Blog" },
 	{ href: "/nosotros/", label: "Nosotros" },
 	{ href: "/contacto/", label: "Contacto" },
-	{ href: "/#empresas", label: "Empresas" },
-	{ href: "/#resenas", label: "Reseñas" },
-	{ href: "/#faq", label: "FAQ" },
 ] as const;
 
 export const FOOTER = {

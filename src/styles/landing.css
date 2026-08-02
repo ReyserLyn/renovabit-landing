@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "tailwind-animations";
+@plugin "@tailwindcss/typography";
 
 :root {
 	--background: oklch(0.99 0.0054 297.7286);
