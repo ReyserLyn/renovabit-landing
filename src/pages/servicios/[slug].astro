@@ -70,6 +70,8 @@ const ogImage = ogImageMap[slug];
 						variant="outline"
 						size="lg"
 						class="gap-2"
+						data-umami-event="whatsapp_click"
+						data-umami-event-position="service-symptoms"
 					>
 						Sí, eso me pasa <WhatsappIcon size={16} />
 					</Button>
@@ -166,6 +168,8 @@ const ogImage = ogImageMap[slug];
 						variant="default"
 						size="lg"
 						class="gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+						data-umami-event="whatsapp_click"
+						data-umami-event-position="footer-cta"
 					>
 						<WhatsappIcon size={18} />
 						{service.ctaLabel}

@@ -79,8 +79,10 @@ const { service, variant, headingLevel = "h1", number } = Astro.props;
 									target="_blank"
 									rel="noopener noreferrer"
 									variant="whatsapp"
-									size="lg"
-									class="gap-2"
+					size="lg"
+					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="service-card"
 								>
 									<WhatsappIcon size={18} />{service.ctaLabel}
 								</Button>

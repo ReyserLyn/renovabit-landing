@@ -141,6 +141,8 @@ const currentYear = new Date().getFullYear();
 					</h3>
 					<a
 						href={`tel:${FOOTER.phone.replace(/\s/g, "")}`}
+						data-umami-event="phone_click"
+						data-umami-event-position="footer"
 						class="text-sm text-muted-foreground transition-colors hover:text-primary"
 					>
 						{FOOTER.phone}

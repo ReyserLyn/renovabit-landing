@@ -101,9 +101,19 @@ const details = [
 										<h3 class="font-heading text-sm font-bold text-foreground uppercase tracking-wider">{d.label}</h3>
 										<p class="mt-1 text-base text-muted-foreground">{d.value}</p>
 										{d.href && d.cta && (
-											<a
-												href={d.href}
-												class="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+							<a
+								href={d.href}
+								data-umami-event={
+									d.label === "Dirección"
+										? "maps_click"
+										: d.label === "Teléfono"
+											? "phone_click"
+											: undefined
+								}
+								data-umami-event-position={
+									d.label === "Dirección" || d.label === "Teléfono" ? "contact-page" : undefined
+								}
+								class="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
 											>
 												{d.cta}
 												<Icon name="hugeicons:arrow-right-01" class="size-3.5" />
@@ -124,6 +134,8 @@ const details = [
 							variant="whatsapp"
 							size="lg"
 							class="gap-2"
+							data-umami-event="whatsapp_click"
+							data-umami-event-position="contact-page"
 						>
 							<WhatsappIcon size={18} />Escríbenos por WhatsApp
 						</Button>
@@ -158,6 +170,8 @@ const details = [
 					variant="default"
 					size="lg"
 					class="shrink-0 gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="contact-cta"
 				>
 					<WhatsappIcon size={18} />
 					Escríbenos
