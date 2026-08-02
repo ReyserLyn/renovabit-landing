@@ -1,0 +1,127 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+const publishedPosts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+
+const featured = publishedPosts.find((post) => post.data.featured) ?? publishedPosts[0];
+const secondary = publishedPosts.find((post) => post.id !== featured?.id);
+
+function readingTime(body: string): string {
+	const words = body.trim().split(/\s+/).length;
+	return `${Math.max(1, Math.ceil(words / 200))} min de lectura`;
+}
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString("es-PE", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+{featured && secondary && (
+	<section aria-labelledby="blog-preview-title" class="border-t py-16 md:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+				<div class="max-w-2xl">
+					<p class="font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase">Blog</p>
+					<h2
+						id="blog-preview-title"
+						class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+					>
+						Tecnología sin vueltas
+					</h2>
+					<p class="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground">
+						Consejos prácticos, guías y respuestas directas sobre mantenimiento de laptops, reparación y
+						desarrollo web.
+					</p>
+				</div>
+
+				<a
+					href="/blog/"
+					class="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/75"
+				>
+					Ver todos los artículos
+					<Icon name="hugeicons:arrow-up-right-01" class="size-4" />
+				</a>
+			</div>
+
+			<div class="mt-10 grid gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:gap-12">
+				<a href={`/blog/${featured.id}/`} class="group block">
+					<div class="overflow-hidden rounded-2xl border border-border/20">
+						<Image
+							src={featured.data.heroImage}
+							alt={featured.data.title}
+							widths={[480, 720, 960]}
+							sizes="(max-width: 1024px) 100vw, 62vw"
+							loading="lazy"
+							class="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+						/>
+					</div>
+
+					<div class="mt-5">
+						<div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+							{featured.data.tags.slice(0, 2).map((tag) => (
+								<span class="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-primary uppercase">
+									{tag}
+								</span>
+							))}
+							<span aria-hidden="true">·</span>
+							<time datetime={featured.data.publishDate.toISOString()}>{formatDate(featured.data.publishDate)}</time>
+							<span aria-hidden="true">·</span>
+							<span>{readingTime(featured.body ?? "")}</span>
+						</div>
+						<h3 class="mt-3 font-heading text-2xl font-bold leading-tight text-foreground transition-colors group-hover:text-primary sm:text-3xl">
+							{featured.data.title}
+						</h3>
+						<p class="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
+							{featured.data.description}
+						</p>
+						<span class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+							Leer artículo destacado
+							<Icon name="hugeicons:arrow-right-01" class="size-4" />
+						</span>
+					</div>
+				</a>
+
+				<a href={`/blog/${secondary.id}/`} class="group block lg:border-l lg:border-border/30 lg:pl-8">
+					<div class="overflow-hidden rounded-2xl border border-border/20">
+						<Image
+							src={secondary.data.heroImage}
+							alt={secondary.data.title}
+							widths={[360, 540, 720]}
+							sizes="(max-width: 1024px) 100vw, 30vw"
+							loading="lazy"
+							class="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+						/>
+					</div>
+
+					<div class="mt-5">
+						<div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+							{secondary.data.tags.slice(0, 2).map((tag) => (
+								<span class="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-primary uppercase">
+									{tag}
+								</span>
+							))}
+							<span aria-hidden="true">·</span>
+							<time datetime={secondary.data.publishDate.toISOString()}>{formatDate(secondary.data.publishDate)}</time>
+							<span aria-hidden="true">·</span>
+							<span>{readingTime(secondary.body ?? "")}</span>
+						</div>
+						<h3 class="mt-3 font-heading text-xl font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
+							{secondary.data.title}
+						</h3>
+						<p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+							{secondary.data.description}
+						</p>
+						<span class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+							Leer artículo
+							<Icon name="hugeicons:arrow-right-01" class="size-4" />
+						</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+)}
