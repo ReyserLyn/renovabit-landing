@@ -89,6 +89,36 @@ export const faqItems: FaqItem[] = [
 		tags: ["servicio-tecnico"],
 	},
 	{
+		question: "¿Qué problemas de laptop pueden revisar en Arequipa?",
+		answer:
+			"Evaluamos laptops que no encienden, se apagan, se calientan, hacen ruido, están lentas o presentan fallas de batería, pantalla, teclado, carga y otros componentes. El diagnóstico determina el origen de la falla y si requiere una reparación especializada.",
+		tags: ["reparacion-laptops-arequipa"],
+	},
+	{
+		question: "¿Cómo es el diagnóstico antes de reparar una laptop?",
+		answer:
+			"Primero revisamos los síntomas y el estado del equipo. Luego te explicamos qué encontramos, qué opciones existen y cuánto costaría cada alternativa. No iniciamos una reparación adicional sin tu aprobación.",
+		tags: ["reparacion-laptops-arequipa"],
+	},
+	{
+		question: "¿El diagnóstico de laptop tiene costo?",
+		answer:
+			"El diagnóstico no tiene costo si decides continuar con la reparación. Antes de intervenir te explicamos las condiciones y el alcance del trabajo, para que puedas decidir con información clara.",
+		tags: ["reparacion-laptops-arequipa"],
+	},
+	{
+		question: "¿Atienden reparaciones de laptops a domicilio en Arequipa?",
+		answer:
+			"Coordinamos la modalidad según la falla y el equipo: atención a domicilio, recojo y entrega o revisión en taller. Escríbenos por WhatsApp con tu zona y los síntomas para confirmar qué opción corresponde.",
+		tags: ["reparacion-laptops-arequipa"],
+	},
+	{
+		question: "¿Me informan el costo antes de reparar mi laptop?",
+		answer:
+			"Sí. El costo depende de la falla, la complejidad y los repuestos necesarios. Te entregamos una cotización clara antes de empezar y te avisamos si durante la revisión aparece algo que cambie el alcance aprobado.",
+		tags: ["reparacion-laptops-arequipa"],
+	},
+	{
 		question: "¿Cambian pasta térmica en el mantenimiento?",
 		answer:
 			"Sí. El cambio de pasta térmica de calidad está incluido en todos nuestros mantenimientos. Usamos pastas de grado profesional para asegurar la mejor transferencia de calor.",

@@ -1,18 +1,26 @@
 ---
 import logoSchema from "@/assets/branding/logo-monogram-light.svg";
 import { CONTACT, FOOTER, LOCATION, SITE, SOCIAL } from "@/constants";
-import { getFeaturedFaqs } from "@/data/faq";
+import { getFaqsForService, getFeaturedFaqs } from "@/data/faq";
 import { getServiceBySlug } from "@/data/servicios";
 import { testimonios } from "@/data/testimonios";
 
 const pathname = Astro.url.pathname;
 const isHome = pathname === "/";
+const isLaptopRepairLanding = pathname === "/reparacion-laptops-arequipa/";
 
 // Breadcrumb dinámico según la página
 const breadcrumbItems: { name: string; item: string }[] = [{ name: "Inicio", item: SITE.url }];
 
 if (pathname === "/servicios/") {
 	breadcrumbItems.push({ name: "Servicios", item: `${SITE.url}/servicios/` });
+}
+
+if (isLaptopRepairLanding) {
+	breadcrumbItems.push({
+		name: "Reparación de laptops en Arequipa",
+		item: `${SITE.url}${pathname}`,
+	});
 }
 
 // Slug de servicio: /servicios/servicio-tecnico/
@@ -29,21 +37,27 @@ if (slugMatch) {
 	}
 }
 
-// Solo homepage incluye FAQ (solo las destacadas)
-const faqEntity = isHome
-	? {
-			"@type": "FAQPage",
-			"@id": `${SITE.url}/#faq`,
-			mainEntity: getFeaturedFaqs().map((item) => ({
-				"@type": "Question",
-				name: item.question,
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: item.answer,
-				},
-			})),
-		}
-	: null;
+// FAQ específica de cada página: la homepage usa las destacadas y la landing usa sus propias preguntas.
+const faqItems = isHome
+	? getFeaturedFaqs()
+	: isLaptopRepairLanding
+		? getFaqsForService("reparacion-laptops-arequipa")
+		: [];
+const faqEntity =
+	faqItems.length > 0
+		? {
+				"@type": "FAQPage",
+				"@id": `${SITE.url}${pathname}#faq`,
+				mainEntity: faqItems.map((item) => ({
+					"@type": "Question",
+					name: item.question,
+					acceptedAnswer: {
+						"@type": "Answer",
+						text: item.answer,
+					},
+				})),
+			}
+		: null;
 
 // Graph: entidades comunes + condicionales
 const graphEntities: Record<string, unknown>[] = [

@@ -1,0 +1,208 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import servicioImg1 from "@/assets/images/services/service-1.avif";
+import FaqSection from "@/components/sections/FaqSection.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+import { getFaqsForService } from "@/data/faq";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const faqs = getFaqsForService("reparacion-laptops-arequipa");
+---
+
+<BaseLayout
+	title="Reparación de Laptops en Arequipa"
+	description="Reparación de laptops en Arequipa con diagnóstico claro antes de intervenir. Revisamos fallas de encendido, temperatura, batería, pantalla y más."
+	ogImage="/og-servicio-tecnico.jpeg"
+>
+	<section class="pt-32 pb-16 md:pt-40 md:pb-24">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+				<div>
+					<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+						Reparación de laptops en Arequipa
+					</p>
+					<h1
+						class="mt-4 font-heading text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+					>
+						¿Tu laptop falla? Primero entendemos el problema.
+					</h1>
+					<p class="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+						Revisamos tu equipo, explicamos el diagnóstico y te damos una cotización antes de
+						reparar. Sin cambiar piezas innecesariamente ni prometer una solución sin evaluar la
+						falla.
+					</p>
+					<div class="mt-8">
+						<Button
+							as="a"
+							href={CONTACT.whatsappUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							variant="whatsapp"
+							size="lg"
+							class="gap-2"
+							data-umami-event="whatsapp_click"
+							data-umami-event-position="laptop-repair-hero"
+						>
+							<WhatsappIcon size={18} />Cuéntanos qué le pasa a tu laptop
+						</Button>
+					</div>
+					<p class="mt-4 text-xs text-muted-foreground">
+						Atención en Arequipa. La modalidad se coordina según la falla y tu zona.
+					</p>
+				</div>
+
+				<div class="overflow-hidden rounded-2xl border border-border/20">
+					<Image
+						src={servicioImg1}
+						alt="Herramientas y equipos de RenovaBit para reparar laptops en Arequipa"
+						widths={[600, 900]}
+						sizes="(max-width: 1024px) 100vw, 50vw"
+						fetchpriority="high"
+						loading="eager"
+						class="aspect-4/3 w-full object-cover"
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t py-16 md:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="max-w-2xl">
+				<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+					Señales concretas
+				</p>
+				<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+					Una falla no siempre significa que necesitas otra laptop.
+				</h2>
+			</div>
+			<div class="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+				{[
+						"No enciende o se apaga solo",
+						"Se calienta demasiado o hace ruido",
+						"Está lenta aunque antes funcionaba bien",
+						"La batería dura muy poco o no carga",
+						"La pantalla, teclado o cargador fallan",
+						"Necesita revisar un puerto, disco o memoria",
+					].map((problem) => (
+						<p class="flex items-start gap-3 border-t border-border/20 pt-4 text-base text-muted-foreground">
+							<Icon name="hugeicons:checkmark-circle-03" class="mt-0.5 size-4 shrink-0 text-primary/70" />
+							{problem}
+						</p>
+					))}
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t bg-muted/15 py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+				Cómo trabajamos
+			</p>
+			<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				Diagnóstico antes de tomar decisiones
+			</h2>
+			<ol class="mt-10 space-y-8">
+				{[
+						["Nos cuentas los síntomas", "Por WhatsApp revisamos qué ocurre, desde cuándo y cómo se usa el equipo."],
+						["Evaluamos la laptop", "Revisamos el equipo para identificar el origen de la falla y qué pruebas hacen falta."],
+						["Te explicamos las opciones", "Recibes el diagnóstico, el alcance y la cotización antes de autorizar el trabajo."],
+						["Reparamos y probamos", "Solo después de tu aprobación intervenimos y verificamos el funcionamiento del equipo."],
+					].map(([title, description], index) => (
+						<li class="flex gap-4">
+							<span class="flex size-7 shrink-0 items-center justify-center rounded-full border border-border/30 font-mono text-xs font-medium text-muted-foreground">
+								{index + 1}
+							</span>
+							<div>
+								<h3 class="font-heading text-base font-bold text-foreground">{title}</h3>
+								<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
+							</div>
+						</li>
+					))}
+			</ol>
+		</div>
+	</section>
+
+	<section class="border-t py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<h2 class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				Condiciones claras para reparar tu laptop
+			</h2>
+			<div class="mt-8 space-y-4 text-base leading-relaxed text-muted-foreground">
+				<p>
+					No iniciamos reparaciones adicionales sin explicarte el cambio y recibir tu aprobación.
+				</p>
+				<p>
+					El costo depende de la falla, la complejidad y los repuestos. Cotizamos antes de
+					intervenir.
+				</p>
+				<p>
+					Si el equipo no resulta reparable o la reparación no conviene, te lo comunicamos con
+					honestidad.
+				</p>
+				<p>
+					Coordinamos atención a domicilio, recojo y entrega o revisión en taller según el caso.
+					Confirma por WhatsApp la modalidad disponible para tu zona.
+				</p>
+			</div>
+			<div class="mt-8">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="laptop-repair-conditions"
+				>
+					<WhatsappIcon size={18} />Solicitar diagnóstico por WhatsApp
+				</Button>
+			</div>
+		</div>
+	</section>
+
+	<FaqSection
+		items={faqs}
+		heading="Preguntas sobre reparación de laptops"
+		subtitle="Respuestas directas antes de coordinar la revisión de tu equipo."
+		variant="compact"
+	/>
+
+	<section class="border-t py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+			<h2 class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				Cuéntanos qué le pasa a tu laptop
+			</h2>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+				Envíanos la marca, el modelo y los síntomas. Te orientamos sobre el siguiente paso por
+				WhatsApp.
+			</p>
+			<div class="mt-8">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="laptop-repair-final"
+				>
+					<WhatsappIcon size={18} />Escríbenos por WhatsApp
+				</Button>
+			</div>
+			<p class="mt-6 text-sm text-muted-foreground">
+				También puedes conocer el
+				<a href="/servicios/servicio-tecnico/" class="font-medium text-primary hover:underline"
+					>servicio técnico general</a
+				>.
+			</p>
+		</div>
+	</section>
+</BaseLayout>
