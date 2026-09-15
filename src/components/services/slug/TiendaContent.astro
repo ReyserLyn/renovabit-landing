@@ -4,15 +4,17 @@ import type { ImageMetadata } from "astro";
 import { Icon } from "astro-icon/components";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { STORE_URL, whatsappUrl } from "@/constants";
 
 interface Props {
 	heroImg: ImageMetadata;
 	includes: string[];
 	ctaLabel: string;
+	/** Mensaje precargado de WhatsApp para los CTA. */
+	waMessage?: string;
 }
 
-const { heroImg, includes, ctaLabel } = Astro.props;
+const { heroImg, includes, ctaLabel, waMessage } = Astro.props;
 
 interface CategoryItem {
 	title: string;
@@ -73,7 +75,7 @@ const flowSteps: Step[] = [
 	{
 		title: "Confirmas con el 50%",
 		description:
-			"Para iniciar el pedido solicitamos el 50% del total. Con eso compramos el producto a nuestro proveedor y lo preparamos.",
+			"Para iniciar el pedido solicitamos el 50% del total, con Yape y Plin. Con eso compramos el producto a nuestro proveedor y lo preparamos.",
 	},
 	{
 		title: "Entrega y pago final",
@@ -127,15 +129,30 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 					))}
 				</ol>
 
-				<div class="mt-6">
+				<div class="mt-6 flex flex-wrap items-center gap-3">
 					<Button
 						as="a"
-						href={CONTACT.whatsappUrl}
+						href={STORE_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="default"
+						size="lg"
+						class="gap-2"
+						data-umami-event="store_click"
+						data-umami-event-position="service-tienda"
+					>
+						<Icon name="hugeicons:shopping-bag-01" class="size-4" />Visitar la tienda
+					</Button>
+					<Button
+						as="a"
+						href={whatsappUrl(waMessage)}
 						target="_blank"
 						rel="noopener noreferrer"
 						variant="whatsapp"
 						size="lg"
 						class="gap-2"
+						data-umami-event="whatsapp_click"
+						data-umami-event-position="service-flow"
 					>
 						<WhatsappIcon size={18} />{ctaLabel}
 					</Button>
@@ -174,12 +191,14 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 		<div class="mt-8">
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl(waMessage)}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="whatsapp"
 				size="lg"
 				class="gap-2"
+				data-umami-event="whatsapp_click"
+				data-umami-event-position="service-catalog"
 			>
 				<WhatsappIcon size={18} />{ctaLabel}
 			</Button>
@@ -209,12 +228,14 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 		<div class="mt-8">
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl(waMessage)}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="whatsapp"
 				size="lg"
 				class="gap-2"
+				data-umami-event="whatsapp_click"
+				data-umami-event-position="service-includes"
 			>
 				<WhatsappIcon size={18} />{ctaLabel}
 			</Button>

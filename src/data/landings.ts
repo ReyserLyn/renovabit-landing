@@ -51,6 +51,8 @@ export interface LandingData {
 	ctaLabel: string;
 	ctaFinalLabel?: string;
 	umamiPrefix: string;
+	/** Mensaje precargado de WhatsApp para los CTA de la landing. */
+	whatsappMessage: string;
 	readonly symptoms: readonly LandingSymptom[];
 	readonly causes: readonly LandingCause[];
 	readonly processSteps: readonly LandingStep[];
@@ -85,6 +87,7 @@ export const laptopLentaLanding = {
 	ctaLabel: "Revisar mi laptop por WhatsApp",
 	ctaFinalLabel: "Escríbenos por WhatsApp",
 	umamiPrefix: "laptop-slow",
+	whatsappMessage: "Hola, mi laptop está lenta y quiero una revisión.",
 	symptoms: [
 		{ icon: "hugeicons:timer-01", text: "Tarda varios minutos en iniciar" },
 		{ icon: "hugeicons:grid", text: "Los programas abren muy lento" },

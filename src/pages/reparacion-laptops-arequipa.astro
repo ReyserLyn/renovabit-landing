@@ -13,12 +13,13 @@ import LandingSymptoms from "@/components/landing/LandingSymptoms.astro";
 import LandingTestimonials from "@/components/landing/LandingTestimonials.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import { getFaqsForService } from "@/data/faq";
 import { getTestimoniosByServicio } from "@/data/testimonios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const faqs = getFaqsForService("reparacion-laptops-arequipa");
+const waMessage = "Hola, necesito reparar mi laptop.";
 const testimonios = getTestimoniosByServicio("servicio-tecnico");
 const checkIcon = "hugeicons:checkmark-circle-03";
 ---
@@ -48,7 +49,7 @@ const checkIcon = "hugeicons:checkmark-circle-03";
 					<div class="mt-8">
 						<Button
 							as="a"
-							href={CONTACT.whatsappUrl}
+							href={whatsappUrl(waMessage)}
 							target="_blank"
 							rel="noopener noreferrer"
 							variant="whatsapp"
@@ -91,6 +92,8 @@ const checkIcon = "hugeicons:checkmark-circle-03";
 			{ icon: checkIcon, text: "La pantalla, teclado o cargador fallan" },
 			{ icon: checkIcon, text: "Necesita revisar un puerto, disco o memoria" },
 		]}
+		cta={{ label: "Sí, eso me pasa", umamiEvent: "laptop-repair-symptoms" }}
+		waMessage={waMessage}
 	/>
 
 	<LandingProcess
@@ -155,7 +158,7 @@ const checkIcon = "hugeicons:checkmark-circle-03";
 			<div class="mt-8">
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl(waMessage)}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="whatsapp"
@@ -181,6 +184,8 @@ const checkIcon = "hugeicons:checkmark-circle-03";
 		items={faqs}
 		heading="Preguntas sobre reparación de laptops"
 		subtitle="Respuestas directas antes de coordinar la revisión de tu equipo."
+		waMessage={waMessage}
+		waPosition="laptop-repair-faq"
 	/>
 
 	<LandingCta
@@ -188,6 +193,7 @@ const checkIcon = "hugeicons:checkmark-circle-03";
 		description="Envíanos la marca, el modelo y los síntomas. Te orientamos sobre el siguiente paso por WhatsApp."
 		ctaLabel="Escríbenos por WhatsApp"
 		umamiEvent="laptop-repair-final"
+		waMessage={waMessage}
 		internalLinks={[
 			{ href: "/servicios/servicio-tecnico/", label: "el servicio técnico general" },
 			{ href: "/laptop-lenta-arequipa/", label: "la guía de laptop lenta" },

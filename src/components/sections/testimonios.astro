@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 import { Badge } from "@/components/ui/badge";
 import { Rating } from "@/components/ui/rating";
-import { testimonios } from "@/data/testimonios";
+import { whatsappUrl } from "@/constants";
+import { formatTestimonioFecha, testimonios } from "@/data/testimonios";
 
 const destacado = testimonios.find((t) => t.visual?.destacado);
 const secundarios = testimonios.filter((t) => !t.visual?.destacado);
@@ -83,8 +84,11 @@ const secundarios = testimonios.filter((t) => !t.visual?.destacado);
 						</div>
 
 						<p class="mt-4 font-heading text-base font-bold text-foreground">
-							{destacado.rol ? `${destacado.autor} — ${destacado.rol}` : destacado.autor}
+							{destacado.rol ? `${destacado.autor} · ${destacado.rol}` : destacado.autor}
 						</p>
+						<time datetime={destacado.fecha} class="mt-1 text-xs text-muted-foreground">
+							{formatTestimonioFecha(destacado.fecha)}
+						</time>
 
 						<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
 							"{destacado.texto}"
@@ -126,8 +130,11 @@ const secundarios = testimonios.filter((t) => !t.visual?.destacado);
 						</div>
 
 						<p class="mt-4 font-heading text-base font-bold text-foreground">
-							{t.rol ? `${t.autor} — ${t.rol}` : t.autor}
+							{t.rol ? `${t.autor} · ${t.rol}` : t.autor}
 						</p>
+						<time datetime={t.fecha} class="mt-1 text-xs text-muted-foreground">
+							{formatTestimonioFecha(t.fecha)}
+						</time>
 
 						<blockquote class="mt-2 text-base leading-relaxed text-muted-foreground">
 							"{t.texto}"
@@ -135,5 +142,21 @@ const secundarios = testimonios.filter((t) => !t.visual?.destacado);
 					</div>
 				</div>
 			))}
+
+		<div class="mt-16 text-center">
+			<p class="text-sm text-muted-foreground">
+				¿Quieres ser el próximo?{' '}
+				<a
+					href={whatsappUrl("Hola, quiero hacer una consulta sobre sus servicios.")}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="font-medium text-primary hover:underline"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="testimonials-cta"
+				>
+					Escríbenos
+				</a>
+			</p>
+		</div>
 	</div>
 </section>

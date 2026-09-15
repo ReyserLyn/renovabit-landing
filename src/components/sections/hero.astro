@@ -12,7 +12,7 @@ import GitHubIcon from "@/components/social-icon/GitHubIcon.astro";
 import TikTokIcon from "@/components/social-icon/TikTokIcon.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT, SOCIAL } from "@/constants";
+import { SOCIAL, whatsappUrl } from "@/constants";
 ---
 
 <GridDotsBackground
@@ -55,12 +55,20 @@ import { CONTACT, SOCIAL } from "@/constants";
 					<div
 						class="mt-7 flex flex-wrap gap-3 sm:gap-4 animate-fade-in-up animate-delay-400 animate-duration-normal"
 					>
-						<Button as="a" href="/#servicios" variant="default" size="lg" class="gap-2">
+						<Button
+							as="a"
+							href="/#servicios"
+							variant="default"
+							size="lg"
+							class="gap-2"
+							data-umami-event="internal_click"
+							data-umami-event-position="hero"
+						>
 							<Icon name="hugeicons:arrow-right-01" class="size-5" />Cotiza tu servicio
 						</Button>
 						<Button
 							as="a"
-							href={CONTACT.whatsappUrl}
+							href={whatsappUrl("Hola, quiero cotizar un servicio técnico.")}
 							target="_blank"
 							rel="noopener noreferrer"
 							variant="whatsapp"

@@ -1,10 +1,13 @@
 ---
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { whatsappUrl } from "@/constants";
 import type { FaqItem } from "@/data/faq";
 
 interface Props {
@@ -12,9 +15,20 @@ interface Props {
 	heading?: string;
 	subtitle?: string;
 	variant?: "default" | "compact";
+	/** Mensaje precargado de WhatsApp para el CTA de cierre. */
+	waMessage?: string;
+	/** Posición de Umami para el CTA de cierre (default: "faq"). */
+	waPosition?: string;
 }
 
-const { items, heading = "Preguntas frecuentes", subtitle, variant = "default" } = Astro.props;
+const {
+	items,
+	heading = "Preguntas frecuentes",
+	subtitle,
+	variant = "default",
+	waMessage,
+	waPosition = "faq",
+} = Astro.props;
 const isCompact = variant === "compact";
 ---
 
@@ -63,6 +77,22 @@ const isCompact = variant === "compact";
 					</AccordionItem>
 				))}
 			</Accordion>
+		</div>
+
+		<div class="mt-10 flex justify-center">
+			<Button
+				as="a"
+				href={whatsappUrl(waMessage)}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="outline"
+				size="lg"
+				class="gap-2"
+				data-umami-event="whatsapp_click"
+				data-umami-event-position={waPosition}
+			>
+				<WhatsappIcon size={16} />¿No encuentras tu respuesta? Escríbenos
+			</Button>
 		</div>
 	</div>
 </section>

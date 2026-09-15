@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import TrustMarquee from "@/components/sections/trust-marquee.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { CONTACT, whatsappUrl } from "@/constants";
 ---
 
 <section id="empresas" class="py-20 md:py-28 scroll-mt-24">
@@ -79,7 +79,7 @@ import { CONTACT } from "@/constants";
 			<div class="flex flex-wrap justify-center gap-3">
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl("Hola, quiero información de mantenimiento para empresas.")}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="whatsapp"
@@ -91,7 +91,15 @@ import { CONTACT } from "@/constants";
 					<WhatsappIcon size={18} />
 					Solicitar propuesta
 				</Button>
-				<Button as="a" href={`mailto:${CONTACT.email}`} variant="secondary" size="lg" class="gap-2">
+				<Button
+					as="a"
+					href={`mailto:${CONTACT.email}`}
+					variant="secondary"
+					size="lg"
+					class="gap-2"
+					data-umami-event="email_click"
+					data-umami-event-position="business-cta"
+				>
 					<Icon name="hugeicons:mail-01" class="size-5" />
 					Correo
 				</Button>

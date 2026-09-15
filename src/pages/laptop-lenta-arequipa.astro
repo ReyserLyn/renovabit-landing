@@ -10,7 +10,7 @@ import LandingRelatedPosts from "@/components/landing/LandingRelatedPosts.astro"
 import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astro";
 import LandingSymptoms from "@/components/landing/LandingSymptoms.astro";
 import LandingTestimonials from "@/components/landing/LandingTestimonials.astro";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import { laptopLentaLanding } from "@/data/landings";
 import { getTestimoniosByServicio } from "@/data/testimonios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -54,6 +54,7 @@ const options = [
 		intro={landing.heroIntro}
 		ctaLabel={landing.ctaLabel}
 		umamiEvent={`${landing.umamiPrefix}-hero`}
+		waMessage={landing.whatsappMessage}
 		image={landing.heroImage}
 		imageAlt={landing.heroImageAlt}
 		badge={landing.heroBadge}
@@ -67,6 +68,7 @@ const options = [
 		heading="Síntomas típicos de una laptop lenta"
 		items={landing.symptoms}
 		cta={{ label: "Sí, eso me pasa", umamiEvent: `${landing.umamiPrefix}-symptoms` }}
+		waMessage={landing.whatsappMessage}
 	/>
 
 	<LandingCauses
@@ -120,7 +122,7 @@ const options = [
 			<p class="mt-6 text-sm text-muted-foreground">
 				¿No sabes cuál aplica a tu equipo?{' '}
 				<a
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl(landing.whatsappMessage)}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="font-medium text-primary hover:underline"
@@ -141,6 +143,7 @@ const options = [
 		rows={landing.priceRows}
 		note="La atención a domicilio se agenda previamente. Reparaciones, repuestos y licencias no están incluidos."
 		cta={{ label: "Consultar por WhatsApp", umamiEvent: `${landing.umamiPrefix}-price` }}
+		waMessage={landing.whatsappMessage}
 	/>
 
 	<LandingIncludes
@@ -161,6 +164,8 @@ const options = [
 		items={landing.faqs}
 		heading="Preguntas sobre laptop lenta"
 		subtitle="Respuestas directas sobre causas, tarifas y qué conviene según tu equipo."
+		waMessage={landing.whatsappMessage}
+		waPosition={`${landing.umamiPrefix}-faq`}
 	/>
 
 	<LandingCta
@@ -168,6 +173,7 @@ const options = [
 		description="Escríbenos por WhatsApp con el modelo de tu equipo y qué notas al usarla. Te orientamos sobre el siguiente paso y confirmamos la tarifa antes de coordinar."
 		ctaLabel={landing.ctaFinalLabel ?? landing.ctaLabel}
 		umamiEvent={`${landing.umamiPrefix}-final`}
+		waMessage={landing.whatsappMessage}
 		internalLinks={landing.internalLinks}
 	/>
 

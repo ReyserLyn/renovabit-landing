@@ -1,7 +1,7 @@
 ---
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 ---
 
 <section id="contacto" class="py-20 md:py-12 scroll-mt-10">
@@ -23,7 +23,7 @@ import { CONTACT } from "@/constants";
 
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl("Hola, quiero hacer una consulta sobre sus servicios.")}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="default"
@@ -33,7 +33,7 @@ import { CONTACT } from "@/constants";
 				data-umami-event-position="footer-cta"
 			>
 				<WhatsappIcon size={18} />
-				Pedir diagnóstico gratis
+				Solicitar diagnóstico
 			</Button>
 		</div>
 	</div>

@@ -33,11 +33,11 @@ function renderPin(isDark: boolean): string {
 let optionsSet = false;
 let observer: IntersectionObserver | null = null;
 
-function initMap(el: HTMLDivElement, apiKey: string): void {
+function initMap(el: HTMLElement, apiKey: string): void {
 	const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 	if (!optionsSet) {
-		setOptions({ key: apiKey, v: "beta" });
+		setOptions({ key: apiKey, v: "weekly" });
 		optionsSet = true;
 	}
 
@@ -77,7 +77,7 @@ export function MapRenovaBit() {
 	}
 
 	return (
-		<div
+		<section
 			ref={(el) => {
 				if (!el) return;
 				observer = new IntersectionObserver(
@@ -94,8 +94,7 @@ export function MapRenovaBit() {
 				);
 				observer.observe(el);
 			}}
-			role="img"
-			aria-label="Ubicación de RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa"
+			aria-label="Mapa interactivo con la ubicación de RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa"
 			className="h-full w-full rounded-2xl"
 			style={{ minHeight: "256px" }}
 		/>

@@ -4,6 +4,7 @@ import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astr
 import { Badge } from "@/components/ui/badge";
 import { Rating } from "@/components/ui/rating";
 import type { Testimonio } from "@/data/testimonios";
+import { formatTestimonioFecha } from "@/data/testimonios";
 
 interface Props {
 	items: readonly Testimonio[];
@@ -83,6 +84,9 @@ const isGrid = shownItems.length > 1;
 							<div>
 								<p class="font-heading text-sm font-bold text-foreground">{item.autor}</p>
 								{item.rol && <p class="mt-0.5 text-xs text-muted-foreground">{item.rol}</p>}
+								<time datetime={item.fecha} class="mt-0.5 block text-xs text-muted-foreground">
+									{formatTestimonioFecha(item.fecha)}
+								</time>
 							</div>
 						</figcaption>
 						{badges.length > 0 && (

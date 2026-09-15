@@ -5,15 +5,17 @@ import { Icon } from "astro-icon/components";
 import renovabitScreenshot from "@/assets/images/portfolio/renovabit-landing.jpg";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 
 interface Props {
 	heroImg: ImageMetadata;
 	includes: string[];
 	ctaLabel: string;
+	/** Mensaje precargado de WhatsApp para los CTA. */
+	waMessage?: string;
 }
 
-const { heroImg, includes, ctaLabel } = Astro.props;
+const { heroImg, includes, ctaLabel, waMessage } = Astro.props;
 
 interface ProjectType {
 	title: string;
@@ -82,7 +84,7 @@ const processSteps: Step[] = [
 			"Conocemos tu marca, tu audiencia, lo que quieres transmitir. Definimos colores, secciones, funcionalidades. Todo por escrito para que estemos alineados desde el inicio.",
 	},
 	{
-		title: "Diseño preview — tú decides",
+		title: "Diseño preview: tú decides",
 		description:
 			"Te mostramos un diseño provisional del sitio. Puedes pedir cambios, ajustes, lo que necesites. No avanzamos hasta que estés conforme con cómo se ve.",
 	},
@@ -153,12 +155,14 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 				<div class="mt-6">
 					<Button
 						as="a"
-						href={CONTACT.whatsappUrl}
+						href={whatsappUrl(waMessage)}
 						target="_blank"
 						rel="noopener noreferrer"
 						variant="whatsapp"
 						size="lg"
 						class="gap-2"
+						data-umami-event="whatsapp_click"
+						data-umami-event-position="service-projects"
 					>
 						<WhatsappIcon size={18} />{ctaLabel}
 					</Button>
@@ -196,12 +200,14 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 		<div class="mt-10">
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl(waMessage)}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="whatsapp"
 				size="lg"
 				class="gap-2"
+				data-umami-event="whatsapp_click"
+				data-umami-event-position="service-process"
 			>
 				<WhatsappIcon size={18} />{ctaLabel}
 			</Button>
@@ -276,12 +282,14 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 		<div class="mt-10 text-center">
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl(waMessage)}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="outline"
 				size="lg"
 				class="gap-2"
+				data-umami-event="whatsapp_click"
+				data-umami-event-position="service-projects-cta"
 			>
 				<Icon name="hugeicons:computer-programming-01" class="size-4" />¿Tienes un proyecto en
 				mente?
@@ -311,12 +319,14 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 		<div class="mt-8">
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl(waMessage)}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="whatsapp"
 				size="lg"
 				class="gap-2"
+				data-umami-event="whatsapp_click"
+				data-umami-event-position="service-includes"
 			>
 				<WhatsappIcon size={18} />{ctaLabel}
 			</Button>
@@ -361,12 +371,14 @@ const checkIconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
 			<div class="mt-8">
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl(waMessage)}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="whatsapp"
 					size="lg"
 					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="service-ownership"
 				>
 					<WhatsappIcon size={18} />{ctaLabel}
 				</Button>

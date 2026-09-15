@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { whatsappUrl } from "@/constants";
 
 const steps = [
 	{
@@ -108,6 +109,19 @@ const steps = [
 			<p class="max-w-lg text-base text-muted-foreground sm:text-lg">
 				Un buen servicio no solo se mide por el resultado, sino también por la experiencia durante
 				todo el proceso.
+			</p>
+			<p class="text-sm text-muted-foreground">
+				¿Tienes dudas?{' '}
+				<a
+					href={whatsappUrl("Hola, quiero hacer una consulta sobre sus servicios.")}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="font-medium text-primary hover:underline"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="process-timeline-cta"
+				>
+					Escríbenos por WhatsApp
+				</a>
 			</p>
 		</div>
 	</div>

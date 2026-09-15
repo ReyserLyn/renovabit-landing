@@ -42,7 +42,7 @@ export const servicioTecnicoCommercial = {
 	excluded: [
 		"Repuestos y licencias se cotizan por separado",
 		"Las reparaciones se derivan a taller y se cotizan después de evaluar el equipo",
-		"El diagnóstico avanzado cuesta S/60 y se acredita si aceptas la reparación",
+		"El diagnóstico avanzado cuesta S/60 y se acredita al servicio",
 	],
 	conditions: [
 		"La atención a domicilio requiere coordinación previa.",
@@ -69,9 +69,14 @@ export const servicioTecnicoCommercial = {
 			tags: ["servicio-tecnico"],
 		},
 		{
-			question: "¿El diagnóstico avanzado es gratuito?",
+			question: "¿El diagnóstico avanzado tiene costo?",
 			answer:
-				"No siempre. El diagnóstico avanzado cuesta S/60 y ese monto se acredita si aceptas la reparación. Antes de intervenir te explicamos el alcance y la cotización.",
+				"La revisión básica está incluida en el servicio. Si el equipo requiere evaluación avanzada de placa, cuesta S/60 y se acredita al servicio. Antes de intervenir te explicamos el alcance y la cotización.",
+			tags: ["servicio-tecnico"],
+		},
+		{
+			question: "¿Qué métodos de pago aceptan?",
+			answer: "Aceptamos Yape y Plin. Coordinamos el pago al confirmar el servicio.",
 			tags: ["servicio-tecnico"],
 		},
 	] satisfies ServicioTecnicoFaq[],

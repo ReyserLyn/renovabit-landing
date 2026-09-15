@@ -7,7 +7,7 @@ import ServicioTecnicoContent from "@/components/services/slug/ServicioTecnicoCo
 import TiendaContent from "@/components/services/slug/TiendaContent.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import { getFaqsForService } from "@/data/faq";
 import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
 import { getServiceBySlug, servicios } from "@/data/servicios";
@@ -24,6 +24,14 @@ if (!service) {
 	return Astro.redirect("/404");
 }
 
+const waMessages: Record<string, string> = {
+	"servicio-tecnico": "Hola, quiero cotizar el servicio técnico.",
+	"desarrollo-web": "Hola, quiero cotizar una página web.",
+	tienda: "Hola, quiero consultar por componentes y equipos.",
+	"reparaciones-especializadas": "Hola, necesito una reparación especializada.",
+};
+const waMessage = slug ? waMessages[slug] : undefined;
+
 const serviceIndex = servicios.findIndex((s) => s.slug === slug);
 const isVariantA = serviceIndex % 2 === 0;
 
@@ -36,7 +44,7 @@ const ctaDescription =
 const fullTitle = `${service.seoTitle} en Arequipa | RenovaBit`;
 const rawDesc =
 	slug === "servicio-tecnico"
-		? "Mantenimiento de laptops y PCs en Arequipa desde S/90 en taller. Atención a domicilio, tarifas claras según la complejidad y diagnóstico avanzado por S/60 acreditable si aceptas la reparación."
+		? "Mantenimiento de laptops y PCs en Arequipa desde S/90 en taller. Atención a domicilio y diagnóstico avanzado por S/60 acreditable al servicio."
 		: `${service.description} ${service.subtitle} ${service.price}. ${service.tiempo}. ${service.ideal}. Atención profesional en Arequipa con boleta y factura.`;
 const metaDescription =
 	rawDesc.length > 160 ? `${rawDesc.slice(0, 157).replace(/\s\S*$/, "")}…` : rawDesc;
@@ -58,6 +66,7 @@ const ogImage = ogImageMap[slug];
 		priceOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.price : undefined}
 		subtitleOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.subtitle : undefined}
 		descriptionOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.description : undefined}
+		waMessage={waMessage}
 	/>
 
 	<!-- ===== Síntomas ===== -->
@@ -75,7 +84,7 @@ const ogImage = ogImageMap[slug];
 				<div class="mt-8">
 					<Button
 						as="a"
-						href={CONTACT.whatsappUrl}
+						href={whatsappUrl(waMessage)}
 						target="_blank"
 						rel="noopener noreferrer"
 						variant="outline"
@@ -124,6 +133,7 @@ const ogImage = ogImageMap[slug];
 			heroImg={service.heroImg}
 			symptoms={service.symptoms ?? []}
 				ctaLabel={service.ctaLabel}
+			waMessage={waMessage}
 		/>
 	)}
 	{slug === "desarrollo-web" && (
@@ -131,6 +141,7 @@ const ogImage = ogImageMap[slug];
 			heroImg={service.heroImg}
 			includes={service.includes}
 			ctaLabel={service.ctaLabel}
+			waMessage={waMessage}
 		/>
 	)}
 	{slug === "tienda" && (
@@ -138,6 +149,7 @@ const ogImage = ogImageMap[slug];
 			heroImg={service.heroImg}
 			includes={service.includes}
 			ctaLabel={service.ctaLabel}
+			waMessage={waMessage}
 		/>
 	)}
 	{slug === "reparaciones-especializadas" && (
@@ -145,12 +157,15 @@ const ogImage = ogImageMap[slug];
 			heroImg={service.heroImg}
 			includes={service.includes}
 			ctaLabel={service.ctaLabel}
+			waMessage={waMessage}
 		/>
 	)}
 	{service.bodyHtml && <div set:html={service.bodyHtml} />}
 
 	<!-- ===== FAQ ===== -->
-	{faqs.length > 0 && <FaqSection items={faqs} variant="compact" />}
+	{faqs.length > 0 && (
+		<FaqSection items={faqs} variant="compact" waMessage={waMessage} waPosition="service-faq" />
+	)}
 
 	<!-- ===== CTA Final ===== -->
 	<section class="py-20 md:py-28">
@@ -172,7 +187,7 @@ const ogImage = ogImageMap[slug];
 				<div class="flex shrink-0 flex-col gap-3 sm:flex-row">
 					<Button
 						as="a"
-						href={CONTACT.whatsappUrl}
+						href={whatsappUrl(waMessage)}
 						target="_blank"
 						rel="noopener noreferrer"
 						variant="default"

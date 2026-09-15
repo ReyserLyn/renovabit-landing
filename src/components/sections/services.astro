@@ -6,7 +6,7 @@ import servicioImg2 from "@/assets/images/services/service-2.avif";
 import servicioImg3 from "@/assets/images/services/service-3.avif";
 import servicioImg4 from "@/assets/images/services/service-4.avif";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 
 const servicios = [
 	{
@@ -135,17 +135,27 @@ const servicios = [
 			<div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl("Hola, quiero hacer una consulta sobre sus servicios.")}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="default"
 					size="lg"
 					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="services-cta"
 				>
 					<Icon name="hugeicons:arrow-right-01" class="size-5" />
 					Cotizar servicio
 				</Button>
-				<Button as="a" href="/servicios/" variant="outline" size="lg" class="gap-2">
+				<Button
+					as="a"
+					href="/servicios/"
+					variant="outline"
+					size="lg"
+					class="gap-2"
+					data-umami-event="internal_click"
+					data-umami-event-position="services-cta"
+				>
 					<Icon name="hugeicons:arrow-right-01" class="size-5" />
 					Ver todos los servicios
 				</Button>

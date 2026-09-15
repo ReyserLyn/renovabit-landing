@@ -1,14 +1,14 @@
 ---
-import { MapRenovaBit } from "@/components/footer/MapRenovaBit";
 import Logo from "@/components/sections/logo.astro";
 import FacebookIcon from "@/components/social-icon/FacebookIcon.astro";
 import GitHubIcon from "@/components/social-icon/GitHubIcon.astro";
 import InstagramIcon from "@/components/social-icon/InstagramIcon.astro";
 import TikTokIcon from "@/components/social-icon/TikTokIcon.astro";
 import XIcon from "@/components/social-icon/XIcon.astro";
-import { FOOTER, SITE, SOCIAL } from "@/constants";
+import { CONTACT, FOOTER, LOCATION, SITE, SOCIAL, STORE_URL } from "@/constants";
 
 const currentYear = new Date().getFullYear();
+const mapsUrl = `https://www.google.com/maps?q=${LOCATION.lat},${LOCATION.lng}`;
 ---
 
 <footer class="border-t bg-background">
@@ -16,15 +16,8 @@ const currentYear = new Date().getFullYear();
 
 	<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 		<div class="grid gap-12 md:grid-cols-2 md:gap-16">
-			<!-- Left: Mapa + Social -->
+			<!-- Left: Social + Tienda -->
 			<div class="flex flex-col gap-8">
-				<!-- Mapa -->
-				<div
-					class="aspect-4/3 w-full overflow-hidden rounded-2xl border bg-card md:aspect-auto md:h-64"
-				>
-					<MapRenovaBit client:only="preact" />
-				</div>
-
 				<!-- Redes Sociales -->
 				<div>
 					<h3
@@ -79,6 +72,18 @@ const currentYear = new Date().getFullYear();
 							<GitHubIcon size={20} decorative />
 						</a>
 					</div>
+
+					<!-- Tienda en línea -->
+					<a
+						href={STORE_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+						data-umami-event="store_click"
+						data-umami-event-position="footer"
+					>
+						Tienda
+					</a>
 				</div>
 			</div>
 
@@ -95,6 +100,8 @@ const currentYear = new Date().getFullYear();
 						<li>
 							<a
 								href={`mailto:${FOOTER.emails.info}`}
+								data-umami-event="email_click"
+								data-umami-event-position="footer"
 								class="text-sm text-muted-foreground transition-colors hover:text-primary"
 							>
 								{FOOTER.emails.info}
@@ -103,6 +110,8 @@ const currentYear = new Date().getFullYear();
 						<li>
 							<a
 								href={`mailto:${FOOTER.emails.contacto}`}
+								data-umami-event="email_click"
+								data-umami-event-position="footer"
 								class="text-sm text-muted-foreground transition-colors hover:text-primary"
 							>
 								{FOOTER.emails.contacto}
@@ -111,6 +120,8 @@ const currentYear = new Date().getFullYear();
 						<li>
 							<a
 								href={`mailto:${FOOTER.emails.soporte}`}
+								data-umami-event="email_click"
+								data-umami-event-position="footer"
 								class="text-sm text-muted-foreground transition-colors hover:text-primary"
 							>
 								{FOOTER.emails.soporte}
@@ -128,8 +139,18 @@ const currentYear = new Date().getFullYear();
 					</h3>
 					<p class="text-sm leading-relaxed text-muted-foreground">
 						{FOOTER.address.line1}<br>
-						{FOOTER.address.city}, {FOOTER.address.district} — {FOOTER.address.postalCode}
+						{FOOTER.address.city}, {FOOTER.address.district} · {FOOTER.address.postalCode}
 					</p>
+					<a
+						href={mapsUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+						data-umami-event="maps_click"
+						data-umami-event-position="footer"
+					>
+						Ver en Google Maps
+					</a>
 				</div>
 
 				<!-- Teléfono -->
@@ -140,7 +161,7 @@ const currentYear = new Date().getFullYear();
 						Teléfono
 					</h3>
 					<a
-						href={`tel:${FOOTER.phone.replace(/\s/g, "")}`}
+						href={`tel:${CONTACT.phoneTel}`}
 						data-umami-event="phone_click"
 						data-umami-event-position="footer"
 						class="text-sm text-muted-foreground transition-colors hover:text-primary"

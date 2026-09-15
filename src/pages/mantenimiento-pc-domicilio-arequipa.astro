@@ -12,11 +12,14 @@ import LandingPriceTable from "@/components/landing/LandingPriceTable.astro";
 import LandingProcess from "@/components/landing/LandingProcess.astro";
 import LandingRelatedPosts from "@/components/landing/LandingRelatedPosts.astro";
 import LandingTestimonials from "@/components/landing/LandingTestimonials.astro";
+import { getFaqsForService } from "@/data/faq";
 import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
 import { getTestimoniosByServicio } from "@/data/testimonios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const { prices, faqs } = servicioTecnicoCommercial;
+const { prices } = servicioTecnicoCommercial;
+const faqs = getFaqsForService("mantenimiento-pc-domicilio-arequipa");
+const waMessage = "Hola, quiero mantenimiento a domicilio en Arequipa.";
 const testimonios = getTestimoniosByServicio("servicio-tecnico");
 const standardIncludes = [
 	"Limpieza interna y externa del equipo",
@@ -42,6 +45,7 @@ const complexIncludes = [
 		intro="Limpieza, pasta térmica y pruebas básicas para que tu laptop o PC vuelva a trabajar en mejores condiciones. Coordinamos la visita y confirmamos la tarifa antes de ir."
 		ctaLabel="Coordinar por WhatsApp"
 		umamiEvent="maintenance-home-hero"
+		waMessage={waMessage}
 		image={servicioImg1}
 		imageAlt="Mantenimiento de laptop y PC realizado por RenovaBit en Arequipa"
 		badge="Desde S/120 a domicilio"
@@ -60,6 +64,7 @@ const complexIncludes = [
 		aside="El domicilio suma S/30 a cualquiera de las tarifas de taller."
 		rows={prices}
 		note="La atención a domicilio se agenda previamente. Reparaciones, repuestos y licencias no están incluidos."
+		waMessage={waMessage}
 	/>
 
 	<section class="border-b py-16 md:py-20">
@@ -149,8 +154,8 @@ const complexIncludes = [
 				</p>
 				<p>
 					La reparación se deriva a taller y se cotiza después de evaluar el equipo. Repuestos y
-					licencias se cotizan aparte. El diagnóstico avanzado cuesta S/60 y se acredita si aceptas
-					la reparación.
+					licencias se cotizan aparte. El diagnóstico avanzado cuesta S/60 y se acredita al
+					servicio.
 				</p>
 				<a
 					href="/reparacion-laptops-arequipa/"
@@ -173,6 +178,8 @@ const complexIncludes = [
 		items={faqs}
 		heading="Preguntas sobre mantenimiento a domicilio"
 		subtitle="Respuestas directas sobre tarifas, alcance y coordinación previa."
+		waMessage={waMessage}
+		waPosition="maintenance-home-faq"
 	/>
 
 	<LandingCta
@@ -180,6 +187,7 @@ const complexIncludes = [
 		description="Escríbenos por WhatsApp con el tipo de equipo y si prefieres taller o domicilio. Confirmamos la tarifa antes de coordinar."
 		ctaLabel="Coordinar por WhatsApp"
 		umamiEvent="maintenance-home-final"
+		waMessage={waMessage}
 		internalLinks={[
 			{ href: "/servicios/servicio-tecnico/", label: "el servicio técnico general" },
 			{ href: "/laptop-lenta-arequipa/", label: "la guía de laptop lenta" },

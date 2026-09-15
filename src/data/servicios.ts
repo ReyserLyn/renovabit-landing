@@ -49,7 +49,7 @@ export const servicios: ServiceData[] = [
 		description:
 			"Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación del proceso y atención personalizada en Arequipa.",
 		price: "S/ 90",
-		subtitle: "Desde · Diagnóstico sin costo",
+		subtitle: "Desde · Diagnóstico sin costo al realizar el servicio",
 		tiempo: "1 a 3 días",
 		ideal: "Personas y empresas",
 		entrega: "Informe + fotografías",
@@ -62,7 +62,7 @@ export const servicios: ServiceData[] = [
 			"Actualización de drivers",
 			"Verificación de componentes",
 			"Informe documentado",
-			"Diagnóstico sin costo",
+			"Diagnóstico sin costo al realizar el servicio",
 			"Garantía por escrito",
 			"Boleta o factura",
 		],
@@ -76,7 +76,7 @@ export const servicios: ServiceData[] = [
 		ctaLabel: "Cotizar servicio",
 		ctaHeading: "¿Tu laptop necesita mantenimiento?",
 		ctaDescription:
-			"Agenda tu diagnóstico sin costo. Te contamos qué necesita tu equipo, cuánto cuesta y cuándo lo tienes listo.",
+			"Agenda tu diagnóstico sin costo al realizar el servicio. Te contamos qué necesita tu equipo, cuánto cuesta y cuándo lo tienes listo.",
 		heroImg: servicioImg1,
 		process: [
 			{ label: "Recepción", img: servicioImg1 },
@@ -113,7 +113,7 @@ export const servicios: ServiceData[] = [
 		ctaLabel: "Cuéntanos tu proyecto",
 		ctaHeading: "¿Listo para tener tu sitio web?",
 		ctaDescription:
-			"Contanos tu idea y te preparamos una propuesta clara, con tiempos, precio y sin vueltas.",
+			"Cuéntanos tu idea y te preparamos una propuesta clara, con tiempos, precio y sin vueltas.",
 		heroImg: servicioImg2,
 		features: [
 			{
@@ -180,7 +180,7 @@ export const servicios: ServiceData[] = [
 			"Boleta o factura",
 		],
 		ctaLabel: "Consultar disponibilidad",
-		ctaHeading: "¿Buscás componentes o equipos?",
+		ctaHeading: "¿Buscas componentes o equipos?",
 		ctaDescription:
 			"Dinos qué necesitas y te damos precio de distribuidor. Sin compromiso y con asesoría incluida.",
 		heroImg: servicioImg3,
@@ -221,7 +221,7 @@ export const servicios: ServiceData[] = [
 		ctaLabel: "Solicitar diagnóstico",
 		ctaHeading: "¿Tu equipo tiene una falla compleja?",
 		ctaDescription:
-			"Contanos los síntomas. A veces lo que parece perdido tiene solución con el diagnóstico correcto.",
+			"Cuéntanos los síntomas. A veces lo que parece perdido tiene solución con el diagnóstico correcto.",
 		heroImg: servicioImg4,
 		features: [
 			{

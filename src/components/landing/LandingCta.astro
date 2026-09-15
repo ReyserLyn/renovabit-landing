@@ -1,7 +1,7 @@
 ---
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import type { LandingInternalLink } from "@/data/landings";
 
 interface Props {
@@ -9,10 +9,12 @@ interface Props {
 	description: string;
 	ctaLabel: string;
 	umamiEvent: string;
+	/** Mensaje precargado de WhatsApp para contextualizar el CTA. */
+	waMessage?: string;
 	internalLinks?: readonly LandingInternalLink[];
 }
 
-const { heading, description, ctaLabel, umamiEvent, internalLinks } = Astro.props;
+const { heading, description, ctaLabel, umamiEvent, waMessage, internalLinks } = Astro.props;
 
 const links = internalLinks ?? [];
 const linkSegments = links.flatMap((link, index) => [
@@ -30,7 +32,7 @@ const linkSegments = links.flatMap((link, index) => [
 		<div class="mt-8">
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl(waMessage)}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="whatsapp"

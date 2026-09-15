@@ -6,7 +6,7 @@ import ServiceInfoCard from "@/components/services/ServiceInfoCard.astro";
 import ServicePriceBlock from "@/components/services/ServicePriceBlock.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import type { ServiceData } from "@/data/servicios";
 
 interface Props {
@@ -17,6 +17,8 @@ interface Props {
 	priceOverride?: string;
 	subtitleOverride?: string;
 	descriptionOverride?: string;
+	/** Mensaje precargado de WhatsApp para los CTA. */
+	waMessage?: string;
 }
 
 const {
@@ -27,6 +29,7 @@ const {
 	priceOverride,
 	subtitleOverride,
 	descriptionOverride,
+	waMessage,
 } = Astro.props;
 ---
 
@@ -64,6 +67,7 @@ const {
 						<ServiceCTA
 							service={service}
 							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
+							waMessage={waMessage}
 						/>
 					</div>
 				</div>
@@ -101,14 +105,14 @@ const {
 							<div class="mt-6">
 								<Button
 									as="a"
-									href={CONTACT.whatsappUrl}
+									href={whatsappUrl(waMessage)}
 									target="_blank"
 									rel="noopener noreferrer"
 									variant="whatsapp"
-					size="lg"
-					class="gap-2"
-					data-umami-event="whatsapp_click"
-					data-umami-event-position="service-card"
+									size="lg"
+									class="gap-2"
+									data-umami-event="whatsapp_click"
+									data-umami-event-position="service-card"
 								>
 									<WhatsappIcon size={18} />{service.ctaLabel}
 								</Button>

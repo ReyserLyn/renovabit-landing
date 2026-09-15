@@ -5,7 +5,7 @@ import { Icon } from "astro-icon/components";
 import AuthorCard from "@/components/blog/AuthorCard.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT, SITE } from "@/constants";
+import { SITE, whatsappUrl } from "@/constants";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -56,14 +56,15 @@ const articleJsonLd = {
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
-	<slot name="head">
+	<Fragment slot="head">
 		<script type="application/ld+json" is:inline set:html={JSON.stringify(articleJsonLd)}></script>
-	</slot>
+	</Fragment>
 
-	<!-- Progress bar -->
+	<!-- Progress bar: solo CSS, ligada al scroll (sin JavaScript) -->
 	<div
 		id="progress-bar"
-		class="fixed top-0 left-0 z-50 h-0.5 w-0 bg-primary transition-[width] duration-100"
+		class="fixed top-0 left-0 z-50 h-0.5 w-full origin-left bg-primary"
+		aria-hidden="true"
 	></div>
 
 	<!-- Hero -->
@@ -224,12 +225,14 @@ const articleJsonLd = {
 			<div class="mt-8">
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl(`Hola, leí el artículo «${post.data.title}» y quiero más información.`)}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="whatsapp"
 					size="lg"
 					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="blog-footer"
 				>
 					<WhatsappIcon size={18} />Escríbenos por WhatsApp
 				</Button>
@@ -238,21 +241,24 @@ const articleJsonLd = {
 	</section>
 </BaseLayout>
 
-<script>
-const bar = document.getElementById("progress-bar");
-const article = document.querySelector("article");
-if (bar && article) {
-	const articleTop = article.offsetTop;
-	const articleHeight = article.offsetHeight;
-
-	window.addEventListener(
-		"scroll",
-		() => {
-			const scrollPos = window.scrollY - articleTop;
-			const progress = articleHeight > 0 ? (scrollPos / articleHeight) * 100 : 0;
-			bar.style.width = `${Math.max(0, Math.min(progress, 100))}%`;
-		},
-		{ passive: true },
-	);
+<style>
+/* Barra oculta cuando el navegador no soporta animaciones ligadas al scroll. */
+#progress-bar {
+	display: none;
 }
-</script>
+
+@keyframes reading-progress {
+	to {
+		transform: scaleX(1);
+	}
+}
+
+@supports (animation-timeline: scroll()) {
+	#progress-bar {
+		display: block;
+		transform: scaleX(0);
+		animation: reading-progress linear;
+		animation-timeline: scroll(root);
+	}
+}
+</style>

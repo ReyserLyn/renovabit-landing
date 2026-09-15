@@ -6,9 +6,20 @@ interface Props {
 	items: readonly FaqItem[];
 	heading?: string;
 	subtitle?: string;
+	/** Mensaje precargado de WhatsApp para el CTA de cierre. */
+	waMessage?: string;
+	/** Posición de Umami para el CTA de cierre (default: "faq"). */
+	waPosition?: string;
 }
 
-const { items, heading = "Preguntas frecuentes", subtitle } = Astro.props;
+const { items, heading = "Preguntas frecuentes", subtitle, waMessage, waPosition } = Astro.props;
 ---
 
-<FaqSection items={items} heading={heading} subtitle={subtitle} variant="compact" />
+<FaqSection
+	items={items}
+	heading={heading}
+	subtitle={subtitle}
+	variant="compact"
+	waMessage={waMessage}
+	waPosition={waPosition}
+/>

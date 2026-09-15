@@ -50,6 +50,12 @@ export const faqItems: FaqItem[] = [
 		tags: ["general"],
 		featured: true,
 	},
+	{
+		question: "¿Qué métodos de pago aceptan?",
+		answer: "Aceptamos Yape y Plin. Coordinamos el pago al confirmar el servicio.",
+		tags: ["general", "tienda", "servicio-tecnico", "reparaciones-especializadas"],
+		featured: true,
+	},
 
 	// ===== SERVICIO TÉCNICO =====
 	{
@@ -61,7 +67,7 @@ export const faqItems: FaqItem[] = [
 	{
 		question: "¿Cuánto cuesta reparar una laptop en Arequipa?",
 		answer:
-			"El costo depende del tipo de falla y los repuestos necesarios. El diagnóstico es gratuito y te entregamos una cotización clara antes de iniciar cualquier reparación. Cambios de pantalla, teclados, mantenimiento y reparación de placa tienen precios distintos.",
+			"El costo depende del tipo de falla y los repuestos necesarios. La revisión básica está incluida en el servicio. Si el equipo requiere evaluación avanzada de placa, cuesta S/60 y se acredita al servicio. Te entregamos una cotización clara antes de iniciar cualquier reparación. Cambios de pantalla, teclados, mantenimiento y reparación de placa tienen precios distintos.",
 		tags: ["servicio-tecnico", "reparaciones-especializadas"],
 	},
 	{
@@ -219,7 +225,7 @@ export const faqItems: FaqItem[] = [
 	{
 		question: "¿El diagnóstico de mi laptop lenta tiene costo?",
 		answer:
-			"La revisión y las pruebas básicas están incluidas en el mantenimiento. Si el equipo necesita una evaluación de falla más profunda, el diagnóstico avanzado cuesta S/60 y se acredita si aceptas la reparación.",
+			"La revisión y las pruebas básicas están incluidas en el mantenimiento. Si el equipo necesita una evaluación de falla más profunda, el diagnóstico avanzado cuesta S/60 y se acredita al servicio.",
 		tags: ["laptop-lenta-arequipa"],
 	},
 	{
@@ -233,6 +239,32 @@ export const faqItems: FaqItem[] = [
 		answer:
 			"Sí. Ofrecemos diagnóstico y recuperación de datos en discos duros y SSD con fallas lógicas o físicas leves. El éxito de la recuperación depende del tipo y grado del daño. Te informamos antes de cualquier intervención.",
 		tags: ["reparaciones-especializadas"],
+	},
+
+	// ===== MANTENIMIENTO A DOMICILIO =====
+	{
+		question: "¿Qué incluye el mantenimiento a domicilio en Arequipa?",
+		answer:
+			"La visita incluye limpieza interna y externa, cambio de pasta térmica y pruebas básicas de funcionamiento y temperatura. En equipos complejos también se incluyen pads térmicos estándar. El backup básico se realiza cuando el volumen y el estado del equipo lo permiten.",
+		tags: ["mantenimiento-pc-domicilio-arequipa"],
+	},
+	{
+		question: "¿Cuánto cuesta el mantenimiento a domicilio?",
+		answer:
+			"El mantenimiento simple cuesta S/120 a domicilio y el complejo S/150. La visita suma S/30 sobre la tarifa de taller y se agenda con coordinación previa.",
+		tags: ["mantenimiento-pc-domicilio-arequipa"],
+	},
+	{
+		question: "¿En qué zonas de Arequipa atienden a domicilio?",
+		answer:
+			"Coordinamos la visita según tu zona y el tipo de equipo. Escríbenos por WhatsApp con tu dirección de referencia para confirmar disponibilidad y horario.",
+		tags: ["mantenimiento-pc-domicilio-arequipa"],
+	},
+	{
+		question: "¿La visita a domicilio incluye reparaciones?",
+		answer:
+			"No. El mantenimiento es preventivo: limpieza, pasta térmica y pruebas. Si encontramos una falla, la reparación se deriva a taller y se cotiza después de evaluar el equipo. Repuestos y licencias se cotizan aparte.",
+		tags: ["mantenimiento-pc-domicilio-arequipa"],
 	},
 ];
 

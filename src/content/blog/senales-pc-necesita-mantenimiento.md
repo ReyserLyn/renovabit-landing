@@ -76,6 +76,6 @@ Si prefieres evitar trasladar tu equipo, revisa el servicio de [mantenimiento de
 
 Como referencia, el mantenimiento simple cuesta **S/ 90 en taller** o **S/ 120 a domicilio**. El mantenimiento complejo cuesta **S/ 120 en taller** o **S/ 150 a domicilio**. La atención a domicilio suma S/ 30, los pads térmicos estándar están incluidos en el servicio complejo y los repuestos o licencias se cotizan aparte.
 
-Si el equipo requiere una evaluación de falla más profunda, el diagnóstico avanzado cuesta **S/ 60** y se acredita si aceptas la reparación. El diagnóstico avanzado no reemplaza la cotización: primero se revisa el equipo y luego se informa el alcance.
+Si el equipo requiere una evaluación de falla más profunda, el diagnóstico avanzado cuesta **S/ 60** y se acredita al servicio. El diagnóstico avanzado no reemplaza la cotización: primero se revisa el equipo y luego se informa el alcance.
 
-¿Tu PC hace ruido, se calienta, se apaga o está lenta? [Escríbenos por WhatsApp](https://wa.me/51955315646) con el modelo y los síntomas. Te orientamos sobre el siguiente paso antes de intervenir.
+¿Tu PC hace ruido, se calienta, se apaga o está lenta? <a href="https://wa.me/51955315646?text=Hola%2C%20le%C3%AD%20el%20art%C3%ADculo%20%C2%AB5%20se%C3%B1ales%20de%20que%20tu%20PC%20necesita%20mantenimiento%C2%BB%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer" data-umami-event="whatsapp_click" data-umami-event-position="blog-inline">Escríbenos por WhatsApp</a> con el modelo y los síntomas. Te orientamos sobre el siguiente paso antes de intervenir.

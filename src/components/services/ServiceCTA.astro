@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import type { ServiceData } from "@/data/servicios";
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
 	footerText: string;
 	secondaryHref?: string;
 	secondaryLabel?: string;
+	/** Mensaje precargado de WhatsApp para el CTA. */
+	waMessage?: string;
 }
 
 const {
@@ -17,13 +19,14 @@ const {
 	footerText,
 	secondaryHref,
 	secondaryLabel = "Ver servicio completo",
+	waMessage,
 } = Astro.props;
 ---
 
 <div class="mt-7 flex flex-wrap items-center gap-3">
 	<Button
 		as="a"
-		href={CONTACT.whatsappUrl}
+		href={whatsappUrl(waMessage)}
 		target="_blank"
 		rel="noopener noreferrer"
 		variant="whatsapp"

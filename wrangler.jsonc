@@ -15,10 +15,6 @@
 			"custom_domain": true
 		}
 	],
-	"vars": {
-		"PUBLIC_INDEXABLE": "true",
-		"PUBLIC_UMAMI_ENABLED": "true"
-	},
 	"observability": {
 		"enabled": true
 	}

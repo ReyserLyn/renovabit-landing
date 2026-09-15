@@ -9,7 +9,7 @@ import ServiceInfoCard from "@/components/services/ServiceInfoCard.astro";
 import ServicePriceBlock from "@/components/services/ServicePriceBlock.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import { servicios } from "@/data/servicios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
@@ -18,7 +18,7 @@ const [srv1, srv2, srv3, srv4] = servicios;
 
 <BaseLayout
 	title="Servicio Técnico y Desarrollo Web en Arequipa"
-	description="Servicio técnico de laptops y PCs, desarrollo web, tienda de componentes y reparaciones especializadas en Arequipa. Diagnóstico gratuito."
+	description="Servicio técnico de laptops y PCs, desarrollo web, tienda y reparaciones especializadas en Arequipa. Diagnóstico sin costo al realizar el servicio."
 	ogImage="/og-servicios.jpg"
 >
 	<!-- Page hero -->
@@ -137,7 +137,7 @@ const [srv1, srv2, srv3, srv4] = servicios;
 						>
 							<Button
 								as="a"
-								href={CONTACT.whatsappUrl}
+								href={whatsappUrl()}
 								target="_blank"
 								rel="noopener noreferrer"
 								variant="whatsapp"
@@ -154,7 +154,7 @@ const [srv1, srv2, srv3, srv4] = servicios;
 								variant="outline"
 								size="lg"
 								class="gap-2"
-								data-umami-event="whatsapp_click"
+								data-umami-event="internal_click"
 								data-umami-event-position="service-card"
 							>
 								<Icon name="hugeicons:arrow-right-01" class="size-4" />Ver servicio completo
@@ -256,12 +256,14 @@ const [srv1, srv2, srv3, srv4] = servicios;
 						>
 							<Button
 								as="a"
-								href={CONTACT.whatsappUrl}
+								href={whatsappUrl()}
 								target="_blank"
 								rel="noopener noreferrer"
 								variant="whatsapp"
 								size="lg"
 								class="gap-2"
+								data-umami-event="whatsapp_click"
+								data-umami-event-position="service-card"
 							>
 								<WhatsappIcon size={18} />{srv4.ctaLabel}
 							</Button>
@@ -271,6 +273,8 @@ const [srv1, srv2, srv3, srv4] = servicios;
 								variant="outline"
 								size="lg"
 								class="gap-2"
+								data-umami-event="internal_click"
+								data-umami-event-position="service-card"
 							>
 								<Icon name="hugeicons:arrow-right-01" class="size-4" />Ver servicio completo
 							</Button>
@@ -305,14 +309,14 @@ const [srv1, srv2, srv3, srv4] = servicios;
 						¿Qué servicio necesitas?
 					</h2>
 					<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
-						Contanos cuál te interesa y te preparamos una cotización clara, sin compromiso y
+						Cuéntanos cuál te interesa y te preparamos una cotización clara, sin compromiso y
 						adaptada a tu caso.
 					</p>
 				</div>
 
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl()}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="default"

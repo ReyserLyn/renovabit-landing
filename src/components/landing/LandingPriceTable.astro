@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 import type { LandingPriceRow } from "@/data/landings";
 
 interface Props {
@@ -14,9 +14,11 @@ interface Props {
 	note?: string;
 	id?: string;
 	cta?: { label: string; umamiEvent: string };
+	/** Mensaje precargado de WhatsApp para el CTA. */
+	waMessage?: string;
 }
 
-const { eyebrow, heading, aside, rows, note, id = "precios", cta } = Astro.props;
+const { eyebrow, heading, aside, rows, note, id = "precios", cta, waMessage } = Astro.props;
 ---
 
 <section id={id} class="scroll-mt-24 border-y bg-muted/15 py-16 md:py-20">
@@ -49,11 +51,12 @@ const { eyebrow, heading, aside, rows, note, id = "precios", cta } = Astro.props
 				{note}
 			</p>
 		)}
+		<p class="mt-3 text-xs text-muted-foreground">Aceptamos Yape y Plin.</p>
 		{cta && (
 			<div class="mt-6">
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl(waMessage)}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="whatsapp"

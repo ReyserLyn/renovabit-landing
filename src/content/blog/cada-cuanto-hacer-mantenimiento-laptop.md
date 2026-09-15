@@ -7,7 +7,7 @@ tags: ["Mantenimiento", "Laptops"]
 heroImage: "./mantenimiento-laptop.avif"
 ---
 
-Si usas tu laptop todos los días — para trabajar, estudiar o jugar — el polvo y la suciedad se acumulan dentro del equipo mucho más rápido de lo que imaginas. Ese polvo tapa los ventiladores, seca la pasta térmica y hace que tu laptop trabaje a temperaturas más altas de lo normal. El resultado: menor rendimiento, más ruido y una vida útil más corta.
+Si usas tu laptop todos los días (para trabajar, estudiar o jugar), el polvo y la suciedad se acumulan dentro del equipo mucho más rápido de lo que imaginas. Ese polvo tapa los ventiladores, seca la pasta térmica y hace que tu laptop trabaje a temperaturas más altas de lo normal. El resultado: menor rendimiento, más ruido y una vida útil más corta.
 
 ---
 
@@ -35,7 +35,7 @@ No hace falta esperar a que se cumpla el plazo. Si tu laptop muestra alguno de e
 
 Si el rendimiento bajó sin motivo aparente, revisa la guía de [laptop lenta en Arequipa](/laptop-lenta-arequipa/).
 
-> **Dato importante**: una laptop que se sobrecalienta no solo es incómoda de usar. Las temperaturas elevadas sostenidas degradan los componentes internos — procesador, tarjeta gráfica, batería — y pueden acortar la vida útil del equipo en años.
+> **Dato importante**: una laptop que se sobrecalienta no solo es incómoda de usar. Las temperaturas elevadas sostenidas degradan los componentes internos (procesador, tarjeta gráfica, batería) y pueden acortar la vida útil del equipo en años.
 
 ---
 
@@ -49,7 +49,7 @@ En RenovaBit, cada mantenimiento sigue un proceso documentado. No es solo "abrir
 - Limpieza interna con aire a presión controlada (no con soplador casero)
 - Alcohol isopropílico 99% para limpieza de contactos, conectores y puertos
 - Limpieza manual de pantalla, teclado y carcasa exterior
-- Lubricación de ventiladores — cada uno se desmonta, limpia y lubrica individualmente
+- Lubricación de ventiladores: cada uno se desmonta, limpia y lubrica individualmente
 
 ### Renovación térmica
 
@@ -75,7 +75,7 @@ En RenovaBit, cada mantenimiento sigue un proceso documentado. No es solo "abrir
 
 La atención a domicilio suma S/ 30 y requiere coordinación previa. Los pads térmicos estándar están incluidos en el mantenimiento complejo; repuestos y licencias se cotizan por separado. El backup básico se realiza cuando el volumen y el estado del equipo lo permiten.
 
-Si tu equipo necesita una reparación, la derivamos a taller y te entregamos una cotización después de evaluarlo. El diagnóstico avanzado cuesta S/ 60 y se acredita si aceptas la reparación.
+Si tu equipo necesita una reparación, la derivamos a taller y te entregamos una cotización después de evaluarlo. El diagnóstico avanzado cuesta S/ 60 y se acredita al servicio.
 
 ---
 
@@ -94,4 +94,4 @@ Además, una laptop con buen mantenimiento:
 
 ---
 
-Si tu laptop ya muestra alguno de estos síntomas o simplemente quieres prevenir problemas, [escríbenos por WhatsApp](https://wa.me/51955315646). Te contamos qué necesita tu equipo, cuánto cuesta y cuándo lo tienes listo.
+Si tu laptop ya muestra alguno de estos síntomas o simplemente quieres prevenir problemas, <a href="https://wa.me/51955315646?text=Hola%2C%20le%C3%AD%20el%20art%C3%ADculo%20%C2%AB%C2%BFCada%20cu%C3%A1nto%20hacer%20mantenimiento%20a%20tu%20laptop%3F%C2%BB%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer" data-umami-event="whatsapp_click" data-umami-event-position="blog-inline">escríbenos por WhatsApp</a>. Te contamos qué necesita tu equipo, cuánto cuesta y cuándo lo tienes listo.

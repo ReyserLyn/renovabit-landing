@@ -8,7 +8,7 @@ import processImg4 from "@/assets/images/process/process-4.avif";
 import processImg5 from "@/assets/images/process/process-5.avif";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 
 const rows = [
 	{
@@ -114,7 +114,7 @@ const rows = [
 			</p>
 			<Button
 				as="a"
-				href={CONTACT.whatsappUrl}
+				href={whatsappUrl("Hola, quiero hacer una consulta sobre sus servicios.")}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="default"

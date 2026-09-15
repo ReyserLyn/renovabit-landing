@@ -57,3 +57,12 @@ export function getTestimoniosByServicio(serviceSlug?: string): Testimonio[] {
 	if (!serviceSlug) return testimonios;
 	return testimonios.filter((t) => t.servicio === serviceSlug);
 }
+
+/** Formatea la fecha (YYYY-MM-DD) como "mes de año" en es-PE, sin desfase por zona horaria. */
+export function formatTestimonioFecha(fecha: string): string {
+	const [year, month, day] = fecha.split("-").map(Number);
+	return new Date(year, month - 1, day).toLocaleDateString("es-PE", {
+		month: "long",
+		year: "numeric",
+	});
+}

@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import { whatsappUrl } from "@/constants";
 
 interface Props {
 	eyebrow: string;
@@ -11,6 +11,8 @@ interface Props {
 	intro: string;
 	ctaLabel: string;
 	umamiEvent: string;
+	/** Mensaje precargado de WhatsApp para contextualizar el CTA. */
+	waMessage?: string;
 	image: ImageMetadata;
 	imageAlt: string;
 	badge?: string;
@@ -25,6 +27,7 @@ const {
 	intro,
 	ctaLabel,
 	umamiEvent,
+	waMessage,
 	image,
 	imageAlt,
 	badge,
@@ -49,7 +52,7 @@ const {
 			<div class="mt-8 flex flex-wrap items-center gap-3">
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl(waMessage)}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="whatsapp"

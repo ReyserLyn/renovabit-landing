@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import logoStacked from "@/assets/branding/logo-monogram-light.svg";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT, SITE } from "@/constants";
+import { SITE, whatsappUrl } from "@/constants";
 import { servicios } from "@/data/servicios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
@@ -22,12 +22,12 @@ const aboutJsonLd = {
 ---
 
 <BaseLayout
-	title="Nosotros | Tecnología para personas y negocios"
+	title="Nosotros: tecnología para personas y negocios"
 	description="RenovaBit: empresa tecnológica en Arequipa especializada en reparación de laptops, PCs y desarrollo web. Conoce nuestra misión, visión y valores."
 >
-	<slot name="head">
+	<Fragment slot="head">
 		<script type="application/ld+json" is:inline set:html={JSON.stringify(aboutJsonLd)}></script>
-	</slot>
+	</Fragment>
 
 	<!-- Hero -->
 	<section class="pt-32 pb-12 md:pt-40 md:pb-16">
@@ -227,12 +227,14 @@ const aboutJsonLd = {
 
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl("Hola, quiero conocer más sobre RenovaBit.")}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="default"
 					size="lg"
 					class="shrink-0 gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="about-page"
 				>
 					<WhatsappIcon size={18} />
 					Escríbenos

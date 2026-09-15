@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { MapRenovaBit } from "@/components/footer/MapRenovaBit";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
-import { CONTACT, FOOTER, LOCATION, SITE } from "@/constants";
+import { CONTACT, FOOTER, LOCATION, SITE, whatsappUrl } from "@/constants";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const contactJsonLd = {
@@ -20,7 +20,7 @@ const details = [
 	{
 		icon: "hugeicons:maps",
 		label: "Dirección",
-		value: `${FOOTER.address.line1}, ${FOOTER.address.city}, ${FOOTER.address.district} — ${FOOTER.address.postalCode}`,
+		value: `${FOOTER.address.line1}, ${FOOTER.address.city}, ${FOOTER.address.district} · ${FOOTER.address.postalCode}`,
 		href: `https://www.google.com/maps?q=${LOCATION.lat},${LOCATION.lng}`,
 		cta: "Abrir en Google Maps",
 	},
@@ -28,7 +28,7 @@ const details = [
 		icon: "hugeicons:telephone",
 		label: "Teléfono",
 		value: CONTACT.phone,
-		href: `tel:${CONTACT.phone}`,
+		href: `tel:${CONTACT.phoneTel}`,
 		cta: "Llamar ahora",
 	},
 	{
@@ -50,9 +50,9 @@ const details = [
 	title="Contacto y Ubicación en Arequipa"
 	description="Encuentra RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa. Teléfono, WhatsApp, horarios. Atención de lunes a viernes, 8 AM a 8 PM."
 >
-	<slot name="head">
+	<Fragment slot="head">
 		<script type="application/ld+json" is:inline set:html={JSON.stringify(contactJsonLd)}></script>
-	</slot>
+	</Fragment>
 	<!-- Hero -->
 	<section class="pt-32 pb-12 md:pt-40 md:pb-16">
 		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
@@ -108,10 +108,14 @@ const details = [
 										? "maps_click"
 										: d.label === "Teléfono"
 											? "phone_click"
-											: undefined
+											: d.label === "Correo"
+												? "email_click"
+												: undefined
 								}
 								data-umami-event-position={
-									d.label === "Dirección" || d.label === "Teléfono" ? "contact-page" : undefined
+									d.label === "Dirección" || d.label === "Teléfono" || d.label === "Correo"
+										? "contact-page"
+										: undefined
 								}
 								class="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
 											>
@@ -128,7 +132,7 @@ const details = [
 					<div class="mt-8">
 						<Button
 							as="a"
-							href={CONTACT.whatsappUrl}
+							href={whatsappUrl("Hola, quiero hacer una consulta.")}
 							target="_blank"
 							rel="noopener noreferrer"
 							variant="whatsapp"
@@ -164,7 +168,7 @@ const details = [
 
 				<Button
 					as="a"
-					href={CONTACT.whatsappUrl}
+					href={whatsappUrl("Hola, quiero hacer una consulta.")}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="default"

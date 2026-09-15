@@ -2,7 +2,7 @@ export const SITE = {
 	name: "RenovaBit",
 	url: "https://renovabit.com",
 	description:
-		"Reparación de laptops y PCs en Arequipa a domicilio. Mantenimiento, desarrollo web y venta de componentes. Diagnóstico sin costo.",
+		"Reparación de laptops y PCs en Arequipa a domicilio. Mantenimiento, desarrollo web y venta de componentes. Diagnóstico sin costo al realizar el servicio.",
 	author: "RenovaBit",
 	locale: "es_PE",
 	ogImage: "/og-default.jpg",
@@ -22,7 +22,7 @@ export const SITE = {
 		"laptop lenta arequipa",
 		"recuperar datos arequipa",
 		"limpieza laptop arequipa",
-		"diagnóstico gratuito arequipa",
+		"diagnóstico sin costo arequipa",
 		"servicio técnico a domicilio arequipa",
 		"reparación pc gamer arequipa",
 		"cambio pasta térmica arequipa",
@@ -68,12 +68,29 @@ export const SITE = {
 	themeColor: "#654fcc",
 } as const;
 
+const WHATSAPP_NUMBER = "51955315646";
+
+const DEFAULT_WHATSAPP_MESSAGE =
+	"¡Hola! Estoy interesado en uno de sus servicios y quisiera más información.";
+
+/**
+ * Genera un enlace de WhatsApp con un mensaje precargado según el contexto.
+ * Usa el mensaje genérico del sitio cuando no se indica uno.
+ */
+export function whatsappUrl(message?: string): string {
+	return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message ?? DEFAULT_WHATSAPP_MESSAGE)}`;
+}
+
 export const CONTACT = {
-	whatsappUrl:
-		"https://wa.me/51955315646?text=%C2%A1Hola!%20Estoy%20interesado%20en%20uno%20de%20sus%20servicios%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n.",
+	whatsappUrl: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_WHATSAPP_MESSAGE)}`,
 	phone: "+51 955 315 646",
+	/** Versión solo con dígitos para enlaces `tel:`. */
+	phoneTel: "+51955315646",
 	email: "contacto@renovabit.com",
 } as const;
+
+/** URL de la tienda en línea (sitio externo). */
+export const STORE_URL = "https://tienda.renovabit.com";
 
 export const SOCIAL = {
 	instagram: "https://www.instagram.com/RenovaBit",
