@@ -17,6 +17,8 @@ worker-configuration.d.ts
 .env.production
 .env.*.local
 .dev.vars
+.dev.vars.*
+!.dev.vars.example
 
 # OS
 .DS_Store

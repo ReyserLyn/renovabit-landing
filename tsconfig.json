@@ -4,6 +4,7 @@
 		"paths": {
 			"@/*": ["./src/*"]
 		},
+		"types": ["bun"],
 		"verbatimModuleSyntax": true,
 		"jsx": "react-jsx",
 		"jsxImportSource": "preact"

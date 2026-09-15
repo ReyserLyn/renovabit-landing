@@ -6,7 +6,7 @@ import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import seoGraph from "@jdevalk/astro-seo-graph/integration";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 import icon from "astro-icon";
 import llms from "astro-llms-md";
 
@@ -41,6 +41,41 @@ export default defineConfig({
 	site: "https://renovabit.com",
 	server: { port: 3000 },
 	compressHTML: "jsx",
+
+	// La validación de origen del formulario de contacto vive en
+	// `src/lib/contact/origin.ts` y decide el contrato de respuesta del endpoint
+	// (403 `verificacion`). Se desactiva la comprobación global de Astro para no
+	// duplicarla y para permitir clientes sin cabecera `Origin` (curl, formularios
+	// sin JavaScript), que sí cubren Turnstile y el límite de envíos.
+	security: {
+		checkOrigin: false,
+	},
+
+	env: {
+		schema: {
+			// Secrets del formulario de contacto: se leen en runtime con
+			// `astro:env/server` (en producción se cargan con `wrangler secret put`).
+			RESEND_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
+			TURNSTILE_SECRET_KEY: envField.string({
+				context: "server",
+				access: "secret",
+				optional: true,
+			}),
+			CONTACT_INBOX: envField.string({ context: "server", access: "secret", optional: true }),
+			CONTACT_DEV_SIMULATE_EMAIL: envField.string({
+				context: "server",
+				access: "secret",
+				optional: true,
+			}),
+			// Sitekey pública de Turnstile. Es variable de BUILD: cambiarla exige
+			// reconstruir el sitio (ver .env.example).
+			PUBLIC_TURNSTILE_SITE_KEY: envField.string({
+				context: "client",
+				access: "public",
+				optional: true,
+			}),
+		},
+	},
 
 	fonts: [
 		{

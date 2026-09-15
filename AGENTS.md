@@ -40,6 +40,8 @@ bun run build         # wrangler types && astro check && astro build
 bun run preview       # wrangler types && astro preview (workerd runtime)
 bun run check         # astro check (type checking)
 bun run check:biome   # biome check . --write
+bun test              # pruebas unitarias (bun:test)
+bun run verify        # biome check + bun test + astro check + astro build
 bun run cf:types      # wrangler types → worker-configuration.d.ts
 bun run cf:deploy     # astro build && wrangler deploy (a Cloudflare Workers)
 ```
@@ -120,8 +122,31 @@ src/
 7. **Standalone project** — No es monorepo. `biome.json` con `root: true` funciona sin conflictos.
 8. **Zed config** — Biome como formatter para Astro, CSS, JSON, JS, TS, TSX. Tailwind LSP configurado para Astro.
 9. **Cloudflare Workers** — Adapter `@astrojs/cloudflare` v14 con output static (modo por defecto en Astro 7, reemplaza hybrid). `wrangler.jsonc` con `assets.directory` y `nodejs_compat`. `wrangler types` genera `worker-configuration.d.ts`. Dev server usa workerd runtime.
-10. **Despliegue**: `bun run cf:deploy` o manual: `astro build && wrangler deploy`. El adapter genera `_headers` para cache-control en assets hasheados. Para añadir SSR en el futuro (contact form, API), marcar rutas con `export const prerender = false` — Astro 7 static mode lo soporta.
+10. **Despliegue**: `bun run cf:deploy` o manual: `astro build && wrangler deploy`. El adapter genera `_headers` para cache-control en assets hasheados. La única ruta on-demand es `src/pages/api/contact.ts` (`export const prerender = false`); el resto es estático.
 11. **Astro 7 cambios importantes**: Rust compiler (no más Go), JSX whitespace default, Vite 8 con Rolldown, Sätteri para Markdown, `output: 'hybrid'` eliminado (static lo reemplaza). `compressHTML: true` ya no es compatible — usar `"jsx"`.
+
+---
+
+## Formulario de contacto
+
+- **Ruta on-demand única del sitio**: `src/pages/api/contact.ts` (`export const prerender = false`). Todo lo demás se prerenderiza.
+- **Módulos**: `src/lib/contact/` (schema Valibot, errors, origin, turnstile, ratelimit, resend, templates, handler, site-key).
+- **Isla**: `src/components/contact/ContactForm.tsx` (Preact + Formisch + `@preact/signals`) y `TurnstileWidget.tsx`. Copy en `src/data/contact-form.ts`.
+- **Anti-bot**: Turnstile fail-closed, honeypot `empresa` y límite `CONTACT_RATE_LIMITER` (3 solicitudes / 60 s por IP).
+- **Correos**: Resend vía `fetch` (sin SDK), plantillas TS en `templates.ts`. Sin almacenamiento en v1.
+- **Detalle completo**: `docs/contact-form.md`.
+
+### Variables de entorno
+
+| Variable | Ámbito | Local | Producción |
+|---|---|---|---|
+| `PUBLIC_TURNSTILE_SITE_KEY` | Build, pública | `1x00000000000000000000AA` | Sitekey real del widget |
+| `TURNSTILE_SECRET_KEY` | Runtime, secret | Secret de prueba | `wrangler secret put` |
+| `RESEND_API_KEY` | Runtime, secret | Vacía (simulada con `CONTACT_DEV_SIMULATE_EMAIL=true`) | `wrangler secret put` |
+| `CONTACT_INBOX` | Runtime, secret | `contacto@renovabit.com` | `wrangler secret put` |
+| `CONTACT_DEV_SIMULATE_EMAIL` | Runtime, secret | `true` | No definir |
+
+Comandos: `bun test` (unitarias) y `bun run verify` (Biome + tests + type-check + build).
 
 ---
 
@@ -168,7 +193,6 @@ src/
 ## Pendientes Conocidos
 
 - [ ] Crear `public/og-default.png` (Open Graph image, referenciado en `constants.ts`)
-- [ ] Crear `.env.example` si se usan variables de entorno
 - [ ] Verificar `astro check` sin errores
 - [ ] Refinar paleta de colores basada en branding
 - [ ] Definir fuente(s) del proyecto

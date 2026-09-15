@@ -1,10 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
+import { ContactForm } from "@/components/contact/ContactForm";
 import { MapRenovaBit } from "@/components/footer/MapRenovaBit";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { CONTACT, FOOTER, LOCATION, SITE, whatsappUrl } from "@/constants";
+import { contactFormCopy } from "@/data/contact-form";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { contactSiteKey } from "@/lib/contact/site-key";
+
+const turnstileSiteKey = contactSiteKey();
 
 const contactJsonLd = {
 	"@context": "https://schema.org",
@@ -146,6 +151,28 @@ const details = [
 					</div>
 				</div>
 			</div>
+		</div>
+	</section>
+
+	<!-- Formulario -->
+	<section id="formulario" class="scroll-mt-24 border-t py-16 md:py-20">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+				{contactFormCopy.heading}
+			</h2>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
+				{contactFormCopy.subheading}
+			</p>
+			<div class="mt-8">
+				<ContactForm siteKey={turnstileSiteKey} client:load />
+			</div>
+			<noscript>
+				<p
+					class="mt-6 rounded-lg border border-border bg-muted/40 p-4 text-sm leading-relaxed text-muted-foreground"
+				>
+					{contactFormCopy.noscript}
+				</p>
+			</noscript>
 		</div>
 	</section>
 

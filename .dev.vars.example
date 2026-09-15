@@ -1,0 +1,22 @@
+# Secretos locales del Worker (wrangler dev / astro preview).
+# Copia este archivo a `.dev.vars` para desarrollo:
+#   cp .dev.vars.example .dev.vars
+# En producción estas variables se cargan con `wrangler secret put <NOMBRE>`;
+# nunca se commitean.
+
+# Secret de Cloudflare Turnstile. El secret de prueba oficial ("siempre pasa")
+# funciona con la sitekey de prueba 1x00000000000000000000AA. En producción usa
+# el secret real del widget de renovabit.com.
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# API key de Resend (https://resend.com). Opcional en local: si queda vacía y
+# CONTACT_DEV_SIMULATE_EMAIL=true, los correos solo se registran en consola.
+RESEND_API_KEY=
+
+# Bandeja que recibe las notificaciones del formulario. En producción usa una
+# dirección verificada del dominio.
+CONTACT_INBOX=contacto@renovabit.com
+
+# Con "true", el envío de correo se simula y solo se registra en consola.
+# En producción debe ser "false" o no estar definida.
+CONTACT_DEV_SIMULATE_EMAIL=true
