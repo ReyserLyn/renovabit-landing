@@ -1,15 +1,26 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
+import aboutImg2 from "@/assets/images/about/about-2.avif";
+import processImg1 from "@/assets/images/process/process-1.avif";
+import processImg2 from "@/assets/images/process/process-2.avif";
 import servicioImg1 from "@/assets/images/services/service-1.avif";
-import FaqSection from "@/components/sections/FaqSection.astro";
+import servicioImg4 from "@/assets/images/services/service-4.avif";
+import LandingCta from "@/components/landing/LandingCta.astro";
+import LandingFaq from "@/components/landing/LandingFaq.astro";
+import LandingProcess from "@/components/landing/LandingProcess.astro";
+import LandingRelatedPosts from "@/components/landing/LandingRelatedPosts.astro";
+import LandingSymptoms from "@/components/landing/LandingSymptoms.astro";
+import LandingTestimonials from "@/components/landing/LandingTestimonials.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/constants";
 import { getFaqsForService } from "@/data/faq";
+import { getTestimoniosByServicio } from "@/data/testimonios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const faqs = getFaqsForService("reparacion-laptops-arequipa");
+const testimonios = getTestimoniosByServicio("servicio-tecnico");
+const checkIcon = "hugeicons:checkmark-circle-03";
 ---
 
 <BaseLayout
@@ -69,62 +80,55 @@ const faqs = getFaqsForService("reparacion-laptops-arequipa");
 		</div>
 	</section>
 
-	<section class="border-t py-16 md:py-20">
-		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div class="max-w-2xl">
-				<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
-					Señales concretas
-				</p>
-				<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-					Una falla no siempre significa que necesitas otra laptop.
-				</h2>
-			</div>
-			<div class="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-				{[
-						"No enciende o se apaga solo",
-						"Se calienta demasiado o hace ruido",
-						"Está lenta aunque antes funcionaba bien",
-						"La batería dura muy poco o no carga",
-						"La pantalla, teclado o cargador fallan",
-						"Necesita revisar un puerto, disco o memoria",
-					].map((problem) => (
-						<p class="flex items-start gap-3 border-t border-border/20 pt-4 text-base text-muted-foreground">
-							<Icon name="hugeicons:checkmark-circle-03" class="mt-0.5 size-4 shrink-0 text-primary/70" />
-							{problem}
-						</p>
-					))}
-			</div>
-		</div>
-	</section>
+	<LandingSymptoms
+		eyebrow="Señales concretas"
+		heading="Una falla no siempre significa que necesitas otra laptop."
+		items={[
+			{ icon: checkIcon, text: "No enciende o se apaga solo" },
+			{ icon: checkIcon, text: "Se calienta demasiado o hace ruido" },
+			{ icon: checkIcon, text: "Está lenta aunque antes funcionaba bien" },
+			{ icon: checkIcon, text: "La batería dura muy poco o no carga" },
+			{ icon: checkIcon, text: "La pantalla, teclado o cargador fallan" },
+			{ icon: checkIcon, text: "Necesita revisar un puerto, disco o memoria" },
+		]}
+	/>
 
-	<section class="border-t bg-muted/15 py-16 md:py-20">
-		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-			<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
-				Cómo trabajamos
-			</p>
-			<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				Diagnóstico antes de tomar decisiones
-			</h2>
-			<ol class="mt-10 space-y-8">
-				{[
-						["Nos cuentas los síntomas", "Por WhatsApp revisamos qué ocurre, desde cuándo y cómo se usa el equipo."],
-						["Evaluamos la laptop", "Revisamos el equipo para identificar el origen de la falla y qué pruebas hacen falta."],
-						["Te explicamos las opciones", "Recibes el diagnóstico, el alcance y la cotización antes de autorizar el trabajo."],
-						["Reparamos y probamos", "Solo después de tu aprobación intervenimos y verificamos el funcionamiento del equipo."],
-					].map(([title, description], index) => (
-						<li class="flex gap-4">
-							<span class="flex size-7 shrink-0 items-center justify-center rounded-full border border-border/30 font-mono text-xs font-medium text-muted-foreground">
-								{index + 1}
-							</span>
-							<div>
-								<h3 class="font-heading text-base font-bold text-foreground">{title}</h3>
-								<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
-							</div>
-						</li>
-					))}
-			</ol>
-		</div>
-	</section>
+	<LandingProcess
+		eyebrow="Cómo trabajamos"
+		heading="Diagnóstico antes de tomar decisiones"
+		steps={[
+			{
+				title: "Nos cuentas los síntomas",
+				description: "Por WhatsApp revisamos qué ocurre, desde cuándo y cómo se usa el equipo.",
+				image: processImg1,
+				imageAlt:
+					"Conversación de WhatsApp coordinando la reparación de una laptop con RenovaBit en Arequipa: síntomas y modelo del equipo",
+			},
+			{
+				title: "Evaluamos la laptop",
+				description: "Revisamos el equipo para identificar el origen de la falla y qué pruebas hacen falta.",
+				image: aboutImg2,
+				imageAlt:
+					"Diagnóstico de una laptop en el taller de RenovaBit en Arequipa: revisión con multímetro para identificar el origen de la falla",
+			},
+			{
+				title: "Te explicamos las opciones",
+				description: "Recibes el diagnóstico, el alcance y la cotización antes de autorizar el trabajo.",
+				image: processImg2,
+				imageAlt:
+					"Informe técnico RenovaBit en Arequipa: diagnóstico, alcance y cotización antes de autorizar la reparación de la laptop",
+			},
+			{
+				title: "Reparamos y probamos",
+				description: "Solo después de tu aprobación intervenimos y verificamos el funcionamiento del equipo.",
+				image: servicioImg4,
+				imageAlt:
+					"Laptop reparada y probada por RenovaBit en Arequipa: placa y componentes internos revisados tras la intervención",
+			},
+		]}
+		tone="muted"
+		marker="outline"
+	/>
 
 	<section class="border-t py-16 md:py-20">
 		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -166,43 +170,32 @@ const faqs = getFaqsForService("reparacion-laptops-arequipa");
 		</div>
 	</section>
 
-	<FaqSection
+	<LandingTestimonials
+		items={testimonios}
+		eyebrow="Clientes"
+		heading="Experiencias con nuestro servicio técnico"
+		subtitle="Lo que cuentan quienes confiaron en RenovaBit para su equipo."
+	/>
+
+	<LandingFaq
 		items={faqs}
 		heading="Preguntas sobre reparación de laptops"
 		subtitle="Respuestas directas antes de coordinar la revisión de tu equipo."
-		variant="compact"
 	/>
 
-	<section class="border-t py-16 md:py-20">
-		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-			<h2 class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				Cuéntanos qué le pasa a tu laptop
-			</h2>
-			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
-				Envíanos la marca, el modelo y los síntomas. Te orientamos sobre el siguiente paso por
-				WhatsApp.
-			</p>
-			<div class="mt-8">
-				<Button
-					as="a"
-					href={CONTACT.whatsappUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					variant="whatsapp"
-					size="lg"
-					class="gap-2"
-					data-umami-event="whatsapp_click"
-					data-umami-event-position="laptop-repair-final"
-				>
-					<WhatsappIcon size={18} />Escríbenos por WhatsApp
-				</Button>
-			</div>
-			<p class="mt-6 text-sm text-muted-foreground">
-				También puedes conocer el
-				<a href="/servicios/servicio-tecnico/" class="font-medium text-primary hover:underline"
-					>servicio técnico general</a
-				>.
-			</p>
-		</div>
-	</section>
+	<LandingCta
+		heading="Cuéntanos qué le pasa a tu laptop"
+		description="Envíanos la marca, el modelo y los síntomas. Te orientamos sobre el siguiente paso por WhatsApp."
+		ctaLabel="Escríbenos por WhatsApp"
+		umamiEvent="laptop-repair-final"
+		internalLinks={[
+			{ href: "/servicios/servicio-tecnico/", label: "el servicio técnico general" },
+			{ href: "/laptop-lenta-arequipa/", label: "la guía de laptop lenta" },
+		]}
+	/>
+
+	<LandingRelatedPosts
+		heading="Artículos relacionados"
+		subtitle="Guías y consejos para cuidar tu laptop."
+	/>
 </BaseLayout>

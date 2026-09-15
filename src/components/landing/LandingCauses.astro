@@ -1,0 +1,41 @@
+---
+import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astro";
+
+export interface LandingCauseItem {
+	title: string;
+	description: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	heading: string;
+	subtitle?: string;
+	items: readonly LandingCauseItem[];
+	tone?: "white" | "muted";
+	bordered?: boolean;
+}
+
+const { eyebrow, heading, subtitle, items, tone = "white", bordered = true } = Astro.props;
+const isMuted = tone === "muted";
+---
+
+<section class:list={["py-16 md:py-20", isMuted && "bg-muted/15", bordered && "border-t"]}>
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<LandingSectionHeader eyebrow={eyebrow} heading={heading} subtitle={subtitle} />
+		<div class="mt-12 divide-y divide-border/20 border-y border-border/20">
+			{items.map((cause, index) => (
+				<div class="grid gap-2 py-6 sm:grid-cols-[3.5rem_1fr] sm:gap-6 sm:py-7">
+					<span class="font-mono text-xs font-medium tracking-wider text-primary/70 sm:pt-1.5">
+						{String(index + 1).padStart(2, "0")}
+					</span>
+					<div>
+						<h3 class="font-heading text-lg font-bold text-foreground">{cause.title}</h3>
+						<p class="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+							{cause.description}
+						</p>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

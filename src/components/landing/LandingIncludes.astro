@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	included: readonly string[];
+	excluded: readonly string[];
+	conditions: readonly string[];
+	bordered?: boolean;
+}
+
+const { included, excluded, conditions, bordered = true } = Astro.props;
+const checkIcon = "hugeicons:checkmark-circle-03";
+const infoIcon = "hugeicons:information-circle";
+const iconClass = "mt-0.5 size-3.5 shrink-0 text-primary/60";
+---
+
+<section class:list={["py-16 md:py-20", bordered && "border-t"]}>
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="grid gap-10 md:grid-cols-3 md:gap-8">
+			<div>
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground">Incluye</h2>
+				<ul class="mt-6 space-y-3">
+					{included.map((item) => (
+						<li class="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
+							<Icon name={checkIcon} class={iconClass} />{item}
+						</li>
+					))}
+				</ul>
+			</div>
+			<div>
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground">No incluye</h2>
+				<ul class="mt-6 space-y-3">
+					{excluded.map((item) => (
+						<li class="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
+							<Icon name={infoIcon} class={iconClass} />{item}
+						</li>
+					))}
+				</ul>
+			</div>
+			<div>
+				<h2 class="font-heading text-2xl font-bold tracking-tight text-foreground">Condiciones</h2>
+				<ul class="mt-6 space-y-3">
+					{conditions.map((item) => (
+						<li class="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
+							<Icon name={infoIcon} class={iconClass} />{item}
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,70 @@
+---
+import { Icon } from "astro-icon/components";
+import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+import type { LandingPriceRow } from "@/data/landings";
+
+interface Props {
+	eyebrow?: string;
+	heading: string;
+	aside?: string;
+	rows: readonly LandingPriceRow[];
+	note?: string;
+	id?: string;
+	cta?: { label: string; umamiEvent: string };
+}
+
+const { eyebrow, heading, aside, rows, note, id = "precios", cta } = Astro.props;
+---
+
+<section id={id} class="scroll-mt-24 border-y bg-muted/15 py-16 md:py-20">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+			<LandingSectionHeader eyebrow={eyebrow} heading={heading} />
+			{aside && <p class="max-w-sm text-sm leading-relaxed text-muted-foreground">{aside}</p>}
+		</div>
+
+		<div class="mt-10 overflow-hidden rounded-2xl border border-border/30 bg-background">
+			<div
+				class="grid grid-cols-[1.35fr_0.7fr_0.7fr] bg-muted/30 px-4 py-3 text-[11px] font-semibold tracking-wider text-muted-foreground uppercase sm:px-5"
+			>
+				<span>Tipo de equipo</span><span>Taller</span><span>Domicilio</span>
+			</div>
+			{rows.map((row) => (
+				<div class="grid grid-cols-[1.35fr_0.7fr_0.7fr] gap-3 border-t border-border/20 px-4 py-4 sm:px-5">
+					<div>
+						<p class="font-heading text-sm font-bold text-foreground sm:text-base">{row.device}</p>
+						<p class="mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">{row.description}</p>
+					</div>
+					<p class="font-mono text-sm font-bold text-foreground">{row.workshop}</p>
+					<p class="font-mono text-sm font-bold text-primary">{row.home}</p>
+				</div>
+			))}
+		</div>
+		{note && (
+			<p class="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
+				<Icon name="hugeicons:information-circle" class="mt-0.5 size-4 shrink-0 text-primary/70" />
+				{note}
+			</p>
+		)}
+		{cta && (
+			<div class="mt-6">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position={cta.umamiEvent}
+				>
+					<WhatsappIcon size={18} />{cta.label}
+				</Button>
+			</div>
+		)}
+	</div>
+</section>

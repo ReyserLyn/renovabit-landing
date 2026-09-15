@@ -1,0 +1,14 @@
+---
+import FaqSection from "@/components/sections/FaqSection.astro";
+import type { FaqItem } from "@/data/faq";
+
+interface Props {
+	items: readonly FaqItem[];
+	heading?: string;
+	subtitle?: string;
+}
+
+const { items, heading = "Preguntas frecuentes", subtitle } = Astro.props;
+---
+
+<FaqSection items={items} heading={heading} subtitle={subtitle} variant="compact" />

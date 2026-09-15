@@ -1,0 +1,100 @@
+---
+import { Image } from "astro:assets";
+import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astro";
+import { Badge } from "@/components/ui/badge";
+import { Rating } from "@/components/ui/rating";
+import type { Testimonio } from "@/data/testimonios";
+
+interface Props {
+	items: readonly Testimonio[];
+	eyebrow?: string;
+	heading?: string;
+	subtitle?: string;
+	tone?: "white" | "muted";
+	bordered?: boolean;
+}
+
+const {
+	items,
+	eyebrow,
+	heading = "Lo que dicen nuestros clientes",
+	subtitle,
+	tone = "white",
+	bordered = true,
+} = Astro.props;
+
+const shownItems = items.slice(0, 2);
+
+if (shownItems.length === 0) return;
+
+const isMuted = tone === "muted";
+const isGrid = shownItems.length > 1;
+---
+
+<section class:list={["py-16 md:py-20", isMuted && "bg-muted/15", bordered && "border-t"]}>
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<LandingSectionHeader eyebrow={eyebrow} heading={heading} subtitle={subtitle} />
+		<div class:list={["mt-10 grid gap-6 md:gap-8", isGrid ? "md:grid-cols-2" : "max-w-3xl"]}>
+			{shownItems.map((item) => {
+				const antes = item.visual?.imagenes?.antes;
+				const despues = item.visual?.imagenes?.despues;
+				const badges = item.visual?.badges ?? [];
+				return (
+					<figure class="rounded-2xl border border-border/30 bg-background p-6 sm:p-8">
+						{antes !== undefined && despues !== undefined && (
+							<div class="grid grid-cols-2 gap-3">
+								<figure class="overflow-hidden rounded-xl border border-border/20">
+									<Image
+										src={antes}
+										alt={`Antes del servicio: ${item.autor}`}
+										widths={[300, 600]}
+										sizes="(max-width: 768px) 45vw, 320px"
+										loading="lazy"
+										decoding="async"
+										class="aspect-4/3 w-full object-cover"
+									/>
+									<figcaption class="px-2.5 py-1.5 font-mono text-[10px] font-medium tracking-widest text-muted-foreground uppercase">
+										Antes
+									</figcaption>
+								</figure>
+								<figure class="overflow-hidden rounded-xl border border-border/20">
+									<Image
+										src={despues}
+										alt={`Después del servicio: ${item.autor}`}
+										widths={[300, 600]}
+										sizes="(max-width: 768px) 45vw, 320px"
+										loading="lazy"
+										decoding="async"
+										class="aspect-4/3 w-full object-cover"
+									/>
+									<figcaption class="px-2.5 py-1.5 font-mono text-[10px] font-medium tracking-widest text-muted-foreground uppercase">
+										Después
+									</figcaption>
+								</figure>
+							</div>
+						)}
+						<div class:list={[antes !== undefined && despues !== undefined && "mt-6"]}>
+							<Rating stars={item.rating} size={16} />
+						</div>
+						<blockquote class="mt-3">
+							<p class="text-base leading-relaxed text-foreground/90">“{item.texto}”</p>
+						</blockquote>
+						<figcaption class="mt-5 flex items-center gap-3">
+							<div>
+								<p class="font-heading text-sm font-bold text-foreground">{item.autor}</p>
+								{item.rol && <p class="mt-0.5 text-xs text-muted-foreground">{item.rol}</p>}
+							</div>
+						</figcaption>
+						{badges.length > 0 && (
+							<div class="mt-4 flex flex-wrap gap-1.5">
+								{badges.map((badge) => (
+									<Badge variant="outline" size="sm">{badge}</Badge>
+								))}
+							</div>
+						)}
+					</figure>
+				);
+			})}
+		</div>
+	</div>
+</section>

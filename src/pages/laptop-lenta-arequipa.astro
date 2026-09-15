@@ -1,0 +1,178 @@
+---
+import LandingCauses from "@/components/landing/LandingCauses.astro";
+import LandingCta from "@/components/landing/LandingCta.astro";
+import LandingFaq from "@/components/landing/LandingFaq.astro";
+import LandingHero from "@/components/landing/LandingHero.astro";
+import LandingIncludes from "@/components/landing/LandingIncludes.astro";
+import LandingPriceTable from "@/components/landing/LandingPriceTable.astro";
+import LandingProcess from "@/components/landing/LandingProcess.astro";
+import LandingRelatedPosts from "@/components/landing/LandingRelatedPosts.astro";
+import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astro";
+import LandingSymptoms from "@/components/landing/LandingSymptoms.astro";
+import LandingTestimonials from "@/components/landing/LandingTestimonials.astro";
+import { CONTACT } from "@/constants";
+import { laptopLentaLanding } from "@/data/landings";
+import { getTestimoniosByServicio } from "@/data/testimonios";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const landing = laptopLentaLanding;
+const testimonios = getTestimoniosByServicio("servicio-tecnico");
+
+const options = [
+	{
+		title: "Mantenimiento",
+		price: "Desde S/90 en taller",
+		when: "Lentitud con calor, ruido o años sin mantenimiento.",
+		includes:
+			"Limpieza interna, cambio de pasta térmica y revisión de disco, memoria y programas de inicio.",
+	},
+	{
+		title: "Upgrade",
+		price: "Cotizado aparte",
+		when: "Disco lleno, HDD antiguo o memoria insuficiente.",
+		includes:
+			"Cambio a disco SSD o ampliación de RAM. Los repuestos y las licencias se cotizan por separado.",
+	},
+	{
+		title: "Formateo",
+		price: "Desde S/50",
+		when: "Sistema lleno de programas o malware.",
+		includes:
+			"Instalación limpia del sistema. El alcance (backup, programas, configuración) se define según tu equipo.",
+	},
+];
+---
+
+<BaseLayout
+	title={landing.seoTitle}
+	description={landing.metaDescription}
+	ogImage={landing.ogImage}
+>
+	<LandingHero
+		eyebrow={landing.eyebrow}
+		h1={landing.h1}
+		intro={landing.heroIntro}
+		ctaLabel={landing.ctaLabel}
+		umamiEvent={`${landing.umamiPrefix}-hero`}
+		image={landing.heroImage}
+		imageAlt={landing.heroImageAlt}
+		badge={landing.heroBadge}
+		note={landing.heroNote}
+		secondary={landing.heroSecondary}
+		floatingCard={landing.floatingCard}
+	/>
+
+	<LandingSymptoms
+		eyebrow="Señales comunes"
+		heading="Síntomas típicos de una laptop lenta"
+		items={landing.symptoms}
+		cta={{ label: "Sí, eso me pasa", umamiEvent: `${landing.umamiPrefix}-symptoms` }}
+	/>
+
+	<LandingCauses
+		eyebrow="Causas probables"
+		heading="Por qué una laptop se vuelve lenta"
+		subtitle="La causa define la solución: mantenimiento, upgrade o formateo."
+		items={landing.causes}
+		tone="muted"
+	/>
+
+	<LandingProcess
+		eyebrow="Qué hacemos"
+		heading="Cómo revisamos tu laptop"
+		steps={landing.processSteps}
+	/>
+
+	<section class="border-t bg-muted/15 py-16 md:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<LandingSectionHeader
+				eyebrow="Qué conviene según la causa"
+				heading="Mantenimiento, upgrade o formateo"
+				subtitle="Cada opción tiene un alcance y un precio distinto. Te explicamos cuál aplica a tu equipo antes de intervenir."
+			/>
+			<div class="mt-10 overflow-hidden rounded-2xl border border-border/30 bg-background">
+				<div
+					class="hidden gap-6 bg-muted/30 px-5 py-3.5 text-[11px] font-semibold tracking-wider text-muted-foreground uppercase md:grid md:grid-cols-[1.1fr_1.2fr_1.6fr_0.9fr]"
+				>
+					<span>Opción</span>
+					<span>Cuándo aplica</span>
+					<span>Qué incluye</span>
+					<span>Precio</span>
+				</div>
+				{options.map((option) => (
+					<div class="grid gap-1.5 border-t border-border/20 px-5 py-5 sm:gap-2 md:grid-cols-[1.1fr_1.2fr_1.6fr_0.9fr] md:items-start md:gap-6 md:py-6">
+						<div>
+							<h3 class="font-heading text-base font-bold text-foreground">{option.title}</h3>
+							<p class="mt-1 font-mono text-xs font-semibold text-primary md:hidden">{option.price}</p>
+						</div>
+						<p class="text-sm leading-relaxed text-muted-foreground">
+							<span class="font-semibold text-foreground md:hidden">Cuándo aplica: </span>
+							{option.when}
+						</p>
+						<p class="text-sm leading-relaxed text-muted-foreground">
+							<span class="font-semibold text-foreground md:hidden">Qué incluye: </span>
+							{option.includes}
+						</p>
+						<p class="hidden font-mono text-sm font-bold text-primary md:block">{option.price}</p>
+					</div>
+				))}
+			</div>
+			<p class="mt-6 text-sm text-muted-foreground">
+				¿No sabes cuál aplica a tu equipo?{' '}
+				<a
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="font-medium text-primary hover:underline"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position="laptop-slow-decision"
+				>
+					Cuéntanos por WhatsApp
+				</a>{' '}
+				y lo confirmamos en la revisión.
+			</p>
+		</div>
+	</section>
+
+	<LandingPriceTable
+		eyebrow="Precios claros"
+		heading="Tarifas de mantenimiento para tu equipo"
+		aside="El domicilio suma S/30 a cualquiera de las tarifas de taller."
+		rows={landing.priceRows}
+		note="La atención a domicilio se agenda previamente. Reparaciones, repuestos y licencias no están incluidos."
+		cta={{ label: "Consultar por WhatsApp", umamiEvent: `${landing.umamiPrefix}-price` }}
+	/>
+
+	<LandingIncludes
+		included={landing.includes}
+		excluded={landing.excluded}
+		conditions={landing.conditions}
+		bordered={false}
+	/>
+
+	<LandingTestimonials
+		items={testimonios}
+		eyebrow="Clientes"
+		heading="Lo que dicen quienes recuperaron la velocidad de su equipo"
+		subtitle="Experiencias reales con el mantenimiento y la revisión de laptops."
+	/>
+
+	<LandingFaq
+		items={landing.faqs}
+		heading="Preguntas sobre laptop lenta"
+		subtitle="Respuestas directas sobre causas, tarifas y qué conviene según tu equipo."
+	/>
+
+	<LandingCta
+		heading="Recupera la velocidad de tu laptop"
+		description="Escríbenos por WhatsApp con el modelo de tu equipo y qué notas al usarla. Te orientamos sobre el siguiente paso y confirmamos la tarifa antes de coordinar."
+		ctaLabel={landing.ctaFinalLabel ?? landing.ctaLabel}
+		umamiEvent={`${landing.umamiPrefix}-final`}
+		internalLinks={landing.internalLinks}
+	/>
+
+	<LandingRelatedPosts
+		heading="Artículos relacionados"
+		subtitle="Guías y consejos para mantener tu laptop en buen estado."
+	/>
+</BaseLayout>

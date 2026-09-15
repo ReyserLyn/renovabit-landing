@@ -8,7 +8,7 @@ import {
 import type { FaqItem } from "@/data/faq";
 
 interface Props {
-	items: FaqItem[];
+	items: readonly FaqItem[];
 	heading?: string;
 	subtitle?: string;
 	variant?: "default" | "compact";

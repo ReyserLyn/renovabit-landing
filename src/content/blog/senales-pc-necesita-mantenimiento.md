@@ -43,6 +43,8 @@ Una computadora puede volverse lenta por almacenamiento lleno, programas que se 
 
 Si la lentitud aparece junto con ruido o calor, conviene evaluar la refrigeración. Si aparece al abrir un programa concreto, anota cuál es y qué mensaje muestra. Esa información evita hacer cambios innecesarios.
 
+Si la lentitud es el síntoma principal, revisa la guía sobre [laptop lenta en Arequipa](/laptop-lenta-arequipa/): qué revisamos, cuándo conviene mantenimiento y cuánto cuesta.
+
 ---
 
 ## 5. La batería dura menos o el cargador se comporta distinto

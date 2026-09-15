@@ -33,6 +33,8 @@ No hace falta esperar a que se cumpla el plazo. Si tu laptop muestra alguno de e
 - El rendimiento bajó sin motivo aparente
 - La batería dura menos que antes
 
+Si el rendimiento bajó sin motivo aparente, revisa la guía de [laptop lenta en Arequipa](/laptop-lenta-arequipa/).
+
 > **Dato importante**: una laptop que se sobrecalienta no solo es incómoda de usar. Las temperaturas elevadas sostenidas degradan los componentes internos — procesador, tarjeta gráfica, batería — y pueden acortar la vida útil del equipo en años.
 
 ---

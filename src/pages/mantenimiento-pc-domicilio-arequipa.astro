@@ -1,15 +1,23 @@
 ---
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import processImg1 from "@/assets/images/process/process-1.avif";
+import processImg2 from "@/assets/images/process/process-2.avif";
+import processImg3 from "@/assets/images/process/process-3.avif";
+import processImg4 from "@/assets/images/process/process-4.avif";
 import servicioImg1 from "@/assets/images/services/service-1.avif";
-import FaqSection from "@/components/sections/FaqSection.astro";
-import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
-import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/constants";
+import LandingCta from "@/components/landing/LandingCta.astro";
+import LandingFaq from "@/components/landing/LandingFaq.astro";
+import LandingHero from "@/components/landing/LandingHero.astro";
+import LandingPriceTable from "@/components/landing/LandingPriceTable.astro";
+import LandingProcess from "@/components/landing/LandingProcess.astro";
+import LandingRelatedPosts from "@/components/landing/LandingRelatedPosts.astro";
+import LandingTestimonials from "@/components/landing/LandingTestimonials.astro";
 import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
+import { getTestimoniosByServicio } from "@/data/testimonios";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const { prices, faqs } = servicioTecnicoCommercial;
+const testimonios = getTestimoniosByServicio("servicio-tecnico");
 const standardIncludes = [
 	"Limpieza interna y externa del equipo",
 	"Cambio de pasta térmica",
@@ -28,127 +36,31 @@ const complexIncludes = [
 	description="Mantenimiento de PC y laptop a domicilio en Arequipa desde S/120. Tarifa fija, coordinación previa y precios claros según la complejidad del equipo."
 	ogImage="/og-servicio-tecnico.jpeg"
 >
-	<section class="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
-		<div
-			class="mx-auto grid max-w-7xl items-end gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-8"
-		>
-			<div class="max-w-2xl">
-				<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
-					Mantenimiento a domicilio · Arequipa
-				</p>
-				<h1
-					class="mt-4 max-w-xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl"
-				>
-					Mantenimiento de PC a domicilio en Arequipa
-				</h1>
-				<p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-					Limpieza, pasta térmica y pruebas básicas para que tu laptop o PC vuelva a trabajar en
-					mejores condiciones. Coordinamos la visita y confirmamos la tarifa antes de ir.
-				</p>
-				<div class="mt-8 flex flex-wrap items-center gap-3">
-					<Button
-						as="a"
-						href={CONTACT.whatsappUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						variant="whatsapp"
-						size="lg"
-						class="gap-2"
-						data-umami-event="whatsapp_click"
-						data-umami-event-position="maintenance-home-hero"
-					>
-						<WhatsappIcon size={18} />Coordinar por WhatsApp
-					</Button>
-					<a
-						href="#precios"
-						class="inline-flex h-12 items-center px-4 text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground"
-					>
-						Ver tarifas
-					</a>
-				</div>
-				<p class="mt-5 max-w-md text-xs leading-relaxed text-muted-foreground">
-					Domicilio suma S/30 a la tarifa de taller y requiere coordinación previa.
-				</p>
-			</div>
+	<LandingHero
+		eyebrow="Mantenimiento a domicilio · Arequipa"
+		h1="Mantenimiento de PC a domicilio en Arequipa"
+		intro="Limpieza, pasta térmica y pruebas básicas para que tu laptop o PC vuelva a trabajar en mejores condiciones. Coordinamos la visita y confirmamos la tarifa antes de ir."
+		ctaLabel="Coordinar por WhatsApp"
+		umamiEvent="maintenance-home-hero"
+		image={servicioImg1}
+		imageAlt="Mantenimiento de laptop y PC realizado por RenovaBit en Arequipa"
+		badge="Desde S/120 a domicilio"
+		note="Domicilio suma S/30 a la tarifa de taller y requiere coordinación previa."
+		secondary={{ href: "#precios", label: "Ver tarifas" }}
+		floatingCard={{
+			eyebrow: "La visita",
+			title: "Tarifa fija según tu equipo",
+			description: "Sin sumar un cargo distinto por la visita.",
+		}}
+	/>
 
-			<div class="relative lg:pb-6">
-				<div
-					class="absolute -top-7 right-4 hidden rounded-full border border-primary/20 bg-primary px-5 py-3 font-mono text-xs font-medium text-primary-foreground shadow-sm sm:block"
-				>
-					Desde S/120 a domicilio
-				</div>
-				<div class="overflow-hidden rounded-4xl border border-border/20 bg-muted/20">
-					<Image
-						src={servicioImg1}
-						alt="Mantenimiento de laptop y PC realizado por RenovaBit en Arequipa"
-						widths={[600, 900]}
-						sizes="(max-width: 1024px) 100vw, 45vw"
-						fetchpriority="high"
-						loading="eager"
-						class="aspect-5/4 w-full object-cover"
-					/>
-				</div>
-				<div
-					class="relative -mt-10 ml-6 max-w-xs rounded-2xl border border-border/20 bg-background p-5 shadow-[0_16px_40px_-24px_hsl(var(--foreground)/0.35)] sm:ml-10"
-				>
-					<p class="font-mono text-[10px] font-medium tracking-widest text-primary uppercase">
-						La visita
-					</p>
-					<p class="mt-2 font-heading text-lg font-bold text-foreground">
-						Tarifa fija según tu equipo
-					</p>
-					<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
-						Sin sumar un cargo distinto por la visita.
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="precios" class="scroll-mt-24 border-y bg-muted/15 py-16 md:py-20">
-		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div class="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
-				<div class="max-w-2xl">
-					<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
-						Precios claros
-					</p>
-					<h2
-						class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-					>
-						Elige la modalidad que necesitas
-					</h2>
-				</div>
-				<p class="max-w-sm text-sm leading-relaxed text-muted-foreground">
-					El domicilio suma S/30 a cualquiera de las tarifas de taller.
-				</p>
-			</div>
-
-			<div class="mt-10 overflow-hidden rounded-2xl border border-border/30 bg-background">
-				<div
-					class="grid grid-cols-[1.35fr_0.7fr_0.7fr] bg-foreground px-4 py-4 text-[11px] font-semibold tracking-wider text-background uppercase sm:px-6"
-				>
-					<span>Tipo de equipo</span><span>Taller</span><span>Domicilio</span>
-				</div>
-				{prices.map((row) => (
-					<div class="grid grid-cols-[1.35fr_0.7fr_0.7fr] gap-3 border-t border-border/20 px-4 py-5 sm:px-6">
-						<div>
-							<p class="font-heading text-sm font-bold text-foreground sm:text-base">{row.device}</p>
-							<p class="mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">{row.description}</p>
-						</div>
-						<p class="font-mono text-sm font-bold text-foreground sm:text-base">{row.workshop}</p>
-						<p class="font-mono text-sm font-bold text-primary sm:text-base">{row.home}</p>
-					</div>
-				))}
-			</div>
-			<p class="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
-				<Icon
-					name="hugeicons:information-circle"
-					class="mt-0.5 size-4 shrink-0 text-primary/70"
-				/>La atención a domicilio se agenda previamente. Reparaciones, repuestos y licencias no
-				están incluidos.
-			</p>
-		</div>
-	</section>
+	<LandingPriceTable
+		eyebrow="Precios claros"
+		heading="Elige la modalidad que necesitas"
+		aside="El domicilio suma S/30 a cualquiera de las tarifas de taller."
+		rows={prices}
+		note="La atención a domicilio se agenda previamente. Reparaciones, repuestos y licencias no están incluidos."
+	/>
 
 	<section class="border-b py-16 md:py-20">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -183,26 +95,42 @@ const complexIncludes = [
 		</div>
 	</section>
 
-	<section class="bg-muted/15 py-16 md:py-20">
-		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-			<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
-				Cómo funciona
-			</p>
-			<h2 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				La visita se coordina antes de salir
-			</h2>
-			<ol class="mt-10 space-y-7">
-				{[
-					["Nos cuentas qué equipo tienes", "Indícanos si es laptop o PC, si es un equipo simple o gamer, y qué necesitas revisar."],
-					["Confirmamos modalidad y tarifa", "Te orientamos sobre taller o domicilio. La visita a domicilio suma S/30 y se agenda previamente."],
-					["Realizamos el mantenimiento", "Limpiamos, cambiamos la pasta térmica cuando corresponde y hacemos pruebas básicas."],
-					["Te explicamos cualquier hallazgo", "Si encontramos una reparación, la derivamos a taller y la cotizamos después de evaluar el equipo."],
-				].map(([title, description], index) => (
-					<li class="flex gap-4"><span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary font-mono text-xs font-bold text-primary-foreground">{index + 1}</span><div><h3 class="font-heading font-bold text-foreground">{title}</h3><p class="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p></div></li>
-				))}
-			</ol>
-		</div>
-	</section>
+	<LandingProcess
+		eyebrow="Cómo funciona"
+		heading="La visita se coordina antes de salir"
+		steps={[
+			{
+				title: "Nos cuentas qué equipo tienes",
+				description: "Indícanos si es laptop o PC, si es un equipo simple o gamer, y qué necesitas revisar.",
+				image: processImg1,
+				imageAlt:
+					"Conversación de WhatsApp coordinando el mantenimiento a domicilio con RenovaBit en Arequipa: tipo de equipo y necesidad de revisión",
+			},
+			{
+				title: "Confirmamos modalidad y tarifa",
+				description: "Te orientamos sobre taller o domicilio. La visita a domicilio suma S/30 y se agenda previamente.",
+				image: processImg4,
+				imageAlt:
+					"Proformas y cotizaciones RenovaBit en Arequipa: tarifas de mantenimiento en taller y a domicilio antes de coordinar la visita",
+			},
+			{
+				title: "Realizamos el mantenimiento",
+				description: "Limpiamos, cambiamos la pasta térmica cuando corresponde y hacemos pruebas básicas.",
+				image: processImg3,
+				imageAlt:
+					"Antes y después del mantenimiento RenovaBit en Arequipa: limpieza interna y pasta térmica que devuelven el rendimiento a tu PC",
+			},
+			{
+				title: "Te explicamos cualquier hallazgo",
+				description: "Si encontramos una reparación, la derivamos a taller y la cotizamos después de evaluar el equipo.",
+				image: processImg2,
+				imageAlt:
+					"Informe técnico RenovaBit en Arequipa: hallazgos del mantenimiento y evidencia fotográfica antes de cotizar una reparación",
+			},
+		]}
+		tone="muted"
+		bordered={false}
+	/>
 
 	<section class="border-t py-16 md:py-20">
 		<div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
@@ -234,42 +162,32 @@ const complexIncludes = [
 		</div>
 	</section>
 
-	<FaqSection
+	<LandingTestimonials
+		items={testimonios}
+		eyebrow="Clientes"
+		heading="Mantenimientos que dejan huella"
+		subtitle="Experiencias reales de clientes con el servicio técnico en Arequipa."
+	/>
+
+	<LandingFaq
 		items={faqs}
 		heading="Preguntas sobre mantenimiento a domicilio"
 		subtitle="Respuestas directas sobre tarifas, alcance y coordinación previa."
-		variant="compact"
 	/>
 
-	<section class="border-t py-16 md:py-20">
-		<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-			<h2 class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				Coordina el mantenimiento de tu equipo
-			</h2>
-			<p class="mt-4 text-base leading-relaxed text-muted-foreground">
-				Escríbenos por WhatsApp con el tipo de equipo y si prefieres taller o domicilio. Confirmamos
-				la tarifa antes de coordinar.
-			</p>
-			<div class="mt-8">
-				<Button
-					as="a"
-					href={CONTACT.whatsappUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					variant="whatsapp"
-					size="lg"
-					class="gap-2"
-					data-umami-event="whatsapp_click"
-					data-umami-event-position="maintenance-home-final"
-					><WhatsappIcon size={18} />Coordinar por WhatsApp</Button
-				>
-			</div>
-			<p class="mt-6 text-sm text-muted-foreground">
-				También puedes conocer el
-				<a href="/servicios/servicio-tecnico/" class="font-medium text-primary hover:underline"
-					>servicio técnico general</a
-				>.
-			</p>
-		</div>
-	</section>
+	<LandingCta
+		heading="Coordina el mantenimiento de tu equipo"
+		description="Escríbenos por WhatsApp con el tipo de equipo y si prefieres taller o domicilio. Confirmamos la tarifa antes de coordinar."
+		ctaLabel="Coordinar por WhatsApp"
+		umamiEvent="maintenance-home-final"
+		internalLinks={[
+			{ href: "/servicios/servicio-tecnico/", label: "el servicio técnico general" },
+			{ href: "/laptop-lenta-arequipa/", label: "la guía de laptop lenta" },
+		]}
+	/>
+
+	<LandingRelatedPosts
+		heading="Artículos relacionados"
+		subtitle="Guías y consejos para mantener tu equipo en buen estado."
+	/>
 </BaseLayout>

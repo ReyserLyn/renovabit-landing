@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+import LandingSectionHeader from "@/components/landing/LandingSectionHeader.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+
+export interface LandingSymptomItem {
+	icon: string;
+	text: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	heading: string;
+	items: readonly LandingSymptomItem[];
+	cta?: { label: string; umamiEvent: string };
+}
+
+const { eyebrow, heading, items, cta } = Astro.props;
+---
+
+<section class="border-t py-16 md:py-20">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<LandingSectionHeader eyebrow={eyebrow} heading={heading} />
+		<div class="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+			{items.map((item) => (
+				<p class="flex items-start gap-3 border-t border-border/20 pt-4 text-base text-muted-foreground">
+					<Icon name={item.icon} class="mt-0.5 size-4 shrink-0 text-primary/70" />
+					{item.text}
+				</p>
+			))}
+		</div>
+		{cta && (
+			<div class="mt-8">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="outline"
+					size="lg"
+					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position={cta.umamiEvent}
+				>
+					{cta.label} <WhatsappIcon size={16} />
+				</Button>
+			</div>
+		)}
+	</div>
+</section>

@@ -184,6 +184,44 @@ export const faqItems: FaqItem[] = [
 			"Sí. Hacemos reparación de motherboard a nivel electrónico, incluyendo soldadura de precisión, reemplazo de capacitores, MOSFETs y otros componentes SMD. No reemplazamos la placa completa a menos que sea estrictamente necesario.",
 		tags: ["reparaciones-especializadas"],
 	},
+
+	// ===== LAPTOP LENTA =====
+	{
+		question: "¿Por qué mi laptop está lenta?",
+		answer:
+			"Las causas más comunes son un disco lleno o de varios años, poca memoria RAM, sobrecalentamiento por polvo o pasta térmica seca, demasiados programas al inicio y malware. En la revisión identificamos cuál aplica a tu equipo.",
+		tags: ["laptop-lenta-arequipa"],
+	},
+	{
+		question: "¿El mantenimiento soluciona la lentitud?",
+		answer:
+			"Depende de la causa. Si la lentitud viene de calor, polvo o programas que se abren al inicio, el mantenimiento suele resolverla. Si el disco o la memoria están al límite, puede ser necesario un upgrade, que se cotiza por separado.",
+		tags: ["laptop-lenta-arequipa"],
+	},
+	{
+		question: "¿Cuánto cuesta arreglar una laptop lenta en Arequipa?",
+		answer:
+			"La revisión parte del mantenimiento: S/90 en taller o S/120 a domicilio para laptops y PCs simples, y S/120 o S/150 para equipos gamer o complejos. El domicilio suma S/30 y requiere coordinación previa.",
+		tags: ["laptop-lenta-arequipa"],
+	},
+	{
+		question: "¿Cuánto cuesta formatear una laptop lenta?",
+		answer:
+			"El formateo parte desde S/50. El precio final depende del alcance: backup de información, instalación de programas y configuración. Confirmamos la cotización antes de empezar.",
+		tags: ["laptop-lenta-arequipa"],
+	},
+	{
+		question: "¿Cambian el disco a SSD o agregan RAM?",
+		answer:
+			"Sí, coordinamos upgrades de disco SSD o memoria RAM cuando el equipo lo soporta. Los repuestos se cotizan por separado y te explicamos el precio antes de intervenir.",
+		tags: ["laptop-lenta-arequipa"],
+	},
+	{
+		question: "¿El diagnóstico de mi laptop lenta tiene costo?",
+		answer:
+			"La revisión y las pruebas básicas están incluidas en el mantenimiento. Si el equipo necesita una evaluación de falla más profunda, el diagnóstico avanzado cuesta S/60 y se acredita si aceptas la reparación.",
+		tags: ["laptop-lenta-arequipa"],
+	},
 	{
 		question: "¿Qué marcas de laptop reparan a nivel de placa?",
 		answer:

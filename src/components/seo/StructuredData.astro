@@ -1,21 +1,24 @@
 ---
 import logoSchema from "@/assets/branding/logo-monogram-light.svg";
 import { CONTACT, FOOTER, LOCATION, SITE, SOCIAL } from "@/constants";
+import type { FaqItem } from "@/data/faq";
 import { getFaqsForService, getFeaturedFaqs } from "@/data/faq";
 import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
 import { getServiceBySlug } from "@/data/servicios";
 import { testimonios } from "@/data/testimonios";
 
 const pathname = Astro.url.pathname;
-const isHome = pathname === "/";
 const isLaptopRepairLanding = pathname === "/reparacion-laptops-arequipa/";
-const isServicioTecnico = pathname === "/servicios/servicio-tecnico/";
 const isMantenimientoDomicilio = pathname === "/mantenimiento-pc-domicilio-arequipa/";
-const schemaSiteDescription = isServicioTecnico
-	? servicioTecnicoCommercial.header.description
-	: isMantenimientoDomicilio
-		? "Mantenimiento de PC y laptop a domicilio en Arequipa con tarifa fija según la complejidad del equipo."
-		: SITE.description;
+const isLaptopSlowLanding = pathname === "/laptop-lenta-arequipa/";
+const schemaDescriptionsByPath: Record<string, string> = {
+	"/servicios/servicio-tecnico/": servicioTecnicoCommercial.header.description,
+	"/mantenimiento-pc-domicilio-arequipa/":
+		"Mantenimiento de PC y laptop a domicilio en Arequipa con tarifa fija según la complejidad del equipo.",
+	"/laptop-lenta-arequipa/":
+		"Revisión y mantenimiento de laptops y PCs lentas en Arequipa. Diagnóstico de disco, RAM y temperatura con tarifas claras desde S/90 en taller.",
+};
+const schemaSiteDescription = schemaDescriptionsByPath[pathname] ?? SITE.description;
 
 // Breadcrumb dinámico según la página
 const breadcrumbItems: { name: string; item: string }[] = [{ name: "Inicio", item: SITE.url }];
@@ -38,6 +41,13 @@ if (isMantenimientoDomicilio) {
 	});
 }
 
+if (isLaptopSlowLanding) {
+	breadcrumbItems.push({
+		name: "Laptop lenta en Arequipa",
+		item: `${SITE.url}${pathname}`,
+	});
+}
+
 // Slug de servicio: /servicios/servicio-tecnico/
 const slugMatch = pathname.match(/^\/servicios\/([^/]+)\/$/);
 if (slugMatch) {
@@ -52,16 +62,15 @@ if (slugMatch) {
 	}
 }
 
-// FAQ específica de cada página: la homepage usa las destacadas y la landing usa sus propias preguntas.
-const faqItems = isHome
-	? getFeaturedFaqs()
-	: isLaptopRepairLanding
-		? getFaqsForService("reparacion-laptops-arequipa")
-		: isMantenimientoDomicilio
-			? servicioTecnicoCommercial.faqs
-			: isServicioTecnico
-				? servicioTecnicoCommercial.faqs
-				: [];
+// FAQ específica de cada página: la homepage usa las destacadas y cada landing usa sus propias preguntas.
+const faqsByPath: Record<string, readonly FaqItem[]> = {
+	"/": getFeaturedFaqs(),
+	"/reparacion-laptops-arequipa/": getFaqsForService("reparacion-laptops-arequipa"),
+	"/mantenimiento-pc-domicilio-arequipa/": servicioTecnicoCommercial.faqs,
+	"/servicios/servicio-tecnico/": servicioTecnicoCommercial.faqs,
+	"/laptop-lenta-arequipa/": getFaqsForService("laptop-lenta-arequipa"),
+};
+const faqItems = faqsByPath[pathname] ?? [];
 const faqEntity =
 	faqItems.length > 0
 		? {

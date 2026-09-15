@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/constants";
+
+interface Props {
+	eyebrow: string;
+	h1: string;
+	intro: string;
+	ctaLabel: string;
+	umamiEvent: string;
+	image: ImageMetadata;
+	imageAlt: string;
+	badge?: string;
+	note?: string;
+	secondary?: { href: string; label: string };
+	floatingCard?: { eyebrow: string; title: string; description: string };
+}
+
+const {
+	eyebrow,
+	h1,
+	intro,
+	ctaLabel,
+	umamiEvent,
+	image,
+	imageAlt,
+	badge,
+	note,
+	secondary,
+	floatingCard,
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+	<div
+		class="mx-auto grid max-w-7xl items-end gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-8"
+	>
+		<div class="max-w-2xl">
+			<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">{eyebrow}</p>
+			<h1
+				class="mt-4 max-w-xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl"
+			>
+				{h1}
+			</h1>
+			<p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
+			<div class="mt-8 flex flex-wrap items-center gap-3">
+				<Button
+					as="a"
+					href={CONTACT.whatsappUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="whatsapp"
+					size="lg"
+					class="gap-2"
+					data-umami-event="whatsapp_click"
+					data-umami-event-position={umamiEvent}
+				>
+					<WhatsappIcon size={18} />{ctaLabel}
+				</Button>
+				{secondary && (
+					<a
+						href={secondary.href}
+						class="inline-flex h-12 items-center px-4 text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground"
+					>
+						{secondary.label}
+					</a>
+				)}
+			</div>
+			{note && <p class="mt-5 max-w-md text-xs leading-relaxed text-muted-foreground">{note}</p>}
+		</div>
+
+		<div class="relative lg:pb-6">
+			{badge && (
+				<div
+					class="absolute -top-7 right-4 hidden rounded-full border border-primary/20 bg-primary px-5 py-3 font-mono text-xs font-medium text-primary-foreground shadow-sm sm:block"
+				>
+					{badge}
+				</div>
+			)}
+			<div class="overflow-hidden rounded-4xl border border-border/20 bg-muted/20">
+				<Image
+					src={image}
+					alt={imageAlt}
+					widths={[600, 900]}
+					sizes="(max-width: 1024px) 100vw, 45vw"
+					fetchpriority="high"
+					loading="eager"
+					class="aspect-5/4 w-full object-cover"
+				/>
+			</div>
+			{floatingCard && (
+				<div
+					class="relative -mt-10 ml-6 max-w-xs rounded-2xl border border-border/20 bg-background p-5 shadow-[0_16px_40px_-24px_hsl(var(--foreground)/0.35)] sm:ml-10"
+				>
+					<p class="font-mono text-[10px] font-medium tracking-widest text-primary uppercase">
+						{floatingCard.eyebrow}
+					</p>
+					<p class="mt-2 font-heading text-lg font-bold text-foreground">{floatingCard.title}</p>
+					<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+						{floatingCard.description}
+					</p>
+				</div>
+			)}
+		</div>
+	</div>
+</section>
