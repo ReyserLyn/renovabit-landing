@@ -1,0 +1,191 @@
+---
+// Página temporal de vista previa de los correos del formulario.
+// Shell propio (sin BaseLayout) y sin dependencias: se elimina borrando
+// `src/pages/dev/` junto con su regla en `public/_headers`.
+import { renderAutoReplyEmail, renderNotificationEmail } from "@/lib/contact/templates";
+import { sampleContact } from "./_sample";
+
+const notification = renderNotificationEmail(sampleContact);
+const autoReply = renderAutoReplyEmail(sampleContact);
+
+const previews = [
+	{
+		title: "Notificación al negocio",
+		url: "/dev/emails/notification/",
+		text: notification.text,
+	},
+	{
+		title: "Respuesta automática al cliente",
+		url: "/dev/emails/auto-reply/",
+		text: autoReply.text,
+	},
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="robots" content="noindex, nofollow">
+		<title>Vista previa de correos (temporal)</title>
+		<style is:global>
+		:root {
+			color-scheme: light;
+		}
+
+		body {
+			margin: 0;
+			padding: 32px 16px 48px;
+			background: #f5f4fb;
+			color: #1a1a36;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		main {
+			max-width: 1120px;
+			margin: 0 auto;
+		}
+
+		h1 {
+			margin: 0 0 10px;
+			font-size: 24px;
+			line-height: 1.3;
+		}
+
+		.note {
+			margin: 0 0 32px;
+			padding: 12px 16px;
+			background: #ffffff;
+			border-left: 3px solid #654fcc;
+			border-radius: 6px;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		section {
+			margin-bottom: 44px;
+		}
+
+		.section-header {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 12px;
+			margin-bottom: 12px;
+		}
+
+		h2 {
+			margin: 0;
+			font-size: 18px;
+			line-height: 1.3;
+		}
+
+		a {
+			color: #654fcc;
+			font-size: 14px;
+		}
+
+		.frames {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 16px;
+		}
+
+		figure {
+			margin: 0;
+			padding: 12px;
+			background: #ffffff;
+			border-radius: 12px;
+			box-shadow: 0 1px 2px rgba(26, 26, 54, 0.08);
+		}
+
+		figcaption {
+			margin-bottom: 8px;
+			color: #6b7280;
+			font-size: 12px;
+		}
+
+		iframe {
+			display: block;
+			max-width: 100%;
+			min-height: 1100px;
+			background: #ffffff;
+			border: 1px solid #ececf5;
+			border-radius: 8px;
+		}
+
+		details {
+			margin-top: 16px;
+			padding: 12px 16px;
+			background: #ffffff;
+			border-radius: 8px;
+			font-size: 14px;
+		}
+
+		summary {
+			cursor: pointer;
+			font-weight: bold;
+		}
+
+		pre {
+			margin: 12px 0 0;
+			color: #1a1a36;
+			font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+			font-size: 12px;
+			line-height: 1.6;
+			white-space: pre-wrap;
+			word-break: break-word;
+		}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>Vista previa de correos (temporal)</h1>
+			<p class="note">
+				Página temporal de previsualización con datos de ejemplo. Se elimina borrando
+				<code>src/pages/dev/</code>. El logo de los correos se carga desde su URL absoluta (<code
+					>https://renovabit.com/email/...</code
+				>): hasta desplegar el asset se verá como imagen rota en local.
+			</p>
+
+			{previews.map((preview) => (
+					<section>
+						<div class="section-header">
+							<h2>{preview.title}</h2>
+							<a href={preview.url} target="_blank" rel="noopener noreferrer">
+								Abrir en pestaña nueva
+							</a>
+						</div>
+						<div class="frames">
+							<figure>
+								<figcaption>Escritorio (640px)</figcaption>
+								<iframe
+									src={preview.url}
+									title={`${preview.title}: vista de escritorio`}
+									width="640"
+									height="1100"
+									loading="lazy"
+								/>
+							</figure>
+							<figure>
+								<figcaption>Móvil (375px)</figcaption>
+								<iframe
+									src={preview.url}
+									title={`${preview.title}: vista móvil`}
+									width="375"
+									height="1100"
+									loading="lazy"
+								/>
+							</figure>
+						</div>
+						<details>
+							<summary>Versión de texto plano</summary>
+							<pre>{preview.text}</pre>
+						</details>
+					</section>
+				))}
+		</main>
+	</body>
+</html>

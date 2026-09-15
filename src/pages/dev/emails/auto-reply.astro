@@ -1,0 +1,9 @@
+---
+// Vista previa temporal: renderiza solo el HTML real de la respuesta automática.
+import { renderAutoReplyEmail } from "@/lib/contact/templates";
+import { sampleContact } from "./_sample";
+
+const email = renderAutoReplyEmail(sampleContact);
+---
+
+<Fragment set:html={email.html} />

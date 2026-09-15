@@ -1,0 +1,9 @@
+---
+// Vista previa temporal: renderiza solo el HTML real del correo de notificación.
+import { renderNotificationEmail } from "@/lib/contact/templates";
+import { sampleContact } from "./_sample";
+
+const email = renderNotificationEmail(sampleContact);
+---
+
+<Fragment set:html={email.html} />

@@ -98,6 +98,17 @@ curl -s -X POST http://localhost:3000/api/contact \
 
 El límite es de 3 solicitudes por minuto: si repites las pruebas verás `{"ok":false,"code":"limite"}` (429). Espera 60 segundos para continuar.
 
+## Vista previa de correos (temporal)
+
+Las plantillas de `src/lib/contact/templates.ts` se pueden revisar sin enviar correos:
+
+- `/dev/emails/`: vista de escritorio (640px) y móvil (375px) de ambos correos, con la versión de texto plano.
+- `/dev/emails/notification/` y `/dev/emails/auto-reply/`: HTML real de cada correo.
+
+En local: `bun run dev` y abrir `http://localhost:3000/dev/emails/`. Las rutas están excluidas del sitemap, llevan `X-Robots-Tag: noindex` (regla `/dev/*` en `public/_headers`) y usan datos de ejemplo de `src/pages/dev/emails/_sample.ts`.
+
+Para eliminarla: borrar `src/pages/dev/` y la regla `/dev/*` de `public/_headers`.
+
 ## Mantenimiento
 
 - `bun test` ejecuta las pruebas unitarias de los módulos de contacto (esquema, Turnstile, origen, límite, Resend, plantillas y orquestador).

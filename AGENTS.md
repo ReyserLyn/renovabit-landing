@@ -134,6 +134,7 @@ src/
 - **Isla**: `src/components/contact/ContactForm.tsx` (Preact + Formisch + `@preact/signals`) y `TurnstileWidget.tsx`. Copy en `src/data/contact-form.ts`.
 - **Anti-bot**: Turnstile fail-closed, honeypot `empresa` y límite `CONTACT_RATE_LIMITER` (3 solicitudes / 60 s por IP).
 - **Correos**: Resend vía `fetch` (sin SDK), plantillas TS en `templates.ts`. Sin almacenamiento en v1.
+- **Vista previa temporal de correos**: `/dev/emails/` (se elimina borrando `src/pages/dev/` y su regla `/dev/*` en `public/_headers`).
 - **Detalle completo**: `docs/contact-form.md`.
 
 ### Variables de entorno

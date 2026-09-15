@@ -5,6 +5,10 @@
 	Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 	Permissions-Policy: geolocation=(), microphone=(), camera=()
 
+/dev/*
+	! X-Frame-Options
+	X-Robots-Tag: noindex
+
 /
 	Link: </llms.txt>; rel="service-doc"
 	Link: </sitemap-index.xml>; rel="describedby"

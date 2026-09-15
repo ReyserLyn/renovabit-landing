@@ -116,6 +116,8 @@ export default defineConfig({
 			},
 		}),
 		sitemap({
+			// Las páginas temporales de `/dev/` no entran al sitemap.
+			filter: (page) => !page.includes("/dev/"),
 			serialize(item) {
 				const lastmod = blogLastmods.get(new URL(item.url).pathname);
 				if (lastmod) item.lastmod = lastmod;
