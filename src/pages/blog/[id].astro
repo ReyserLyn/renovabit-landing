@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import { Icon } from "astro-icon/components";
 import AuthorCard from "@/components/blog/AuthorCard.astro";
+import FormLink from "@/components/contact/FormLink.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { SITE, whatsappUrl } from "@/constants";
@@ -222,7 +223,7 @@ const articleJsonLd = {
 				Escríbenos por WhatsApp y cuéntanos qué te pasa. Te respondemos con un diagnóstico claro y
 				sin compromiso.
 			</p>
-			<div class="mt-8">
+			<div class="mt-8 flex flex-wrap items-center justify-center gap-3">
 				<Button
 					as="a"
 					href={whatsappUrl(`Hola, leí el artículo «${post.data.title}» y quiero más información.`)}
@@ -236,6 +237,7 @@ const articleJsonLd = {
 				>
 					<WhatsappIcon size={18} />Escríbenos por WhatsApp
 				</Button>
+				<FormLink position="blog-footer-form" />
 			</div>
 		</div>
 	</section>

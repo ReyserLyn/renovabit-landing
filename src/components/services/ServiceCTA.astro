@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import FormLink from "@/components/contact/FormLink.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
 import { whatsappUrl } from "@/constants";
@@ -12,6 +13,11 @@ interface Props {
 	secondaryLabel?: string;
 	/** Mensaje precargado de WhatsApp para el CTA. */
 	waMessage?: string;
+	/**
+	 * Destino del enlace al formulario. Por defecto navega a `/contacto/`;
+	 * en páginas con el formulario embebido se pasa `#formulario`.
+	 */
+	formHref?: string;
 }
 
 const {
@@ -20,6 +26,7 @@ const {
 	secondaryHref,
 	secondaryLabel = "Ver servicio completo",
 	waMessage,
+	formHref,
 } = Astro.props;
 ---
 
@@ -42,6 +49,7 @@ const {
 			<Icon name="hugeicons:arrow-right-01" class="size-4" />{secondaryLabel}
 		</Button>
 	)}
+	<FormLink position="service-cta-form" href={formHref} />
 </div>
 <p class="mt-4 text-[11px] text-muted-foreground/70">
 	{footerText}

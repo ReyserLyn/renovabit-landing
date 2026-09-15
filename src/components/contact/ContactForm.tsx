@@ -18,6 +18,7 @@ import {
 	CONTACT_TIPO_OPTIONS,
 	contactFormCopy,
 } from "@/data/contact-form";
+import { buildContactOrigin, readDesde } from "@/lib/contact/attribution";
 import {
 	CONTACT_ERROR_MESSAGES,
 	type ContactErrorCode,
@@ -148,6 +149,7 @@ export function ContactForm({ siteKey }: ContactFormProps) {
 	const status = useSignal<"idle" | "success" | "error">("idle");
 	const errorCode = useSignal<ContactErrorCode>("envio");
 	const origen = useSignal("/contacto/");
+	const desde = useSignal<string | null>(null);
 	const successRef = useRef<HTMLDivElement>(null);
 
 	// Mueve el foco al panel de éxito (envío completado o llegada con
@@ -160,7 +162,9 @@ export function ContactForm({ siteKey }: ContactFormProps) {
 	// biome-ignore lint/correctness/useExhaustiveDependencies: signals estables
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search);
-		origen.value = `${window.location.pathname}${window.location.search}`;
+		// Atribución: el search se lee antes de limpiar `estado` y `motivo`.
+		desde.value = readDesde(window.location.search);
+		origen.value = buildContactOrigin(window.location.pathname, window.location.search);
 
 		const estado = params.get("estado");
 		const motivo = params.get("motivo");
@@ -223,7 +227,7 @@ export function ContactForm({ siteKey }: ContactFormProps) {
 
 			if (payload?.ok) {
 				status.value = "success";
-				track("contact_form_submit");
+				track("contact_form_submit", desde.value ? { desde: desde.value } : undefined);
 				return;
 			}
 

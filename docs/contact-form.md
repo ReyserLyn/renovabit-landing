@@ -1,12 +1,20 @@
 # Formulario de contacto
 
-Formulario de `/contacto/` con validación compartida entre cliente y servidor, defensas anti-bot y envío de correos. En esta versión no se almacena nada: la consulta llega por correo.
+Formulario de `/contacto/` y embebido, con validación compartida entre cliente y servidor, defensas anti-bot y envío de correos. En esta versión no se almacena nada: la consulta llega por correo.
+
+Páginas con el formulario embebido (isla con `client:visible`, ancla local `#formulario`):
+
+- Home: CTA final `id="contacto"` (`src/components/sections/cta.astro`).
+- Landings: laptop lenta, mantenimiento a domicilio y reparación de laptops (`LandingCta`).
+- Fichas de servicio: `servicios/servicio-tecnico`, `desarrollo-web`, `tienda` y `reparaciones-especializadas`.
+- Hub de servicios: `servicios/index.html`.
 
 ## Arquitectura
 
 - **Una sola ruta on-demand**: `src/pages/api/contact.ts` (`export const prerender = false`). El resto del sitio sigue estático y se sirve desde assets.
 - **Validación SSOT**: `src/lib/contact/schema.ts` (Valibot). La isla la usa para la experiencia de usuario y el endpoint la vuelve a ejecutar como autoridad.
 - **Isla Preact**: `src/components/contact/ContactForm.tsx` con Formisch (`@formisch/preact`) y `@preact/signals`. El widget de Turnstile vive en `src/components/contact/TurnstileWidget.tsx`.
+- **Sección reutilizable**: `src/components/contact/ContactFormSection.astro` (dos columnas: copy + WhatsApp a la izquierda, tarjeta blanca con la isla a la derecha). La usan la home, `LandingCta`, las fichas de servicio y el hub. Se monta en `/contacto/` (`client:load`) y en el resto (`client:visible`: el HTML se renderiza en el build y Turnstile carga al entrar en viewport).
 - **Copy**: `src/data/contact-form.ts` es la fuente única de textos y opciones (incluidas las etiquetas de los correos).
 - **Módulos del servidor**: `schema`, `errors`, `origin`, `turnstile`, `ratelimit`, `resend`, `templates`, `handler`, `site-key` y `fetch`, todos en `src/lib/contact/`.
 
@@ -20,6 +28,21 @@ Formulario de `/contacto/` con validación compartida entre cliente y servidor, 
 6. **Correos**: notificación a `CONTACT_INBOX` y respuesta automática a la persona si dejó correo (con `Reply-To` apuntando a `CONTACT_INBOX`, para que sus respuestas lleguen a la bandeja). Si falla la notificación se devuelve error 500; si falla solo la respuesta automática, la consulta se considera recibida.
 
 Códigos de error del endpoint: `campos` (400), `verificacion` (403), `limite` (429) y `envio` (500). La isla los traduce en `src/lib/contact/errors.ts`; el servidor nunca expone detalles internos.
+
+## Atribución de origen
+
+Los enlaces secundarios al formulario usan `/contacto/?desde=<ruta>`:
+
+- `src/lib/contact/attribution.ts` valida el parámetro: debe ser una ruta interna que empiece con `/`, de máximo 120 caracteres y sin espacios ni caracteres raros.
+- La isla (`ContactForm.tsx`) lo lee antes de limpiar `estado`/`motivo` de la URL y lo envía en el campo oculto `origen`. Con `desde` válido, el correo muestra `<ruta> (formulario de contacto)`; sin él, mantiene la ruta y el search actuales.
+- En el evento de Umami `contact_form_submit` se agrega `{ desde }` cuando existe.
+
+El CTA secundario `FormLink` (evento `contact_form_link`) se usa solo en páginas sin formulario embebido o con ancla local:
+
+- Empresas: `empresas-form` apunta a `#contacto` (el formulario vive en la home).
+- Blog: `blog-footer-form` navega a `/contacto/?desde=<post>#formulario`.
+- `ServiceCTA` (`service-cta-form`): en las páginas con formulario embebido usa `href="#formulario"`; si se usara en una página sin formulario, el `formHref` por defecto navega a `/contacto/` con atribución.
+- Barra sticky móvil de las landings (`StickyContactBar`, posición `sticky-bar`): su enlace de formulario apunta a `#formulario`. En móvil reemplaza al botón flotante de WhatsApp.
 
 ## Requisitos previos
 

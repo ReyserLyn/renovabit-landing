@@ -5,6 +5,7 @@ import processImg1 from "@/assets/images/process/process-1.avif";
 import processImg2 from "@/assets/images/process/process-2.avif";
 import servicioImg1 from "@/assets/images/services/service-1.avif";
 import servicioImg4 from "@/assets/images/services/service-4.avif";
+import StickyContactBar from "@/components/contact/StickyContactBar.astro";
 import LandingCta from "@/components/landing/LandingCta.astro";
 import LandingFaq from "@/components/landing/LandingFaq.astro";
 import LandingProcess from "@/components/landing/LandingProcess.astro";
@@ -204,4 +205,6 @@ const checkIcon = "hugeicons:checkmark-circle-03";
 		heading="Artículos relacionados"
 		subtitle="Guías y consejos para cuidar tu laptop."
 	/>
+
+	<StickyContactBar waMessage={waMessage} />
 </BaseLayout>

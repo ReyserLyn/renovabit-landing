@@ -1,0 +1,48 @@
+---
+import { cn } from "cnfast";
+import { Button } from "@/components/ui/button";
+
+interface Props {
+	/** Posición para `data-umami-event-position`. */
+	position: string;
+	label?: string;
+	variant?: "outline" | "link";
+	class?: string;
+	/** Ruta de origen; por defecto, la página actual. */
+	desde?: string;
+	/** Destino; por defecto, el formulario de `/contacto/` con atribución. */
+	href?: string;
+}
+
+const {
+	position,
+	label = "Completar el formulario",
+	variant = "outline",
+	class: className,
+	desde = Astro.url.pathname,
+	href = `/contacto/?desde=${encodeURIComponent(desde)}#formulario`,
+} = Astro.props;
+---
+
+{variant === "link" ? (
+		<a
+			href={href}
+			class={cn("text-sm font-medium underline-offset-4 hover:underline", className)}
+			data-umami-event="contact_form_link"
+			data-umami-event-position={position}
+		>
+			{label}
+		</a>
+	) : (
+		<Button
+			as="a"
+			href={href}
+			variant="outline"
+			size="lg"
+			class={className}
+			data-umami-event="contact_form_link"
+			data-umami-event-position={position}
+		>
+			{label}
+		</Button>
+	)}

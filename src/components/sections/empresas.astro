@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import FormLink from "@/components/contact/FormLink.astro";
 import TrustMarquee from "@/components/sections/trust-marquee.astro";
 import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
 import { Button } from "@/components/ui/button";
@@ -103,6 +104,7 @@ import { CONTACT, whatsappUrl } from "@/constants";
 					<Icon name="hugeicons:mail-01" class="size-5" />
 					Correo
 				</Button>
+				<FormLink position="empresas-form" href="#contacto" />
 			</div>
 		</div>
 	</div>

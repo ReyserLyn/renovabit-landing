@@ -1,40 +1,12 @@
 ---
-import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
-import { Button } from "@/components/ui/button";
-import { whatsappUrl } from "@/constants";
+import ContactFormSection from "@/components/contact/ContactFormSection.astro";
 ---
 
-<section id="contacto" class="py-20 md:py-12 scroll-mt-10">
-	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div
-			class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16 animate-fade-in-up animate-duration-slower"
-		>
-			<div class="max-w-xl">
-				<h2
-					class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
-				>
-					Hablemos de lo que necesitas.
-				</h2>
-				<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
-					Cuéntanos qué le pasa a tu equipo. Te damos un diagnóstico claro y una solución al precio
-					justo.
-				</p>
-			</div>
-
-			<Button
-				as="a"
-				href={whatsappUrl("Hola, quiero hacer una consulta sobre sus servicios.")}
-				target="_blank"
-				rel="noopener noreferrer"
-				variant="default"
-				size="lg"
-				class="shrink-0 gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
-				data-umami-event="whatsapp_click"
-				data-umami-event-position="footer-cta"
-			>
-				<WhatsappIcon size={18} />
-				Solicitar diagnóstico
-			</Button>
-		</div>
-	</div>
-</section>
+<ContactFormSection
+	id="contacto"
+	heading="Hablemos de lo que necesitas."
+	description="Cuéntanos qué le pasa a tu equipo. Te damos un diagnóstico claro y una solución al precio justo."
+	waMessage="Hola, quiero hacer una consulta sobre sus servicios."
+	position="footer-cta"
+	class="py-20 md:py-12 scroll-mt-24"
+/>

@@ -131,7 +131,7 @@ src/
 
 - **Ruta on-demand única del sitio**: `src/pages/api/contact.ts` (`export const prerender = false`). Todo lo demás se prerenderiza.
 - **Módulos**: `src/lib/contact/` (schema Valibot, errors, origin, turnstile, ratelimit, resend, templates, handler, site-key).
-- **Isla**: `src/components/contact/ContactForm.tsx` (Preact + Formisch + `@preact/signals`) y `TurnstileWidget.tsx`. Copy en `src/data/contact-form.ts`.
+- **Isla**: `src/components/contact/ContactForm.tsx` (Preact + Formisch + `@preact/signals`) y `TurnstileWidget.tsx`. Copy en `src/data/contact-form.ts`. Se monta en `/contacto/` (`client:load`) y, con `client:visible`, en la sección reutilizable `ContactFormSection.astro` (home, 3 landings, 4 fichas de servicio y hub; ancla local `#formulario`).
 - **Anti-bot**: Turnstile fail-closed, honeypot `empresa` y límite `CONTACT_RATE_LIMITER` (3 solicitudes / 60 s por IP).
 - **Correos**: Resend vía `fetch` (sin SDK), plantillas TS en `templates.ts`. Sin almacenamiento en v1.
 - **Vista previa temporal de correos**: `/dev/emails/` (se elimina borrando `src/pages/dev/` y su regla `/dev/*` en `public/_headers`).

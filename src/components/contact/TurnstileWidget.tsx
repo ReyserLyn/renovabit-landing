@@ -15,10 +15,17 @@ const RETRY_DELAY_MS = 2_000;
 
 export type TurnstileWidgetState = "loading" | "ready" | "error" | "expired" | "timeout";
 
+/**
+ * `flexible` reserva un mínimo de 300px, que no entra en un móvil de 375px
+ * dentro de una tarjeta con padding. En pantallas angostas se usa `compact`.
+ */
+const COMPACT_MAX_VIEWPORT = 480;
+
 interface TurnstileRenderOptions {
 	sitekey: string;
 	language: string;
 	theme: "auto";
+	size: "flexible" | "compact";
 	callback: (token: string) => void;
 	"error-callback": () => void;
 	"expired-callback": () => void;
@@ -89,6 +96,7 @@ export function TurnstileWidget({ siteKey, onToken, onStateChange }: TurnstileWi
 					sitekey: siteKey,
 					language: "es",
 					theme: "auto",
+					size: window.innerWidth < COMPACT_MAX_VIEWPORT ? "compact" : "flexible",
 					callback: (token) => {
 						callbacksRef.current.onToken(token);
 						callbacksRef.current.onStateChange("ready");

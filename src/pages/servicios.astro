@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import ContactFormSection from "@/components/contact/ContactFormSection.astro";
 import TrustMarquee from "@/components/sections/trust-marquee.astro";
 import ServiceBulletList from "@/components/services/ServiceBulletList.astro";
 import ServiceCTA from "@/components/services/ServiceCTA.astro";
@@ -91,6 +92,7 @@ const [srv1, srv2, srv3, srv4] = servicios;
 							service={srv1}
 							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
 							secondaryHref="/servicios/servicio-tecnico/"
+							formHref="#formulario"
 						/>
 						<a
 							href="/reparacion-laptops-arequipa/"
@@ -218,6 +220,7 @@ const [srv1, srv2, srv3, srv4] = servicios;
 							service={srv3}
 							footerText="Atención en Arequipa · Boleta y factura · Garantía · Diagnóstico profesional"
 							secondaryHref="/servicios/tienda/"
+							formHref="#formulario"
 						/>
 					</div>
 				</div>
@@ -296,39 +299,12 @@ const [srv1, srv2, srv3, srv4] = servicios;
 		</div>
 	</section>
 
-	<!-- ===== CTA Final ===== -->
-	<section class="py-20 md:py-28">
-		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div
-				class="flex flex-col items-center gap-8 rounded-2xl bg-primary px-6 py-12 text-center sm:px-10 sm:py-14 md:flex-row md:justify-between md:text-left lg:px-14 lg:py-16 timeline-view animate-fade-in-up animate-range-[entry_3%_contain_10%] animate-duration-slower"
-			>
-				<div class="max-w-xl">
-					<h2
-						class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
-					>
-						¿Qué servicio necesitas?
-					</h2>
-					<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
-						Cuéntanos cuál te interesa y te preparamos una cotización clara, sin compromiso y
-						adaptada a tu caso.
-					</p>
-				</div>
-
-				<Button
-					as="a"
-					href={whatsappUrl()}
-					target="_blank"
-					rel="noopener noreferrer"
-					variant="default"
-					size="lg"
-					class="shrink-0 gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
-					data-umami-event="whatsapp_click"
-					data-umami-event-position="footer-cta"
-				>
-					<WhatsappIcon size={18} />
-					Escríbenos por WhatsApp
-				</Button>
-			</div>
-		</div>
-	</section>
+	<!-- ===== Formulario ===== -->
+	<ContactFormSection
+		id="formulario"
+		heading="¿Qué servicio necesitas?"
+		description="Cuéntanos cuál te interesa y te preparamos una cotización clara, sin compromiso y adaptada a tu caso."
+		position="services-hub-form"
+		class="py-20 md:py-28 scroll-mt-24"
+	/>
 </BaseLayout>

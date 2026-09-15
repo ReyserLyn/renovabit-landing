@@ -1,0 +1,98 @@
+---
+import FormLink from "@/components/contact/FormLink.astro";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { whatsappUrl } from "@/constants";
+
+interface Props {
+	/** Mensaje precargado de WhatsApp para contextualizar la acción. */
+	waMessage?: string;
+}
+
+const { waMessage } = Astro.props;
+---
+
+<nav
+	aria-label="Contacto rápido"
+	data-sticky-bar
+	inert={true}
+	class="wa-sticky-bar fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-border bg-background/95 opacity-0 shadow-[0_-2px_10px_rgba(26,26,54,0.06)] backdrop-blur transition-[translate,opacity] duration-300 lg:hidden"
+	style="padding-bottom: env(safe-area-inset-bottom);"
+>
+	<div class="mx-auto flex max-w-3xl items-stretch gap-3 px-4 py-3">
+		<a
+			href={whatsappUrl(waMessage)}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-[#0f7a35] text-sm font-medium text-white transition-colors hover:bg-[#0d6b2d]"
+			data-umami-event="whatsapp_click"
+			data-umami-event-position="sticky-bar"
+		>
+			<WhatsappIcon size={18} />
+			WhatsApp
+		</a>
+		<FormLink position="sticky-bar" href="#formulario" label="Formulario" class="h-11 flex-1" />
+	</div>
+</nav>
+
+<script>
+const bar = document.querySelector("[data-sticky-bar]");
+const hero = document.querySelector("#contenido-principal section");
+const footer = document.querySelector("footer");
+
+if (!bar) {
+	/* Sin barra en el DOM no hay nada que hacer. */
+} else {
+	const show = () => {
+		bar.removeAttribute("inert");
+		bar.classList.remove("translate-y-full", "opacity-0");
+		bar.classList.add("translate-y-0", "opacity-100");
+	};
+
+	const hide = () => {
+		bar.setAttribute("inert", "");
+		bar.classList.add("translate-y-full", "opacity-0");
+		bar.classList.remove("translate-y-0", "opacity-100");
+	};
+
+	if (!("IntersectionObserver" in window) || !hero || !footer) {
+		/* Sin observer o sin referencias: la barra queda visible. */
+		show();
+	} else {
+		let heroVisible = false;
+		let footerVisible = false;
+
+		const update = () => {
+			if (!heroVisible && !footerVisible) show();
+			else hide();
+		};
+
+		const heroObserver = new IntersectionObserver((entries) => {
+			heroVisible = entries[0]?.isIntersecting ?? false;
+			update();
+		});
+		const footerObserver = new IntersectionObserver((entries) => {
+			footerVisible = entries[0]?.isIntersecting ?? false;
+			update();
+		});
+
+		heroObserver.observe(hero);
+		footerObserver.observe(footer);
+	}
+}
+</script>
+
+<style is:global>
+/* En las landings que incluyen la barra, esta reemplaza al flotante de
+		   WhatsApp en móvil; en el resto de páginas el flotante sigue visible. */
+@media (max-width: 1023.98px) {
+	.wa-floating {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wa-sticky-bar {
+		transition: none;
+	}
+}
+</style>

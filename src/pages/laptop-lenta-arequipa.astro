@@ -1,4 +1,5 @@
 ---
+import StickyContactBar from "@/components/contact/StickyContactBar.astro";
 import LandingCauses from "@/components/landing/LandingCauses.astro";
 import LandingCta from "@/components/landing/LandingCta.astro";
 import LandingFaq from "@/components/landing/LandingFaq.astro";
@@ -181,4 +182,6 @@ const options = [
 		heading="Artículos relacionados"
 		subtitle="Guías y consejos para mantener tu laptop en buen estado."
 	/>
+
+	<StickyContactBar waMessage={landing.whatsappMessage} />
 </BaseLayout>

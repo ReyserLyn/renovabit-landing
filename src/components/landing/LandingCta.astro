@@ -1,7 +1,5 @@
 ---
-import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
-import { Button } from "@/components/ui/button";
-import { whatsappUrl } from "@/constants";
+import ContactFormSection from "@/components/contact/ContactFormSection.astro";
 import type { LandingInternalLink } from "@/data/landings";
 
 interface Props {
@@ -23,40 +21,29 @@ const linkSegments = links.flatMap((link, index) => [
 ]);
 ---
 
-<section class="border-t py-16 md:py-20">
-	<div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-		<h2 class="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-			{heading}
-		</h2>
-		<p class="mt-4 text-base leading-relaxed text-muted-foreground">{description}</p>
-		<div class="mt-8">
-			<Button
-				as="a"
-				href={whatsappUrl(waMessage)}
-				target="_blank"
-				rel="noopener noreferrer"
-				variant="whatsapp"
-				size="lg"
-				class="gap-2"
-				data-umami-event="whatsapp_click"
-				data-umami-event-position={umamiEvent}
-			>
-				<WhatsappIcon size={18} />{ctaLabel}
-			</Button>
-		</div>
-		{linkSegments.length > 0 && (
-			<p class="mt-6 text-sm text-muted-foreground">
-				También puedes conocer{' '}
-				{linkSegments.map((segment) =>
-					segment.href ? (
-						<a href={segment.href} class="font-medium text-primary hover:underline">
-							{segment.text}
-						</a>
-					) : (
-						<span>{segment.text}</span>
-					),
-				)}.
-			</p>
-		)}
-	</div>
-</section>
+<ContactFormSection
+	id="formulario"
+	heading={heading}
+	description={description}
+	ctaLabel={ctaLabel}
+	waMessage={waMessage}
+	position={umamiEvent}
+>
+	{linkSegments.length > 0 && (
+		<p class="text-sm leading-relaxed text-primary-foreground/80">
+			También puedes conocer{' '}
+			{linkSegments.map((segment) =>
+				segment.href ? (
+					<a
+						href={segment.href}
+						class="font-medium text-primary-foreground underline underline-offset-4 hover:text-white"
+					>
+						{segment.text}
+					</a>
+				) : (
+					<span>{segment.text}</span>
+				),
+			)}.
+		</p>
+	)}
+</ContactFormSection>

@@ -1,0 +1,82 @@
+---
+import { ContactForm } from "@/components/contact/ContactForm";
+import WhatsappIcon from "@/components/social-icon/WhatsappIcon.astro";
+import { Button } from "@/components/ui/button";
+import { whatsappUrl } from "@/constants";
+import { contactFormCopy } from "@/data/contact-form";
+import { contactSiteKey } from "@/lib/contact/site-key";
+
+interface Props {
+	/** Id de la sección; las anclas locales apuntan a `#formulario`. */
+	id?: string;
+	heading?: string;
+	description?: string;
+	/** Texto del botón blanco de WhatsApp. */
+	ctaLabel?: string;
+	/** Mensaje precargado de WhatsApp. */
+	waMessage?: string;
+	/** Posición del evento de Umami del botón de WhatsApp. */
+	position: string;
+	/** Clases del wrapper de la sección (padding, borde, scroll-mt). */
+	class?: string;
+	/** Línea extra debajo del horario. */
+	nota?: string;
+}
+
+const {
+	id,
+	heading = contactFormCopy.heading,
+	description = contactFormCopy.subheading,
+	ctaLabel = "Solicitar diagnóstico",
+	waMessage,
+	position,
+	class: className = "border-t py-16 md:py-20 scroll-mt-24",
+	nota,
+} = Astro.props;
+
+const turnstileSiteKey = contactSiteKey();
+---
+
+<section id={id} class={className}>
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div
+			class="grid items-center gap-10 rounded-2xl bg-primary px-6 py-12 sm:px-10 sm:py-14 lg:grid-cols-2 lg:gap-12 lg:px-14 lg:py-16 animate-fade-in-up animate-duration-slower"
+		>
+			<div class="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
+				<h2
+					class="font-heading text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl"
+				>
+					{heading}
+				</h2>
+				<p class="mt-4 text-base leading-relaxed text-primary-foreground sm:text-lg">
+					{description}
+				</p>
+				<div class="mt-8 flex flex-col items-center gap-4 lg:items-start">
+					<Button
+						as="a"
+						href={whatsappUrl(waMessage)}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="default"
+						size="lg"
+						class="gap-2 border border-white/20 bg-white text-primary hover:bg-white/90"
+						data-umami-event="whatsapp_click"
+						data-umami-event-position={position}
+					>
+						<WhatsappIcon size={18} />
+						{ctaLabel}
+					</Button>
+					<p class="text-sm leading-relaxed text-primary-foreground/90">
+						Te respondemos en horario de atención (lunes a viernes, de 8:00 a.m. a 8:00 p.m.).
+					</p>
+					{nota && <p class="text-sm leading-relaxed text-primary-foreground/80">{nota}</p>}
+					<slot />
+				</div>
+			</div>
+
+			<div class="rounded-2xl bg-card p-5 shadow-xl sm:p-6">
+				<ContactForm siteKey={turnstileSiteKey} client:visible />
+			</div>
+		</div>
+	</div>
+</section>
