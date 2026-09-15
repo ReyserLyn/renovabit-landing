@@ -1,4 +1,5 @@
 ---
+import { MapRenovaBit } from "@/components/footer/MapRenovaBit";
 import Logo from "@/components/sections/logo.astro";
 import FacebookIcon from "@/components/social-icon/FacebookIcon.astro";
 import GitHubIcon from "@/components/social-icon/GitHubIcon.astro";
@@ -16,8 +17,15 @@ const mapsUrl = `https://www.google.com/maps?q=${LOCATION.lat},${LOCATION.lng}`;
 
 	<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 		<div class="grid gap-12 md:grid-cols-2 md:gap-16">
-			<!-- Left: Social + Tienda -->
+			<!-- Left: Mapa + Social + Tienda -->
 			<div class="flex flex-col gap-8">
+				<!-- Mapa -->
+				<div
+					class="aspect-4/3 w-full overflow-hidden rounded-2xl border bg-card md:aspect-auto md:h-64"
+				>
+					<MapRenovaBit client:visible />
+				</div>
+
 				<!-- Redes Sociales -->
 				<div>
 					<h3
