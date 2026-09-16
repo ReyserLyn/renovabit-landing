@@ -8,7 +8,7 @@ export const LEGAL_UPDATED = "15 de septiembre de 2026";
  * No se publica el DNI ni otros documentos de identidad.
  */
 export const LEGAL_ENTITY = {
-	titular: "Reyser Julio Zapata Butrón",
+	titular: "Reyser Julio Zapata Butron",
 	nombreComercial: "RenovaBit",
 	ruc: "10730954943",
 	domicilio: "Av. Goyeneche 1602, Miraflores, Arequipa, 04004",
