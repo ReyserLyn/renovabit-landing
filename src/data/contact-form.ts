@@ -64,7 +64,10 @@ export const contactFormCopy = {
 		preferencia: {
 			label: "¿Cómo prefieres que te respondamos?",
 		},
-		consent: "Acepto que RenovaBit use mis datos para responder esta consulta.",
+		consent: {
+			label: "Acepto que RenovaBit use mis datos para responder esta consulta, conforme a la",
+			link: { href: "/privacidad/", label: "Política de Privacidad" },
+		},
 	},
 	requiredHint: "Obligatorio",
 	submit: "Enviar mensaje",

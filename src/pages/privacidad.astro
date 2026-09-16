@@ -1,0 +1,189 @@
+---
+import LegalPage from "@/components/legal/LegalPage.astro";
+import { LEGAL_ENTITY, LEGAL_UPDATED } from "@/data/legal";
+
+const index = [
+	{ href: "#responsable", label: "1. Responsable del tratamiento" },
+	{ href: "#marco-legal", label: "2. Marco legal" },
+	{ href: "#datos", label: "3. Datos que recopilamos" },
+	{ href: "#finalidades", label: "4. Para qué usamos los datos" },
+	{ href: "#base-legal", label: "5. Base legal" },
+	{ href: "#conservacion", label: "6. Conservación" },
+	{ href: "#encargados", label: "7. Encargados y transferencia" },
+	{ href: "#derechos", label: "8. Tus derechos" },
+	{ href: "#seguridad", label: "9. Seguridad" },
+	{ href: "#menores", label: "10. Menores de edad" },
+	{ href: "#cambios", label: "11. Cambios en esta política" },
+	{ href: "#contacto", label: "12. Contacto" },
+];
+---
+
+<LegalPage
+	title="Política de Privacidad"
+	description="Cómo RenovaBit trata los datos personales del formulario, WhatsApp, correo y el uso del sitio: responsable, finalidades, conservación y derechos."
+	index={index}
+>
+	<h2 id="responsable">1. Responsable del tratamiento</h2>
+	<p>
+		El responsable del tratamiento de tus datos personales es{" "}
+		<strong>{LEGAL_ENTITY.titular}</strong>, persona natural con negocio que opera comercialmente
+		como <strong>{LEGAL_ENTITY.nombreComercial}</strong>{" "}
+		(RUC {LEGAL_ENTITY.ruc}).
+	</p>
+	<p>
+		Domicilio de atención: {LEGAL_ENTITY.domicilio}. Correo:{" "}
+		<a href={`mailto:${LEGAL_ENTITY.correo}`}>{LEGAL_ENTITY.correo}</a>. Teléfono y WhatsApp:{" "}
+		{LEGAL_ENTITY.telefono}.
+	</p>
+	<p>
+		También puedes encontrarnos en{" "}
+		<a href={LEGAL_ENTITY.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>{" "}
+		y{" "}
+		<a href={LEGAL_ENTITY.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>.
+	</p>
+
+	<h2 id="marco-legal">2. Marco legal</h2>
+	<p>
+		Tratamos los datos personales conforme a la Ley N° 29733, Ley de Protección de Datos Personales,
+		y a su Reglamento, aprobado por el Decreto Supremo N° 016-2024-JUS, vigente desde el 30 de marzo
+		de 2025.
+	</p>
+	<p>
+		La autoridad competente en materia de protección de datos personales es la Autoridad Nacional de
+		Protección de Datos Personales (ANPD), del Ministerio de Justicia y Derechos Humanos.
+	</p>
+
+	<h2 id="datos">3. Datos que recopilamos</h2>
+	<ul>
+		<li>
+			<strong>Formulario de contacto:</strong>{" "}
+			nombre, número de WhatsApp, correo electrónico (opcional), tipo de consulta, mensaje,
+			preferencia de contacto y la página desde la que se envió la consulta.
+		</li>
+		<li>
+			<strong>Canales directos:</strong>{" "}
+			cuando nos escribes por WhatsApp, correo electrónico o llamada telefónica, tratamos los datos
+			que nos proporcionas para atender tu consulta.
+		</li>
+		<li>
+			<strong>Datos de facturación:</strong>{" "}
+			cuando solicitas boleta o factura electrónica, tratamos los datos necesarios para emitir el
+			comprobante (nombre o razón social, número de RUC o documento, dirección y correo).
+		</li>
+		<li>
+			<strong>Datos técnicos del sitio:</strong>{" "}
+			dirección IP, tipo de navegador y dispositivo, fecha y hora de la visita, páginas vistas y el
+			token de la verificación anti-bot.
+		</li>
+	</ul>
+	<p>
+		No solicitamos ni publicamos números de documento de identidad en el sitio. No vendemos ni
+		alquilamos datos personales.
+	</p>
+
+	<h2 id="finalidades">4. Para qué usamos los datos</h2>
+	<ul>
+		<li>Responder tus consultas y coordinar el servicio solicitado.</li>
+		<li>Emitir boletas y facturas electrónicas y mantener los registros contables.</li>
+		<li>Prevenir spam, abuso y accesos no autorizados al formulario.</li>
+		<li>Medir de forma agregada el uso del sitio para mejorarlo.</li>
+		<li>Comunicarnos contigo sobre el estado del servicio, cuando corresponda.</li>
+	</ul>
+
+	<h2 id="base-legal">5. Base legal</h2>
+	<ul>
+		<li>
+			Tu consentimiento, cuando envías el formulario o nos escribes. Puedes revocarlo en cualquier
+			momento.
+		</li>
+		<li>
+			La ejecución de la relación contractual, cuando contratas un servicio y cuando emitimos el
+			comprobante correspondiente.
+		</li>
+		<li>
+			Nuestro interés legítimo en proteger el sitio y prevenir el abuso (verificación anti-bot y
+			límites de envío).
+		</li>
+		<li>
+			El cumplimiento de obligaciones legales, como la emisión y conservación de comprobantes de
+			pago.
+		</li>
+	</ul>
+
+	<h2 id="conservacion">6. Conservación</h2>
+	<p>
+		Conservamos los datos de contacto el tiempo necesario para atender tu consulta y, si contratas
+		un servicio, mientras dure la relación y los plazos legales aplicables. Los comprobantes y
+		registros contables se conservan según los plazos que exige la normativa tributaria. Luego
+		eliminamos o anonimizamos los datos que ya no sean necesarios.
+	</p>
+
+	<h2 id="encargados">7. Encargados y transferencia internacional</h2>
+	<p>Para operar el sitio y atenderte usamos proveedores que pueden tratar datos por encargo:</p>
+	<ul>
+		<li>
+			<strong>Cloudflare:</strong>{" "}
+			alojamiento del sitio, red de entrega y verificación anti-bot (Turnstile) del formulario.
+		</li>
+		<li>
+			<strong>Resend:</strong>{" "}
+			envío de los correos del formulario (notificación interna y respuesta automática).
+		</li>
+		<li>
+			<strong>Umami:</strong>{" "}
+			analítica web autohospedada en analytics.renovabit.com, sin cookies y con datos agregados.
+		</li>
+		<li>
+			<strong>Google Maps:</strong>{" "}
+			mapa interactivo de la página /contacto/, que se carga cuando interactúas con él.
+		</li>
+	</ul>
+	<p>
+		Algunos de estos proveedores pueden procesar datos fuera del Perú (por ejemplo, en Estados
+		Unidos). En esos casos adoptamos medidas contractuales y técnicas para que los datos mantengan
+		un nivel de protección adecuado. No cedemos datos a terceros para publicidad.
+	</p>
+
+	<h2 id="derechos">8. Tus derechos</h2>
+	<p>
+		Puedes ejercer tus derechos de acceso, rectificación, cancelación (supresión) y oposición, así
+		como revocar tu consentimiento, escribiendo a{" "}
+		<a href={`mailto:${LEGAL_ENTITY.correo}`}>{LEGAL_ENTITY.correo}</a>. Indica tu nombre, el
+		derecho que deseas ejercer y los datos a los que se refiere. Nos comprometemos a atender tu
+		solicitud en un plazo máximo de 15 días hábiles.
+	</p>
+	<p>
+		Si consideras que no atendimos tu solicitud, puedes reclamar ante la Autoridad Nacional de
+		Protección de Datos Personales (ANPD), del Ministerio de Justicia y Derechos Humanos.
+	</p>
+
+	<h2 id="seguridad">9. Seguridad</h2>
+	<p>
+		Aplicamos medidas técnicas y organizativas para proteger los datos: transmisión cifrada mediante
+		HTTPS, acceso limitado a la información, verificación anti-bot en el formulario y revisión de
+		los proveedores que usamos. Ningún sistema es completamente infalible, pero trabajamos para
+		prevenir accesos no autorizados, pérdidas o alteraciones.
+	</p>
+
+	<h2 id="menores">10. Menores de edad</h2>
+	<p>
+		Nuestros servicios están dirigidos a personas mayores de edad. Si necesitas contratar un
+		servicio para un equipo cuyo titular es un menor, la solicitud debe realizarla su representante
+		legal.
+	</p>
+
+	<h2 id="cambios">11. Cambios en esta política</h2>
+	<p>
+		Podemos actualizar esta política para reflejar cambios en nuestros servicios o en la normativa.
+		Publicaremos la versión vigente en esta página con su fecha de actualización.
+	</p>
+
+	<h2 id="contacto">12. Contacto</h2>
+	<p>
+		Para consultas sobre esta política o sobre el tratamiento de tus datos, escríbenos a{" "}
+		<a href={`mailto:${LEGAL_ENTITY.correo}`}>{LEGAL_ENTITY.correo}</a>{" "}
+		o por WhatsApp al{" "}
+		{LEGAL_ENTITY.telefono}.
+	</p>
+	<p>Fecha de actualización: {LEGAL_UPDATED}.</p>
+</LegalPage>

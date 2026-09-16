@@ -7,9 +7,11 @@ import InstagramIcon from "@/components/social-icon/InstagramIcon.astro";
 import TikTokIcon from "@/components/social-icon/TikTokIcon.astro";
 import XIcon from "@/components/social-icon/XIcon.astro";
 import { CONTACT, FOOTER, LOCATION, SITE, SOCIAL, STORE_URL } from "@/constants";
+import { LEGAL_ENTITY } from "@/data/legal";
 
 const currentYear = new Date().getFullYear();
 const mapsUrl = `https://www.google.com/maps?q=${LOCATION.lat},${LOCATION.lng}`;
+const legalLine = `${SITE.name} · ${LEGAL_ENTITY.titular} · RUC ${LEGAL_ENTITY.ruc}`;
 ---
 
 <footer class="border-t bg-background">
@@ -193,12 +195,41 @@ const mapsUrl = `https://www.google.com/maps?q=${LOCATION.lat},${LOCATION.lng}`;
 		</div>
 	</div>
 
-	<!-- Copyright -->
+	<!-- Copyright y enlaces legales -->
 	<div class="border-t">
 		<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-			<p class="text-center text-xs text-muted-foreground">
-				&copy; {currentYear} {SITE.name}. Todos los derechos reservados.
-			</p>
+			<div class="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+				<p class="text-center text-xs text-muted-foreground sm:text-left">
+					&copy; {currentYear} {SITE.name}. Todos los derechos reservados.
+				</p>
+				<ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+					<li>
+						<a
+							href="/privacidad/"
+							class="text-xs text-muted-foreground transition-colors hover:text-primary"
+						>
+							Privacidad
+						</a>
+					</li>
+					<li>
+						<a
+							href="/terminos/"
+							class="text-xs text-muted-foreground transition-colors hover:text-primary"
+						>
+							Términos
+						</a>
+					</li>
+					<li>
+						<a
+							href="/cookies/"
+							class="text-xs text-muted-foreground transition-colors hover:text-primary"
+						>
+							Cookies
+						</a>
+					</li>
+				</ul>
+			</div>
+			<p class="mt-4 text-center text-xs text-muted-foreground">{legalLine}</p>
 		</div>
 	</div>
 </footer>

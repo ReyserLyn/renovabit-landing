@@ -487,7 +487,16 @@ export function ContactForm({ siteKey }: ContactFormProps) {
 									aria-invalid={hasError}
 									aria-describedby={describedBy(hasError ? errorId : undefined)}
 								/>
-								{contactFormCopy.fields.consent}
+								{contactFormCopy.fields.consent.label}{" "}
+								<a
+									href={contactFormCopy.fields.consent.link.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="font-medium text-primary underline underline-offset-2"
+								>
+									{contactFormCopy.fields.consent.link.label}
+								</a>
+								.
 							</label>
 							<FieldError id={errorId} errors={field.errors.value} />
 						</div>

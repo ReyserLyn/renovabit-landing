@@ -1,0 +1,172 @@
+---
+import LegalPage from "@/components/legal/LegalPage.astro";
+import { LEGAL_ENTITY, LEGAL_UPDATED } from "@/data/legal";
+
+const index = [
+	{ href: "#identificacion", label: "1. Identificación y aceptación" },
+	{ href: "#objeto", label: "2. Objeto" },
+	{ href: "#servicio-tecnico", label: "3. Condiciones del servicio técnico" },
+	{ href: "#reclamos", label: "4. Reclamos y atención al cliente" },
+	{ href: "#propiedad-intelectual", label: "5. Propiedad intelectual" },
+	{ href: "#enlaces", label: "6. Enlaces externos" },
+	{ href: "#modificaciones", label: "7. Modificaciones" },
+	{ href: "#ley-aplicable", label: "8. Ley aplicable" },
+];
+---
+
+<LegalPage
+	title="Términos y Condiciones"
+	description="Condiciones de uso del sitio y de los servicios de RenovaBit: cotización, garantía, pagos, comprobantes, reclamos y atención al cliente en Arequipa."
+	index={index}
+>
+	<h2 id="identificacion">1. Identificación y aceptación</h2>
+	<p>
+		Estos Términos y Condiciones regulan el uso del sitio renovabit.com y la contratación de los
+		servicios que ofrece RenovaBit.
+	</p>
+	<p>
+		Titular: <strong>{LEGAL_ENTITY.titular}</strong>, persona natural con negocio, RUC{" "}
+		{LEGAL_ENTITY.ruc}, con domicilio de atención en {LEGAL_ENTITY.domicilio}. Correo:{" "}
+		<a href={`mailto:${LEGAL_ENTITY.correo}`}>{LEGAL_ENTITY.correo}</a>. Teléfono y WhatsApp:{" "}
+		{LEGAL_ENTITY.telefono}.
+	</p>
+	<p>
+		Al usar el sitio o contratar un servicio aceptas estos términos. Si tienes dudas, puedes
+		contactarnos antes de contratar para aclarar cualquier punto.
+	</p>
+
+	<h2 id="objeto">2. Objeto</h2>
+	<p>
+		RenovaBit brinda servicio técnico de laptops y computadoras, mantenimiento preventivo,
+		reparaciones especializadas, desarrollo web, venta de componentes y equipos, y soporte a
+		empresas en Arequipa. El alcance, las condiciones y el precio de cada servicio se confirman
+		antes de intervenir el equipo.
+	</p>
+
+	<h2 id="servicio-tecnico">3. Condiciones del servicio técnico</h2>
+
+	<h3>3.1 Servicios y modalidades</h3>
+	<ul>
+		<li><strong>Taller:</strong> el equipo se atiende en nuestro domicilio de atención.</li>
+		<li>
+			<strong>A domicilio:</strong>{" "}
+			coordinamos una visita en Arequipa. Esta modalidad tiene un recargo informado antes de agendar
+			(referencial: S/30 adicionales).
+		</li>
+		<li>
+			<strong>Recojo y entrega:</strong>{" "}
+			coordinamos el recojo y la entrega del equipo según la zona y el caso.
+		</li>
+		<li>
+			<strong>Empresas:</strong>{" "}
+			atención con boleta o factura, informes técnicos y documentación por equipo.
+		</li>
+	</ul>
+	<p>
+		El diagnóstico no tiene costo cuando realizas el servicio con RenovaBit. La evaluación avanzada
+		tiene un costo referencial de S/60, acreditable al servicio.
+	</p>
+
+	<h3>3.2 Cotización y precios</h3>
+	<p>
+		Los precios se expresan en soles y son referenciales. Antes de intervenir el equipo confirmamos
+		el alcance y el precio de la cotización, y no aplicamos cargos ocultos. Si durante el trabajo
+		aparece una condición distinta a la evaluada, te informamos y pedimos tu conformidad antes de
+		continuar.
+	</p>
+
+	<h3>3.3 Garantía y exclusiones</h3>
+	<ul>
+		<li><strong>Reparaciones:</strong> hasta 90 días de garantía por escrito.</li>
+		<li>
+			<strong>Mantenimiento:</strong>{" "}
+			la garantía del servicio se informa por escrito al entregar el equipo.
+		</li>
+		<li><strong>Componentes o equipos nuevos:</strong> la garantía corresponde al fabricante.</li>
+	</ul>
+	<p>La garantía no cubre:</p>
+	<ul>
+		<li>Daños por golpes, líquidos o uso indebido.</li>
+		<li>Intervenciones de terceros posteriores al servicio.</li>
+		<li>Software o programas maliciosos instalados después del servicio.</li>
+		<li>Condiciones ambientales inadecuadas, como humedad, polvo o temperatura fuera de rango.</li>
+		<li>El desgaste natural del equipo.</li>
+	</ul>
+
+	<h3>3.4 Datos e información</h3>
+	<p>
+		Recomendamos respaldar tu información antes de entregar el equipo. No podemos garantizar la
+		recuperación de información en unidades dañadas. El backup básico forma parte del servicio solo
+		cuando el volumen y el estado del equipo lo permiten.
+	</p>
+
+	<h3>3.5 Equipos no retirados</h3>
+	<p>
+		Cuando el servicio termina te contactamos para coordinar el retiro del equipo. Si el equipo
+		permanece sin retirar tras un plazo razonable (90 días desde la comunicación), podremos aplicar
+		una tarifa de almacenaje informada previamente y, de persistir, proceder conforme a las normas
+		aplicables.
+	</p>
+
+	<h3>3.6 Equipos con intervenciones previas</h3>
+	<p>
+		Cuando un equipo fue intervenido por terceros antes de llegarnos, el alcance del servicio y la
+		garantía se evalúan según el estado y las intervenciones previas.
+	</p>
+
+	<h3>3.7 Responsabilidad</h3>
+	<p>
+		Cuidamos tu equipo durante el servicio y documentamos el trabajo realizado. No somos
+		responsables por hechos fortuitos fuera de nuestro control, como robos o desastres naturales, ni
+		por daños que provengan de condiciones preexistentes del equipo. Ninguna disposición de estos
+		términos limita los derechos que la Ley N° 29571 reconoce a los consumidores.
+	</p>
+
+	<h3>3.8 Pagos y comprobantes</h3>
+	<p>
+		Aceptamos Yape y Plin. Para pedidos de tienda se abona el 50% al confirmar el pedido. Emitimos
+		boleta o factura electrónica según corresponda, y los precios se expresan en soles.
+	</p>
+
+	<h2 id="reclamos">4. Reclamos y atención al cliente</h2>
+	<p>
+		Si tienes un reclamo sobre un servicio o una compra, escríbenos a{" "}
+		<a href={`mailto:${LEGAL_ENTITY.correo}`}>{LEGAL_ENTITY.correo}</a>{" "}
+		o por WhatsApp al{" "}
+		{LEGAL_ENTITY.telefono}, indicando qué ocurrió y adjuntando el comprobante. Responderemos en un
+		plazo máximo de 15 días hábiles.
+	</p>
+	<p>
+		La Ley N° 29571, Código de Protección y Defensa del Consumidor, modificada por el Decreto
+		Legislativo N° 1729 (2026), protege tus derechos como consumidor. Si no llegamos a un acuerdo,
+		puedes acudir a Indecopi a través de su plataforma Reclama Virtual.
+	</p>
+
+	<h2 id="propiedad-intelectual">5. Propiedad intelectual</h2>
+	<p>
+		Los textos, marcas, logotipos, imágenes y demás contenidos de este sitio pertenecen a RenovaBit
+		o se usan con autorización. No está permitido reproducirlos ni usarlos con fines comerciales sin
+		nuestra autorización previa.
+	</p>
+
+	<h2 id="enlaces">6. Enlaces externos</h2>
+	<p>
+		El sitio puede incluir enlaces a páginas de terceros, como la tienda en línea
+		(tienda.renovabit.com) o servicios de mapas. No controlamos esos sitios y te recomendamos
+		revisar sus propias políticas.
+	</p>
+
+	<h2 id="modificaciones">7. Modificaciones</h2>
+	<p>
+		Podemos actualizar estos términos para reflejar cambios en los servicios o en la normativa. La
+		versión vigente es la publicada en esta página, con su fecha de actualización.
+	</p>
+
+	<h2 id="ley-aplicable">8. Ley aplicable</h2>
+	<p>
+		Estos términos se rigen por las leyes del Perú. Las controversias se atienden ante Indecopi
+		cuando corresponda y, en su defecto, ante los tribunales competentes de Arequipa, sin perjuicio
+		de los derechos que la ley reconoce a los consumidores.
+	</p>
+	<p>Fecha de actualización: {LEGAL_UPDATED}.</p>
+</LegalPage>

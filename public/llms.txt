@@ -19,6 +19,12 @@ RenovaBit atiende a personas y empresas en Arequipa con diagnóstico sin costo a
 - Dirección: Av. Goyeneche 1602, Miraflores, Arequipa
 - Horario: Lunes a Viernes, 8:00 AM - 8:00 PM
 
+## Legal
+
+- [Política de Privacidad](https://renovabit.com/privacidad/): Tratamiento de datos personales, finalidades, conservación, encargados y derechos.
+- [Términos y Condiciones](https://renovabit.com/terminos/): Condiciones de uso, servicio técnico, garantía, pagos, comprobantes y reclamos.
+- [Política de Cookies](https://renovabit.com/cookies/): Cookies y tecnologías similares: analítica sin cookies, verificación anti-bot y mapa.
+
 ## Optional
 
 - [Contenido completo del sitio](https://renovabit.com/llms-full.txt): Versión extendida con todo el texto de la página de inicio.

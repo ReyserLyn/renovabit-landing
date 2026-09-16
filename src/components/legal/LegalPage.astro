@@ -1,0 +1,75 @@
+---
+import { LEGAL_ENTITY, LEGAL_UPDATED } from "@/data/legal";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	updated?: string;
+	/** Índice de secciones; se muestra solo si tiene elementos. */
+	index?: ReadonlyArray<{ href: string; label: string }>;
+}
+
+const { title, description, updated = LEGAL_UPDATED, index } = Astro.props;
+
+const legalLinks = [
+	{ href: "/privacidad/", label: "Privacidad" },
+	{ href: "/terminos/", label: "Términos" },
+	{ href: "/cookies/", label: "Cookies" },
+];
+
+const entityLine = `${LEGAL_ENTITY.nombreComercial} · ${LEGAL_ENTITY.titular} · RUC ${LEGAL_ENTITY.ruc}`;
+---
+
+<BaseLayout title={title} description={description}>
+	<article class="mx-auto max-w-3xl px-4 pt-32 pb-16 sm:px-6 md:pt-40 md:pb-20 lg:px-8">
+		<header>
+			<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">Legal</p>
+			<h1 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				{title}
+			</h1>
+			<p class="mt-3 text-sm text-muted-foreground">Última actualización: {updated}</p>
+		</header>
+
+		{index && index.length > 0 && (
+			<nav aria-label="Contenido" class="mt-8 rounded-2xl border bg-muted/20 p-5">
+				<h2 class="font-heading text-sm font-semibold tracking-wider text-foreground uppercase">
+					Contenido
+				</h2>
+				<ol class="mt-3 grid gap-1.5 text-sm sm:grid-cols-2">
+					{index.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								class="text-muted-foreground transition-colors hover:text-primary hover:underline"
+							>
+								{item.label}
+							</a>
+						</li>
+					))}
+				</ol>
+			</nav>
+		)}
+
+		<div
+			class="prose prose-lg mt-10 max-w-none prose-headings:font-heading prose-headings:scroll-mt-28 prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-li:text-muted-foreground prose-strong:text-foreground"
+		>
+			<slot />
+		</div>
+
+		<footer class="mt-12 border-t pt-6">
+			<p class="text-xs text-muted-foreground">{entityLine}</p>
+			<nav aria-label="Otras páginas legales" class="mt-3">
+				<ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+					{legalLinks.map((link) => (
+						<li>
+							<a href={link.href} class="text-primary hover:underline">
+								{link.label}
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+		</footer>
+	</article>
+</BaseLayout>

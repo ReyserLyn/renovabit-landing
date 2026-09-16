@@ -1,0 +1,78 @@
+---
+import LegalPage from "@/components/legal/LegalPage.astro";
+import { LEGAL_ENTITY, LEGAL_UPDATED } from "@/data/legal";
+
+const index = [
+	{ href: "#que-son", label: "1. Qué son las cookies" },
+	{ href: "#que-usamos", label: "2. Qué usamos en este sitio" },
+	{ href: "#para-que", label: "3. Para qué sirven" },
+	{ href: "#gestion", label: "4. Cómo gestionarlas" },
+	{ href: "#consentimiento", label: "5. Consentimiento" },
+	{ href: "#cambios", label: "6. Cambios y contacto" },
+];
+---
+
+<LegalPage
+	title="Política de Cookies"
+	description="Qué cookies y tecnologías similares usa RenovaBit en su sitio: analítica sin cookies, verificación anti-bot y el mapa de contacto."
+	index={index}
+>
+	<h2 id="que-son">1. Qué son las cookies</h2>
+	<p>
+		Las cookies son archivos pequeños que un sitio guarda en tu navegador para recordar información.
+		También existen tecnologías similares, como el almacenamiento local o las señales técnicas que
+		usan los servicios de seguridad.
+	</p>
+
+	<h2 id="que-usamos">2. Qué usamos en este sitio</h2>
+	<p>
+		En renovabit.com no usamos cookies propias de publicidad ni de perfilado. Estas son las
+		tecnologías que pueden intervenir cuando navegas:
+	</p>
+	<ul>
+		<li>
+			<strong>Analítica:</strong>{" "}
+			Umami, autohospedado en analytics.renovabit.com. No usa cookies y mide las visitas de forma
+			agregada (páginas vistas, origen de la visita y tipo de dispositivo).
+		</li>
+		<li>
+			<strong>Seguridad:</strong>{" "}
+			Cloudflare y su verificación Turnstile en el formulario de contacto. Pueden usar cookies
+			técnicas necesarias y procesan tu dirección IP para comprobar que no eres un bot.
+		</li>
+		<li>
+			<strong>Mapa:</strong>{" "}
+			el mapa de Google Maps que se muestra en /contacto/ puede establecer cookies propias cuando
+			interactúas con él.
+		</li>
+	</ul>
+
+	<h2 id="para-que">3. Para qué sirven</h2>
+	<p>
+		Las cookies técnicas de seguridad permiten proteger el formulario y el sitio. La analítica nos
+		ayuda a entender qué páginas resultan útiles y a mejorarlas. El mapa te permite ubicar el taller
+		y obtener indicaciones.
+	</p>
+
+	<h2 id="gestion">4. Cómo gestionarlas</h2>
+	<p>
+		Puedes revisar, bloquear o eliminar las cookies desde la configuración de tu navegador. Si
+		bloqueas las cookies técnicas, el formulario o el mapa podrían no funcionar correctamente. Ten
+		en cuenta que las cookies del mapa las gestiona Google desde su propio dominio.
+	</p>
+
+	<h2 id="consentimiento">5. Consentimiento</h2>
+	<p>
+		No mostramos un banner de consentimiento porque no usamos cookies de publicidad ni de perfilado.
+		Esta política es informativa: si en el futuro incorporamos herramientas que requieran
+		consentimiento, lo pediremos antes de activarlas.
+	</p>
+
+	<h2 id="cambios">6. Cambios y contacto</h2>
+	<p>
+		Podemos actualizar esta política si cambian las herramientas que usamos. Publicaremos la versión
+		vigente en esta página con su fecha de actualización. Para consultas, escríbenos a{" "}
+		<a href={`mailto:${LEGAL_ENTITY.correo}`}>{LEGAL_ENTITY.correo}</a>.
+	</p>
+	<p>Fecha de actualización: {LEGAL_UPDATED}.</p>
+</LegalPage>

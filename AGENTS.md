@@ -135,6 +135,7 @@ src/
 - **Anti-bot**: Turnstile fail-closed, honeypot `empresa` y límite `CONTACT_RATE_LIMITER` (3 solicitudes / 60 s por IP).
 - **Correos**: Resend vía `fetch` (sin SDK), plantillas TS en `templates.ts`. Sin almacenamiento en v1.
 - **Vista previa temporal de correos**: `/dev/emails/` (se elimina borrando `src/pages/dev/` y su regla `/dev/*` en `public/_headers`).
+- **Legales**: `/privacidad/`, `/terminos/` y `/cookies/` se renderizan con `src/components/legal/LegalPage.astro` y usan los datos del titular de `src/data/legal.ts` (sin DNI).
 - **Detalle completo**: `docs/contact-form.md`.
 
 ### Variables de entorno
