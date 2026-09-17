@@ -1,0 +1,14 @@
+---
+/**
+ * Índice del panel: redirige a la cola de moderación.
+ *
+ * `/admin/` es la URL que se tipea naturalmente, pero la página real vive en
+ * `/admin/resenas/`. En producción todo `/admin/*` está detrás de Cloudflare
+ * Access, así que el redirect no expone nada: la sesión ya se validó en el
+ * borde antes de llegar acá.
+ */
+export const prerender = false;
+
+return Astro.redirect("/admin/resenas/", 302);
+---
+
