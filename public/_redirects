@@ -1,8 +1,13 @@
 /blog/mantenimiento-laptop-frecuencia/ /blog/cada-cuanto-hacer-mantenimiento-laptop/ 301
 
 # Variantes con "ñ": la URL real es sin ñ (`/resena/` y `/resenas/`), pero la
-# palabra se escribe naturalmente con ñ. Se cubren ambas codificaciones.
+# palabra se escribe naturalmente con ñ. Se cubren con y sin slash final, en
+# ambas codificaciones (el navegador envía la URL tipada tal cual).
 /reseña/ /resena/ 301
 /reseñas/ /resenas/ 301
+/reseña /resena/ 301
+/reseñas /resenas/ 301
 /rese%C3%B1a/ /resena/ 301
 /rese%C3%B1as/ /resenas/ 301
+/rese%C3%B1a /resena/ 301
+/rese%C3%B1as /resenas/ 301
