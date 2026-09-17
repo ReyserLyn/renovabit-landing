@@ -5,7 +5,6 @@ import type { FaqItem } from "@/data/faq";
 import { getFaqsForService, getFeaturedFaqs } from "@/data/faq";
 import { servicioTecnicoCommercial } from "@/data/servicio-tecnico";
 import { getServiceBySlug } from "@/data/servicios";
-import { testimonios } from "@/data/testimonios";
 
 const pathname = Astro.url.pathname;
 const isLaptopRepairLanding = pathname === "/reparacion-laptops-arequipa/";
@@ -163,34 +162,6 @@ const graphEntities: Record<string, unknown>[] = [
 			},
 			geoRadius: "50000",
 		},
-		aggregateRating: {
-			"@type": "AggregateRating",
-			ratingValue: (testimonios.reduce((sum, t) => sum + t.rating, 0) / testimonios.length).toFixed(
-				1,
-			),
-			reviewCount: String(testimonios.length),
-			bestRating: "5",
-			worstRating: "1",
-		},
-		review: testimonios.map((t) => ({
-			"@type": "Review",
-			"@id": `${SITE.url}/#review-${t.id}`,
-			author: {
-				"@type": "Person",
-				name: t.autor,
-			},
-			datePublished: t.fecha,
-			reviewBody: t.texto,
-			reviewRating: {
-				"@type": "Rating",
-				ratingValue: String(t.rating),
-				bestRating: "5",
-				worstRating: "1",
-			},
-			itemReviewed: {
-				"@id": `${SITE.url}/#business`,
-			},
-		})),
 		hasOfferCatalog: {
 			"@type": "OfferCatalog",
 			name: "Servicios de RenovaBit",

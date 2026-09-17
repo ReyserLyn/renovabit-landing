@@ -16,6 +16,8 @@ export interface ServiceData {
 	title: string;
 	seoTitle: string;
 	description: string;
+	/** Descripción para el meta tag del head. Se usa tal cual, sin truncar. */
+	metaDescription: string;
 	price: string;
 	subtitle: string;
 	tiempo: string;
@@ -45,9 +47,11 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "servicio-tecnico",
 		title: "Servicio Técnico",
-		seoTitle: "Mantenimiento y Reparación de Laptops",
+		seoTitle: "Mantenimiento de Laptops y PCs",
 		description:
 			"Mantenimiento y reparación de laptops y PCs con diagnóstico profesional, documentación del proceso y atención personalizada en Arequipa.",
+		metaDescription:
+			"Mantenimiento y reparación de laptops y PCs en Arequipa: atención en taller o a domicilio, con boleta, factura y garantía por escrito.",
 		price: "S/ 90",
 		subtitle: "Desde · Diagnóstico sin costo al realizar el servicio",
 		tiempo: "1 a 3 días",
@@ -90,9 +94,11 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "desarrollo-web",
 		title: "Desarrollo Web",
-		seoTitle: "Desarrollo de Sitios Web y Landing Pages",
+		seoTitle: "Desarrollo Web y Landing Pages",
 		description:
 			"Sitios web rápidos, profesionales y preparados para convertir visitantes en clientes. Desde landing pages hasta webs corporativas.",
+		metaDescription:
+			"Landing pages y sitios web para negocios en Arequipa: diseño responsive, SEO técnico, hosting y dominio incluidos desde S/500.",
 		price: "S/ 500",
 		subtitle: "Proyectos desde",
 		tiempo: "2 a 15 días",
@@ -159,9 +165,11 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "tienda",
 		title: "Tienda de Componentes y Equipos",
-		seoTitle: "Tienda de Componentes, PCs y Laptops",
+		seoTitle: "Tienda de Equipos y Componentes",
 		description:
 			"Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas. Precio de distribuidor.",
+		metaDescription:
+			"Venta de laptops, PCs, componentes y periféricos en Arequipa con asesoría según tu presupuesto. Equipos probados y garantía del fabricante.",
 		price: "S/ 50",
 		subtitle: "Desde · Precio de distribuidor",
 		tiempo: "1 a 7 días",
@@ -196,9 +204,11 @@ export const servicios: ServiceData[] = [
 	{
 		slug: "reparaciones-especializadas",
 		title: "Reparaciones Especializadas",
-		seoTitle: "Reparaciones Especializadas de Laptops",
+		seoTitle: "Reparación Microelectrónica",
 		description:
 			"Solucionamos fallas complejas que requieren diagnóstico y reparación a nivel electrónico. Microelectrónica, BIOS, motherboard.",
+		metaDescription:
+			"Reparación de fallas complejas en laptops de Arequipa: placa madre, microelectrónica, BIOS, pantallas y teclados con evaluación previa.",
 		price: "S/ 150",
 		subtitle: "Desde",
 		tiempo: "3 a 10 días",

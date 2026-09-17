@@ -9,6 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField, fontProviders } from "astro/config";
 import icon from "astro-icon";
 import llms from "astro-llms-md";
+import { readGitLastmod } from "./src/lib/seo/sitemap-lastmod";
 
 /**
  * Lee la fecha de cada post del blog (updatedDate o publishDate) desde el
@@ -128,8 +129,11 @@ export default defineConfig({
 				!page.includes("/qr/") &&
 				!page.includes("/admin/"),
 			serialize(item) {
-				const lastmod = blogLastmods.get(new URL(item.url).pathname);
-				if (lastmod) item.lastmod = lastmod;
+				const pathname = new URL(item.url).pathname;
+				// Los posts conservan la fecha de su frontmatter; el resto se completa
+				// con la fecha del último commit que tocó sus archivos fuente.
+				const lastmod = blogLastmods.get(pathname) ?? readGitLastmod(pathname);
+				if (lastmod) item.lastmod = lastmod instanceof Date ? lastmod.toISOString() : lastmod;
 				return item;
 			},
 		}),

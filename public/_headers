@@ -27,6 +27,27 @@
 /contacto/
 	Cache-Control: public, max-age=86400
 
+/laptop-lenta-arequipa/
+	Cache-Control: public, max-age=86400
+
+/mantenimiento-pc-domicilio-arequipa/
+	Cache-Control: public, max-age=86400
+
+/reparacion-laptops-arequipa/
+	Cache-Control: public, max-age=86400
+
+/privacidad/
+	Cache-Control: public, max-age=86400
+
+/terminos/
+	Cache-Control: public, max-age=86400
+
+/cookies/
+	Cache-Control: public, max-age=86400
+
+/resenas/
+	Cache-Control: public, max-age=86400
+
 /blog/
 	Cache-Control: public, max-age=86400
 

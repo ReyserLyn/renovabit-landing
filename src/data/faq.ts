@@ -57,24 +57,24 @@ export const faqItems: FaqItem[] = [
 		featured: true,
 	},
 
-	// ===== SERVICIO TÉCNICO =====
+	// ===== SERVICIO TÉCNICO / MANTENIMIENTO =====
 	{
 		question: "¿Realizan diagnóstico antes de reparar?",
 		answer:
 			"Sí. Primero evaluamos el equipo para identificar el origen del problema y te explicamos las alternativas disponibles antes de realizar cualquier reparación. Si decides continuar con la reparación, el diagnóstico no tiene costo.",
-		tags: ["servicio-tecnico", "reparaciones-especializadas"],
+		tags: ["reparaciones-especializadas"],
 	},
 	{
 		question: "¿Cuánto cuesta reparar una laptop en Arequipa?",
 		answer:
 			"El costo depende del tipo de falla y los repuestos necesarios. La revisión básica está incluida en el servicio. Si el equipo requiere evaluación avanzada de placa, cuesta S/60 y se acredita al servicio. Te entregamos una cotización clara antes de iniciar cualquier reparación. Cambios de pantalla, teclados, mantenimiento y reparación de placa tienen precios distintos.",
-		tags: ["servicio-tecnico", "reparaciones-especializadas"],
+		tags: ["reparaciones-especializadas"],
 	},
 	{
 		question: "¿Qué hacer si mi laptop no enciende?",
 		answer:
 			"No fuerces el encendido repetidamente. El problema puede ser la batería, el cargador, la BIOS o la placa madre. Escríbenos por WhatsApp para una evaluación inicial. En muchos casos el diagnóstico nos permite saber si la reparación es viable antes de que traigas el equipo.",
-		tags: ["servicio-tecnico", "reparaciones-especializadas"],
+		tags: ["reparacion-laptops-arequipa", "reparaciones-especializadas"],
 	},
 	{
 		question: "¿Cuánto cuesta formatear o instalar Windows en Arequipa?",
@@ -89,15 +89,17 @@ export const faqItems: FaqItem[] = [
 		tags: ["servicio-tecnico"],
 	},
 	{
-		question: "¿Cada cuánto tiempo debo hacer mantenimiento a mi laptop?",
+		question: "¿Cambian pasta térmica en el mantenimiento?",
 		answer:
-			"Recomendamos mantenimiento preventivo cada 6 a 12 meses, dependiendo del uso y ambiente. Si tu equipo se usa en ambientes con polvo o mascotas, puede necesitar mantenimiento más frecuente.",
+			"Sí. El cambio de pasta térmica de calidad está incluido en todos nuestros mantenimientos. Usamos pastas de grado profesional para asegurar la mejor transferencia de calor.",
 		tags: ["servicio-tecnico"],
 	},
+
+	// ===== REPARACIÓN DE LAPTOPS (FALLAS DURAS) =====
 	{
-		question: "¿Qué problemas de laptop pueden revisar en Arequipa?",
+		question: "¿Qué fallas de laptop revisan en Arequipa?",
 		answer:
-			"Evaluamos laptops que no encienden, se apagan, se calientan, hacen ruido, están lentas o presentan fallas de batería, pantalla, teclado, carga y otros componentes. El diagnóstico determina el origen de la falla y si requiere una reparación especializada.",
+			"Revisamos laptops que no encienden, se apagan solas, tienen la pantalla o el teclado dañados, fallas de carga y puertos, y equipos con posibles problemas de placa. El diagnóstico determina el origen de la falla y si requiere una reparación especializada.",
 		tags: ["reparacion-laptops-arequipa"],
 	},
 	{
@@ -125,10 +127,10 @@ export const faqItems: FaqItem[] = [
 		tags: ["reparacion-laptops-arequipa"],
 	},
 	{
-		question: "¿Cambian pasta térmica en el mantenimiento?",
+		question: "¿La reparación de mi laptop tiene garantía?",
 		answer:
-			"Sí. El cambio de pasta térmica de calidad está incluido en todos nuestros mantenimientos. Usamos pastas de grado profesional para asegurar la mejor transferencia de calor.",
-		tags: ["servicio-tecnico"],
+			"Sí. El trabajo queda con garantía por escrito. Antes de intervenir te confirmamos el alcance, la cotización y las condiciones, para que decidas con información clara.",
+		tags: ["reparacion-laptops-arequipa"],
 	},
 
 	// ===== DESARROLLO WEB =====
@@ -220,12 +222,6 @@ export const faqItems: FaqItem[] = [
 		question: "¿Cambian el disco a SSD o agregan RAM?",
 		answer:
 			"Sí, coordinamos upgrades de disco SSD o memoria RAM cuando el equipo lo soporta. Los repuestos se cotizan por separado y te explicamos el precio antes de intervenir.",
-		tags: ["laptop-lenta-arequipa"],
-	},
-	{
-		question: "¿El diagnóstico de mi laptop lenta tiene costo?",
-		answer:
-			"La revisión y las pruebas básicas están incluidas en el mantenimiento. Si el equipo necesita una evaluación de falla más profunda, el diagnóstico avanzado cuesta S/60 y se acredita al servicio.",
 		tags: ["laptop-lenta-arequipa"],
 	},
 	{

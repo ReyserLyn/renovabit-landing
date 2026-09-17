@@ -13,6 +13,8 @@ interface Props {
 	service: ServiceData;
 	variant: "A" | "B";
 	headingLevel?: "h1" | "h2";
+	/** Sufijo opcional para el heading (p. ej. "en Arequipa" en las fichas de servicio). */
+	headingSuffix?: string;
 	number: string;
 	priceOverride?: string;
 	subtitleOverride?: string;
@@ -25,6 +27,7 @@ const {
 	service,
 	variant,
 	headingLevel = "h1",
+	headingSuffix,
 	number,
 	priceOverride,
 	subtitleOverride,
@@ -57,6 +60,7 @@ const {
 							service={service}
 							number={number}
 							headingLevel={headingLevel}
+							headingSuffix={headingSuffix}
 							priceOverride={priceOverride}
 							subtitleOverride={subtitleOverride}
 							descriptionOverride={descriptionOverride}
@@ -98,6 +102,7 @@ const {
 								service={service}
 								number={number}
 								headingLevel={headingLevel}
+								headingSuffix={headingSuffix}
 								descriptionWidth="lg"
 								priceOverride={priceOverride}
 								subtitleOverride={subtitleOverride}

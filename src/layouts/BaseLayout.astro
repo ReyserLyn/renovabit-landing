@@ -11,6 +11,8 @@ interface Props {
 	title: string;
 	description?: string;
 	ogImage?: string;
+	/** Tipo de Open Graph; los posts del blog usan `article`. */
+	ogType?: "website" | "article";
 	/** Fuerza `noindex, nofollow` (p. ej. la página 404). */
 	noindex?: boolean;
 }
@@ -19,10 +21,12 @@ const {
 	title,
 	description = "Servicio técnico de laptops y PCs en Arequipa. Reparación a domicilio, mantenimiento y desarrollo web. Diagnóstico sin costo al realizar el servicio.",
 	ogImage,
+	ogType = "website",
 	noindex = false,
 } = Astro.props;
 
 const isIndexable = import.meta.env.PUBLIC_INDEXABLE !== "false";
+const isNoindex = noindex || !isIndexable;
 const isUmamiEnabled = import.meta.env.PUBLIC_UMAMI_ENABLED === "true";
 
 if (import.meta.env.PROD && import.meta.env.PUBLIC_UMAMI_ENABLED === undefined) {
@@ -33,10 +37,9 @@ if (import.meta.env.PROD && import.meta.env.PUBLIC_UMAMI_ENABLED === undefined) 
 
 const fullTitle = title.includes("RenovaBit") ? title : `${title} | RenovaBit`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const robotsContent =
-	noindex || !isIndexable
-		? "noindex, nofollow"
-		: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1";
+const robotsContent = isNoindex
+	? "noindex, nofollow"
+	: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1";
 const ogImageUrl = new URL(ogImage ?? SITE.ogImage, Astro.site).href;
 ---
 
@@ -59,9 +62,9 @@ const ogImageUrl = new URL(ogImage ?? SITE.ogImage, Astro.site).href;
 		<meta name="geo.position" content={GEO.position}>
 		<meta name="ICBM" content={GEO.icbm}>
 		<meta name="format-detection" content="telephone=no">
-		<link rel="canonical" href={canonicalUrl}>
-		<link rel="alternate" hreflang="es-PE" href={canonicalUrl}>
-		<link rel="alternate" hreflang="x-default" href={canonicalUrl}>
+		{!isNoindex && <link rel="canonical" href={canonicalUrl} />}
+		{!isNoindex && <link rel="alternate" hreflang="es-PE" href={canonicalUrl} />}
+		{!isNoindex && <link rel="alternate" hreflang="x-default" href={canonicalUrl} />}
 		<link rel="sitemap" href="/sitemap-index.xml">
 		<link rel="alternate" type="application/rss+xml" title="Blog de RenovaBit" href="/rss.xml">
 		<meta property="og:locale" content={SITE.locale}>
@@ -71,7 +74,7 @@ const ogImageUrl = new URL(ogImage ?? SITE.ogImage, Astro.site).href;
 		<meta property="og:image:width" content="1200">
 		<meta property="og:image:height" content="630">
 		<meta property="og:url" content={canonicalUrl}>
-		<meta property="og:type" content="website">
+		<meta property="og:type" content={ogType}>
 		<meta property="og:site_name" content={SITE.name}>
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:creator" content="@RenovaBit">

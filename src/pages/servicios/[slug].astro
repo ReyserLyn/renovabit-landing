@@ -44,12 +44,7 @@ const ctaDescription =
 		: service.ctaDescription;
 
 const fullTitle = `${service.seoTitle} en Arequipa | RenovaBit`;
-const rawDesc =
-	slug === "servicio-tecnico"
-		? "Mantenimiento de laptops y PCs en Arequipa desde S/90 en taller. Atención a domicilio y diagnóstico avanzado por S/60 acreditable al servicio."
-		: `${service.description} ${service.subtitle} ${service.price}. ${service.tiempo}. ${service.ideal}. Atención profesional en Arequipa con boleta y factura.`;
-const metaDescription =
-	rawDesc.length > 160 ? `${rawDesc.slice(0, 157).replace(/\s\S*$/, "")}…` : rawDesc;
+const metaDescription = service.metaDescription;
 const ogImageMap: Record<string, string> = {
 	"servicio-tecnico": "/og-servicio-tecnico.jpeg",
 	"desarrollo-web": "/og-desarrollo-web.jpeg",
@@ -64,6 +59,7 @@ const ogImage = ogImageMap[slug];
 		service={service}
 		variant={isVariantA ? "A" : "B"}
 		headingLevel="h1"
+		headingSuffix="en Arequipa"
 		number={`0${serviceIndex + 1}`}
 		priceOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.price : undefined}
 		subtitleOverride={slug === "servicio-tecnico" ? servicioTecnicoCommercial.header.subtitle : undefined}

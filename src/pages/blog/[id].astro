@@ -56,7 +56,7 @@ const articleJsonLd = {
 };
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} ogType="article">
 	<Fragment slot="head">
 		<script type="application/ld+json" is:inline set:html={JSON.stringify(articleJsonLd)}></script>
 	</Fragment>

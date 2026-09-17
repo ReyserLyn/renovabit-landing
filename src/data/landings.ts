@@ -71,7 +71,7 @@ export const laptopLentaLanding = {
 		"¿Tu laptop o PC va lenta en Arequipa? Revisamos disco, RAM, temperatura y mantenimiento. Precio claro desde S/90 en taller.",
 	ogImage: "/og-servicio-tecnico.jpeg",
 	eyebrow: "Laptop o PC lenta · Arequipa",
-	h1: "¿Tu laptop está lenta? Encontramos la causa y la solucionamos",
+	h1: "¿Tu laptop está lenta? Encontramos la causa y la solucionamos en Arequipa",
 	heroIntro:
 		"Revisamos el disco, la memoria, la temperatura y los programas de inicio para explicarte qué frena tu equipo. Tarifas claras, diagnóstico honesto y sin tocar lo que no hace falta.",
 	heroImage: servicioImg1,

@@ -63,6 +63,12 @@ export const servicioTecnicoCommercial = {
 			tags: ["servicio-tecnico"],
 		},
 		{
+			question: "¿Cada cuánto tiempo conviene hacer mantenimiento?",
+			answer:
+				"Recomendamos mantenimiento preventivo cada 6 a 12 meses, según el uso y el ambiente. Si el equipo se usa en espacios con polvo o mascotas, puede necesitar mantenimiento más frecuente.",
+			tags: ["servicio-tecnico"],
+		},
+		{
 			question: "¿El mantenimiento incluye reparaciones o repuestos?",
 			answer:
 				"No. Las reparaciones se derivan a taller y se cotizan después de evaluar el equipo. Los repuestos y las licencias se cotizan por separado.",
@@ -72,6 +78,12 @@ export const servicioTecnicoCommercial = {
 			question: "¿El diagnóstico avanzado tiene costo?",
 			answer:
 				"La revisión básica está incluida en el servicio. Si el equipo requiere evaluación avanzada de placa, cuesta S/60 y se acredita al servicio. Antes de intervenir te explicamos el alcance y la cotización.",
+			tags: ["servicio-tecnico"],
+		},
+		{
+			question: "¿Puedo elegir entre atención en taller y a domicilio?",
+			answer:
+				"Sí. Atendemos en taller en Av. Goyeneche 1602, Miraflores, y también a domicilio con coordinación previa. El servicio a domicilio suma S/30 a la tarifa de taller.",
 			tags: ["servicio-tecnico"],
 		},
 		{
