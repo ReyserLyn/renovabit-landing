@@ -88,6 +88,12 @@ export const servicioTecnicoCommercial = {
 			tags: ["servicio-tecnico"],
 		},
 		{
+			question: "¿Cuánto cuesta instalar programas?",
+			answer:
+				"S/30 si solo necesitas la instalación. Va sin costo cuando se realiza junto con un formateo o un mantenimiento. Instalamos programas de todo tipo, incluidos los especializados que piden carreras y profesionales.",
+			tags: ["servicio-tecnico"],
+		},
+		{
 			question: "¿Qué métodos de pago aceptan?",
 			answer: "Aceptamos Yape y Plin. Coordinamos el pago al confirmar el servicio.",
 			tags: ["servicio-tecnico"],

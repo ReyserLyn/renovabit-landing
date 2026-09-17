@@ -133,7 +133,7 @@ const iconOpen = document.getElementById("menu-icon-open");
 const iconClose = document.getElementById("menu-icon-close");
 
 if (!header || !toggle || !menu || !iconOpen || !iconClose) {
-	/* elementos no encontrados — probablemente SSR */
+	/* elementos no encontrados: probablemente SSR */
 } else {
 	toggle.addEventListener("click", () => {
 		const isOpen = menu.classList.toggle("hidden");

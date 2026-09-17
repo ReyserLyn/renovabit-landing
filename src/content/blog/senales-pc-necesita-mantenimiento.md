@@ -11,6 +11,8 @@ Una PC no siempre avisa con una falla total. A veces empieza con un ventilador m
 
 En este artículo encontrarás cinco síntomas frecuentes en computadoras de escritorio y laptops, además de una checklist para decidir qué hacer. Las causas pueden variar según el equipo, el ambiente y el uso; por eso una señal no reemplaza un diagnóstico.
 
+![Ventilador de laptop con polvo acumulado entre sus aspas, ilustración de RenovaBit](./senales-pc-ventilador-polvo.avif)
+
 ---
 
 ## 1. El ventilador hace más ruido de lo normal

@@ -171,7 +171,7 @@ export const servicios: ServiceData[] = [
 		metaDescription:
 			"Venta de laptops, PCs, componentes y periféricos en Arequipa con asesoría según tu presupuesto. Equipos probados y garantía del fabricante.",
 		price: "S/ 50",
-		subtitle: "Desde · Precio competitivo al mercado",
+		subtitle: "Desde · Accesorios y periféricos",
 		tiempo: "1 a 7 días",
 		ideal: "Gamers y oficina",
 		entrega: "Producto probado + garantía",
@@ -181,7 +181,7 @@ export const servicios: ServiceData[] = [
 			"Tarjetas gráficas y RAM",
 			"Discos SSD y NVMe",
 			"Monitores y periféricos",
-			"Ensamblado a medida",
+			"Armado a medida sin costo al comprar los componentes",
 			"Asesoría sin compromiso",
 			"Pruebas antes de entregar",
 			"Garantía del fabricante",

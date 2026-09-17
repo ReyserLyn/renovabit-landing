@@ -21,6 +21,8 @@ No todos los equipos necesitan mantenimiento con la misma frecuencia. Depende de
 | Gaming / diseño / programación | Cada 6 meses | La pasta térmica se degrada más rápido con altas temperaturas sostenidas |
 | Ambientes con polvo o mascotas | Cada 4 a 6 meses | El pelo y las partículas de polvo obstruyen los ventiladores rápidamente |
 
+![Laptop junto a un calendario con fechas de mantenimiento marcadas, ilustración de RenovaBit](./cada-cuanto-calendario.avif)
+
 ---
 
 ## Señales de que ya necesita mantenimiento

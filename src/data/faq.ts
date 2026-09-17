@@ -179,6 +179,12 @@ export const faqItems: FaqItem[] = [
 		tags: ["tienda"],
 	},
 	{
+		question: "¿El armado de PC tiene costo?",
+		answer:
+			"El servicio de armado, instalación y activación cuesta S/100. Es sin costo cuando compras los componentes con nosotros; si ya tienes tus propias piezas, el armado cuesta S/100.",
+		tags: ["tienda"],
+	},
+	{
 		question: "¿Hacen envíos de componentes fuera de Arequipa?",
 		answer:
 			"Sí. Podemos coordinar envíos a otras ciudades del Perú. El costo del envío depende del destino y del tamaño del pedido. Contáctanos para una cotización.",
