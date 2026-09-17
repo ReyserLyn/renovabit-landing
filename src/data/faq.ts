@@ -215,7 +215,7 @@ export const faqItems: FaqItem[] = [
 	{
 		question: "¿Cuánto cuesta formatear una laptop lenta?",
 		answer:
-			"El formateo parte desde S/50. El precio final depende del alcance: backup de información, instalación de programas y configuración. Confirmamos la cotización antes de empezar.",
+			"El formateo parte desde S/50. El precio final depende del alcance: backup de información, instalación de programas y configuración. Confirmamos la cotización antes de empezar. Si lo realizas junto con un mantenimiento, tiene 50% de descuento.",
 		tags: ["laptop-lenta-arequipa"],
 	},
 	{
@@ -253,7 +253,7 @@ export const faqItems: FaqItem[] = [
 	{
 		question: "¿En qué zonas de Arequipa atienden a domicilio?",
 		answer:
-			"Coordinamos la visita según tu zona y el tipo de equipo. Escríbenos por WhatsApp con tu dirección de referencia para confirmar disponibilidad y horario.",
+			"Cubrimos toda la ciudad de Arequipa: Cercado, Cayma, Yanahuara, Miraflores, Alto Selva Alegre, José Luis Bustamante y Rivero, Paucarpata, Socabaya, Cerro Colorado, entre otros. Coordinamos la visita según tu zona y el tipo de equipo; escríbenos por WhatsApp con tu dirección de referencia para confirmar disponibilidad y horario.",
 		tags: ["mantenimiento-pc-domicilio-arequipa"],
 	},
 	{

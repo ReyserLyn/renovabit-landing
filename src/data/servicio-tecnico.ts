@@ -48,6 +48,7 @@ export const servicioTecnicoCommercial = {
 		"La atención a domicilio requiere coordinación previa.",
 		"El servicio a domicilio suma S/30 a la tarifa de taller.",
 		"La tarifa de mantenimiento no incluye reparaciones ni repuestos.",
+		"Formateo con 50% de descuento si se realiza junto con el mantenimiento.",
 	],
 	faqs: [
 		{

@@ -167,11 +167,11 @@ export const servicios: ServiceData[] = [
 		title: "Tienda de Componentes y Equipos",
 		seoTitle: "Tienda de Equipos y Componentes",
 		description:
-			"Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas. Precio de distribuidor.",
+			"Equipos y componentes seleccionados según tus necesidades, sin venderte productos que no necesitas. Precio competitivo al mercado.",
 		metaDescription:
 			"Venta de laptops, PCs, componentes y periféricos en Arequipa con asesoría según tu presupuesto. Equipos probados y garantía del fabricante.",
 		price: "S/ 50",
-		subtitle: "Desde · Precio de distribuidor",
+		subtitle: "Desde · Precio competitivo al mercado",
 		tiempo: "1 a 7 días",
 		ideal: "Gamers y oficina",
 		entrega: "Producto probado + garantía",
@@ -190,7 +190,7 @@ export const servicios: ServiceData[] = [
 		ctaLabel: "Consultar disponibilidad",
 		ctaHeading: "¿Buscas componentes o equipos?",
 		ctaDescription:
-			"Dinos qué necesitas y te damos precio de distribuidor. Sin compromiso y con asesoría incluida.",
+			"Dinos qué necesitas y te damos un precio competitivo. Sin compromiso y con asesoría incluida.",
 		heroImg: servicioImg3,
 		process: [
 			{ label: "Consulta", img: servicioImg3 },

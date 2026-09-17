@@ -74,7 +74,7 @@ export const contactFormCopy = {
 	sending: "Enviando...",
 	successTitle: "Gracias por escribirnos",
 	successMessage:
-		"Gracias, recibimos tu mensaje. Te responderemos en horario de atención (lunes a viernes, de 8:00 a.m. a 8:00 p.m.).",
+		"Gracias, recibimos tu mensaje. Te responderemos en horario de atención (lunes a viernes, de 8:00 a.m. a 8:00 p.m.). Sábados: previa coordinación.",
 	whatsappCta: "Escríbenos por WhatsApp",
 	turnstileExpired:
 		"La verificación de seguridad expiró. Vuelve a completarla para enviar el formulario.",

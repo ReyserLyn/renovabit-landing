@@ -200,6 +200,13 @@ Comandos: `bun test` (unitarias) y `bun run verify` (Biome + tests + type-check 
 
 ---
 
+## Imágenes para redes (Gemini)
+
+- Generador: `bun scripts/gen-image.ts <trabajos.json>` (Nano Banana, API de Gemini). Modelos: `lite` ($0.0336/imagen 1K, por defecto), `nb2` ($0.067), `pro` ($0.134).
+- Trabajos JSON: `[{ "nombre", "prompt", "aspectRatio"?, "modelo"?, "ref"? }]`; `ref` sirve para editar fotos reales (png/jpg/webp). Salida por defecto: `social/out/`.
+- Key: `GEMINI_API_KEY` en `.env` (gitignored). Nunca commitearla ni imprimirla.
+- Criterio: la IA es apoyo (fondos, portadas, edición); no simular trabajos reales del taller.
+
 ## Pendientes Conocidos
 
 - [ ] Crear `public/og-default.png` (Open Graph image, referenciado en `constants.ts`)

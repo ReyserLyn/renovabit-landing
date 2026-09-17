@@ -121,6 +121,7 @@ export const FOOTER = {
 	},
 	phone: CONTACT.phone,
 	hours: "Lunes a Viernes, 8:00 AM - 8:00 PM",
+	hoursNote: "Sábados: previa coordinación",
 } as const;
 
 export const GEO = {

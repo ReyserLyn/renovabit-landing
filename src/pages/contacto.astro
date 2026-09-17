@@ -39,7 +39,7 @@ const details = [
 	{
 		icon: "hugeicons:clock-01",
 		label: "Horario",
-		value: FOOTER.hours,
+		value: `${FOOTER.hours} · ${FOOTER.hoursNote}`,
 	},
 	{
 		icon: "hugeicons:mail-01",
@@ -53,7 +53,7 @@ const details = [
 
 <BaseLayout
 	title="Contacto y Ubicación en Arequipa"
-	description="Encuentra RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa. Teléfono, WhatsApp, horarios. Atención de lunes a viernes, 8 AM a 8 PM."
+	description="Encuentra RenovaBit en Av. Goyeneche 1602, Miraflores, Arequipa. Teléfono, WhatsApp, horarios. Atención de lunes a viernes, 8 AM a 8 PM. Sábados: previa coordinación."
 >
 	<Fragment slot="head">
 		<script type="application/ld+json" is:inline set:html={JSON.stringify(contactJsonLd)}></script>
