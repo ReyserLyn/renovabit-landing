@@ -11,6 +11,7 @@
 			"!**/.astro",
 			"!**/.turbo",
 			"!**/dist",
+			"!**/migrations",
 			"!**/node_modules",
 			"!**/.*",
 			"!**/.wrangler",

@@ -1,0 +1,9 @@
+---
+// Vista previa temporal: renderiza solo el HTML real del agradecimiento de reseña.
+import { renderResenaThankYouEmail } from "@/lib/resenas/templates";
+import { sampleResena } from "./_sample";
+
+const email = renderResenaThankYouEmail(sampleResena);
+---
+
+<Fragment set:html={email.html} />

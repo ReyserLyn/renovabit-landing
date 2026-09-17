@@ -8,7 +8,7 @@
 - TypeScript: strict mode, `verbatimModuleSyntax: true`, path alias `@/*` → `./src/*`
 
 ## Scripts
-- `bun dev` → astro dev :3000 | `bun build` | `bun preview` | `bun check` (astro) | `bun check:biome`
+- `bun dev` → astro dev :4321 | `bun build` | `bun preview` | `bun check` (astro) | `bun check:biome`
 
 ## Commits (Conventional Commits)
 - `<type>(<scope>): <message>` — types: feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert

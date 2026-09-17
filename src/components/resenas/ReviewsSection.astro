@@ -1,0 +1,95 @@
+---
+/**
+ * Sección pública de reseñas.
+ *
+ * Lee el artefacto generado por `bun run resenas:sync` en el build. Si no hay
+ * reseñas para el filtro no renderiza NADA: así se puede embeber en páginas de
+ * servicio sin que cambie el layout cuando todavía no hay opiniones.
+ *
+ * La foto no se publica todavía: la ruta que la sirve es privada del panel
+ * (Cloudflare Access) y queda para F2 (ver docs/resenas.md).
+ */
+import { Icon } from "astro-icon/components";
+import { Rating } from "@/components/ui/rating";
+import { resenasPublicas } from "@/data/resenas.generated";
+import {
+	formatFechaResena,
+	ordenarResenasPorFecha,
+	type ResenaPublica,
+} from "@/lib/resenas/public";
+
+interface Props {
+	/** Filtra por el id del servicio (slug de la página). Sin filtro: todas. */
+	servicioId?: string;
+	/** Máximo de tarjetas a mostrar. Sin límite: todas. */
+	limit?: number;
+	/** Título de la sección. */
+	titulo?: string;
+}
+
+const { servicioId, limit, titulo = "Reseñas de clientes" } = Astro.props as Props;
+
+const filtradas = ordenarResenasPorFecha(
+	servicioId
+		? resenasPublicas.filter((resena) => resena.servicioId === servicioId)
+		: resenasPublicas,
+);
+const visibles = typeof limit === "number" && limit > 0 ? filtradas.slice(0, limit) : filtradas;
+const headingId = `resenas-${servicioId ?? "clientes"}`;
+
+function lineaMeta(resena: ResenaPublica): string {
+	return [resena.empresa, resena.servicio].filter(Boolean).join(" · ");
+}
+---
+
+{visibles.length > 0 && (
+	<section class="py-16 md:py-20" aria-labelledby={headingId}>
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="mx-auto max-w-2xl text-center">
+				<h2
+					id={headingId}
+					class="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+				>
+					{titulo}
+				</h2>
+				<p class="mt-4 text-base text-muted-foreground">
+					Opiniones de clientes que ya confiaron en RenovaBit.
+				</p>
+			</div>
+
+			<ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{visibles.map((resena) => (
+					<li class="flex h-full flex-col rounded-2xl border border-border/40 bg-card p-6 shadow-sm">
+						<Rating stars={resena.estrellas} size={18} />
+
+						<blockquote class="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+							<p>{resena.comentario}</p>
+						</blockquote>
+
+						<footer class="mt-5 border-t border-border/20 pt-4">
+							<p class="font-heading text-sm font-bold text-foreground">
+								{resena.nombrePublico}
+							</p>
+							<p class="mt-1 text-xs text-muted-foreground">{lineaMeta(resena)}</p>
+							<time datetime={resena.fecha} class="mt-1 block text-xs text-muted-foreground">
+								{formatFechaResena(resena.fecha)}
+							</time>
+						</footer>
+					</li>
+				))}
+			</ul>
+
+			{servicioId && (
+				<div class="mt-10 text-center">
+					<a
+						href="/resenas/"
+						class="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+					>
+						Ver todas las reseñas
+						<Icon name="hugeicons:arrow-right-01" class="size-4" aria-hidden="true" />
+					</a>
+				</div>
+			)}
+		</div>
+	</section>
+)}

@@ -54,7 +54,7 @@ El CTA secundario `FormLink` (evento `contact_form_link`) se usa solo en página
 
 1. Copia los secrets locales: `cp .dev.vars.example .dev.vars`.
 2. Copia las variables públicas: `cp .env.example .env` (incluye la sitekey de prueba `1x00000000000000000000AA`).
-3. Arranca el sitio: `bun run dev` y abre `http://localhost:3000/contacto/`.
+3. Arranca el sitio: `bun run dev` y abre `http://localhost:4321/contacto/`.
 
 Con los valores de prueba, Turnstile siempre valida y los correos no se envían: se registran en la consola del servidor (`[contact] Correo simulado...`). El secret de prueba oficial es `1x0000000000000000000000000000000AA`. Si en `.dev.vars` colocas credenciales reales (sin `CONTACT_DEV_SIMULATE_EMAIL`), los correos se envían de verdad también en local.
 
@@ -94,11 +94,11 @@ El binding `CONTACT_RATE_LIMITER` se declara en `wrangler.jsonc` y se aprovision
 
 ## Cómo probar el endpoint
 
-Con el sitio en marcha (`bun run dev` o `bun run preview`), usando el puerto que muestre el comando (por defecto `3000`):
+Con el sitio en marcha (`bun run dev` o `bun run preview`), usando el puerto que muestre el comando (por defecto `4321`):
 
 ```sh
 # Envío válido (con el secret y el token de prueba)
-curl -s -X POST http://localhost:3000/api/contact \
+curl -s -X POST http://localhost:4321/api/contact \
   -H "Accept: application/json" \
   -F "nombre=Prueba Local" \
   -F "whatsapp=955315646" \
@@ -128,7 +128,7 @@ Las plantillas de `src/lib/contact/templates.ts` se pueden revisar sin enviar co
 - `/dev/emails/`: vista de escritorio (640px) y móvil (375px) de ambos correos, con la versión de texto plano.
 - `/dev/emails/notification/` y `/dev/emails/auto-reply/`: HTML real de cada correo.
 
-En local: `bun run dev` y abrir `http://localhost:3000/dev/emails/`. Las rutas están excluidas del sitemap, llevan `X-Robots-Tag: noindex` (regla `/dev/*` en `public/_headers`) y usan datos de ejemplo de `src/pages/dev/emails/_sample.ts`.
+En local: `bun run dev` y abrir `http://localhost:4321/dev/emails/`. Las rutas están excluidas del sitemap, llevan `X-Robots-Tag: noindex` (regla `/dev/*` en `public/_headers`) y usan datos de ejemplo de `src/pages/dev/emails/_sample.ts`.
 
 Para eliminarla: borrar `src/pages/dev/` y la regla `/dev/*` de `public/_headers`.
 

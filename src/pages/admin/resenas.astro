@@ -1,0 +1,345 @@
+---
+/**
+ * Panel de moderación de reseñas.
+ *
+ * Página on-demand (SSR): lista las reseñas de D1, con estadísticas, filtro por
+ * estado y acciones POST a `/api/admin/resenas` (patrón PRG). El contexto vive
+ * en `src/lib/resenas/admin.ts`; acá solo hay presentación.
+ *
+ * En producción está detrás de Cloudflare Access (ver docs/cloudflare-access.md).
+ * `accesoPermitido` es defensa en profundidad: si el header de Access no llega,
+ * responde 403 aunque la ruta quedara expuesta por error. En local no hay
+ * Access y la comprobación se omite (el servidor escucha solo en localhost).
+ */
+export const prerender = false;
+
+import { env as workerEnv } from "cloudflare:workers";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Rating } from "@/components/ui/rating";
+import { createDb } from "@/db/client";
+import { resenas } from "@/db/schema";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import {
+	accesoPermitido,
+	calcularStats,
+	filtrarPorEstado,
+	formatearFechaAdmin,
+	ordenarResenasAdmin,
+	parseFiltro,
+	puedeTransicionar,
+} from "@/lib/resenas/admin";
+
+const isProduction = import.meta.env.PROD;
+
+if (!accesoPermitido(Astro.request.headers, isProduction)) {
+	return new Response("No autorizado.", {
+		status: 403,
+		headers: {
+			"Content-Type": "text/plain; charset=utf-8",
+			"Cache-Control": "no-store",
+			"X-Robots-Tag": "noindex",
+		},
+	});
+}
+
+Astro.response.headers.set("X-Robots-Tag", "noindex");
+Astro.response.headers.set("Cache-Control", "no-store");
+
+const filtro = parseFiltro(Astro.url.searchParams.get("estado"));
+const ok = Astro.url.searchParams.get("ok");
+const error = Astro.url.searchParams.get("error");
+
+const MENSAJES_OK: Record<string, string> = {
+	aprobada: "Reseña aprobada. Se publicará en la próxima sincronización.",
+	rechazada: "Reseña rechazada.",
+	descuento: "Descuento marcado como otorgado.",
+	"descuento-quitado": "Descuento marcado como no otorgado.",
+};
+
+const MENSAJES_ERROR: Record<string, string> = {
+	accion: "La solicitud no era válida. Inténtalo de nuevo.",
+	transicion: "La acción ya no es válida para el estado actual de la reseña.",
+	"no-encontrada": "La reseña ya no existe.",
+};
+
+const ESTADO_LABELS: Record<string, string> = {
+	pendiente: "Pendiente",
+	aprobada: "Aprobada",
+	rechazada: "Rechazada",
+};
+
+const ESTADO_CLASSES: Record<string, string> = {
+	pendiente: "bg-amber-100 text-amber-900",
+	aprobada: "bg-emerald-100 text-emerald-900",
+	rechazada: "bg-rose-100 text-rose-900",
+};
+
+const db = workerEnv.DB ? createDb(workerEnv.DB) : null;
+const filas = db ? await db.select().from(resenas) : [];
+const stats = calcularStats(filas);
+const visibles = ordenarResenasAdmin(filtrarPorEstado(filas, filtro));
+
+const FILTROS = [
+	{ id: "pendiente", label: "Pendientes", total: stats.pendientes },
+	{ id: "aprobada", label: "Aprobadas", total: stats.aprobadas },
+	{ id: "rechazada", label: "Rechazadas", total: stats.rechazadas },
+	{ id: "todas", label: "Todas", total: stats.total },
+] as const;
+
+/** URL de la miniatura; la ruta valida la key y la sirve desde R2. */
+function fotoUrl(key: string | null): string | null {
+	if (!key) return null;
+	return `/admin/resenas/foto/${key.split("/").map(encodeURIComponent).join("/")}`;
+}
+
+function contactoHref(contacto: string | null, tipo: string | null): string | null {
+	if (!contacto) return null;
+	if (tipo === "email") return `mailto:${contacto}`;
+	const digits = contacto.replace(/\D/g, "");
+	return digits ? `https://wa.me/51${digits}` : null;
+}
+---
+
+<BaseLayout
+	title="Panel de reseñas"
+	description="Panel interno de moderación de reseñas de RenovaBit."
+	noindex
+>
+	<!-- ===== Encabezado ===== -->
+	<section class="pt-28 pb-8 md:pt-32">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<p class="font-mono text-xs font-medium tracking-widest text-primary uppercase">
+				Panel interno
+			</p>
+			<h1 class="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				Reseñas
+			</h1>
+			<p class="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
+				Aprueba, rechaza o corrige el descuento de cada reseña. Lo aprobado se publica al ejecutar{" "}
+				<code class="font-mono text-sm text-foreground">bun run resenas:sync</code>{" "}
+				y reconstruir el sitio.
+			</p>
+			{!isProduction && (
+				<p class="mt-4 max-w-3xl rounded-lg border border-border bg-muted/40 p-3 text-sm leading-relaxed text-muted-foreground">
+					Modo local: Cloudflare Access no está activo y la comprobación se omite. En producción
+					este panel solo responde al correo autenticado por Access (403 si el header no llega).
+				</p>
+			)}
+			{!db && (
+				<p class="mt-4 max-w-3xl rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm leading-relaxed text-rose-900">
+					El binding <code class="font-mono text-xs">DB</code> no está disponible. Revisa{" "}
+					<code class="font-mono text-xs">wrangler.jsonc</code> y aplica las migraciones locales.
+				</p>
+			)}
+		</div>
+	</section>
+
+	<!-- ===== Estadísticas ===== -->
+	<section class="pb-8">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+				<div class="rounded-xl border border-border/40 bg-card p-4">
+					<p class="text-xs tracking-wide text-muted-foreground uppercase">Total</p>
+					<p class="mt-1 font-heading text-2xl font-bold text-foreground">{stats.total}</p>
+				</div>
+				<div class="rounded-xl border border-border/40 bg-card p-4">
+					<p class="text-xs tracking-wide text-muted-foreground uppercase">Pendientes</p>
+					<p class="mt-1 font-heading text-2xl font-bold text-foreground">{stats.pendientes}</p>
+				</div>
+				<div class="rounded-xl border border-border/40 bg-card p-4">
+					<p class="text-xs tracking-wide text-muted-foreground uppercase">Promedio</p>
+					<p class="mt-1 font-heading text-2xl font-bold text-foreground">
+						{stats.promedioEstrellas === null
+							? "Sin datos"
+							: `${stats.promedioEstrellas.toFixed(1)} / 5`}
+					</p>
+				</div>
+				<div class="rounded-xl border border-border/40 bg-card p-4">
+					<p class="text-xs tracking-wide text-muted-foreground uppercase">
+						Aprobadas sin publicar
+					</p>
+					<p class="mt-1 font-heading text-2xl font-bold text-foreground">
+						{stats.aprobadasSinPublicar}
+					</p>
+					<p class="mt-1 text-xs text-muted-foreground">
+						Corre <code class="font-mono">resenas:sync</code>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== Filtros y mensajes ===== -->
+	<section class="pb-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<nav class="flex flex-wrap gap-2" aria-label="Filtrar reseñas por estado">
+				{FILTROS.map((item) => (
+					<a
+						href={`/admin/resenas/?estado=${item.id}`}
+						aria-current={filtro === item.id ? "page" : undefined}
+						class:list={[
+							"inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+							filtro === item.id
+								? "border-primary bg-primary text-primary-foreground"
+								: "border-border bg-background text-foreground hover:bg-muted",
+						]}
+					>
+						{item.label}
+						<span
+							class:list={[
+								"rounded-full px-2 py-0.5 text-xs",
+								filtro === item.id ? "bg-white/20" : "bg-muted text-muted-foreground",
+							]}
+						>
+							{item.total}
+						</span>
+					</a>
+				))}
+			</nav>
+
+			{ok && MENSAJES_OK[ok] && (
+				<p
+					role="status"
+					class="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900"
+				>
+					{MENSAJES_OK[ok]}
+				</p>
+			)}
+			{error && MENSAJES_ERROR[error] && (
+				<p
+					role="alert"
+					class="mt-6 rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-900"
+				>
+					{MENSAJES_ERROR[error]}
+				</p>
+			)}
+
+			{visibles.length === 0 ? (
+				<div class="mt-6 rounded-2xl border border-border/40 bg-card p-10 text-center">
+					<p class="text-sm text-muted-foreground">
+						{stats.total === 0
+							? "Todavía no llegó ninguna reseña."
+							: "No hay reseñas con este filtro."}
+					</p>
+				</div>
+			) : (
+				<ul class="mt-6 space-y-4">
+					{visibles.map((fila) => {
+						const foto = fotoUrl(fila.foto_key);
+						const contacto = contactoHref(fila.contacto, fila.contacto_tipo);
+						return (
+							<li class="rounded-2xl border border-border/40 bg-card p-5 sm:p-6">
+								<div class="flex flex-col gap-4 lg:flex-row lg:gap-6">
+									{foto && (
+										<a
+											href={foto}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="shrink-0 self-start"
+											aria-label={`Abrir la foto de la reseña de ${fila.nombre}`}
+										>
+											<img
+												src={foto}
+												alt={`Foto adjunta a la reseña de ${fila.nombre}`}
+												width="96"
+												height="96"
+												loading="lazy"
+												decoding="async"
+												class="h-24 w-24 rounded-lg border border-border/40 object-cover"
+											/>
+										</a>
+									)}
+
+									<div class="min-w-0 flex-1">
+										<div class="flex flex-wrap items-center gap-2">
+											<Badge class={ESTADO_CLASSES[fila.estado] ?? ""}>
+												{ESTADO_LABELS[fila.estado] ?? fila.estado}
+											</Badge>
+											{fila.estado === "aprobada" && !fila.publicado_en && (
+												<Badge variant="outline">Sin publicar</Badge>
+											)}
+											{fila.descuento_otorgado === 1 && (
+												<Badge variant="secondary">Descuento S/5</Badge>
+											)}
+										</div>
+
+										<div class="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+											<p class="font-heading text-base font-bold text-foreground">
+												{fila.nombre}
+											</p>
+											<p class="text-sm text-muted-foreground">
+												{fila.empresa ?? "Sin empresa"}
+											</p>
+										</div>
+
+										<div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+											<span class="inline-flex items-center gap-1.5">
+												<Rating stars={fila.estrellas} size={14} />
+												<span>{fila.estrellas}/5</span>
+											</span>
+											<span>Servicio: {fila.servicio}</span>
+											<time datetime={fila.created_at.toISOString()}>
+												{formatearFechaAdmin(fila.created_at)}
+											</time>
+											{contacto && fila.contacto && (
+												<a
+													href={contacto}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="font-medium text-primary hover:underline"
+												>
+													{fila.contacto}
+												</a>
+											)}
+										</div>
+
+										<blockquote class="mt-3 border-l-2 border-border/60 pl-4 text-sm leading-relaxed whitespace-pre-line text-foreground">
+											{fila.comentario}
+										</blockquote>
+
+										<form
+											method="post"
+											action="/api/admin/resenas"
+											class="mt-4 flex flex-wrap items-center gap-2 border-t border-border/20 pt-4"
+										>
+											<input type="hidden" name="id" value={fila.id} />
+											<input type="hidden" name="estado" value={filtro} />
+											{puedeTransicionar(fila.estado, "aprobar") && (
+												<Button as="button" type="submit" name="accion" value="aprobar" size="sm">
+													Aprobar
+												</Button>
+											)}
+											{puedeTransicionar(fila.estado, "rechazar") && (
+												<Button
+													as="button"
+													type="submit"
+													name="accion"
+													value="rechazar"
+													variant="outline"
+													size="sm"
+												>
+													Rechazar
+												</Button>
+											)}
+											<Button
+												as="button"
+												type="submit"
+												name="accion"
+												value="descuento"
+												variant="ghost"
+												size="sm"
+											>
+												{fila.descuento_otorgado === 1 ? "Quitar descuento" : "Marcar descuento"}
+											</Button>
+										</form>
+									</div>
+								</div>
+							</li>
+						);
+					})}
+				</ul>
+			)}
+		</div>
+	</section>
+</BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import ContactFormSection from "@/components/contact/ContactFormSection.astro";
+import ReviewsSection from "@/components/resenas/ReviewsSection.astro";
 import FaqSection from "@/components/sections/FaqSection.astro";
 import ServiceHero from "@/components/services/ServiceHero.astro";
 import DesarrolloWebContent from "@/components/services/slug/DesarrolloWebContent.astro";
@@ -167,6 +168,9 @@ const ogImage = ogImageMap[slug];
 	{faqs.length > 0 && (
 		<FaqSection items={faqs} variant="compact" waMessage={waMessage} waPosition="service-faq" />
 	)}
+
+	<!-- ===== Reseñas del servicio (no renderiza nada si todavía no hay) ===== -->
+	<ReviewsSection servicioId={slug} />
 
 	<!-- ===== Formulario ===== -->
 	<ContactFormSection

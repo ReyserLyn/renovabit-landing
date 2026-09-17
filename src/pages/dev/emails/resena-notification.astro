@@ -1,0 +1,9 @@
+---
+// Vista previa temporal: renderiza solo el HTML real de la notificación de reseña.
+import { renderResenaNotificationEmail } from "@/lib/resenas/templates";
+import { sampleResena } from "./_sample";
+
+const email = renderResenaNotificationEmail(sampleResena);
+---
+
+<Fragment set:html={email.html} />

@@ -1,0 +1,63 @@
+---
+/**
+ * Sirve la foto de una reseña desde R2 (`MEDIA`) para el panel.
+ *
+ * Ruta catch-all porque las claves incluyen `/` (`resenas/<año>-<mes>-<uuid>.<ext>`).
+ * Solo se sirven claves que empiecen con `resenas/`: el bucket puede alojar
+ * otros objetos y esta ruta no debe convertirse en un proxy del bucket.
+ *
+ * La respuesta es privada (`private, max-age=300`) y el objeto se lee del
+ * binding, nunca por una URL pública. En producción exige Cloudflare Access,
+ * igual que el panel. La publicación de fotos en el sitio queda para F2.
+ */
+export const prerender = false;
+
+import { env as workerEnv } from "cloudflare:workers";
+import { accesoPermitido } from "@/lib/resenas/admin";
+
+const KEY_PREFIX = "resenas/";
+
+function textResponse(status: number, message: string): Response {
+	return new Response(message, {
+		status,
+		headers: {
+			"Content-Type": "text/plain; charset=utf-8",
+			"Cache-Control": "no-store",
+			"X-Robots-Tag": "noindex",
+			"X-Content-Type-Options": "nosniff",
+		},
+	});
+}
+
+if (!accesoPermitido(Astro.request.headers, import.meta.env.PROD)) {
+	return textResponse(403, "No autorizado.");
+}
+
+const raw = Astro.params.key;
+const key = typeof raw === "string" ? raw : "";
+
+// `..` y los segmentos vacíos jamás aparecen en las claves que genera `r2.ts`.
+if (!key.startsWith(KEY_PREFIX) || key.includes("..") || key.includes("//")) {
+	return textResponse(404, "No encontrado.");
+}
+
+if (!workerEnv.MEDIA) {
+	console.error(JSON.stringify({ scope: "resenas-admin", event: "missing-media-binding" }));
+	return textResponse(500, "La foto no está disponible.");
+}
+
+const object = await workerEnv.MEDIA.get(key);
+if (!object) {
+	return textResponse(404, "No encontrado.");
+}
+
+const headers = new Headers();
+object.writeHttpMetadata(headers);
+headers.set("Content-Type", object.httpMetadata?.contentType ?? "application/octet-stream");
+headers.set("Cache-Control", "private, max-age=300");
+headers.set("X-Robots-Tag", "noindex");
+headers.set("X-Content-Type-Options", "nosniff");
+
+return new Response(object.body, { headers });
+---
+

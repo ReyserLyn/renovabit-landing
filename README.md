@@ -74,7 +74,7 @@ src/
 ## 🛠️ Comandos
 
 ```bash
-bun run dev        # Desarrollo local (localhost:3000)
+bun run dev        # Desarrollo local (localhost:4321)
 bun run build      # Build de producción
 bun run check      # Type checking (astro check)
 bun run check:biome # Linting + formatting

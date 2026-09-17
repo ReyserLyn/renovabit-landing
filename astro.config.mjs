@@ -39,7 +39,7 @@ const blogLastmods = readBlogLastmods();
 
 export default defineConfig({
 	site: "https://renovabit.com",
-	server: { port: 3000 },
+	server: { port: 4321 },
 	compressHTML: "jsx",
 
 	// La validación de origen del formulario de contacto vive en
@@ -116,8 +116,11 @@ export default defineConfig({
 			},
 		}),
 		sitemap({
-			// Las páginas temporales de `/dev/` no entran al sitemap.
-			filter: (page) => !page.includes("/dev/"),
+			// Las páginas temporales de `/dev/`, la página de acción `/resena/`
+			// (noindex) y el panel admin (`/admin/`, detrás de Access) no entran
+			// al sitemap. `/resenas/` sí entra.
+			filter: (page) =>
+				!page.includes("/dev/") && !page.includes("/resena/") && !page.includes("/admin/"),
 			serialize(item) {
 				const lastmod = blogLastmods.get(new URL(item.url).pathname);
 				if (lastmod) item.lastmod = lastmod;
@@ -128,7 +131,13 @@ export default defineConfig({
 			validateH1: true,
 			validateImageAlt: true,
 			validateMetadataLength: true,
-			validateInternalLinks: true,
+			// La notificación de reseñas enlaza al panel (`/admin/resenas/`), que
+			// es una ruta on-demand detrás de Access: no existe como HTML en el
+			// build y no es un enlace roto.
+			validateInternalLinks: {
+				skip: (href) =>
+					href.startsWith("/admin/") || href.startsWith("https://renovabit.com/admin/"),
+			},
 		}),
 		preact(),
 		llms({
@@ -138,6 +147,9 @@ export default defineConfig({
 			generateLlmsTxt: false,
 			generateLlmsFullTxt: true,
 			generateIndividualMd: true,
+			// El panel admin es SSR y queda detrás de Access: no se intenta
+			// renderizar ni incluir en los artefactos para LLMs.
+			exclude: ["admin"],
 			excludeSelectors: ["nav", "aside", "footer", "form", ".sr-only", "[aria-hidden='true']"],
 		}),
 	],

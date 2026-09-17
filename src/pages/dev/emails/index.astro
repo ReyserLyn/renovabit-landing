@@ -3,10 +3,13 @@
 // Shell propio (sin BaseLayout) y sin dependencias: se elimina borrando
 // `src/pages/dev/` junto con su regla en `public/_headers`.
 import { renderAutoReplyEmail, renderNotificationEmail } from "@/lib/contact/templates";
-import { sampleContact } from "./_sample";
+import { renderResenaNotificationEmail, renderResenaThankYouEmail } from "@/lib/resenas/templates";
+import { sampleContact, sampleResena } from "./_sample";
 
 const notification = renderNotificationEmail(sampleContact);
 const autoReply = renderAutoReplyEmail(sampleContact);
+const resenaNotification = renderResenaNotificationEmail(sampleResena);
+const resenaThankYou = renderResenaThankYouEmail(sampleResena);
 
 const previews = [
 	{
@@ -18,6 +21,16 @@ const previews = [
 		title: "Respuesta automática al cliente",
 		url: "/dev/emails/auto-reply/",
 		text: autoReply.text,
+	},
+	{
+		title: "Reseña: notificación al equipo",
+		url: "/dev/emails/resena-notification/",
+		text: resenaNotification.text,
+	},
+	{
+		title: "Reseña: agradecimiento al cliente",
+		url: "/dev/emails/resena-thank-you/",
+		text: resenaThankYou.text,
 	},
 ];
 ---

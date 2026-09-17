@@ -35,7 +35,7 @@
 
 ### Scripts
 ```sh
-bun run dev           # wrangler types && astro dev → localhost:3000
+bun run dev           # wrangler types && astro dev → localhost:4321
 bun run build         # wrangler types && astro check && astro build
 bun run preview       # wrangler types && astro preview (workerd runtime)
 bun run check         # astro check (type checking)

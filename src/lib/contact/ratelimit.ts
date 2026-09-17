@@ -3,7 +3,8 @@
  *
  * En local (o si el binding no está disponible) se permite el envío y se avisa
  * una sola vez por isolate. En producción el binding siempre existe según
- * `wrangler.jsonc`.
+ * `wrangler.jsonc`. El formulario de reseñas reutiliza este módulo pasando su
+ * propio binding (`RESENAS_RATE_LIMITER`) en `deps.binding`.
  */
 
 export interface RateLimitBinding {
@@ -12,13 +13,21 @@ export interface RateLimitBinding {
 
 export interface RateLimitEnv {
 	CONTACT_RATE_LIMITER?: RateLimitBinding;
+	/** Límite del formulario de reseñas (mismo binding nativo, namespace distinto). */
+	RESENAS_RATE_LIMITER?: RateLimitBinding;
 }
 
 export interface RateLimitDeps {
 	log?: Pick<Console, "warn" | "error">;
+	/** Binding a consultar; por defecto, `env.CONTACT_RATE_LIMITER`. */
+	binding?: RateLimitBinding;
+	/** Etiqueta del binding en los avisos; por defecto, `CONTACT_RATE_LIMITER`. */
+	bindingName?: string;
+	/** Prefijo de los avisos; por defecto, `contact`. */
+	scope?: string;
 }
 
-let didWarnMissingBinding = false;
+const warnedBindings = new Set<string>();
 
 export async function allowRequest(
 	env: RateLimitEnv,
@@ -26,13 +35,15 @@ export async function allowRequest(
 	deps: RateLimitDeps = {},
 ): Promise<boolean> {
 	const log = deps.log ?? console;
-	const binding = env.CONTACT_RATE_LIMITER;
+	const bindingName = deps.bindingName ?? "CONTACT_RATE_LIMITER";
+	const scope = deps.scope ?? "contact";
+	const binding = deps.binding ?? env.CONTACT_RATE_LIMITER;
 
 	if (!binding) {
-		if (!didWarnMissingBinding) {
-			didWarnMissingBinding = true;
+		if (!warnedBindings.has(bindingName)) {
+			warnedBindings.add(bindingName);
 			log.warn(
-				"[contact] CONTACT_RATE_LIMITER no está disponible; el límite de envíos queda desactivado.",
+				`[${scope}] ${bindingName} no está disponible; el límite de envíos queda desactivado.`,
 			);
 		}
 		return true;
@@ -42,7 +53,7 @@ export async function allowRequest(
 		const outcome = await binding.limit({ key });
 		return outcome.success;
 	} catch (error) {
-		log.error("[contact] Error al consultar el límite de envíos; se permite el envío.", error);
+		log.error(`[${scope}] Error al consultar el límite de envíos; se permite el envío.`, error);
 		return true;
 	}
 }

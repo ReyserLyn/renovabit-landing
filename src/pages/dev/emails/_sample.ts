@@ -1,4 +1,5 @@
 import type { NotificationData } from "@/lib/contact/templates";
+import type { ResenaData } from "@/lib/resenas/schema";
 
 /** Datos de ejemplo para la vista previa temporal de correos. */
 export const sampleContact: NotificationData = {
@@ -11,4 +12,18 @@ export const sampleContact: NotificationData = {
 	preferencia: "whatsapp",
 	consent: true,
 	origen: "/laptop-lenta-arequipa/",
+};
+
+/** Reseña de ejemplo para la vista previa de los correos de reseñas. */
+export const sampleResena: ResenaData = {
+	nombre: "María Fernanda Quispe",
+	empresa: "Estudio Contable Quispe",
+	servicio_id: "servicio-tecnico",
+	servicio_detalle: "",
+	estrellas: 5,
+	comentario:
+		"Dejé mi laptop porque se apagaba sola y en dos días me la devolvieron impecable.\nMe explicaron qué tenía y me mostraron fotos del antes y después.",
+	contacto: "maria.quispe@ejemplo.com",
+	contacto_tipo: "email",
+	consentimiento: true,
 };

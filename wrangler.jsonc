@@ -12,10 +12,32 @@
 		"binding": "ASSETS",
 		"not_found_handling": "404-page"
 	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "renovabit-landing-db",
+			"database_id": "a2b369ad-9b89-40ce-9c26-22d8a6ba07a6",
+			"migrations_dir": "./migrations"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "renovabit-landing"
+		}
+	],
 	"ratelimits": [
 		{
 			"name": "CONTACT_RATE_LIMITER",
 			"namespace_id": "2001",
+			"simple": {
+				"limit": 3,
+				"period": 60
+			}
+		},
+		{
+			"name": "RESENAS_RATE_LIMITER",
+			"namespace_id": "2002",
 			"simple": {
 				"limit": 3,
 				"period": 60
