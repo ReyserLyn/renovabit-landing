@@ -31,6 +31,26 @@ export const RESENA_FILTRO_DEFAULT: ResenaEstadoFiltro = "pendiente";
 export const ACCESS_EMAIL_HEADER = "cf-access-authenticated-user-email";
 
 /**
+ * Redirecciones del panel para las variantes que la gente escribe a mano:
+ * el singular (`/admin/resena`) y las grafías con "ñ" (`/admin/reseña`,
+ * `/admin/reseñas`). La URL real del panel es `/admin/resenas/`.
+ *
+ * Las ejecuta el catch-all `src/pages/admin/[...rest].ts`: al renderizar el
+ * Worker los 404, `public/_redirects` no aplica a estas rutas.
+ *
+ * Recibe el pathname ya decodificado y sin slash final.
+ */
+const ADMIN_REDIRECTS: Record<string, string> = {
+	"/admin/resena": "/admin/resenas/",
+	"/admin/reseña": "/admin/resenas/",
+	"/admin/reseñas": "/admin/resenas/",
+};
+
+export function adminRedirectFor(pathname: string): string | undefined {
+	return ADMIN_REDIRECTS[pathname];
+}
+
+/**
  * Transiciones de estado válidas.
  *
  * `descuento` no aparece aquí: es un flag aparte (`descuento_otorgado`) que se

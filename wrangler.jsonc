@@ -1,6 +1,7 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "renovabit-landing",
+	"preview_urls": true,
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"compatibility_date": "2026-07-09",
 	"compatibility_flags": [
@@ -9,8 +10,7 @@
 	],
 	"assets": {
 		"directory": "./dist",
-		"binding": "ASSETS",
-		"not_found_handling": "404-page"
+		"binding": "ASSETS"
 	},
 	"d1_databases": [
 		{

@@ -11,13 +11,3 @@
 /rese%C3%B1as/ /resenas/ 301
 /rese%C3%B1a /resena/ 301
 /rese%C3%B1as /resenas/ 301
-
-# Lo mismo para el panel: `/admin/reseñas` es un typo natural de `/admin/resenas`.
-/admin/reseña/ /admin/resenas/ 301
-/admin/reseñas/ /admin/resenas/ 301
-/admin/reseña /admin/resenas/ 301
-/admin/reseñas /admin/resenas/ 301
-/admin/rese%C3%B1a/ /admin/resenas/ 301
-/admin/rese%C3%B1as/ /admin/resenas/ 301
-/admin/rese%C3%B1a /admin/resenas/ 301
-/admin/rese%C3%B1as /admin/resenas/ 301

@@ -2,6 +2,7 @@ import { describe, expect, it } from "bun:test";
 import {
 	ACCESS_EMAIL_HEADER,
 	accesoPermitido,
+	adminRedirectFor,
 	calcularStats,
 	codigoOk,
 	esAdminAccion,
@@ -26,6 +27,20 @@ function makeItem(overrides: Partial<ResenaAdminItem> = {}): ResenaAdminItem {
 		...overrides,
 	};
 }
+
+describe("adminRedirectFor", () => {
+	it("redirige las variantes con ñ y el singular hacia el panel", () => {
+		expect(adminRedirectFor("/admin/reseñas")).toBe("/admin/resenas/");
+		expect(adminRedirectFor("/admin/reseña")).toBe("/admin/resenas/");
+		expect(adminRedirectFor("/admin/resena")).toBe("/admin/resenas/");
+	});
+
+	it("no redirige rutas válidas ni ajenas al panel", () => {
+		expect(adminRedirectFor("/admin/resenas")).toBeUndefined();
+		expect(adminRedirectFor("/admin")).toBeUndefined();
+		expect(adminRedirectFor("/resena")).toBeUndefined();
+	});
+});
 
 describe("máquina de estados", () => {
 	it("permite las transiciones documentadas", () => {

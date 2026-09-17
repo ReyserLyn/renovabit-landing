@@ -56,9 +56,17 @@ El panel debe quedar detrás de Cloudflare Access. La guía paso a paso está en
 
 No expongas el puerto local con un túnel mientras no haya Access: eso saltaría la única barrera real del panel.
 
+### Routing del panel (on-demand)
+
+El sitio **no declara `not_found_handling`** en `wrangler.jsonc`: con el default, los requests que no matchean un asset caen al Worker (render on-demand), que es el patrón recomendado por la doc de Astro para sitios con rutas on-demand. Con `"404-page"` la capa de assets respondía su 404 a las navegaciones (`Sec-Fetch-Mode: navigate`) y el panel nunca llegaba al Worker (solo respondía a curl, que no manda ese header).
+
+Como el 404 lo renderiza el Worker, las variantes escritas a mano de la URL del panel (`/admin/reseñas`, `/admin/resena`) se redirigen desde el catch-all `src/pages/admin/[...rest].ts`: el fallback interno a assets no aplica `_redirects`. El resto del sitio sigue sirviéndose como assets, sin cambios.
+
 ### Deploy por push (Workers Builds)
 
 El build de Workers Builds no lee `.env`, pero no hace falta configurar nada: `PUBLIC_TURNSTILE_SITE_KEY` tiene la sitekey real del widget por defecto en `astro.config.mjs` y se inlinea en cada build (una env var la sobrescribe). Sin ese valor, los formularios de `/contacto/` y `/resena/` se desplegarían en modo degradado (aviso y CTA de WhatsApp, sin envío).
+
+Para verificar cambios sin tocar producción: `bunx wrangler versions upload` sube una versión con preview URL (`https://<version>-renovabit-landing.reyserlyn.workers.dev`, con `preview_urls` activado). El worker también vive en `renovabit-landing.reyserlyn.workers.dev`; el panel responde 403 ahí (fail-closed, sin Access).
 
 ## Modelo de datos
 
