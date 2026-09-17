@@ -68,11 +68,14 @@ export default defineConfig({
 				optional: true,
 			}),
 			// Sitekey pública de Turnstile. Es variable de BUILD: cambiarla exige
-			// reconstruir el sitio (ver .env.example).
+			// reconstruir el sitio. El default es la sitekey real del widget, así
+			// ningún build (Workers Builds incluido, que no lee `.env`) despliega
+			// los formularios en modo degradado; una env var la sobrescribe.
 			PUBLIC_TURNSTILE_SITE_KEY: envField.string({
 				context: "client",
 				access: "public",
 				optional: true,
+				default: "0x4AAAAAAE2wDF4mconZF9uY",
 			}),
 		},
 	},

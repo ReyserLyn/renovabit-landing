@@ -58,7 +58,7 @@ No expongas el puerto local con un túnel mientras no haya Access: eso saltaría
 
 ### Deploy por push (Workers Builds)
 
-El build de Workers Builds no lee `.env`: `PUBLIC_TURNSTILE_SITE_KEY` debe estar como **variable de build** en el dashboard (Workers & Pages -> renovabit-landing -> Settings -> Build). Sin ella, el sitio se despliega con los formularios en modo degradado (aviso y CTA de WhatsApp, sin envío), tanto en `/contacto/` como en `/resena/`.
+El build de Workers Builds no lee `.env`, pero no hace falta configurar nada: `PUBLIC_TURNSTILE_SITE_KEY` tiene la sitekey real del widget por defecto en `astro.config.mjs` y se inlinea en cada build (una env var la sobrescribe). Sin ese valor, los formularios de `/contacto/` y `/resena/` se desplegarían en modo degradado (aviso y CTA de WhatsApp, sin envío).
 
 ## Modelo de datos
 
