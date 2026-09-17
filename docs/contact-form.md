@@ -80,6 +80,8 @@ PUBLIC_TURNSTILE_SITE_KEY=<sitekey real>
 bun run cf:deploy
 ```
 
+Si el deploy lo ejecuta **Workers Builds** (push a `main`), definí `PUBLIC_TURNSTILE_SITE_KEY` como variable de build en el dashboard: ese build no lee `.env` y, sin la variable, los formularios se despliegan en modo degradado.
+
 El binding `CONTACT_RATE_LIMITER` se declara en `wrangler.jsonc` y se aprovisiona al desplegar. `CONTACT_DEV_SIMULATE_EMAIL` no debe definirse en producción.
 
 ## Variables de entorno

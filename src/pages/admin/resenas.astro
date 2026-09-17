@@ -3,7 +3,7 @@
  * Panel de moderación de reseñas.
  *
  * Página on-demand (SSR): lista las reseñas de D1, con estadísticas, filtro por
- * estado y acciones POST a `/api/admin/resenas` (patrón PRG). El contexto vive
+ * estado y acciones POST a `/admin/resenas/acciones` (patrón PRG). El contexto vive
  * en `src/lib/resenas/admin.ts`; acá solo hay presentación.
  *
  * En producción está detrás de Cloudflare Access (ver docs/cloudflare-access.md).
@@ -300,7 +300,7 @@ function contactoHref(contacto: string | null, tipo: string | null): string | nu
 
 										<form
 											method="post"
-											action="/api/admin/resenas"
+											action="/admin/resenas/acciones"
 											class="mt-4 flex flex-wrap items-center gap-2 border-t border-border/20 pt-4"
 										>
 											<input type="hidden" name="id" value={fila.id} />

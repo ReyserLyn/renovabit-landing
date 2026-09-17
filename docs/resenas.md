@@ -11,7 +11,7 @@ Formulario público, moderación interna y publicación de reseñas. La reseña 
 | Lógica del formulario | `src/lib/resenas/*` (schema, handler, r2, templates) | Módulos puros + D1/R2 |
 | Tabla | `src/db/schema.ts` (`resenas`) | D1 |
 | Panel de moderación | `src/pages/admin/resenas.astro` | On-demand, SSR |
-| Endpoint del panel | `src/pages/api/admin/resenas.ts` | On-demand, POST-only, PRG |
+| Endpoint del panel | `src/pages/admin/resenas/acciones.ts` | On-demand, POST-only, PRG (bajo `/admin/` para que Access lo cubra) |
 | Foto | `src/pages/admin/resenas/foto/[...key].astro` | On-demand, R2 privado |
 | Sincronización | `scripts/sync-resenas.ts` + `scripts/sql/resenas-aprobadas.sql` | Script Bun |
 | Artefacto público | `src/data/resenas.generated.ts` | Generado, se commitea |
@@ -55,6 +55,10 @@ El artefacto no lleva marcas de tiempo: con las mismas filas, el archivo es byte
 El panel debe quedar detrás de Cloudflare Access. La guía paso a paso está en [`docs/cloudflare-access.md`](./cloudflare-access.md). Si Access no está configurado, el panel responde 403 en producción: `accesoPermitido` exige el header `cf-access-authenticated-user-email` (fail-closed) además de la validación de origen y del límite de cuerpo. En local no hay Access y la comprobación se omite, pero el servidor escucha solo en `localhost`.
 
 No expongas el puerto local con un túnel mientras no haya Access: eso saltaría la única barrera real del panel.
+
+### Deploy por push (Workers Builds)
+
+El build de Workers Builds no lee `.env`: `PUBLIC_TURNSTILE_SITE_KEY` debe estar como **variable de build** en el dashboard (Workers & Pages -> renovabit-landing -> Settings -> Build). Sin ella, el sitio se despliega con los formularios en modo degradado (aviso y CTA de WhatsApp, sin envío), tanto en `/contacto/` como en `/resena/`.
 
 ## Modelo de datos
 
