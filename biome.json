@@ -187,6 +187,18 @@
 			"formatter": {
 				"enabled": true
 			}
+		},
+		{
+			"includes": [
+				"src/pages/qr.astro"
+			],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noImportantStyles": "off"
+					}
+				}
+			}
 		}
 	],
 	"json": {

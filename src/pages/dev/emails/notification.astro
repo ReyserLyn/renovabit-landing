@@ -3,7 +3,12 @@
 import { renderNotificationEmail } from "@/lib/contact/templates";
 import { sampleContact } from "./_sample";
 
+export const prerender = false;
+
 const email = renderNotificationEmail(sampleContact);
+// El header `X-Robots-Tag` de `_headers` no aplica a rutas SSR: el noindex se
+// inyecta aquí, solo para el preview (no modifica los correos reales).
+const html = email.html.replace("<head>", '<head><meta name="robots" content="noindex, nofollow">');
 ---
 
-<Fragment set:html={email.html} />
+<Fragment set:html={html} />

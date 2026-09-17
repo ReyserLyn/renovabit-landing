@@ -141,12 +141,14 @@ export default defineConfig({
 			validateH1: true,
 			validateImageAlt: true,
 			validateMetadataLength: true,
-			// La notificación de reseñas enlaza al panel (`/admin/resenas/`), que
-			// es una ruta on-demand detrás de Access: no existe como HTML en el
-			// build y no es un enlace roto.
+			// El panel admin y los previews de correos son rutas on-demand (SSR):
+			// no existen como HTML en el build y no son enlaces rotos.
 			validateInternalLinks: {
 				skip: (href) =>
-					href.startsWith("/admin/") || href.startsWith("https://renovabit.com/admin/"),
+					href.startsWith("/admin/") ||
+					href.startsWith("https://renovabit.com/admin/") ||
+					href.startsWith("/dev/") ||
+					href.startsWith("https://renovabit.com/dev/"),
 			},
 		}),
 		preact(),

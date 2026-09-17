@@ -3,7 +3,12 @@
 import { renderResenaNotificationEmail } from "@/lib/resenas/templates";
 import { sampleResena } from "./_sample";
 
+export const prerender = false;
+
 const email = renderResenaNotificationEmail(sampleResena);
+// El header `X-Robots-Tag` de `_headers` no aplica a rutas SSR: el noindex se
+// inyecta aquí, solo para el preview (no modifica los correos reales).
+const html = email.html.replace("<head>", '<head><meta name="robots" content="noindex, nofollow">');
 ---
 
-<Fragment set:html={email.html} />
+<Fragment set:html={html} />
