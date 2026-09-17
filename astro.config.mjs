@@ -120,10 +120,13 @@ export default defineConfig({
 		}),
 		sitemap({
 			// Las páginas temporales de `/dev/`, la página de acción `/resena/`
-			// (noindex) y el panel admin (`/admin/`, detrás de Access) no entran
-			// al sitemap. `/resenas/` sí entra.
+			// (noindex), los materiales internos `/qr/` y el panel admin
+			// (`/admin/`, detrás de Access) no entran al sitemap. `/resenas/` sí entra.
 			filter: (page) =>
-				!page.includes("/dev/") && !page.includes("/resena/") && !page.includes("/admin/"),
+				!page.includes("/dev/") &&
+				!page.includes("/resena/") &&
+				!page.includes("/qr/") &&
+				!page.includes("/admin/"),
 			serialize(item) {
 				const lastmod = blogLastmods.get(new URL(item.url).pathname);
 				if (lastmod) item.lastmod = lastmod;
@@ -150,9 +153,10 @@ export default defineConfig({
 			generateLlmsTxt: false,
 			generateLlmsFullTxt: true,
 			generateIndividualMd: true,
-			// El panel admin es SSR y queda detrás de Access: no se intenta
-			// renderizar ni incluir en los artefactos para LLMs.
-			exclude: ["admin"],
+			// El panel admin es SSR y queda detrás de Access, y `/qr/` es una
+			// página de materiales internos: ninguna se incluye en los artefactos
+			// para LLMs.
+			exclude: ["admin", "qr"],
 			excludeSelectors: ["nav", "aside", "footer", "form", ".sr-only", "[aria-hidden='true']"],
 		}),
 	],
