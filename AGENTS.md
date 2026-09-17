@@ -8,6 +8,14 @@
 
 ---
 
+## Idioma y comunicación
+
+- **Chat con el usuario**: siempre en español neutro latinoamericano (es-PE). Nunca en inglés, nunca voseo.
+- **Contenido del sitio** (copy, correos, legales, FAQ, metadata): español neutro es-PE; nunca voseo ni formas rioplatenses.
+- **Técnico** (código, comentarios, commits): comentarios en español neutro; commits en inglés (conventional commits del repo).
+
+---
+
 ## Stack Técnico
 
 | Capa | Tecnología |
