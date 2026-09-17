@@ -60,10 +60,18 @@ const variants = [
 							<h2 class="mt-5 font-heading text-xl font-semibold text-foreground">{v.name}</h2>
 							<p class="mt-1 text-sm text-muted-foreground">{v.note}</p>
 							<div class="no-print mt-4 flex flex-wrap gap-2">
+								<button
+									type="button"
+									data-qr-zoom={`/qr/${v.file}.svg`}
+									data-qr-alt={v.alt}
+									class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 font-mono text-xs font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90"
+								>
+									Ver en grande
+								</button>
 								<a
 									href={`/qr/${v.file}.svg`}
 									download={`renovabit-qr-resena-${v.id}.svg`}
-									class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 font-mono text-xs font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90"
+									class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-3 font-mono text-xs font-medium text-foreground transition hover:border-primary/40"
 								>
 									SVG · para imprenta
 								</a>
@@ -80,6 +88,64 @@ const variants = [
 			</div>
 		</div>
 	</section>
+
+	<dialog
+		id="qr-dialog"
+		aria-label="Código QR en tamaño completo"
+		class="m-auto max-h-none max-w-none border-0 bg-transparent p-0 backdrop:bg-black/70"
+	>
+		<div class="flex flex-col items-center gap-4">
+			<img
+				id="qr-dialog-img"
+				src=""
+				alt=""
+				width="1200"
+				height="1200"
+				class="aspect-square w-[min(92vw,80vh)] rounded-2xl bg-white p-4 shadow-2xl"
+			>
+			<div class="flex flex-wrap items-center justify-center gap-2">
+				<a
+					id="qr-dialog-open"
+					href="#"
+					target="_blank"
+					rel="noopener"
+					class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-3 font-mono text-xs font-medium text-white transition hover:bg-white/20"
+				>
+					Abrir en pestaña nueva
+				</a>
+				<button
+					id="qr-dialog-close"
+					type="button"
+					class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-mono text-xs font-medium text-foreground shadow-sm transition hover:bg-white/90"
+				>
+					Cerrar
+				</button>
+			</div>
+		</div>
+	</dialog>
+
+	<script is:inline>
+	const qrDialog = document.getElementById("qr-dialog");
+	const qrDialogImg = document.getElementById("qr-dialog-img");
+	const qrDialogOpen = document.getElementById("qr-dialog-open");
+	const qrDialogClose = document.getElementById("qr-dialog-close");
+	if (qrDialog && qrDialogImg && qrDialogOpen && qrDialogClose) {
+		for (const button of document.querySelectorAll("[data-qr-zoom]")) {
+			button.addEventListener("click", () => {
+				const src = button.getAttribute("data-qr-zoom");
+				if (!src) return;
+				qrDialogImg.setAttribute("src", src);
+				qrDialogImg.setAttribute("alt", button.getAttribute("data-qr-alt") ?? "Código QR");
+				qrDialogOpen.setAttribute("href", src);
+				qrDialog.showModal();
+			});
+		}
+		qrDialogClose.addEventListener("click", () => qrDialog.close());
+		qrDialog.addEventListener("click", (event) => {
+			if (event.target === qrDialog) qrDialog.close();
+		});
+	}
+	</script>
 </BaseLayout>
 
 <style is:global>
@@ -119,6 +185,10 @@ const variants = [
 	}
 
 	.no-print {
+		display: none !important;
+	}
+
+	dialog {
 		display: none !important;
 	}
 }
