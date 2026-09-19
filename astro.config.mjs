@@ -43,14 +43,6 @@ export default defineConfig({
 	server: { port: 4321 },
 	compressHTML: "jsx",
 
-	// Precarga nativa de enlaces internos: al entrar en el viewport, Astro
-	// descarga la página para que la navegación se sienta instantánea. Sin
-	// dependencias adicionales; respeta ahorro de datos y conexiones lentas.
-	prefetch: {
-		prefetchAll: true,
-		defaultStrategy: "viewport",
-	},
-
 	// La validación de origen del formulario de contacto vive en
 	// `src/lib/contact/origin.ts` y decide el contrato de respuesta del endpoint
 	// (403 `verificacion`). Se desactiva la comprobación global de Astro para no
