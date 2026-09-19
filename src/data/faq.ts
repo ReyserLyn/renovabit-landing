@@ -275,7 +275,7 @@ export function getFeaturedFaqs(): FaqItem[] {
 	return faqItems.filter((f) => f.featured);
 }
 
-/** FAQ para un servicio específico (solo el tag del servicio, sin generales) */
+/** FAQ etiquetadas con el servicio indicado (una misma FAQ puede cubrir varios servicios) */
 export function getFaqsForService(serviceSlug: string): FaqItem[] {
 	return faqItems.filter((f) => f.tags.includes(serviceSlug));
 }

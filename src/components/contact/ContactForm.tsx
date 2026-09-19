@@ -32,26 +32,14 @@ import {
 	type ContactFieldErrors,
 	contactSchema,
 } from "@/lib/contact/schema";
+import {
+	BUTTON_CLASS,
+	INPUT_CLASS,
+	LABEL_CLASS,
+	TEXTAREA_CLASS,
+	WHATSAPP_BUTTON_CLASS,
+} from "@/lib/form-styles";
 import { TurnstileWidget, type TurnstileWidgetState } from "./TurnstileWidget";
-
-const INPUT_CLASS = cn(
-	"border-input bg-background focus-visible:border-ring focus-visible:ring-ring/50 flex h-10 w-full min-w-0 rounded-lg border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
-	"aria-invalid:border-destructive aria-invalid:ring-destructive/30",
-);
-
-const TEXTAREA_CLASS = cn(
-	"border-input bg-background focus-visible:border-ring focus-visible:ring-ring/50 field-sizing-content flex min-h-20 w-full rounded-lg border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
-	"aria-invalid:border-destructive aria-invalid:ring-destructive/30",
-);
-
-const LABEL_CLASS = "flex select-none items-center gap-1.5 text-sm font-medium leading-none";
-
-const BUTTON_CLASS = cn(
-	"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3 focus-visible:ring-offset-2 inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-transparent bg-primary bg-clip-padding px-8 text-base font-medium text-primary-foreground outline-none transition-all duration-150 select-none hover:bg-primary/90 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 h-12",
-);
-
-const WHATSAPP_BUTTON_CLASS =
-	"inline-flex h-11 shrink-0 items-center justify-center rounded-xl bg-[#0f7a35] px-6 text-sm font-medium text-white transition-colors hover:bg-[#0d6b2d]";
 
 function describedBy(...ids: Array<string | undefined>): string | undefined {
 	const values = ids.filter((id): id is string => Boolean(id));

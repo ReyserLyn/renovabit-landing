@@ -17,6 +17,13 @@ import { whatsappUrl } from "@/constants";
 import { RESENA_ESTRELLAS_OPTIONS, resenaFormCopy } from "@/data/resena-form";
 import { RESENA_SERVICIO_OPTIONS } from "@/data/resenas-servicios";
 import {
+	BUTTON_CLASS,
+	INPUT_CLASS,
+	LABEL_CLASS,
+	TEXTAREA_CLASS,
+	WHATSAPP_BUTTON_CLASS,
+} from "@/lib/form-styles";
+import {
 	isResenaErrorCode,
 	RESENA_ERROR_MESSAGES,
 	type ResenaErrorCode,
@@ -36,27 +43,8 @@ const MAX_FOTO_INPUT_BYTES = 15 * 1024 * 1024;
 const MAX_FOTO_DIMENSION = 1600;
 const WEBP_QUALITY = 0.8;
 
-const INPUT_CLASS = cn(
-	"border-input bg-background focus-visible:border-ring focus-visible:ring-ring/50 flex h-10 w-full min-w-0 rounded-lg border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
-	"aria-invalid:border-destructive aria-invalid:ring-destructive/30",
-);
-
-const TEXTAREA_CLASS = cn(
-	"border-input bg-background focus-visible:border-ring focus-visible:ring-ring/50 field-sizing-content flex min-h-20 w-full rounded-lg border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
-	"aria-invalid:border-destructive aria-invalid:ring-destructive/30",
-);
-
-const LABEL_CLASS = "flex select-none items-center gap-1.5 text-sm font-medium leading-none";
-
-const BUTTON_CLASS = cn(
-	"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3 focus-visible:ring-offset-2 inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-transparent bg-primary bg-clip-padding px-8 text-base font-medium text-primary-foreground outline-none transition-all duration-150 select-none hover:bg-primary/90 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 h-12",
-);
-
 const SECONDARY_BUTTON_CLASS =
 	"inline-flex h-9 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted";
-
-const WHATSAPP_BUTTON_CLASS =
-	"inline-flex h-11 shrink-0 items-center justify-center rounded-xl bg-[#0f7a35] px-6 text-sm font-medium text-white transition-colors hover:bg-[#0d6b2d]";
 
 const STAR_CLASS =
 	"flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border border-border/60 bg-background text-2xl leading-none transition-colors select-none hover:border-primary/60";
@@ -570,7 +558,7 @@ export function ReviewForm({ siteKey }: ReviewFormProps) {
 								type="text"
 								class={INPUT_CLASS}
 								value={field.input.value ?? ""}
-								autoComplete="email"
+								autoComplete="off"
 								maxLength={RESENA_CONTACTO_MAX}
 								aria-invalid={hasError}
 								aria-describedby={describedBy(hintId, hasError ? errorId : undefined)}
