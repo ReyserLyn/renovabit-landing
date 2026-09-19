@@ -275,11 +275,6 @@ export function getFeaturedFaqs(): FaqItem[] {
 	return faqItems.filter((f) => f.featured);
 }
 
-/** FAQ filtradas por un tag específico */
-export function getFaqsByTag(tag: string): FaqItem[] {
-	return faqItems.filter((f) => f.tags.includes(tag));
-}
-
 /** FAQ para un servicio específico (solo el tag del servicio, sin generales) */
 export function getFaqsForService(serviceSlug: string): FaqItem[] {
 	return faqItems.filter((f) => f.tags.includes(serviceSlug));

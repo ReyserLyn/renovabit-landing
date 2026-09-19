@@ -25,7 +25,6 @@
 		"@astrojs/preact": "^6.0.5",
 		"@astrojs/rss": "^4.0.19",
 		"@data-slot/accordion": "^0.2.167",
-		"@data-slot/tooltip": "^0.2.167",
 		"@formisch/preact": "^1.1.0",
 		"@googlemaps/js-api-loader": "^2.1.1",
 		"@jdevalk/astro-seo-graph": "^2.2.0",

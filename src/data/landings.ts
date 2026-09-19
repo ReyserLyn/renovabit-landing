@@ -168,9 +168,3 @@ export const laptopLentaLanding = {
 		{ href: "/reparacion-laptops-arequipa/", label: "la reparación de laptops en Arequipa" },
 	],
 } satisfies LandingData;
-
-export const landings = [laptopLentaLanding] satisfies readonly LandingData[];
-
-export function getLandingBySlug(slug: string): LandingData | undefined {
-	return landings.find((landing) => landing.slug === slug);
-}

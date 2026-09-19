@@ -9,9 +9,6 @@
 import { drizzle } from "drizzle-orm/d1";
 import * as schema from "./schema";
 
-/** Tipo del cliente Drizzle con el esquema completo de la D1 de RenovaBit. */
-export type Db = ReturnType<typeof createDb>;
-
 /** Crea el cliente Drizzle a partir del binding `env.DB`. */
 export function createDb(binding: D1Database) {
 	return drizzle(binding, { schema });

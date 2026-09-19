@@ -10,7 +10,6 @@
         "@astrojs/preact": "^6.0.5",
         "@astrojs/rss": "^4.0.19",
         "@data-slot/accordion": "^0.2.167",
-        "@data-slot/tooltip": "^0.2.167",
         "@formisch/preact": "^1.1.0",
         "@googlemaps/js-api-loader": "^2.1.1",
         "@jdevalk/astro-seo-graph": "^2.2.0",
@@ -247,8 +246,6 @@
     "@data-slot/accordion": ["@data-slot/accordion@0.2.167", "", { "dependencies": { "@data-slot/core": "0.2.167" } }, "sha512-RwGnpF6KGOfYPE33kX6rmwVi1EfEqH3WjTc3eiC+C1vOuHdW/gVvEqwiVLEOef/TxKE/Au5uMj4R8cIevfl3lw=="],
 
     "@data-slot/core": ["@data-slot/core@0.2.167", "", {}, "sha512-0fIVlDyvguTejMbY9DybRELFye0VNtfhETOlf6KFraqnGCc23cKyiElWdwwtY9HkutuVlFTGTBOxP0bXXZ0H5w=="],
-
-    "@data-slot/tooltip": ["@data-slot/tooltip@0.2.167", "", { "dependencies": { "@data-slot/core": "0.2.167" } }, "sha512-s9qLocUd6j9LZnkm0E7fKKyHNgeD2kKZ5udXnJA7esUM8efX0RI8DOOIggoW73YrXEjwj+ABd53L1+0sM69peQ=="],
 
     "@drizzle-team/brocli": ["@drizzle-team/brocli@0.10.2", "", {}, "sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w=="],
 
